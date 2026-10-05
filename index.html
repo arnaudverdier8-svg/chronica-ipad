@@ -68,6 +68,41 @@ body { position: fixed; inset: 0; }
 	<div id="bar"><div id="fill"></div></div>
 	<div id="notice"></div>
 </div>
+<script>
+// LE SON SUR IPAD. Godot réveille son AudioContext pendant un « touchstart »,
+// que Safari iOS ne compte pas comme un geste qui autorise le son : le
+// contexte restait suspendu (ni musique ni bruitages). On garde la main sur
+// chaque contexte créé et on le réveille au geste que Safari accepte (doigt
+// relevé, clic, touche), en jouant au passage un tampon muet (le déblocage
+// classique de WebKit). Et la session audio passe en « lecture » : le mode
+// silencieux de l'appareil ne coupe plus la musique d'un jeu.
+(function () {
+	try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+	var AC = window.AudioContext || window.webkitAudioContext;
+	if (!AC) return;
+	var all = [];
+	function Tracked(opts) { var c = new AC(opts); all.push(c); return c; }
+	Tracked.prototype = AC.prototype;
+	window.AudioContext = Tracked;
+	if (window.webkitAudioContext) window.webkitAudioContext = Tracked;
+	function unlock() {
+		for (var i = 0; i < all.length; i++) {
+			var c = all[i];
+			if (c.state === 'running') continue;
+			try {
+				c.resume();
+				var src = c.createBufferSource();
+				src.buffer = c.createBuffer(1, 1, 22050);
+				src.connect(c.destination);
+				src.start(0);
+			} catch (e) {}
+		}
+	}
+	['touchend', 'pointerup', 'click', 'keydown'].forEach(function (t) {
+		document.addEventListener(t, unlock, true);
+	});
+})();
+</script>
 <script src="index.js"></script>
 <script>
 const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":68497480,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
