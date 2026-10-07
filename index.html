@@ -74,8 +74,10 @@ body { position: fixed; inset: 0; }
 // contexte restait suspendu (ni musique ni bruitages). On garde la main sur
 // chaque contexte créé et on le réveille au geste que Safari accepte (doigt
 // relevé, clic, touche), en jouant au passage un tampon muet (le déblocage
-// classique de WebKit). Et la session audio passe en « lecture » : le mode
-// silencieux de l'appareil ne coupe plus la musique d'un jeu.
+// classique de WebKit). Et la session audio passe en « lecture » (iPadOS 17 :
+// audioSession ; avant : un <audio> muet en boucle) : le mode silencieux de
+// l'appareil ne coupe plus la musique d'un jeu. Le jeu mixe à 48 kHz sur le
+// web (project.godot), le débit natif de l'iPad.
 (function () {
 	try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
 	var AC = window.AudioContext || window.webkitAudioContext;
@@ -85,9 +87,34 @@ body { position: fixed; inset: 0; }
 	Tracked.prototype = AC.prototype;
 	window.AudioContext = Tracked;
 	if (window.webkitAudioContext) window.webkitAudioContext = Tracked;
+	// Le mode silencieux de l'iPad (centre de contrôle, ou l'interrupteur des
+	// anciens modèles) coupe Web Audio, et `audioSession` n'existe qu'à partir
+	// d'iPadOS 17 : on joue en boucle, au premier geste, un <audio> muet. Un
+	// élément média qui joue fait passer la session audio de la page en
+	// « lecture », que le mode silencieux ne coupe pas (le déblocage classique).
+	var silent = null;
+	function media() {
+		try {
+			if (!silent) {
+				silent = document.createElement('audio');
+				silent.setAttribute('playsinline', '');
+				silent.setAttribute('x-webkit-airplay', 'deny');
+				silent.loop = true;
+				silent.preload = 'auto';
+				silent.src = 'data:audio/wav;base64,UklGRkQDAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YSADAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==';
+			}
+			if (silent.paused) {
+				var p = silent.play();
+				if (p && p.catch) p.catch(function () {});
+			}
+		} catch (e) {}
+	}
 	function unlock() {
+		try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+		media();
 		for (var i = 0; i < all.length; i++) {
 			var c = all[i];
+			// (« interrupted » : iOS après un appel ou un passage en arrière-plan)
 			if (c.state === 'running') continue;
 			try {
 				c.resume();
@@ -101,11 +128,16 @@ body { position: fixed; inset: 0; }
 	['touchend', 'pointerup', 'click', 'keydown'].forEach(function (t) {
 		document.addEventListener(t, unlock, true);
 	});
+	// De retour d'arrière-plan, l'élément muet a pu être mis en pause : le
+	// prochain geste le relance (et réveille les contextes).
+	document.addEventListener('visibilitychange', function () {
+		if (document.visibilityState === 'visible' && silent) { try { silent.pause(); } catch (e) {} }
+	});
 })();
 </script>
 <script src="index.js"></script>
 <script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":72764896,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":72764928,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 (function () {
