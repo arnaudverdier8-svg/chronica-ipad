@@ -54,6 +54,27 @@ body { position: fixed; inset: 0; }
 }
 #fill { height: 100%; width: 0; background: #7a2a22; border-radius: 2px; transition: width 0.2s; }
 #notice { display: none; margin-top: 2em; max-width: 70vw; text-align: center; color: #7a2a22; }
+/* Les marges de l'encoche (lues par window.chronicaDevice). */
+#safe {
+	position: fixed; inset: 0; visibility: hidden; pointer-events: none;
+	padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+/* Un téléphone tenu en portrait : le jeu se joue en paysage. */
+#rotate {
+	display: none; position: fixed; inset: 0; z-index: 10;
+	flex-direction: column; justify-content: center; align-items: center;
+	background: #2a1a10; color: #e8dcc4; text-align: center;
+	font-family: Georgia, 'Times New Roman', serif; padding: 2em;
+}
+#rotate h2 { margin: 0 0 0.6em; font-weight: normal; letter-spacing: 0.12em; color: #d8b04e; }
+#rotate .phone {
+	width: 46px; height: 80px; border: 3px solid #d8b04e; border-radius: 9px;
+	margin-bottom: 1.4em; animation: turn 2.4s ease-in-out infinite;
+}
+@keyframes turn { 0%, 30% { transform: rotate(0deg); } 60%, 100% { transform: rotate(-90deg); } }
+@media (orientation: portrait) and (max-width: 600px) {
+	#rotate { display: flex; }
+}
 </style>
 <link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
@@ -62,6 +83,8 @@ body { position: fixed; inset: 0; }
 <body>
 <canvas id="canvas">Your browser does not support the canvas tag.</canvas>
 <noscript>Your browser does not support JavaScript.</noscript>
+<div id="safe"></div>
+<div id="rotate"><div class="phone"></div><h2>CHRONICA</h2><p>Turn your phone sideways to play.</p></div>
 <div id="status">
 	<h1>CHRONICA</h1>
 	<p>The tapestry is being woven…</p>
@@ -78,6 +101,17 @@ body { position: fixed; inset: 0; }
 // audioSession ; avant : un <audio> muet en boucle) : le mode silencieux de
 // l'appareil ne coupe plus la musique d'un jeu. Le jeu mixe à 48 kHz sur le
 // web (project.godot), le débit natif de l'iPad.
+// L'APPAREIL (ui/device.gd) : un téléphone (le petit côté de l'écran sous
+// 600 px CSS, au doigt), et les marges de l'encoche en px CSS.
+window.chronicaDevice = function () {
+	var touch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+	var small = Math.min(screen.width, screen.height) < 600;
+	var cs = getComputedStyle(document.getElementById('safe'));
+	var px = function (v) { return parseFloat(v) || 0; };
+	return { phone: touch && small,
+		safe: [px(cs.paddingLeft), px(cs.paddingTop), px(cs.paddingRight), px(cs.paddingBottom)],
+		w: window.innerWidth, h: window.innerHeight };
+};
 (function () {
 	try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
 	var AC = window.AudioContext || window.webkitAudioContext;
@@ -137,7 +171,7 @@ body { position: fixed; inset: 0; }
 </script>
 <script src="index.js"></script>
 <script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":72764928,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":72778036,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 (function () {
@@ -160,7 +194,12 @@ const engine = new Engine(GODOT_CONFIG);
 		fail('This browser lacks: ' + missing.join(', '));
 		return;
 	}
+	// Les modes de test de view/main.gd par l'adresse : ?args=match,seed=7
+	// (ou ?args=phone pour voir l'interface du téléphone sur un ordinateur).
+	const q = new URLSearchParams(location.search).get('args');
+	const extra = q ? ['--'].concat(q.split(',').filter((a) => a !== '')) : [];
 	engine.startGame({
+		args: extra,
 		onProgress: function (current, total) {
 			if (current > 0 && total > 0) {
 				fill.style.width = (100 * current / total).toFixed(1) + '%';
