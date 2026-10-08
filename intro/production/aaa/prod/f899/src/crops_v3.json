@@ -1,0 +1,13 @@
+{
+ "crop_01_crimson_rank_mercenary_legionary": [260, 900, 1060, 1350],
+ "crop_02_focal_crimson_rider_lance_and_gap": [900, 930, 1700, 1380],
+ "crop_03_blue_rank_spearman_manatarms": [1620, 1000, 2420, 1400],
+ "crop_04_long_shadows_across_hills_and_sky_bands": [800, 330, 1600, 780],
+ "crop_05_sky_laid_and_couched_bands_left": [0, 330, 800, 700],
+ "crop_06_flat_frieze_row_left": [0, 560, 900, 960],
+ "crop_07_flat_frieze_row_right": [1660, 560, 2560, 960],
+ "crop_08_footprints_behind_standing_slips": [380, 760, 1180, 1060],
+ "crop_09_border_gold_thread_tarnish_right": [1500, 40, 2300, 340],
+ "crop_10_faces_legionary": [500, 960, 740, 1120],
+ "crop_11_faces_spearman_manatarms": [1760, 1060, 2200, 1200]
+}

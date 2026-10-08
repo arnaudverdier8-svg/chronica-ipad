@@ -23,7 +23,7 @@ fs = [1664, 1668, 1680, 1696, 1708, 1719, 1726, 1730, 1736, 1744, 1752, 1760, 17
 tiles = [lab(small(rd(f'{FR}/f{f}.png')), f'f{f}') for f in fs]
 cv2.imwrite(f'{POC}/contact_sheet.jpg', np.concatenate([np.concatenate(tiles[i:i + 4], 1) for i in range(0, 16, 4)], 0), JPG)
 # before / after: v1 | v2 | v3 at the key moments
-pairs = [1666, 1684, 1704, 1719, 1740, 1752, 1760, 1782]
+pairs = [1664, 1688, 1710, 1719, 1740, 1752, 1760, 1782]
 rows = []
 for f in pairs:
     row = []

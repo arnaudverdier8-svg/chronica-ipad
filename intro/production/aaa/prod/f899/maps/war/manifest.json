@@ -60,7 +60,7 @@
   "ghost",
   "gpoly"
  ],
- "written": "2026-10-08 21:24:07",
+ "written": "2026-10-08 21:39:17",
  "kit": "bkit",
  "linen_seed": 0,
  "groups": [
@@ -78,7 +78,7 @@
   1800.0,
   0.0
  ],
- "regions": 871,
+ "regions": 787,
  "scene": "prod/f899/src/scene_war.py",
  "slips": [
   {
@@ -176,5 +176,5 @@
   "y": 17.5
  },
  "dx": 30.0,
- "stitched": 30713
+ "stitched": 30200
 }

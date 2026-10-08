@@ -241,7 +241,7 @@ def build(PX=10.0, out=None, verbose=True, parts=('front', 'far', 'field', 'hill
                 shc = GOLD_CROSS if realm == 'R' else dict(kind='chevron', col='#D6BE86')
                 F.embroider(c, card, x, y, ppm=5.0 / sc, group=None, seed=300 + k + (50 if rank == 'B' else 0), shield_cross=shc, name=f'flat{rank}{k}',
                             outline_w=0.9 if rank == 'A' else 0.8, hamp_mul=0.8, outline_mode='tonal', gap_prob=0.0, skin_mode='bare', cord_outline=True,
-                            cord_w=0.85, cord_tie=2.6, cord_min_mm=5.0, feat_w=0.40, fill_pitch=0.8)
+                            cord_w=0.85, cord_tie=2.6, cord_min_mm=5.0, feat_w=0.46, fill_pitch=0.8)
             c.say('flat row', rank)
     # ======================= field: turf lines under the standing figures, a few tuft clusters on the bare linen
     if 'field' in parts:

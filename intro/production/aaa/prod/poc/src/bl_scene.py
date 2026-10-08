@@ -259,6 +259,7 @@ FUZZ_TH = 0.014          # fibre halo shell: 0.4 mm of wool pile around every pi
 def wool_material(name, rgb_lin, rot_deg=0.0, rough_bump=1.0, rim=0.22, nrm_strength=1.0, scale=float(os.environ.get('WSCALE', '1.0')), aged=True, fuzz=False, lot_amp=0.09, stripe=1.0):
     """felt / laid-wool surface lit by the shared candle rig.  v3: macro dye-lot patches (+-14 %), per-object lot, per-strand shade, groove AO, a low
     fuzz rim and (fuzz=True) the fibre-halo variant: the same colour, alpha = a fibre noise, hashed blend, used on an inflated shell."""
+    stripe = stripe * float(os.environ.get('STRIPE', '0.65'))        # v3: 0.65 of the full strand contrast (1.0 made the courtyards zebra-striped at 2x zoom)
     m, nb, out = new_mat(name + ('_fz' if fuzz else ''))
     if MATDEBUG:
         h_ = (zlib.crc32(name.encode()) % 997) / 997.0
@@ -272,7 +273,7 @@ def wool_material(name, rgb_lin, rot_deg=0.0, rough_bump=1.0, rim=0.22, nrm_stre
     tb = nb.node('ShaderNodeTexImage'); tb.image = WOOL; tb.projection = 'BOX'; tb.projection_blend = 0.3; tb.interpolation = 'Linear'
     nb.link(mp.outputs['Vector'], tb.inputs['Vector'])
     sepc = nb.node('ShaderNodeSeparateColor'); nb.link(tb.outputs['Color'], sepc.inputs[0])
-    bu = nb.node('ShaderNodeBump'); bu.inputs['Strength'].default_value = float(os.environ.get('WB_S', '2.4')) * nrm_strength; bu.inputs['Distance'].default_value = float(os.environ.get('WB_D', '0.03'))
+    bu = nb.node('ShaderNodeBump'); bu.inputs['Strength'].default_value = float(os.environ.get('WB_S', '1.4')) * nrm_strength; bu.inputs['Distance'].default_value = float(os.environ.get('WB_D', '0.022'))
     nb.link(sepc.outputs[0], bu.inputs['Height'])
     # felt: a second, finer lumpy bump on top (fibre mat), so the faces are never smooth CG gradients
     fb = nb.node('ShaderNodeTexNoise'); fb.inputs['Scale'].default_value = 14.0; fb.inputs['Detail'].default_value = 1.5; fb.inputs['Roughness'].default_value = 0.55
@@ -600,7 +601,7 @@ TREE_MATS = {}
 def tree_mats(sp, fuzz=False):
     k = (sp, fuzz)
     if k not in TREE_MATS:
-        cl = {'spruce': '#2F4C34', 'fir': '#345540', 'round': '#42592F'}[sp]
+        cl = {'spruce': '#355639', 'fir': '#3A5C44', 'round': '#47602F'}[sp]
         mc = wool_material(f'tree_{sp}', srgb_lin(cl), rot_deg=75.0, rim=0.22, nrm_strength=0.55, fuzz=fuzz, lot_amp=0.12, stripe=0.5)
         mt = wool_material('trunk', srgb_lin('#4A3420'), rot_deg=90.0, rim=0.1, fuzz=fuzz)
         TREE_MATS[k] = (mc, mt)

@@ -91,7 +91,7 @@ def _upscale_labels(lab, ids, s, sigma=0.8):
 def embroider(c, card, x_mm, y_mm, ppm=8.0, group=None, seed=0, name='fig', shield_cross=None, min_region_mm2=1.4, cord_col=None,
               laid_big_mm2=26.0, couch_min_mm2=34.0, occlude=True, pull_amt=0.28, chroma_max=0.17, outline_w=1.0, fill_pitch=0.85,
               palette_pull=None, verbose=False, outline_mode='ink', hamp_mul=1.0, gap_prob=0.5, skin_mode='stitch', cord_outline=False, cord_w=1.0, cord_tie=3.0,
-              feat_w=0.42, cord_min_mm=7.0):
+              feat_w=0.52, cord_min_mm=7.0):
     """stitch one figure into canvas c with its feet (alpha bbox bottom) at (x_mm, y_mm) and horizontal centre at x_mm.
     ppm = card px per mm.  Returns info dict (bbox_mm, silhouette mask window, region count)."""
     PX = c.PX
@@ -307,7 +307,7 @@ def embroider(c, card, x_mm, y_mm, ppm=8.0, group=None, seed=0, name='fig', shie
                 sil=sil_c, skin=skin_c, ox=ox, oy=oy, features=nfeat)
 
 
-def face_features(c, skin_c, lin_c, ox, oy, PX, seed, feat_w=0.42, ink='#2B170D'):
+def face_features(c, skin_c, lin_c, ox, oy, PX, seed, feat_w=0.52, ink='#241309'):
     """traces the card's dark marks inside the bare-linen skin regions of the head (upper half of the figure) as stem-stitch strokes: elongated marks follow their
     skeleton, blobs (pupils, mouth) become short dashes; ~1.2-6 mm strokes, 0.42 mm wide."""
     from chron.skel import skeleton_paths
@@ -337,7 +337,7 @@ def face_features(c, skin_c, lin_c, ox, oy, PX, seed, feat_w=0.42, ink='#2B170D'
         nd, dc, ds, dcen = cv2.connectedComponentsWithStats(dark, connectivity=8)
         for j in range(1, nd):
             a_mm = ds[j, 4] / PX / PX
-            if a_mm < 0.22 or a_mm > 6.0:
+            if a_mm < 0.16 or a_mm > 6.0:
                 continue
             mk = (dc == j).astype(np.uint8)
             pts = np.stack(np.nonzero(mk)[::-1], 1).astype(np.float32)
@@ -350,7 +350,7 @@ def face_features(c, skin_c, lin_c, ox, oy, PX, seed, feat_w=0.42, ink='#2B170D'
             if paths:
                 path = max(paths, key=len)
                 plen = float(np.hypot(*np.diff(path, axis=0).T).sum()) / PX
-                if plen < 1.3:
+                if plen < 1.0:
                     path = None
             if path is None:
                 half = max(0.6 * PX, 0.5 * ln)

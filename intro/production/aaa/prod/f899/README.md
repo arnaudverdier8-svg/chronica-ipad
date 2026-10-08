@@ -1,87 +1,60 @@
-# CHRONICA keyframe f899 (S12 'years'), v2: ten soldiers risen out of the cloth, frozen while a century passes
+# CHRONICA keyframe f899 (S12 'years'), v3: five soldiers risen out of the cloth, a clear no-man's land between the legion and the merchants
 
-Production-proof stage, client approval pending.  v2 answers the three-critic review of the first proof (scores 5.5 / 5.5 / 4).  The previous proof is kept
-with a `_v1` suffix next to every v2 file (`out/keyframe_f899_2560x1440_v1.png`, `out/crops_v1/`, `out/layers_sheet_v1.jpg`, `out/iterations_v1/`, `README_v1.md`,
-`shot_f899_v1.json`, `run_all_v1.sh`, `src_v1/`, `maps_v1/`, `blend/slips_v1/`, `work/plate_v1/`, EXR passes `work/ev_v14/`).
+Production-proof stage, client approval pending.  v3 answers the director's rejection of v2 ("chaotic: too many small figures, dotted ghost footprints everywhere reading as noise,
+an airbrushed / smeared sky, no focal point").  Every earlier version is kept next to its successor with a `_vN` suffix: `_v1` (first proof), `_v2` (rejected), none = v3.
 
-Deliverable: `out/keyframe_f899_2560x1440.png` (8-bit sRGB, TPDF-dithered, 1.2 % grain) + `out/keyframe_f899_2560x1440_16bit.png` (same grade, 16-bit, for the
-video encode); 100 % crops `out/crops/` (+ `review_sheet.jpg`); layer breakdown `out/layers_sheet.jpg`; iteration history `out/iterations_sheet.jpg` and
-`out/iterations/`; numeric checks `out/qa_report.json`.  The comp is deterministic: `src/comp.py work/ev_v2 ...` reproduces the keyframe bit-exactly from the kept EXR passes.
+Deliverable: `out/keyframe_f899_2560x1440.png` (8-bit sRGB, TPDF-dithered, 1.2 % grain) and `out/keyframe_f899_2560x1440_16bit.png` (same grade, 16-bit, for the video encode).
+Checks: 100 % crops `out/crops/` (+ `review_sheet.jpg`), layer breakdown `out/layers_sheet.jpg`, iteration history `out/iterations_sheet.jpg` + `out/iterations/`,
+v2-versus-v3 `out/before_after_v2_v3.jpg`, numbers `out/qa_report.json`.  The comp is deterministic: `python3 src/comp.py work/ev_v3e out/keyframe_f899_2560x1440.png --tag _v3`
+reproduces the keyframe from the kept EXR passes (`work/ev_v3e/`) and plate passes (`work/plate/`).
 
-## What is in the frame (v2)
-* **Camera**: pinhole, 22 deg oblique, 3 deg dutch in-camera, aim (330, 158) mm, 4.5 px/mm, f/16 focused at 850 mm.  The aim moved 26 mm up the cloth so the whole
-  gold chronicle thread, the hem and a 180-px wedge of the walnut table sit in frame (the dutch makes the table wedge grow to the right); the sheet is 660 x 345 mm
-  (every v1 x shifted by +30 mm so the rolled frame never leaves the cloth).
-* **Composition**: one clash, not a parade.  Ten front-rank slips (5 Legion crimson facing right, 5 merchants' blue facing left) in two ranks: the hero rank at 1.0 x
-  (legionary x man-at-arms, shield to shield, centre-left third; knight with lance at the left; horse archer / spearman / mercenary at the right) and a back rank at
-  0.83 x.  Slips overlap on screen and in the sheet (each is stitched whole, the occlusion is reset per slip), their yaw is small (3-5 deg) so every footprint registers
-  with its slip.  Behind them two flat ranks (0.58 x / 0.42 x, less relief) stand on two rolling hillock mounds.
-* **Figures** are still the game's strike-pose cards re-embroidered as real strands (laid + couched fills, split-stitch faces, couched-gold crosses), but the outline is
-  now a THIN, TONAL (darker tone of the adjacent fill), BROKEN stem stitch instead of a dark all-round ink line; the felt backing is 1.1 mm of undyed wool felt mixed with the
-  local fill colour, hard-edged, lit by the hearth.  The soft 0.3 mm 'wool halo' of v1 (the dark halo the critics saw) is gone; the fuzz is the R25 fibre set with 4x edge boost.
-* **Needle-painted dusk sky** (`scene_war.build_sky`): 76 mm of long-and-short split stitch in three zones (stitch length 15 / 10.5 / 7 mm, wavy interleaving seams), each
-  stitch picks its shade from a woad-grey -> grey dusk -> madder -> terracotta -> pale-glow gradient displaced by row-correlated noise (rows ~0.85 mm differ, each wanders
-  over ~14 mm), eleven lens-shaped laid cloud / glow bars lighter than their surroundings, no regular couching ticks.  Chroma <= .125, no violet.
-* **Ground**: turf lines (couched earth bands) under each front figure's feet, tuft CLUSTERS (127 tufts in 30 clumps + near the feet, 2.2-6.6 mm, varied lean / blade
-  count / colour; v1 had ~250 stamped glyphs), irregular foxing (domain-warped blots, darker core + yellow-brown halo, clustered along tidelines and the hem), wicked pale tea-brown tidelines.
-* **Footprints** (`ghost_v2.py`): protected linen colour-matched to the surrounding aged linen (slightly fresher, no cool slab), needle holes 0.20-0.42 mm with a raised lip and
-  a red-brown pigment bleed around 40 % of them, variable spacing, red-brown underdrawing of each slip's stem paths.
-* **Light**: 2200 K hearth key from the bottom edge, about -29 % against v1 (Eevee key 2.1 -> 1.9 at a wider 5 deg source, then x0.78 in COMP as `hearth_gain`; pooled with irregular static
-  flicker lobes and a height-dependent fall-off up every standing body; mean OKLab L .468 -> .419); warm radiosity (12 % of the hearth stays in the shadow, in the hearth's colour); shadow penumbra grows with distance from
-  the caster (Eevee's area light + a distance-dependent blur) and thins out with distance; a 5200 K dusk fill.  **The century's arc**: a pale 7500 K light with a ragged,
-  slightly curved leading edge sweeping the left third, a bleach front that trails it (dyes toward grey-white / pink-grey, linen toward ivory), applied identically to the plate
-  (albedo, OKLab) and to the slips (screen space), the gold thread tarnishing from the left (bronze) to fresh gold at the right.
-* **Grade**: Act III with sat x0.88, a split tone (woad-cool in the deep shadows, a trace of warm in the highlights), halation on the hottest warm highlights, a lens vignette,
-  TPDF dither before the 8-bit quantise.
-* **Tethers**: three long, thick (0.62-0.82 mm), clearly curling tethers per slip (hanging from the lower edge and lying on the cloth), plus 21 fine ones, in the parent strand's colour with sheen.
+## Director notes -> what v3 does (with the measured numbers)
 
-## Pipeline (all in `src/`; one command: `run_all.sh TAG [eevee_scale] [taa] [plate_scale]`, steps skippable with `SKIP="bake export plate eevee comp"`)
-1. `scene_war.py`  bake `maps/war` + `maps/war_ground` (bkit Canvas -> RECORD -> needle order -> exact replay), 6600 x 3450 px at 10 px/mm, ~4 min, ~3.3 GB.
-2. `export_slips.py`  slip textures, meshes, tethers, poses -> `blend/slips/` (~20 s).
-3. `render_plate.py`  R25-F rectified relight of `war_ground` (hearth / cool / fill passes + the metal mask), aged inside the edit (folds -> library dye age -> irregular fox / tide / bleach / footprint match -> tarnish front), warped by the camera homography (~80 s full, 40 s half).
-4. `eevee_scene.py`  9 Eevee passes (slips / plane / planeclean x hearth / cool / fill), linear EXR + Z; 2560 x 1440 at 40 TAA took 12.4 min with the machine shared.
-5. `comp.py`  plate x shadow ratios (+ bounce, penumbra, fade) + pooled slips + bleach + R25 fibres + gold gleam + DOF + halation + vignette + split-tone grade (~25 s).
-   `qa.py`, `make_crops.py src/crops_v2.json`, `make_layers.py` produce the checks and sheets.  `layout_preview.py` places slips in seconds (standing cards projected with the shot camera); `preview_ground.py` is the ground-only look-dev composite.
-Reproducibility: `shot_f899.json` holds every shot parameter; EXR passes of the final render are kept in `work/ev_v2/`.
+| # | note | v3 |
+|---|---|---|
+| 1 | **Composition**: readable confrontation, two front ranks across a clear gap, 4-6 standing slips, back ranks flat, asymmetric focal pair slightly right of centre inside x 320-2240 | `src/layout_v3.py` is the single source of truth.  **Five** slips stand (v2: ten), hinged 70 deg, frozen in strike poses: crimson (left, facing right) mercenary, legionary and the **rider (knight, lance levelled)**; blue (right, facing left) the **spearman** and the man-at-arms.  Three vs two = asymmetric.  Between the rank leaders (lance tip / spear tip) lies a lit, empty no-man's land (about 210-330 px).  Behind them the army lies **flat** as a Bayeux frieze: near row (5 figures, one ground line, 0.62-0.66 scale, 66 mm rhythm) and far row on the ridge (3 riders, 0.44-0.46); eight flat figures in all (v2: nineteen).  Projected card boxes (`qa_report.json`): knight x 753-1402, spearman x 1611-2077, so the focal pair is inside 320-2240 and its midpoint sits at 59 % of the frame width.  Camera unchanged except the aim (330, 168) mm: 22 deg oblique, 3 deg dutch, 4.5 px/mm. |
+| 2 | **Footprints** only behind the standing slips, subtle, no dense halos, no dotted outlines around flat figures | Flat figures are plain ground stitching with no ghost at all.  The five footprints (`src/ghost_v3.py`, runtime replacement of the library `_ghost`, library untouched): protected linen (relief -45 %, kept 50 % fresher than the aged surround), needle holes 0.15-0.30 mm radius (v2: 0.20-0.42) only at 42 % of the outline-cord tie positions (Poisson >= 2.3 mm) plus a thin interior scatter (>= 3.3 mm), 22 % with a pigment bleed, faint red-brown underdrawing (alpha .5), and 11 **snipped thread ends** per figure (short curled lengths of the figure's own wool, 1.6-3.8 mm, lying in the weave and catching the grazing light).  v2 had ten overlapping, densely dotted ghosts. |
+| 3 | **Sky** as laid-and-couched horizontal bands (madder, woad-grey, buff; no violet), visible couching bars, irregular edges | `scene_war.build_sky`: ten bands (woad-grey x4, buff x3, madder / terracotta x3; thickness 3.6-11.5 mm x 0.82-1.2 random), laid wool 0.84 mm pitch, runs up to 150 mm, **couched** with visible bars every 5.4-8.6 mm whose slant drifts +-11 / 6 / 3 deg over 43 / 14 / 5 mm plus 9 deg per-bar jitter, bar colour 5 % lighter / darker than the band (OKLab L), ties every 4-6 mm, 5 dye lots per band; every band edge wanders on its own (0.9-1.9 mm, three scales) with 0.1-0.45 mm noise erosion that leaves thin linen slivers between bands, and a faint underdrawn line along each edge.  OKLCH chroma .037-.099 (cap .125), hues 32-35 deg (madder), 243-250 deg (woad-grey), 77-82 deg (buff), nothing near 300-340 deg.  No gradient, no clouds. |
+| 4 | **Light**: 2200 K hearth from the bottom edge as hero, long shadows up-frame across ground and sky bands, warm bottom to near-black top edge, key:fill ~5:1, 3 deg dutch, 22 deg oblique | Hearth sun az 244 deg / el 26 deg (shadows run up-frame and 24 deg to the right), source 2.2 deg so the shadows keep their silhouettes near the feet and open slowly; a standing slip of 90-120 mm throws 180-250 mm of shadow over the turf, the ridges and the lower sky bands.  Pool (`comp.pool`, mode `exp`): the key falls off exponentially from y 302 mm (length 168 mm) with an extra top-edge sink, so mean linear luminance by frame row is 0.328 at the bottom, 0.188 at y 1100, 0.098 at y 700, 0.052 at y 500, 0.030 at y 120 and 0.014 at y 40 (24 : 1, warm orange at the bottom, near black at the top edge, the gold thread still glints).  **Measured key:fill = 5.05 : 1** (feet row) and **lit : umbra = 4.8 : 1** (median of 187 k umbra pixels, p25-p75 4.6-5.1) from `fill_gain` .245, `bounce` .04.  Fill is 6400 K (cool shadows against the warm key). |
+| 5 | **Figures**: crisper re-embroidery, couched outline cords, bare-linen faces with stem-stitch features, realm-tinted liveries | `src/figure.py`: outlines are **couched 2-ply cords** (`stitch.cord_path`, 0.55-1.5 mm wide, tied down every 3.0 mm, tonal darker tone of the adjacent fill; stem stitch only for the short inner lines); **flesh is the bare linen** (faces, hands, legs: the slip carries a linen patch of the same weave, the flat figures leave the cloth bare) and the card's dark marks (eyes, brows, nose, mouth) are traced as 0.52 mm stem-stitch strokes (5-15 per head; the knight's visor leaves none); fills at 0.74 mm pitch (v2 0.8); crimson liveries with couched-gold crosses, blue with the buff chevron, chroma cap .19 (v2 .165), card tint sat 1.22+ so the two realms separate under the orange key.  Eevee passes at full 2560 x 1440 with 32 TAA samples, plate warp with a bounded Lanczos (see below), +0.35 global micro-contrast on the linear frame.  Measured sharpness (variance of the Laplacian of the graded frame inside the eroded slip alpha, 100 % scale): v2 1608, v3 2395 (+49 %; part of it is the global micro-contrast). |
+| 6 | **Ageing**: light bleaching / foxing only | `age.base` .50 -> .30, hem boost .12, fox x1.5 (k .45), tideline x1.0 (k .35), dye bleach .65 -> .22, the pale daylight arc only enters the left 170 mm (v2: 238 mm) and at 22 % of its v2 strength (cool gain .55 -> .12), slip bleach .9 -> .45.  The gold thread still shows its tarnish front (bronze left, fresh gold right). |
 
-## Review triage (what was applied, what was not, and why)
-| review point | v2 |
-|---|---|
-| Sky = brick wall / ticks / flat bands (all three) | rebuilt: needle-painted gradient, three stitch lengths, feathered rows, cloud bars, no ticks; hills = closed mounds with hatched interiors and jittered couching |
-| Slip edges: soft dark halo, sticker outline (c1 P1, c3 P2) | halo removed, tonal broken thin outline, hard felt rim, edge fibres x4; faces NOT re-embroidered (see known issues) |
-| Light on slips / hearth shape (c1 P2) | height fall-off, flicker lobes, sheen up (wool roughness .72, sheen .7), gold gleam; hearth sinks (-25 %) |
-| Mechanical fills (c1 P3) | sky + hills + border bars (jitter 7-8 deg, spacing 5-6 mm); the flat far-rank figures keep the v1 stitching with 28 % less relief |
-| Shadows flat olive / scissors / smears (c1 P4, c2 P5, c3 P4) | warm radiosity, distance-dependent penumbra and fade, wider source, cut-outs stay recognisable |
-| Footprint slab / holes (c1 P5, c3 P8) | colour match, bigger holes with lips + bleed, yaw cut to 3-5 deg so each ghost registers with its slip |
-| Ground dressing (c1 P6, c3 P6) | clustered varied tufts (-50 %), turf lines, irregular fox / tide |
-| Border soft (c1 P7) vs 'more DOF falloff' (c2 P7) | the two conflict; border made crisp (f/16, focus 850: Laplacian var 24 -> 93), the oblique is carried by the table wedge + dutch + aerial haze, not by extra blur |
-| Tethers invisible (c1 P8, c2 P3, c3 P3) | three hero tethers per slip, 2x thicker, strand colour, sheen |
-| Grade too orange / one tint (c1 P9, c2 P4, c3 P9) | Act III sat .85 x 0.88 = .75 (v1: .85 x 1.15 = .98), gamma .92 (v1: x1.3), split tone, hearth -29 %; lower linen OKLCH measured L .41-.43, C .059-.060, h 45-49 (the review measured v1's lower linen at L .57-.66, C .104-.113, h 54-59); mean OKLab L .468 -> .419 |
-| Ageing low impact (c1 P10, c2 P1, c3 P9) | arc with leading edge + bleach front + tarnish gradient (see above) |
-| Gold thread missing (c2 P1) | aim moved up, whole thread in frame, gleaming at the fresh (right) end, bronze at the tarnished (left) end |
-| Parade not clash (c2 P2, c3 P5) | ten slips, two ranks, hero pair shield to shield, overlaps, one focal point |
-| Stand-up not legible (c2 P3, c3 P3) | thinner hard rim, tethers, contact / penumbra shadows, small yaw so the footprint reads under each slip; the 22 deg oblique still foreshortens a 70 deg slip to ~66 % |
-| Cloth too clean (c3 P7) | fold amplitude 0.55 -> 0.85 mm, creases x1.3 (still subtle) |
-| Border flowers cloned (c3 P10) | heights 36-49 mm, leans varied, two more sprigs; still the same sprig builder |
-| Reviewer 3 'mirrored reused riders / blank faces' | partly: tint, dye lots and seeds vary per slip, but the game cards are what they are |
-| 'sixteen slips / six keyed ageing states' | not done: ten slips, one ageing state (the keyframe), flagged for integration |
+## Pipeline (all in `src/`; `run_all.sh TAG [eevee_scale] [taa] [plate_scale]` does everything, `run_chain.sh TAG ...` everything after the bake)
+1. `layout_v3.py` positions (+ a seconds-long preview with the real stand-up matrices, the hearth shadows and the 320 / 2240 px lines: `python3 layout_v3.py out.png 0.5`).
+2. `scene_war.py` bakes `maps/war` + `maps/war_ground` (bkit Canvas -> RECORD -> needle order -> exact replay, 6600 x 3450 px at 10 px/mm, 3.6 min, 3.3 GB): five record groups `slip0..4`, flat rows, ridges, sky bands, border, footprints.  Also writes `maps/slipmask_slipK.npz` (card silhouette + bare-flesh masks).
+3. `export_slips.py`: slip textures from an exact replay of each group; v3 takes the **card silhouette** as alpha (closes the notches of the bare faces) and fills the flesh pixels with a patch of the real linen weave (mat 0); meshes with the felt backing, tethers (wool colours only: v2 sampled linen and made cream wires), poses from `layout_v3`.
+4. `render_plate.py`: R25 relight of `war_ground` per light (hearth / cool / fill) warped by the camera homography; `plate.warp_plate` now **clamps Lanczos to the local min / max of the bilinear warp** (the v2 plate had a pale ringing rim hugging every dark cord).
+5. `eevee_scene.py`: nine Eevee passes (slips / plane / planeclean x hearth / cool / fill) as linear EXR + Z.
+6. `comp.py`: plate x shadow ratios (distance-dependent penumbra, warm bounce) + pooled slips (height fall-off up the body, kz .7) + R25 fibres + cool arc + bleach + DOF + hearth haze + halation + global micro-contrast + vignette + split-tone grade (sat x1.04, highlight desaturation .16 so the lit linen goes cream-gold instead of orange paper).
+   `qa.py` (adds the projected slip boxes and the 320-2240 check), `make_crops.py src/crops_v3.json`, `make_layers.py`, `make_iter_sheet.py`.
+Reproducibility: `shot_f899.json` holds every shot parameter.
 
-## Library patches / copies (the library `aaa/lib` was NOT modified)
-* `src/bkit/` is a copy of `prod/kit/bkit`: absolute paths; `motifs.hill` gained `bar_jitter`, `interior_depth` (closed mound), `interior_style/L`; `diag_bar` couches at 5.2 mm with 7 deg jitter.
-* `scene_war.py` replaces `chron.motifs.panel._ghost` at runtime with `ghost_v2.ghost_v2` (library file untouched).
-* `figure.py` (tonal / broken outlines, `hamp_mul`), `export_slips.py`, `plate.py` (irregular ageing, bleach, ghost match, tarnish front), `arc.py`, `ghost_v2.py` are new / extended modules using only public library calls (`apply_age` is now called from `render_plate.py` before the art-directed ageing).
+## Iterations (five full chains; `out/iterations_sheet.jpg`)
+1. First assembly (half-res Eevee): composition and shadows found, but the cool arc cut the sky with a hard vertical edge, brick-wall couching bars, dark dust-like holes and stubs, flat rows too crowded.
+2. Full-res: wavering bar slants, duller sky chroma, tether colours (wool only), bounded Lanczos, aim to (330, 168).
+3. Layout (focal pair enlarged, spaced apart), hearth az 258 -> 244 (shadow no longer covers its own footprint), stronger liveries, fewer / shallower holes, cooler fill, slip gain.
+4. Top-edge sink (cloth edge, cool light, fill), gold gleam, gap lobe, falloff length 168 mm.
+5. **Final**: flat rows re-cut as clean rows (the left cluster of v4 overlapped), stronger face strokes, key:fill measured and set to 5:1, global micro-contrast, highlight desaturation.
+
+## Review triage: what was not done and why
+* "Higher px/mm on the standing slips" is only partly literal: the slips are still baked at 10 px/mm (a 20 px/mm bake adds nothing visible at 4.5 px/mm on screen: the strand pitch is already 7 px per stitch in the texture) and their card scale is about that of v2's hero pair (4.7-5.3 card px/mm), so they are not larger on screen; the crispness comes from the cords, the finer pitch, the bare-linen faces, full-res Eevee at 32 TAA, the bounded Lanczos plate and the micro-contrast.  A real step up needs a closer camera (the safe zone limits it) or fewer / larger slips.
+* No second slip tier, no sixteen-slip batch (storyboard text): five slips and one ageing state, flagged for integration.
 
 ## Known issues (honest list)
-1. The figure art is the game's cartoony card art; faces and small devices are low-detail (no re-embroidered eyes / brows) and the re-embroidery is still soft at 4.5 px/mm on a 10 px/mm bake.
-2. The 70 deg stand-up is seen only 22 deg from the vertical, so slips are foreshortened to ~66 %; the lift reads through shadows, footprints, tethers and the rim, not parallax.
-3. Ten slips and one ageing state, not the storyboard's sixteen slips and six keyed R25 ageing states.
-4. The lower ground is still orange-brown (OKLCH L .41-.43, C .06, h 45-49) because it is hearth-lit; the right third of the frame is dim and the right-hand hearth pool reads flatter than the left.  The overall brightness only fell 10 % (mean OKLab L .468 -> .419), less than the review's 'cut the key 25 %' suggests once the fill and the cool arc are counted.
-5. Turf lines read as slightly flat, grey-brown lozenges under the feet; the tuft glyph is still a 'v' stroke family, only varied.
-6. The slips' hinge has no dedicated crease: contact is Eevee's AO / contact shadow only; slip-feet end in flat dark clipped soles.
-7. The ratio-map shadow transfer fills the pixels under the slips from their neighbours (the diagnostic ground image in `layers_sheet.jpg` shows black blobs there; they are covered by the slip alpha in the final).
-8. The wool fuzz on the slips is an R25 fibre set splatted in COMP, tethers are authored tube curves (no physics); the gold gleam is a screen-space mask x warm term, not the library's metal BRDF (which renders the thread dark at the dim right end).
-9. The far-left corner stacks two knights on the same hill; the bleach on the left makes the far ranks nearly ghost-white (intended, but strong).
-10. Grade and exposure (0.50, sat x0.88) are art-directed for this frame; check against f669 / f1319 in the integration pass.
+1. The figure art is still the game's cartoon cards.  Faces are 6-8 mm (30-40 px); the stem-stitch features are 2-3 px strokes, readable at 100 % (crops 10-11) but at viewing size the blue pair's bare faces read as plain cream ovals.
+2. The 70 deg stand-up is seen 22 deg off the vertical, so the slips are foreshortened to about two thirds; the lift reads through the shadows, the tethers and the rim, not through parallax.  The slips' front light is almost head-on (the hearth hits a 70 deg card square), so the relief on them is flatter than on the grazing ground.
+3. The long shadows pile up on the right half of the sky (three crimson shadows lean into it) and make it near black; the bands are fully legible only on the left and where the key reaches.  Their far ends are soft blobs, partly by design (2.2 deg source, `shadow_fade` .30).
+4. The shadows still cover the upper part of each footprint, so the protected linen reads mostly as a smooth patch at the edges and the footprints as scattered pits and thread ends; the knight's plume left a pale bite in the near ridge (the figure was stitched over the hill, so the ridge is clipped where it lay: intended, but it is a little bright).
+5. The century's pale arc is almost gone (12 % strength, left 170 mm) as asked ("light bleaching only"), so the S12 story beat 'one slow arc of daylight crosses the strip' needs to be carried by the integration pass; the gold thread tarnish front is subtle and the thread is dim except for the right-end glints.
+6. The sky couching bars read as regular 'pickets' where the band is lit (left); a hand would vary the bar length and ties more.  Band colours are muted to keep the hearth the hero, so the madder bands sit close to the brown ridge.
+7. The lit linen is still strongly orange (2200 K key at tint .85); crimson and the horse brown are close in value; the blue shields read steel-grey rather than royal blue under the key.
+8. Tethers are authored tube curves in the parent strand colour (cream where the strands are pale), no physics; the flat figures cast no Eevee shadows (only R25 relief shadows), so a flat figure never darkens another.
+9. Flat figures are plain ground stitching (record group 0), so S13's mass unpick cannot address them by group name: they need named groups (`flatA0..`) if they are to be unpicked.
+10. Right third of the frame is dimmer than the left (lateral pool + three crimson shadows); the man-at-arms' sword tip and the mercenary's axe leave the 320-2240 band (only the focal pair is held inside).
 
 ## Costs
-Bake 3.9-4.1 min (~3.3 GB), export 20 s, plate 80 s full (1.5 GB), Eevee 12.4 min at 2560 x 1440 / 40 TAA (0.7 GB), comp 25 s.  Three full-resolution chains (two with a re-bake), two half-resolution chains, two test bakes and a few ground-only previews were run; temporary EXRs of the intermediate renders were deleted.  The last change (hearth_gain 0.78) was a COMP-only re-run (25 s) on the kept passes.
+Bake 3.6 min (5 full bakes, one killed at 1 min), export 13 s, plate 80-120 s (full-res, shared machine), Eevee 7.9 min at 2560 x 1440 / 32 TAA (6 passes of 40-60 s on the shared machine), comp 25-30 s.  Two half-resolution checks were run (plate 53 s, Eevee 2.7 min).  Temporary EXR sets of iterations 1-4 and their comps were deleted; `work/ev_v3e` (final passes, 100 MB) is kept.
+
+## Archive map
+`README_v1.md README_v2.md`, `shot_f899_v1.json shot_f899_v2.json`, `run_all_v1.sh run_all_v2.sh`, `src_v1/ src_v2/` (v2 sources patched to read the `_v2` names: `maps_v2`, `blend/slips_v2`, `work/plate_v2`, `shot_f899_v2.json`, passes in `work/ev_v2`), `maps_v1 maps_v2`, `blend/slips_v1 blend/slips_v2`, `work/plate_v1 work/plate_v2`,
+`out/keyframe_f899_2560x1440_v1.png _v2.png`, `out/crops_v1 crops_v2`, `out/iterations_v1 iterations_v2`, `out/layers_sheet_v1.jpg _v2.jpg`, `out/qa_report_v1.json _v2.json`.  The library `aaa/lib` was not modified; the repo `/home/user/chronica-ipad` was not touched.

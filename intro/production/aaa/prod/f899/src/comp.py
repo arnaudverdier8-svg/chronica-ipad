@@ -103,7 +103,7 @@ def run(ev_dir, out_png, tag='', exposure=None, params=None):
     P = dict(slip_gain=dict(h=1.55, c=1.0, f=1.0), contact=0.55, ratio_blur=1.4, ratio_blur_far=7.0, pen_dist_px=260.0, vignette=0.25, dof=True, halo=0.0, fibres=True,
              sharpen=0.8, fill_pool=0.10, haze=0.08, haze_col='#2B2D3C', bloom=0.20, halation=0.10, bounce=shot.get('bounce', 0.22), shadow_fade=0.30, shadow_warm=1.0,
              split_cool=0.40, gleam=1.1, hearth_gain=shot.get('hearth_gain', 1.0), split_warm=0.04, slip_bleach=0.45, fib_edge=1.0,
-             fill_gain=shot.get('fill_gain', 1.0), hearth_haze=shot.get('hearth_haze', 0.0))
+             fill_gain=shot.get('fill_gain', 1.0), hearth_haze=shot.get('hearth_haze', 0.0), sharpen_all=shot.get('sharpen_all', 0.0), hi_desat=shot.get('hi_desat', 0.0))
     P.update(params or {})
     HR = shot['hearth']; kz = HR.get('kz', 0.0); lobes = HR.get('lobes')
     A = shot['arc']
@@ -232,6 +232,9 @@ def run(ev_dir, out_png, tag='', exposure=None, params=None):
     if P.get('halation', 0) > 0:      # a trace of red-orange halation around the hottest warm highlights
         hot = np.maximum((out * LUMA).sum(-1, keepdims=True) - 0.85, 0) * np.array([1.0, 0.38, 0.14], np.float32)
         out = out + P['halation'] * (cv2.GaussianBlur(hot, (0, 0), 9) * 0.65 + cv2.GaussianBlur(hot, (0, 0), 3.2) * 0.35)
+    if P.get('sharpen_all', 0) > 0:      # final micro-contrast on the whole frame (weave, strands, cords), applied on the linear image before the vignette / grade
+        bl_ = cv2.GaussianBlur(out, (0, 0), 1.15)
+        out = np.maximum(out + P['sharpen_all'] * (out - bl_), 0).astype(np.float32)
     if P['vignette'] > 0:
         uu, vv = pixel_grid(W, H)
         r2 = ((uu - W / 2) / (W / 2)) ** 2 + ((vv - H / 2) / (H / 2)) ** 2
@@ -260,6 +263,9 @@ def split_grade(lin, ap, Gd, exposure, P):
     cool = np.array([0.80, 0.97, 1.22], np.float32)
     x = x * (1 - P['split_cool'] * ws) + (y * cool) * P['split_cool'] * ws
     x = x * (1 + P['split_warm'] * wh * np.array([0.9, 0.2, -0.8], np.float32))
+    if P.get('hi_desat', 0) > 0:        # the brightest firelit linen drifts toward cream-gold instead of orange paper: desaturate the upper mids / highlights a little
+        wd = smoothstep(0.30, 0.72, y)
+        x = x * (1 - P['hi_desat'] * wd) + y * (P['hi_desat'] * wd)
     r = np.random.default_rng(7)
     d = (r.random(x.shape[:2], dtype=np.float32) + r.random(x.shape[:2], dtype=np.float32) - 1.0)[..., None] / 255.0   # TPDF dither before the 8-bit quantise
     u8 = np.clip((x + d) * 255 + 0.5, 0, 255).astype(np.uint8)

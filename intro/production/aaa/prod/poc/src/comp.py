@@ -9,6 +9,7 @@ import sys, os, math
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
 from r25render import grade
+import lightmodel as lm
 from exr import read_exr
 import numpy as np, cv2
 
@@ -75,6 +76,12 @@ if __name__ == '__main__':
             w = (f - F_LASTHEX) / (F_SWAP1 - F_LASTHEX + 1.0)
             w = w * w * (3 - 2 * w)
             lin = last * (1 - w) + ev(F_SWAP1) * w
+            # v3: the candles keep breathing through the swap (the two stills are frozen at f1719.5 / f1725): re-impose the true flicker / accent of this frame
+            kL_, kR_ = lm.CANDLE['L']['key_i'], lm.CANDLE['R']['key_i']
+            gt = (kL_ * lm.gain('L', f, True) + kR_ * lm.gain('R', f, True)) / (kL_ + kR_)
+            g19 = (kL_ * lm.gain('L', F_LASTHEX + 0.5, False) + kR_ * lm.gain('R', F_LASTHEX + 0.5, False)) / (kL_ + kR_)
+            g25 = (kL_ * lm.gain('L', F_SWAP1, True) + kR_ * lm.gain('R', F_SWAP1, True)) / (kL_ + kR_)
+            lin = lin * (gt / ((1 - w) * g19 + w * g25))
         elif f <= F_CRANE1:
             lin = motion_blur(ev(f), f)
         else:

@@ -22,10 +22,10 @@ FRONT = [
     ('man_at_arms', 'strike', 'B', 520.0, 287.0, 5.0, -3.0, 70.0),     # blue rank
 ]
 # flat frieze rows lying in the cloth: (unit, pose, realm, x, y (feet), scale rel. to 5 px/mm)
-FLAT_A = [('legionary', 'idle', 'R', 108.0, 232.0, .64), ('knight', 'strike', 'R', 176.0, 233.0, .56), ('man_at_arms', 'idle', 'R', 246.0, 233.0, .62),
-          ('spearman', 'idle', 'B', 455.0, 233.0, .62), ('horse_archer', 'strike', 'B', 538.0, 234.0, .58)]
-FLAT_B = [('knight', 'idle', 'R', 98.0, 205.0, .46), ('horse_archer', 'strike', 'R', 214.0, 204.0, .44),
-          ('knight', 'idle', 'B', 478.0, 204.0, .46), ('horse_archer', 'strike', 'B', 572.0, 205.0, .44)]
+FLAT_A = [('spearman', 'idle', 'R', 104.0, 232.0, .64), ('man_at_arms', 'idle', 'R', 172.0, 233.0, .62), ('archer', 'idle', 'R', 238.0, 233.0, .66),
+          ('legionary', 'idle', 'B', 452.0, 233.0, .64), ('archer', 'idle', 'B', 520.0, 234.0, .66)]
+FLAT_B = [('knight', 'idle', 'R', 124.0, 205.0, .46),
+          ('knight', 'idle', 'B', 486.0, 204.0, .46), ('horse_archer', 'strike', 'B', 574.0, 205.0, .44)]
 
 SKY_Y0, SKY_Y1 = 84.0, 170.0
 
