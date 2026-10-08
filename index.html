@@ -101,6 +101,11 @@ body { position: fixed; inset: 0; }
 // audioSession ; avant : un <audio> muet en boucle) : le mode silencieux de
 // l'appareil ne coupe plus la musique d'un jeu. Le jeu mixe à 48 kHz sur le
 // web (project.godot), le débit natif de l'iPad.
+// SURTOUT : project.godot met le web en lecture « Stream »
+// (audio/general/default_playback_type.web=0). En mode « Sample » (le défaut
+// de Godot 4.3+ sans threads), les lecteurs croyaient jouer mais rien
+// n'atteignait le haut-parleur, sur aucun appareil (mesuré : niveau 0.0000
+// sur tout ce qui va à la sortie).
 // L'APPAREIL (ui/device.gd) : un téléphone (le petit côté de l'écran sous
 // 600 px CSS, au doigt), et les marges de l'encoche en px CSS.
 window.chronicaDevice = function () {
@@ -171,7 +176,7 @@ window.chronicaDevice = function () {
 </script>
 <script src="index.js"></script>
 <script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":74458280,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":74463880,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 (function () {
