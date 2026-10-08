@@ -1,0 +1,19 @@
+[2.3s] demo_z11_nounits console Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+[3.2s] demo_z11_nounits console Build configuration: Emscripten 4.0.20, single-threaded, no GDExtension support.
+[3.2s] demo_z11_nounits console WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+[3.2s] demo_z11_nounits console    at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1435)
+[37.8s] demo_z11_nounits status gone
+[116.1s] demo_z11_nounits shot
+[3.8s] demo_z30_nounits console Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+[4.9s] demo_z30_nounits console Build configuration: Emscripten 4.0.20, single-threaded, no GDExtension support.
+[4.9s] demo_z30_nounits console WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+[4.9s] demo_z30_nounits console    at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1435)
+[47.1s] demo_z30_nounits status gone
+[144.2s] demo_z30_nounits shot
+[154.6s] demo_z11_units console Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+[155.4s] demo_z11_units console Build configuration: Emscripten 4.0.20, single-threaded, no GDExtension support.
+[155.5s] demo_z11_units console WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+[155.5s] demo_z11_units console    at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1435)
+[184.5s] demo_z11_units status gone
+[285.0s] demo_z11_units shot
+[290.7s] done

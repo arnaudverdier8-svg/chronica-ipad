@@ -113,7 +113,7 @@ def schedule(pieces):
 def tether_snap_frames(start, n, idx, kind='tree'):
     """each tether snaps once stretched, one by one over frames 6..10 of the rise (>= 6 frames of tethers); never later than f1760"""
     D = RISE_DUR.get(kind, 12.0)
-    sn = [start + int(round(D * 0.50)) + int(round(0.36 * D * ((k + _h(idx, k, 3)) / max(1, n)))) for k in range(n)]
+    sn = [start + max(6, int(round(D * 0.50))) + int(round(0.36 * D * ((k + _h(idx, k, 3)) / max(1, n)))) for k in range(n)]       # >= 6 frames of tether before the first snap (storyboard S21 rule) on every piece
     return [min(v, 1760) for v in sn]
 
 

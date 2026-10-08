@@ -196,8 +196,8 @@ def km_tex(nb, uv, image, per_frame=False):
 
 SHADOW_LIFT = 0.40
 GLINT_EXP = 55.0        # v3: Kajiya-Kay lobe (about +-12 deg): only strands nearly perpendicular to the half vector glint; as the crane turns H (and the candles' H varies across the board) the glint travels along the borders
-GLINT_AMP = 12.0        # v3: hot enough to read (peak ~235-245 after the grade) but a narrow band, no bloom, no flare (light level L1)
-GLINT_W = 3.2           # board units: width of the travelling band the glint is gated by
+GLINT_AMP = 18.0        # v3: hot enough to read (peak ~235-245 after the grade) but a narrow band, no bloom, no flare (light level L1)
+GLINT_W = 2.3           # board units: width of the travelling band the glint is gated by
 GLINT_DIR = (math.cos(math.radians(28)), math.sin(math.radians(28)))   # sweep direction (Blender xy): west -> east, a little toward the camera
 LVEC = {n_: lm.lvec(lm.CANDLE[n_]['az'], lm.CANDLE[n_]['el']) for n_ in 'LR'}
 
@@ -437,7 +437,7 @@ gsp = nb.math('ADD', gsx.outputs[0], gsy.outputs[0])
 GL_S0 = nb.value(-20.0)
 gdf = nb.math('SUBTRACT', gsp.outputs[0], GL_S0.outputs[0]); gar = nb.math('DIVIDE', gdf.outputs[0], GLINT_W)
 gsq = nb.math('MULTIPLY', gar.outputs[0], gar.outputs[0]); gng = nb.math('MULTIPLY', gsq.outputs[0], -1.0)
-gband = nb.math('EXPONENT', gng.outputs[0]); gbw = nb.math('MULTIPLY_ADD', gband.outputs[0], 0.86, 0.14)
+gband = nb.math('EXPONENT', gng.outputs[0]); gbw = nb.math('MULTIPLY_ADD', gband.outputs[0], 0.97, 0.03)
 ktg = km_tex(nb, uvn.outputs['UV'], KT, True)
 ktgs = nb.node('ShaderNodeSeparateColor'); nb.link(ktg.outputs['Color'], ktgs.inputs[0])
 GL_GAINS = []
@@ -693,12 +693,12 @@ def tether_mat(terr):
         hx = pal2.DYE.get(terr, pal2.DYE['plains'])[0].lstrip('#')
         c = np.array([int(hx[i:i + 2], 16) / 255 for i in (0, 2, 4)])
         lin = np.array([int(pal2.LINEN_BASE.lstrip('#')[i:i + 2], 16) / 255 for i in (0, 2, 4)])
-        c = c * 0.50 + lin * 0.50
+        c = c * 0.36 + lin * 0.64          # v3: lighter toward linen (the v2 terrain-dye tethers vanished against dark forests)
         c8 = '#%02X%02X%02X' % tuple(int(round(v * 255)) for v in c)
         TETHER_MATS[terr] = wool_material(f'tether_{terr}', srgb_lin(c8), rot_deg=0.0, rim=0.5, nrm_strength=0.6, scale=14.0)
     return TETHER_MATS[terr]
 
-TH_R = 0.0098       # strand radius (two plied strands), BU
+TH_R = 0.0115       # strand radius (two plied strands), BU
 PCS = []
 starts = AN['starts']
 
@@ -917,10 +917,10 @@ def set_light_state(f):
     arr = np.dstack([kL, kR, kF, np.ones_like(kL)])[::-1].astype(np.float32)           # Blender images are bottom-up
     KT.pixels.foreach_set(arr.ravel()); KT.update()
     # glint: ramps in with the crane, narrow KK lobe, per-candle gain follows the candles
-    ramp = float(smoothstep(1730.0, 1738.0, f) * (1 - smoothstep(1756.0, 1768.0, f)))     # the glint lives while the camera cranes (f1730-1766)
+    ramp = float(smoothstep(1734.0, 1739.0, f) * (1 - smoothstep(1760.0, 1767.0, f)))     # the glint lives from f1736 to f1764: one band crossing the realm borders while the camera cranes
     GLINT.outputs[0].default_value = 0.0 if NOGLINT else GLINT_AMP * ramp
     # the band sweeps the board over f1734-1762 (west -> east): s0 from -18 to +20 board units along the sweep direction
-    GL_S0.outputs[0].default_value = float(-18.0 + 38.0 * float(smoothstep(1732.0, 1764.0, f)))
+    GL_S0.outputs[0].default_value = float(-13.5 + 25.0 * min(1.0, max(0.0, (f - 1737.0) / 26.0)))      # linear sweep over ~26 frames: -13.5 -> +11.5 board units along the sweep direction (west -> east)
     GL_GAINS[0].outputs[0].default_value = gL; GL_GAINS[1].outputs[0].default_value = gR
     return gL, gR
 

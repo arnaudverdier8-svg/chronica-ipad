@@ -14,8 +14,8 @@ This folder is everything needed to continue the intro cinematic on a local mach
 | Storyboard: "The Living Frieze", 26 shots S01-S26 covering frames 0-1983 | Done: `aaa/story/storyboard_final.md` / `.json` |
 | Rendering approach (3-way bake-off; 2.5D relight "R25" + Eevee for lifts) | Done: `aaa/rnd/pipeline_decision.md` |
 | Shared embroidery library `chron` | Done: `aaa/lib/chron`, `aaa/lib/README.md` |
-| Six keyframes | f91, f669, f1319, f1983 done (`keyframes/`); f899 rework and the f1760 / proof-of-concept rework were still running in the cloud when this was packed |
-| Proof of concept f1664-1782 ("the cloth becomes the board") | v2 rendered; v3 rework in progress in the cloud |
+| Six keyframes | Done: f91, f669, f899, f1319, f1760, f1983 (`keyframes/`); remaining polish notes are on the approval page |
+| Proof of concept f1664-1782 ("the cloth becomes the board") | Done (v3): 1080p preview in `preview/`, scripts, data and `poc_scene.blend` in `aaa/prod/poc/` (read its README) |
 | Client approval of storyboard + keyframes + proof of concept | **Pending** |
 | Full production of the 26 shots, master, game-optimised encode, integration | Not started (waits for approval) |
 
@@ -30,6 +30,7 @@ This folder is everything needed to continue the intro cinematic on a local mach
 - `intro/`: the three AI tapestry panels (p1_oath, p3_death, p6_ruin) and the crown cut-out. These cannot be regenerated; keep them.
 - `ex/`, `ents.pkl`, `pck.py`, `ext.py`: first extraction of the game textures from `index.pck`.
 - `keyframes/`: current keyframes as JPEG (reference for continuity).
+- `preview/`: the proof of concept at 1080p with audio (the 1440p master was not copied; re-render from `aaa/prod/poc/`).
 
 ## Running it locally (Omarchy / Arch + NVIDIA)
 
