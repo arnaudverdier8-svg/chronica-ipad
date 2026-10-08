@@ -1,0 +1,6 @@
+{
+ "g": {"pool_all": {"cx_mm": 480, "cy_mm": 185, "r_mm": 200, "floor": 0.06, "aspect": 1.7, "gradient": 0.25, "accents": [{"cx_mm": 300, "cy_mm": 24, "r_mm": 70, "gain": 0.5, "aspect": 1.5}]},
+       "grade": {"exposure": 1.15}, "split_tone": {"sh_knee": 0.35, "sh_amt": 0.40, "hi_lo": 0.35, "hi_amt": 0.10}},
+ "h": {"pool_all": {"cx_mm": 470, "cy_mm": 170, "r_mm": 170, "floor": 0.04, "aspect": 1.8, "gradient": 0.30, "accents": [{"cx_mm": 300, "cy_mm": 24, "r_mm": 70, "gain": 0.5, "aspect": 1.5}]},
+       "grade": {"exposure": 1.3}, "split_tone": {"sh_knee": 0.35, "sh_amt": 0.40, "hi_lo": 0.35, "hi_amt": 0.10}}
+}

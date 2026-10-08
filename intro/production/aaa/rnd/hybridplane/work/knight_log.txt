@@ -1,0 +1,5 @@
+knight map 2700 2832 168.8 x 177.0 mm
+setup 6.9
+fills 183 30.9
+cord 67.3
+done 112.1

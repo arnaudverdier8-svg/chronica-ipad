@@ -1,0 +1,239 @@
+{
+ "_doc": "Hints for p6_ruin (source px, 5 px/mm). Groups for S14: the cracked left tower top (peels), its upper courses and the centre tower (unpicked top-down: sweep policy), the torn banner (slumps).",
+ "panel": "p6_ruin",
+ "seed": 606,
+ "linen_seed": 16,
+ "glows": [],
+ "groups": [
+  {
+   "name": "tower_top_l",
+   "policy": "region",
+   "poly": [
+    [
+     598,
+     512
+    ],
+    [
+     846,
+     512
+    ],
+    [
+     846,
+     655
+    ],
+    [
+     598,
+     655
+    ]
+   ],
+   "families": [
+    "light",
+    "white",
+    "grey",
+    "buff",
+    "darkgrey",
+    "ink",
+    "brown"
+   ]
+  },
+  {
+   "name": "tower_l",
+   "policy": "sweep",
+   "sweep_mm": 6.0,
+   "poly": [
+    [
+     598,
+     655
+    ],
+    [
+     846,
+     655
+    ],
+    [
+     846,
+     880
+    ],
+    [
+     598,
+     880
+    ]
+   ],
+   "families": [
+    "light",
+    "white",
+    "grey",
+    "buff",
+    "darkgrey",
+    "ink",
+    "brown"
+   ]
+  },
+  {
+   "name": "tower_c",
+   "policy": "sweep",
+   "sweep_mm": 6.0,
+   "poly": [
+    [
+     1135,
+     425
+    ],
+    [
+     1355,
+     425
+    ],
+    [
+     1355,
+     640
+    ],
+    [
+     1135,
+     640
+    ]
+   ],
+   "families": [
+    "light",
+    "white",
+    "grey",
+    "buff",
+    "darkgrey",
+    "ink",
+    "brown"
+   ]
+  },
+  {
+   "name": "banner",
+   "policy": "region",
+   "poly": [
+    [
+     1500,
+     1140
+    ],
+    [
+     1700,
+     1140
+    ],
+    [
+     1905,
+     1385
+    ],
+    [
+     1885,
+     1485
+    ],
+    [
+     1500,
+     1485
+    ]
+   ],
+   "families": [
+    "red",
+    "darkred",
+    "purple",
+    "gold",
+    "orange",
+    "navy",
+    "blue",
+    "brown",
+    "ink"
+   ]
+  }
+ ],
+ "faces": [],
+ "beards": [],
+ "metal": [],
+ "metal_groups": [],
+ "ermine": [],
+ "zones": [
+  {
+   "poly": [
+    [
+     60,
+     40
+    ],
+    [
+     2700,
+     40
+    ],
+    [
+     2700,
+     1060
+    ],
+    [
+     60,
+     1060
+    ]
+   ],
+   "families": [
+    "purple",
+    "red",
+    "darkred",
+    "orange",
+    "navy",
+    "blue"
+   ],
+   "field": "auto",
+   "angle": 0
+  },
+  {
+   "poly": [
+    [
+     60,
+     400
+    ],
+    [
+     2700,
+     400
+    ],
+    [
+     2700,
+     1400
+    ],
+    [
+     60,
+     1400
+    ]
+   ],
+   "families": [
+    "light",
+    "white",
+    "grey",
+    "buff"
+   ],
+   "field": "auto",
+   "angle": 0
+  },
+  {
+   "poly": [
+    [
+     60,
+     1100
+    ],
+    [
+     2700,
+     1100
+    ],
+    [
+     2700,
+     1490
+    ],
+    [
+     60,
+     1490
+    ]
+   ],
+   "families": [
+    "green",
+    "brown",
+    "gold"
+   ],
+   "field": "auto",
+   "angle": 0
+  }
+ ],
+ "busy_zones": [],
+ "laid_axis_default": 0,
+ "tide": [],
+ "outline_min_local_lum": 0.34,
+ "outline_max_density": 0.3,
+ "merge_dE": 0.05
+}

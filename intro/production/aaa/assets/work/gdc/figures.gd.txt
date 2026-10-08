@@ -1,0 +1,301 @@
+   1 class_name Figures
+   2 extends RefCounted
+  18 const DIR: = 'res://assets/figures/'
+  19 const SH: = preload('res://view/shaders/figure.gdshader')
+  20 const SH_FLASH: = preload('res://view/shaders/figure_flash.gdshader')
+  21 const POSES: =['idle', 'strike']
+  29 const SCALE: = 1.3
+  34 const ASPECT_REF: = 1.188
+  40 static var CARD_BLUE: = Color('#3C5A78')
+  44 static var _units: = { }
+  45 static var _meshes: = { }
+  46 static var _mats: = { }
+  49 static var _aspect: = ASPECT_REF
+  50 static var _aspect_frame: = -1
+  53 static var enabled: = True
+  57 static func has(unit: String) -> bool:
+  58 return enabled and not _info(unit).is_empty()
+  61 static func _info(unit: String) -> Dictionary:
+  62 unit = base(unit)
+  63 if _units.has(unit):
+  64 return _units[unit]
+  65 var info: = _read(unit)
+  66 _units[unit] = info
+  67 return info
+  70 static func _read(unit: String) -> Dictionary:
+  71 var jp: = DIR + unit + '.json'
+  72 if not ResourceLoader.exists(jp):
+  73 return { }
+  74 var js: = load(jp) as JSON
+  75 if js == None or not(js.data is Dictionary):
+  76 push_warning('Figures : contrat illisible : ' + jp)
+  77 return { }
+  78 var info: Dictionary = js.data
+  79 for k in['size', 'ppm', 'foot', 'head', 'g0', 'poses']:
+  80 if not info.has(k):
+  81 push_warning('Figures : %s sans « %s »' %[jp, k])
+  82 return { }
+  83 var tex: = { }
+  84 for pose in POSES:
+  85 var maps: Array =[]
+  86 for m in['albedo', 'normal', 'mask']:
+  87 var p: = DIR + '%s_%s_%s.png' %[unit, pose, m]
+  88 if not ResourceLoader.exists(p):
+  89     break
+  90 maps.append(load(p))
+  91 if maps.size() == 3 and not maps.has(None):
+  92 tex[pose] = maps
+  94 if not tex.has('idle'):
+  95 return { }
+  96 if not tex.has('strike'):
+  97 tex['strike'] = tex['idle']
+  98 info['tex'] = tex
+  99 return info
+ 103 static func _k(info: Dictionary) -> float:
+ 104 return SCALE / float(info['ppm'])
+ 110 static func mesh(unit: String) -> ArrayMesh:
+ 111 var key: = unit +('|squad' if squads else '')
+ 113 if _meshes.has(key):
+ 114 return _meshes[key]
+ 115 var info: = _info(unit)
+ 116 var k: = _k(info)
+ 117 var w: = float(info['size'][0])
+ 118 var h: = float(info['size'][1])
+ 119 var fx: = float(info['foot'][0])
+ 120 var fy: = float(info['foot'][1])
+ 121 var v: = PackedVector3Array()
+ 122 var uv: = PackedVector2Array()
+ 123 var idx: = PackedInt32Array()
+ 124 var lo: = Vector3(INF, INF, INF)
+ 125 var hi: = Vector3(- INF, - INF, - INF)
+ 128 for f in layout(unit):
+ 129 var sc: float = f.z
+ 130 var x0: float = - fx * k * sc + f.x
+ 131 var x1: float =(w - fx) * k * sc + f.x
+ 132 var top: float = fy * k * sc
+ 133 var bot: float =(fy - h) * k * sc
+ 136 var mx: =(x1 - x0) * HALO_M
+ 137 var my: =(top - bot) * HALO_M
+ 138 x0 -= mx
+ 139 x1 += mx
+ 140 top += my
+ 141 bot -= my
+ 142 var b: = v.size()
+ 143 v.append_array([Vector3(x0, top, f.y), Vector3(x1, top, f.y), Vector3(x1, bot, f.y), Vector3(x0, bot, f.y)])
+ 144 var u0: = - HALO_M
+ 145 var u1: = 1 + HALO_M
+ 146 uv.append_array([Vector2(u0, u0), Vector2(u1, u0), Vector2(u1, u1), Vector2(u0, u1)])
+ 147 idx.append_array(PackedInt32Array([b, b + 1, b + 2, b, b + 2, b + 3]))
+ 148 if has_badge(unit):
+ 151 var r: = badge_rect(unit)
+ 152 var bz: = _badge_z(unit)
+ 153 var b: = v.size()
+ 154 v.append_array([Vector3(r.position.x, r.end.y, bz), Vector3(r.end.x, r.end.y, bz),
+ 155 Vector3(r.end.x, r.position.y, bz), Vector3(r.position.x, r.position.y, bz)])
+ 156 uv.append_array([Vector2(2, 0), Vector2(3, 0), Vector2(3, 1), Vector2(2, 1)])
+ 157 idx.append_array(PackedInt32Array([b, b + 1, b + 2, b, b + 2, b + 3]))
+ 158 for p in v:
+ 159 lo = lo.min(p)
+ 160 hi = hi.max(p)
+ 161 var n: = PackedVector3Array()
+ 162 for i in v.size():
+ 163 n.append(Vector3.BACK)
+ 164 var arrays: =[]
+ 165 arrays.resize(Mesh.ARRAY_MAX)
+ 166 arrays[Mesh.ARRAY_VERTEX] = v
+ 167 arrays[Mesh.ARRAY_NORMAL] = n
+ 168 arrays[Mesh.ARRAY_TEX_UV] = uv
+ 169 arrays[Mesh.ARRAY_INDEX] = idx
+ 170 var m: = ArrayMesh.new()
+ 171 m.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+ 173 m.custom_aabb = AABB(Vector3(lo.x, lo.y, lo.z - hi.y * Models.SHEAR - 0.1),
+ 174 Vector3(hi.x - lo.x, hi.y - lo.y, hi.z - lo.z + hi.y * Models.SHEAR + 0.3))
+ 175 _meshes[key] = m
+ 176 return m
+ 186 static var squads: = True
+ 187 const SQUAD_SCALE: = 0.72
+ 188 const SQUAD_FOOT: =[Vector2(0, -0.2), Vector2(-0.25, 0.06), Vector2(0.26, 0.12)]
+ 189 const SQUAD_PAIR: =[Vector2(-0.15, -0.1), Vector2(0.17, 0.1)]
+ 190 const SQUAD_HORSE: =[Vector2(-0.19, -0.14), Vector2(0.2, 0.1)]
+ 191 const SQUAD: = {
+ 192 'spearman': SQUAD_FOOT, 'archer': SQUAD_FOOT, 'man_at_arms': SQUAD_FOOT,
+ 193 'legionary': SQUAD_FOOT, 'mercenary': SQUAD_FOOT, 'goblin': SQUAD_FOOT,
+ 194 'knight': SQUAD_HORSE, 'horse_archer': SQUAD_HORSE,
+ 195 'engineer': SQUAD_PAIR, 'scout': SQUAD_PAIR,
+ 196 'catapult':[Vector2.ZERO],
+ 197 }
+ 199 const HALO_M: = 0.05
+ 202 const DEPTH_RISE: = 0.4
+ 207 static func layout(unit: String) -> Array:
+ 208 var u: = base(unit)
+ 209 if not squads or not SQUAD.has(u):
+ 210 return[Vector3(0, 0, 1)]
+ 211 var out: =[]
+ 212 if is_line(unit):
+ 213 var row: Array = LINE.get(SQUAD[u].size(),[Vector2.ZERO])
+ 214 var wide: = u in['knight', 'horse_archer', 'catapult']
+ 215 for p in row:
+ 216 out.append(Vector3(p.x *(1.3 if wide else 1), p.y, LINE_SCALE))
+ 217 return out
+ 218 for p in SQUAD[u]:
+ 219 out.append(Vector3(p.x, p.y, SQUAD_SCALE))
+ 220 return out
+ 230 const LINE_SCALE: = 0.64
+ 231 const LINE: = {
+ 232 1:[Vector2.ZERO],
+ 233 2:[Vector2(-0.15, 0), Vector2(0.16, 0.015)],
+ 234 3:[Vector2(0, 0), Vector2(-0.27, 0.015), Vector2(0.27, 0.03)],
+ 235 }
+ 238 static func line_shape(unit: String) -> String:
+ 239 return base(unit) + '@line'
+ 242 static func is_line(unit: String) -> bool:
+ 243 return unit.ends_with('@line')
+ 247 static func base(unit: String) -> String:
+ 248 var i: = unit.find('@')
+ 249 return unit if i < 0 else unit.substr(0, i)
+ 254 static func footprint(unit: String) -> Vector2:
+ 255 var sp: = span(unit, 'idle')
+ 256 var zl: = 0
+ 257 var zh: = 0
+ 258 for f in layout(unit):
+ 259 zl = minf(zl, f.y)
+ 260 zh = maxf(zh, f.y)
+ 261 return Vector2(maxf(- sp.x, sp.y) * 0.72 + 0.06,(zh - zl) * 0.5 + 0.2)
+ 266 static func _troop_head(unit: String) -> float:
+ 267 var top: = 0
+ 268 for f in layout(unit):
+ 269 top = maxf(top, head_height(unit) * f.z - f.y * DEPTH_RISE)
+ 270 return top
+ 273 static func _badge_z(unit: String) -> float:
+ 274 return(layout(unit)[0] as Vector3).y if squads and SQUAD.has(base(unit)) else 0
+ 283 const BADGE_W: = 0.4
+ 284 const BADGE_GAP: = 0.03
+ 285 const BADGE_LO: = Vector2(-1.7, -2.25)
+ 286 const BADGE_HI: = Vector2(1.7, 1.5)
+ 287 const NO_BADGE: =['goblin']
+ 290 const TROOP_SYMBOL: = {
+ 291 'engineer': 1,
+ 292 'scout': 2,
+ 293 'spearman': 3,
+ 294 'archer': 4,
+ 295 'man_at_arms': 5,
+ 296 'legionary': 6,
+ 297 'mercenary': 7,
+ 298 'knight': 8,
+ 299 'horse_archer': 9,
+ 300 'catapult': 10,
+ 301 }
+ 304 static func has_badge(unit: String) -> bool:
+ 305 return not NO_BADGE.has(base(unit))
+ 310 static func badge_rect(unit: String) -> Rect2:
+ 311 var info: = _info(unit)
+ 312 var k: = _k(info)
+ 313 var hx: =(float(info.get('head_x', info['foot'][0])) - float(info['foot'][0])) * k
+ 314 var head: = head_height(unit)
+ 315 if squads and SQUAD.has(base(unit)):
+ 317 var back: Vector3 = layout(unit)[0]
+ 318 hx = back.x + hx * back.z
+ 319 head = head_height(unit) * back.z
+ 320 var u: = BADGE_W * 0.5
+ 321 var y0: = head + BADGE_GAP +(BADGE_LO.y + 1.48) * u
+ 322 return Rect2(hx + BADGE_LO.x * u, y0,(BADGE_HI.x - BADGE_LO.x) * u,(BADGE_HI.y - BADGE_LO.y) * u)
+ 327 static func crown_height(unit: String) -> float:
+ 328 var head: = _troop_head(unit)
+ 329 if not has_badge(unit):
+ 330 return head
+ 331 var back: Vector3 = layout(unit)[0]
+ 332 return head_height(unit) * back.z - back.y * DEPTH_RISE + BADGE_GAP +(1.48 + 0.8) * BADGE_W * 0.5
+ 337 static func head_height(unit: String) -> float:
+ 338 var info: = _info(unit)
+ 339 return(float(info['foot'][1]) - float(info['head'])) * _k(info)
+ 345 static func span(unit: String, pose: String = 'idle') -> Vector2:
+ 346 var info: = _info(unit)
+ 347 var k: = _k(info)
+ 348 var fx: = float(info['foot'][0])
+ 349 var pinfo: Variant =(info['poses'] as Dictionary).get(pose)
+ 350 var sp: Variant =(pinfo as Dictionary).get('span') if pinfo is Dictionary else None
+ 351 var one: = Vector2(- fx * k,(float(info['size'][0]) - fx) * k)
+ 352 if sp is Array and(sp as Array).size() == 2:
+ 353 one = Vector2((float(sp[0]) - fx) * k,(float(sp[1]) - fx) * k)
+ 355 var out: = Vector2(INF, - INF)
+ 356 for f in layout(unit):
+ 357 out = Vector2(minf(out.x, one.x * f.z + f.x), maxf(out.y, one.y * f.z + f.x))
+ 358 return out
+ 364 static func lift(h: float, aspect: float = ASPECT_REF) -> Vector3:
+ 365 var y: = h / aspect
+ 366 return Vector3(0, y, 0) + Models.lean(y)
+ 371 static func aspect(vp: Viewport) -> float:
+ 372 var f: = Engine.get_process_frames()
+ 373 if f == _aspect_frame:
+ 374 return _aspect
+ 375 var cam: = vp.get_camera_3d() if vp != None else None
+ 376 if cam != None:
+ 377 _aspect_frame = f
+ 378 var up: = cam.global_transform.basis.y.normalized()
+ 379 _aspect = maxf(up.y - Models.SHEAR * up.z, 0.3)
+ 380 return _aspect
+ 385 static func card_tone(base: Color) -> Color:
+ 386 if base.is_equal_approx(Vis.NUIT_FACTION):
+ 387 return CARD_BLUE
+ 388 return Models.fig_tone(base, Models.FIGURE)
+ 392 static func material(unit: String, pose: String, team: Color, selected: bool = False) -> ShaderMaterial:
+ 393 var base: = Models.view_tone(team)
+ 394 var key: = '%s|%s|%s|%s' %[unit, pose, base.to_html(), selected]
+ 395 var m: ShaderMaterial = _mats.get(key)
+ 396 if m != None:
+ 397 return m
+ 398 var info: = _info(unit)
+ 399 var tex: Array = info['tex'][pose]
+ 400 m = ShaderMaterial.new()
+ 401 m.shader = SH
+ 402 m.set_shader_parameter('albedo_tex', tex[0])
+ 403 m.set_shader_parameter('normal_tex', tex[1])
+ 404 m.set_shader_parameter('mask_tex', tex[2])
+ 405 var tone: = card_tone(base)
+ 406 m.set_shader_parameter('team', Vector3(tone.r, tone.g, tone.b))
+ 407 m.set_shader_parameter('g0', float(info['g0']))
+ 408 m.set_shader_parameter('card_size', Vector2(float(info['size'][0]), float(info['size'][1])))
+ 409 var a: = Models.arms(base)
+ 410 var c0: Color = a[1]
+ 411 m.set_shader_parameter('charge_col', Vector3(c0.r, c0.g, c0.b))
+ 412 m.set_shader_parameter('troop', int(TROOP_SYMBOL.get(unit, 0)))
+ 413 m.set_shader_parameter('selected', selected)
+ 414 var poses: Dictionary = info['poses']
+ 415 var pinfo: Variant = poses.get(pose, poses.get('idle'))
+ 416 var frame: Variant =(pinfo as Dictionary).get('arms') if pinfo is Dictionary else None
+ 417 if frame is Dictionary:
+ 418 var o: = Vector2(frame['o'][0], frame['o'][1])
+ 419 var ex: = Vector2(frame['ex'][0], frame['ex'][1])
+ 420 var ey: = Vector2(frame['ey'][0], frame['ey'][1])
+ 421 var det: = ex.x * ey.y - ey.x * ex.y
+ 422 if absf(det) > 1e-06:
+ 423 m.set_shader_parameter('arms_o', o)
+ 424 m.set_shader_parameter('arms_inv', Vector4(ey.y, - ex.y, - ey.x, ex.x) / det)
+ 425 m.set_shader_parameter('charge', int(a[0]))
+ 426 var cc: Color = a[1]
+ 427 m.set_shader_parameter('charge_col', Vector3(cc.r, cc.g, cc.b))
+ 428 _mats[key] = m
+ 429 return m
+ 434 static func flash_material(unit: String, pose: String) -> ShaderMaterial:
+ 435 var m: = ShaderMaterial.new()
+ 436 m.shader = SH_FLASH
+ 437 m.set_shader_parameter('albedo_tex', albedo(unit, pose))
+ 438 return m
+ 442 static func albedo(unit: String, pose: String) -> Texture2D:
+ 443 return(_info(unit)['tex'][pose] as Array)[0]
+ 450 static func memory() -> int:
+ 451 var total: = 0
+ 452 for unit in _units:
+ 453 var info: Dictionary = _units[unit]
+ 454 if info.is_empty():
+ 455 continue
+ 456 var done: = { }
+ 457 for pose in info['tex']:
+ 458 var maps: Array = info['tex'][pose]
+ 459 for i in maps.size():
+ 460     var t: = maps[i] as Texture2D
+ 461     if t == None or done.has(t):
+ 462     continue
+ 463     done[t] = True
+ 464     total += float(t.get_width() * t.get_height()) *(4 if i == 2 else 1) * 4 / 3
+ 465 return int(total)

@@ -1,0 +1,126 @@
+{
+ "frame": 91,
+ "shot": "S02",
+ "sheet": "k1_realm",
+ "camera": {
+  "px_per_mm": 5.0,
+  "x0_mm": 40.0,
+  "y0_mm": 5.0,
+  "note": "S01->S02 pull-back at f91, 5.0 px/mm, easing out toward F0 (3.3) at f114. Zoom about the frame centre. RATE CHOSEN 0.012/frame (180-deg shutter -> ~8 px streak at the extreme corners, ~2 px at the capital, ~7 px at the thread's tie-down): 'a trace of motion blur at the frame edges' with the crimson tie-down still readable. NOTE: the storyboard's S01 smoothstep over f40-114 gives d(ln s)/df = -0.036 at f91 (46 px/frame at the frame edge, 23 px streaks, tie-down smeared: see _c/zr0.036_tl.png), which contradicts the keyframe text; the curve or the f91 shutter angle must be reconciled.",
+  "zoom_fixed_px": [
+   1280,
+   720
+  ],
+  "zoom_rate_per_frame": 0.012,
+  "shutter_frames": 0.5,
+  "blur_samples": 11
+ },
+ "light": {
+  "az": 128,
+  "el": 22,
+  "K": 3000,
+  "key_i": 3.2,
+  "fill_ratio": 4.6,
+  "tint": 0.35,
+  "rim_az": 30,
+  "rim_el": 8,
+  "rim_i": 0.22,
+  "k_env": 0.5
+ },
+ "kmap": {
+  "cx_mm": 250,
+  "cy_mm": 125,
+  "r_mm": 270,
+  "floor": 0.35,
+  "aspect": 1.5
+ },
+ "folds": {
+  "amp_mm": 0.35,
+  "scale_mm": 60.0,
+  "seed": 17,
+  "frieze_origin_mm": [
+   0.0,
+   0.0
+  ],
+  "creases": [
+   {
+    "x": 300,
+    "y": 127,
+    "angle": 1.5,
+    "w": 7.0,
+    "depth": 0.85,
+    "len": 900
+   },
+   {
+    "x": 300,
+    "y": 268,
+    "angle": -1.0,
+    "w": 8.0,
+    "depth": 0.7,
+    "len": 900
+   },
+   {
+    "x": 480,
+    "y": 46,
+    "angle": -55,
+    "w": 5.0,
+    "depth": -0.45,
+    "len": 70
+   },
+   {
+    "x": 70,
+    "y": 42,
+    "angle": 60,
+    "w": 4.0,
+    "depth": -0.35,
+    "len": 40
+   }
+  ],
+  "dust": 0.1
+ },
+ "age": {
+  "base": 0.2,
+  "hem_boost": 0.35,
+  "hem_mm": 22.0,
+  "side_boost": 0.2,
+  "xc_mm": 296.0,
+  "half_w_mm": 300.0,
+  "metal_keep": 0.12
+ },
+ "grade": {
+  "exposure": 1.0,
+  "act": "I",
+  "grain": 0.012
+ },
+ "pool_all": {
+  "cx_mm": 240,
+  "cy_mm": 118,
+  "r_mm": 262,
+  "floor": 0.36,
+  "aspect": 1.5,
+  "gradient": 0.0
+ },
+ "linen_mottle": {
+  "amp": 0.05,
+  "scale_mm": 38.0,
+  "seed": 23,
+  "amp2": 0.03,
+  "scale2_mm": 9.0,
+  "note": "storage discolouration of the linen ground (frieze-mm field, applied to every sheet before ageing)"
+ },
+ "look": {
+  "ao": {
+   "k1": 0.95,
+   "k2": 0.22,
+   "floor": 0.5
+  },
+  "lod_p0": 1.8,
+  "lod_ramp": 2.0
+ },
+ "split_tone": {
+  "sh_knee": 0.3,
+  "sh_amt": 0.3,
+  "hi_lo": 0.45,
+  "hi_amt": 0.07
+ }
+}

@@ -1,0 +1,279 @@
+   1 class_name MainMenu
+   2 extends Control
+   7 signal start(setup: Dictionary)
+   8 signal resume(slot: String)
+  10 const T = preload('res://ui/ui_theme.gd')
+  12 var _box: VBoxContainer
+  15 var _grid: GridContainer
+  16 var _card: PanelContainer
+  19 var _logo: TextureRect
+  20 var _card_logo: TextureRect
+  21 var _title_text: Control
+  23 var _bar: Panel
+  26 var _decor: = { }
+  29 func _ready() -> void:
+  30 theme = T.theme()
+  31 set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+  32 _build_decor()
+  35 _card = T.panel('menu_card', 40)
+  36 var cs: = _card.get_theme_stylebox('panel') as StyleBox
+  37 cs.content_margin_left = 44
+  38 cs.content_margin_right = 44
+  39 cs.content_margin_top = 34
+  40 cs.content_margin_bottom = 30
+  41 if Device.phone:
+  42 cs.content_margin_left = 30
+  43 cs.content_margin_right = 30
+  44 cs.content_margin_top = 22
+  45 cs.content_margin_bottom = 22
+  46 _card.position = Vector2(70, 70)
+  47 add_child(_card)
+  48 _box = T.vbox(8 if Device.phone else 12)
+  49 _card.add_child(_box)
+  53 _title_text = T.title_mark(74, Vector2(128, 61))
+  54 _box.add_child(_title_text)
+  55 if T.tex('logo_title') != None:
+  56 _card_logo = T.picture('logo_title', Vector2(380, 113) if Device.phone else Vector2(470, 140))
+  57 _card_logo.visible = False
+  58 _card_logo.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+  59 _box.add_child(_card_logo)
+  60 var sub: = T.label('Workers shape the land. The land feeds the realm.\nThe realm raises the army. The army takes new land.', 21, T.INK_DIM, 'title_italic')
+  61 sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+  62 sub.visible = not Device.phone
+  63 _box.add_child(sub)
+  64 _box.add_child(T.rule())
+  65 if Device.phone:
+  66 _grid = GridContainer.new()
+  67 _grid.columns = 2
+  68 _grid.add_theme_constant_override('h_separation', 10)
+  69 _grid.add_theme_constant_override('v_separation', 8)
+  70 _box.add_child(_grid)
+  71 var first: = True
+  72 if Match.has_save('autosave'):
+  73 _add('Continue', func() -> void: resume.emit('autosave'), first)
+  74 first = False
+  75 _add('New Game', _new_game, first)
+  76 if Match.has_save('quicksave'):
+  77 _add('Load Game', func() -> void: resume.emit('quicksave'))
+  78 _add('How to Play', func() -> void: Panels.message(self, 'How to play', Help.text(), 760))
+  79 _add('Settings', func() -> void: Settings.open(self))
+  80 _add('Credits', func() -> void: Panels.message(self, 'Credits', Credits.TEXT, 820))
+  81 _add('Quit', func() -> void: get_tree().quit())
+  82 var ver: = T.label('A turn-based strategy of engineers and kingdoms · v1.0', 15, T.INK_FAINT, 'title_italic')
+  83 ver.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+  84 ver.visible = not Device.phone
+  85 _box.add_child(ver)
+  86 get_viewport().size_changed.connect(_layout)
+  87 _card.resized.connect(_layout)
+  88 _layout.call_deferred()
+  94 func _build_decor() -> void:
+  95 if T.table_asset('bar_top') != '' and T.tex('logo_title') != None:
+  96 _bar = Panel.new()
+  97 _bar.add_theme_stylebox_override('panel', T.skin('bar_top', 0))
+  98 _bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+  99 add_child(_bar)
+ 100 for n in['banner_side_left', 'banner_side_right', 'candle_left', 'candle_right',
+ 101 'lion_statue_left', 'lion_statue_right', 'table_edge_bottom']:
+ 102 if T.table_has(String(T.TABLE_TEX[n])):
+ 103 var r: = T.picture(n, Vector2.ZERO)
+ 104 r.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 105 add_child(r)
+ 106 _decor[n] = r
+ 107 if _bar != None:
+ 108 _logo = T.picture('logo_title', Vector2.ZERO)
+ 109 _logo.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 110 add_child(_logo)
+ 114 func _w(n: String, h: float) -> float:
+ 115 var t: Texture2D =(_decor[n] as TextureRect).texture
+ 116 return h * float(t.get_width()) / float(t.get_height())
+ 119 func _put(n: String, r: Rect2, card: Rect2) -> void:
+ 120 if not _decor.has(n):
+ 121 return
+ 122 var c: TextureRect = _decor[n]
+ 123 c.position = r.position
+ 124 c.size = r.size
+ 126 var vr: = get_viewport_rect()
+ 127 c.visible = not r.grow(8).intersects(card) and vr.encloses(r)
+ 133 func _layout() -> void:
+ 134 if not is_inside_tree() or _card == None:
+ 135 return
+ 136 var vr: = get_viewport_rect().size
+ 137 var ch: = _card.get_combined_minimum_size().y
+ 138 var logo_h: = 0
+ 139 var tall: = _bar != None and vr.y >= ch + 230 and not Device.phone
+ 140 if _logo != None:
+ 141 _logo.visible = tall
+ 142 _bar.visible = tall
+ 143 if _card_logo != None:
+ 144 _card_logo.visible = not tall
+ 145 _title_text.visible = tall or _card_logo == None
+ 146 if tall:
+ 147 var bar_h: = 80
+ 148 _bar.position = Vector2.ZERO
+ 149 _bar.size = Vector2(vr.x, bar_h)
+ 150 var lt: Texture2D = _logo.texture
+ 151 var lw: = minf(620, vr.x * 0.42)
+ 152 logo_h = lw * float(lt.get_height()) / float(lt.get_width())
+ 153 _logo.position = Vector2((vr.x - lw) * 0.5, 0)
+ 154 _logo.size = Vector2(lw, logo_h)
+ 155 var side: = 140 if tall else 70
+ 156 if Device.phone:
+ 158 side = maxf(10,(vr.x - _card.get_combined_minimum_size().x) * 0.5)
+ 159 var top: = maxf(logo_h + 14, 96) if tall else maxf(10,(vr.y - ch) * 0.5)
+ 160 _card.position = Vector2(side, top)
+ 161 var card: = Rect2(_card.position, _card.get_combined_minimum_size())
+ 162 if not tall:
+ 163 for n in _decor:
+ 164 (_decor[n] as Control).visible = False
+ 165 return
+ 169 var bh: = minf(280, vr.y * 0.24)
+ 170 if _decor.has('banner_side_left'):
+ 171 _put('banner_side_left', Rect2(10, 40, _w('banner_side_left', bh), bh), card)
+ 172 if _decor.has('banner_side_right'):
+ 173 var w: = _w('banner_side_right', bh)
+ 174 _put('banner_side_right', Rect2(vr.x - w - 10, 40, w, bh), card)
+ 175 var cdh: = minf(280, vr.y * 0.23)
+ 176 for n in['candle_left', 'candle_right']:
+ 177 if _decor.has(n):
+ 178 var w: = _w(n, cdh)
+ 179 var x: = 6 if n == 'candle_left' else vr.x - w - 6
+ 180 _put(n, Rect2(x, vr.y * 0.5 - cdh * 0.1, w, cdh), card)
+ 181 var lh: = minf(230, vr.y * 0.19)
+ 182 for n in['lion_statue_left', 'lion_statue_right']:
+ 183 if _decor.has(n):
+ 184 var w: = _w(n, lh)
+ 185 var x: = 4 if n == 'lion_statue_left' else vr.x - w - 4
+ 186 _put(n, Rect2(x, vr.y - lh - 2, w, lh), card)
+ 187 if _decor.has('table_edge_bottom'):
+ 189 var th: = minf(150, vr.y - card.end.y - 16)
+ 190 var w: = _w('table_edge_bottom', th)
+ 191 var x0: = card.get_center().x - w * 0.5
+ 192 var ll: Control = _decor.get('lion_statue_left')
+ 193 if ll != None and ll.visible:
+ 194 x0 = maxf(x0, ll.position.x + ll.size.x + 6)
+ 195 _put('table_edge_bottom', Rect2(x0, vr.y - th, w, th), card)
+ 196 if th < 90:
+ 197 (_decor['table_edge_bottom'] as Control).visible = False
+ 202 func _add(text: String, cb: Callable, primary: bool = False) -> void:
+ 203 var b: Button = T.night_button(text, '', 27) if primary else T.button(text, '', 27)
+ 204 b.add_theme_font_override('font', T.font('fell'))
+ 205 b.custom_minimum_size = Vector2(470, 64)
+ 206 b.pressed.connect(cb)
+ 207 if _grid != None:
+ 208 b.custom_minimum_size = Vector2(300, 56)
+ 209 b.add_theme_font_size_override('font_size', 24)
+ 210 _grid.add_child(b)
+ 211 return
+ 212 _box.add_child(b)
+ 219 func _new_game() -> void:
+ 220 var m: = Panels.modal(self, 'A New Chronicle', 900)
+ 221 var v: VBoxContainer = m[1]
+ 222 var choice: = { 'human_faction': 'builders', 'size': 'medium', 'difficulty': 'normal' }
+ 223 v.add_child(T.label('Choose your people', 21, T.GOLD, 'fell'))
+ 224 var grid: = GridContainer.new()
+ 225 grid.columns = 2
+ 226 grid.add_theme_constant_override('h_separation', 10)
+ 227 grid.add_theme_constant_override('v_separation', 10)
+ 228 v.add_child(grid)
+ 229 var group: = ButtonGroup.new()
+ 230 var icons: = { 'builders': 'unit_engineer', 'legion': 'unit_legionary', 'merchants': 'unit_mercenary', 'nomads': 'unit_horse_archer' }
+ 231 for f in Bal.FACTION_ORDER:
+ 232 var b: = Button.new()
+ 233 b.toggle_mode = True
+ 234 b.button_group = group
+ 235 b.focus_mode = Control.FOCUS_NONE
+ 236 b.custom_minimum_size = Vector2(425, 92 if Device.phone else 110)
+ 237 b.button_pressed = f == choice['human_faction']
+ 239 b.add_theme_stylebox_override('normal', T.skin('job_card', 0))
+ 240 b.add_theme_stylebox_override('hover', T.skin('job_card_hover', 0))
+ 241 for st in['pressed', 'hover_pressed']:
+ 242 b.add_theme_stylebox_override(st, T.skin('job_card_selected', 0))
+ 243 b.add_theme_stylebox_override('focus', StyleBoxEmpty.new())
+ 244 var h: = T.hbox(10)
+ 245 h.set_anchors_preset(Control.PRESET_FULL_RECT)
+ 246 h.offset_left = 12
+ 247 h.offset_right = -12
+ 248 h.offset_top = 6 if Device.phone else 9
+ 249 h.offset_bottom = -6 if Device.phone else -9
+ 250 h.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 251 b.add_child(h)
+ 252 h.add_child(T.icon_rect(icons.get(f, 'unit_engineer'), 60 if Device.phone else 88))
+ 253 var tv: = T.vbox(2)
+ 254 tv.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 255 tv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ 256 var fd: Dictionary = Bal.FACTIONS[f]
+ 257 var tone: = Vis.faction_tone(fd['color'] as Color)
+ 258 var th: = T.hbox(8)
+ 259 th.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 260 var ban: = T.banner(tone, Vector2(22, 31))
+ 261 ban.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+ 262 th.add_child(ban)
+ 265 var fname: = T.title(Str.faction_name(f), 20 if Device.phone else 22, T.faction_ink(tone))
+ 266 fname.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ 267 fname.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ 268 fname.max_lines_visible = 2
+ 269 fname.custom_minimum_size.x = 240
+ 270 fname.add_theme_constant_override('line_spacing', -6)
+ 271 th.add_child(fname)
+ 272 tv.add_child(th)
+ 273 var d: = T.label(Str.FACTION_DESC.get(f, ''), 14 if Device.phone else 15, T.INK_DIM)
+ 274 d.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ 275 d.custom_minimum_size.x = 290
+ 276 tv.add_child(d)
+ 277 h.add_child(tv)
+ 278 b.pressed.connect(func() -> void: choice['human_faction'] = f)
+ 279 grid.add_child(b)
+ 280 var row: = T.hbox(20)
+ 281 v.add_child(row)
+ 282 for spec in[['Map', 'size',[['Small', 'small'],['Medium', 'medium'],['Large', 'large']]],
+ 283 ['Rivals', 'difficulty',[['Gentle', 'easy'],['Fair', 'normal'],['Ruthless', 'hard']]]]:
+ 284 var col: = T.vbox(4)
+ 285 col.add_child(T.label(spec[0], 21, T.GOLD, 'fell'))
+ 286 var hb: = T.hbox(4)
+ 287 var gg: = ButtonGroup.new()
+ 288 for opt in spec[2]:
+ 289 var b: = T.button(opt[0], '', 18)
+ 290 b.custom_minimum_size = Vector2(104, 60)
+ 291 b.toggle_mode = True
+ 292 b.button_group = gg
+ 293 b.button_pressed = choice[spec[1]] == opt[1]
+ 294 var key: String = spec[1]
+ 295 var val: String = opt[1]
+ 296 b.pressed.connect(func() -> void: choice[key] = val)
+ 297 hb.add_child(b)
+ 298 col.add_child(hb)
+ 299 row.add_child(col)
+ 300 var seed_col: = T.vbox(4)
+ 301 seed_col.add_child(T.label('World seed', 21, T.GOLD, 'fell'))
+ 302 var seed_edit: = LineEdit.new()
+ 303 seed_edit.text = str(randi() % 100000)
+ 304 seed_edit.custom_minimum_size = Vector2(140, 60)
+ 305 seed_col.add_child(seed_edit)
+ 306 row.add_child(seed_col)
+ 307 var h2: = T.hbox(10)
+ 309 var guide: = CheckBox.new()
+ 310 guide.text = 'Guided first game (hints)'
+ 311 guide.focus_mode = Control.FOCUS_NONE
+ 312 var seen: = String(Settings.get_value('hints_seen'))
+ 313 guide.button_pressed = bool(Settings.get_value('hints')) and not seen.contains('victory')
+ 314 guide.add_theme_font_size_override('font_size', 18)
+ 315 guide.custom_minimum_size.y = 60
+ 316 h2.add_child(guide)
+ 317 var spc: = Control.new()
+ 318 spc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ 319 h2.add_child(spc)
+ 320 var go: = T.night_button('Begin', '', 27)
+ 321 go.add_theme_font_override('font', T.font('fell'))
+ 322 go.custom_minimum_size = Vector2(220, 64)
+ 323 go.pressed.connect(func() -> void:
+ 324 var setup: = choice.duplicate()
+ 325 setup['seed'] = int(seed_edit.text) if seed_edit.text.is_valid_int() else randi() % 100000
+ 326 setup['tutorial'] = guide.button_pressed
+ 327 if guide.button_pressed:
+ 328 Settings.set_value('hints', True)
+ 330 if String(Settings.get_value('hints_seen')).contains('victory'):
+ 331     Settings.set_value('hints_seen', '')
+ 332 m[0].queue_free()
+ 333 start.emit(setup))
+ 334 h2.add_child(go)
+ 335 v.add_child(h2)

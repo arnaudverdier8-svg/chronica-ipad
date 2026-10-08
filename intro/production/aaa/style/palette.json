@@ -1,0 +1,1074 @@
+{
+ "meta": {
+  "project": "CHRONICA intro",
+  "version": 1,
+  "colour_space": "sRGB (display-referred), OKLCH given as [L, C, h_deg]",
+  "sources": [
+   "Lewis & Gameson, Palette, Pigments and Pictorial Narrative (Durham repository) - list of ten original colours",
+   "Bayeux Museum: Tapestry or embroidery? - woad/madder/weld, woad fades because it does not penetrate the fibre core; 19th-c. restorations faded to near white",
+   "Chemistry World feature on Bayeux dyes - 518 restoration patches; restoration blues turned green, some threads white",
+   "CHRONICA game textures (ex/*.webp) sampled with HSV masks: see game_sampled"
+  ],
+  "caveat": "historical hexes are best-effort visual estimates of aged appearance (+-6 dE_ok), not spectrophotometric data"
+ },
+ "historical_bayeux_dyes": {
+  "madder_light_terracotta": {
+   "hex": "#B65E43",
+   "oklch": [
+    0.581,
+    0.121,
+    37.8
+   ],
+   "dye": "madder (Rubia tinctorum), alum mordant",
+   "fresh": "#C8492C",
+   "desc": "Red, light, tending to pink-orange",
+   "bayeux_use": "horses, garments, ship strakes, lettering (red-brown variant), borders"
+  },
+  "madder_dark_redbrown": {
+   "hex": "#7A3B2C",
+   "oklch": [
+    0.431,
+    0.092,
+    34.6
+   ],
+   "dye": "madder + unidentified organic brown",
+   "fresh": "#8A2A1C",
+   "desc": "Red, dark, tending to brown",
+   "bayeux_use": "inscriptions (alternative to blue-black), outlines, hair, shadows of garments"
+  },
+  "weld_mustard": {
+   "hex": "#BF9446",
+   "oklch": [
+    0.692,
+    0.109,
+    80.1
+   ],
+   "dye": "weld (Reseda luteola) + organic brown",
+   "fresh": "#D9A92E",
+   "desc": "Yellow of a brown or mustard hue",
+   "bayeux_use": "horses, garments, tree trunks, border beasts"
+  },
+  "weld_beige": {
+   "hex": "#D2BC8A",
+   "oklch": [
+    0.802,
+    0.071,
+    86.9
+   ],
+   "dye": "weld (light)",
+   "fresh": "#E6CC6A",
+   "desc": "Beige / buff",
+   "bayeux_use": "horses, garments, fills that must read lighter than the ground"
+  },
+  "green_light": {
+   "hex": "#9AA06A",
+   "oklch": [
+    0.688,
+    0.074,
+    113.5
+   ],
+   "dye": "indigotin over-dyed with weld",
+   "fresh": "#8FAE4E",
+   "desc": "Green, light",
+   "bayeux_use": "foliage, garments, horse legs (far side)"
+  },
+  "green_olive": {
+   "hex": "#6C7044",
+   "oklch": [
+    0.53,
+    0.064,
+    112.8
+   ],
+   "dye": "indigotin + weld",
+   "fresh": "#5E7A2C",
+   "desc": "Green, olive-toned",
+   "bayeux_use": "water lines (paired wavy lines), hillocks, foliage"
+  },
+  "green_dark": {
+   "hex": "#3D4A36",
+   "oklch": [
+    0.391,
+    0.037,
+    134.8
+   ],
+   "dye": "indigotin + weld + organic brown",
+   "fresh": "#2F5232",
+   "desc": "Green, dark",
+   "bayeux_use": "outlines, mail-coat hatching, tree canopies"
+  },
+  "woad_blue_mid": {
+   "hex": "#557489",
+   "oklch": [
+    0.543,
+    0.049,
+    238.4
+   ],
+   "dye": "indigotin from woad (Isatis tinctoria)",
+   "fresh": "#2F5F9E",
+   "desc": "Blue, mid-toned (fades most: woad dyes the fibre surface only)",
+   "bayeux_use": "horses, garments, hair, ship strakes"
+  },
+  "woad_blue_dark": {
+   "hex": "#30465E",
+   "oklch": [
+    0.387,
+    0.05,
+    251.3
+   ],
+   "dye": "indigotin (more dips)",
+   "fresh": "#1F3A6E",
+   "desc": "Blue, dark",
+   "bayeux_use": "garments, outlines, shields"
+  },
+  "woad_blue_black": {
+   "hex": "#25293A",
+   "oklch": [
+    0.285,
+    0.032,
+    274.0
+   ],
+   "dye": "indigotin (saturated, many dips)",
+   "fresh": "#151B33",
+   "desc": "Blue-black (near black)",
+   "bayeux_use": "MOST inscriptions, main outlines, eyes, details"
+  }
+ },
+ "historical_ground_and_repairs": {
+  "linen_ground_lit": {
+   "hex": "#DCCCA8",
+   "oklch": [
+    0.849,
+    0.051,
+    86.9
+   ],
+   "desc": "bleached linen tabby, aged/yellowed, in light"
+  },
+  "linen_ground_mid": {
+   "hex": "#CDB990",
+   "oklch": [
+    0.792,
+    0.059,
+    84.9
+   ],
+   "desc": "typical ground under museum light"
+  },
+  "linen_ground_shadow": {
+   "hex": "#A99470",
+   "oklch": [
+    0.676,
+    0.056,
+    80.9
+   ],
+   "desc": "in crease / under raking shadow"
+  },
+  "linen_backing_old": {
+   "hex": "#C7B48C",
+   "oklch": [
+    0.776,
+    0.058,
+    85.5
+   ],
+   "desc": "19th-c. backing cloth showing through holes (numbered scenes inked on it)"
+  },
+  "restoration_19c_faded": {
+   "hex": "#E2DBC6",
+   "oklch": [
+    0.891,
+    0.029,
+    91.7
+   ],
+   "desc": "19th-c. repairs (synthetic dyes) faded nearly white"
+  },
+  "restoration_19c_blue_to_green": {
+   "hex": "#8FA08C",
+   "oklch": [
+    0.687,
+    0.035,
+    141.0
+   ],
+   "desc": "19th-c. repair blues that have turned green"
+  }
+ },
+ "game_sampled": {
+  "navy(logo_title)": {
+   "n": 348681,
+   "frac": 0.512,
+   "shadow": "#060B13",
+   "mid": "#101B2E",
+   "highlight": "#223554"
+  },
+  "gold(logo_title)": {
+   "n": 222834,
+   "frac": 0.327,
+   "shadow": "#693706",
+   "mid": "#C47E23",
+   "highlight": "#FCD577"
+  },
+  "gold(crest_legion eagle)": {
+   "n": 46974,
+   "frac": 0.415,
+   "shadow": "#925003",
+   "mid": "#DD9D2A",
+   "highlight": "#FBE690"
+  },
+  "crimson(crest_legion)": {
+   "n": 43356,
+   "frac": 0.383,
+   "shadow": "#4F0101",
+   "mid": "#A10709",
+   "highlight": "#D31E20"
+  },
+  "royal_blue(crest_merchants)": {
+   "n": 49023,
+   "frac": 0.433,
+   "shadow": "#02194B",
+   "mid": "#0B3E93",
+   "highlight": "#1F63C2"
+  },
+  "green(crest_nomads)": {
+   "n": 40648,
+   "frac": 0.36,
+   "shadow": "#043218",
+   "mid": "#13673F",
+   "highlight": "#329167"
+  },
+  "orange(crest_builders)": {
+   "n": 68700,
+   "frac": 0.601,
+   "shadow": "#904601",
+   "mid": "#CE760B",
+   "highlight": "#EDA62D"
+  },
+  "ivory_horse(crest_nomads)": {
+   "n": 31234,
+   "frac": 0.277,
+   "shadow": "#CD8717",
+   "mid": "#EACEA5",
+   "highlight": "#F9F3E5"
+  },
+  "linen(vignette_blue)": {
+   "n": 81245,
+   "frac": 0.561,
+   "shadow": "#AD8D62",
+   "mid": "#C3A780",
+   "highlight": "#CFB994"
+  },
+  "blue_lion(vignette_blue)": {
+   "n": 20290,
+   "frac": 0.14,
+   "shadow": "#1C2327",
+   "mid": "#2F3A42",
+   "highlight": "#485866"
+  },
+  "red_lion(vignette_red)": {
+   "n": 17539,
+   "frac": 0.128,
+   "shadow": "#37251C",
+   "mid": "#723223",
+   "highlight": "#954631"
+  },
+  "linen(millefleurs)": {
+   "n": 19772,
+   "frac": 0.792,
+   "shadow": "#B79C63",
+   "mid": "#D4BE97",
+   "highlight": "#D7C199"
+  },
+  "parchment(menu_card)": {
+   "n": 64743,
+   "frac": 0.752,
+   "shadow": "#DCBA86",
+   "mid": "#E7CEAA",
+   "highlight": "#EAD4B3"
+  },
+  "dark_veil(menu_veil)": {
+   "n": 2408339,
+   "frac": 0.897,
+   "shadow": "#0F0A06",
+   "mid": "#1B130C",
+   "highlight": "#2C2016"
+  },
+  "knight_navy(unit_knight)": {
+   "n": 8787,
+   "frac": 0.278,
+   "shadow": "#020A21",
+   "mid": "#0B1B3D",
+   "highlight": "#1D3464"
+  },
+  "knight_gold(unit_knight)": {
+   "n": 8168,
+   "frac": 0.259,
+   "shadow": "#8B4C0C",
+   "mid": "#C78228",
+   "highlight": "#F7C157"
+  },
+  "archer_green(unit_archer)": {
+   "n": 11679,
+   "frac": 0.308,
+   "shadow": "#1C1F0D",
+   "mid": "#3C401E",
+   "highlight": "#6F7340"
+  },
+  "flesh(unit_archer)": {
+   "n": 7858,
+   "frac": 0.207,
+   "shadow": "#A15D29",
+   "mid": "#C69363",
+   "highlight": "#E1C099"
+  },
+  "red_shield(shield_red)": {
+   "n": 18600,
+   "frac": 0.486,
+   "shadow": "#5B0605",
+   "mid": "#89100E",
+   "highlight": "#A71C17"
+  },
+  "banner_green(realm_banner_green)": {
+   "n": 3435,
+   "frac": 0.727,
+   "shadow": "#162D18",
+   "mid": "#274429",
+   "highlight": "#355736"
+  }
+ },
+ "cinematic": {
+  "linen_hi": {
+   "hex": "#E6D7B6",
+   "oklch": [
+    0.883,
+    0.047,
+    86.5
+   ],
+   "role": "linen ground, lit / bare \"flesh\"",
+   "cap": "<=60% of frame",
+   "src": "between bayeux linen_lit and game menu_card parchment"
+  },
+  "linen": {
+   "hex": "#D4BE98",
+   "oklch": [
+    0.811,
+    0.057,
+    81.2
+   ],
+   "role": "linen ground base (== game millefleurs ground)",
+   "src": "game linen(millefleurs).mid #D4BE97"
+  },
+  "linen_lo": {
+   "hex": "#B49C74",
+   "oklch": [
+    0.704,
+    0.062,
+    80.2
+   ],
+   "role": "linen in shadow / creases / stain halo"
+  },
+  "linen_deep": {
+   "hex": "#7E6A4C",
+   "oklch": [
+    0.536,
+    0.05,
+    77.4
+   ],
+   "role": "deepest crease, hole edge, shadow under raised work"
+  },
+  "ink_blueblack": {
+   "hex": "#22232F",
+   "oklch": [
+    0.261,
+    0.022,
+    281.0
+   ],
+   "role": "outlines & Latin tituli (primary)",
+   "src": "bayeux woad_blue_black, darkened"
+  },
+  "ink_redbrown": {
+   "hex": "#6E3326",
+   "oklch": [
+    0.397,
+    0.087,
+    33.7
+   ],
+   "role": "secondary tituli / warm outlines",
+   "src": "bayeux madder_dark ~ game red_lion.mid #723223"
+  },
+  "outline_warm": {
+   "hex": "#2B170D",
+   "oklch": [
+    0.229,
+    0.037,
+    46.9
+   ],
+   "role": "halo outline around heraldic padded work (game crest style)",
+   "src": "game crests shadow ring"
+  },
+  "navy": {
+   "hex": "#15223A",
+   "oklch": [
+    0.253,
+    0.049,
+    261.9
+   ],
+   "role": "navy field (title cloth, night, Merchants/Knight)",
+   "src": "game navy(logo_title).mid #101B2E lifted"
+  },
+  "navy_hi": {
+   "hex": "#2A3F64",
+   "oklch": [
+    0.369,
+    0.07,
+    261.1
+   ],
+   "role": "navy highlight / damask sheen"
+  },
+  "navy_deep": {
+   "hex": "#080D17",
+   "oklch": [
+    0.159,
+    0.023,
+    263.2
+   ],
+   "role": "navy shadow, near black"
+  },
+  "gold_hi": {
+   "hex": "#F8D57C",
+   "oklch": [
+    0.884,
+    0.115,
+    88.5
+   ],
+   "role": "gold wool/floss highlight (spec tint)",
+   "src": "game gold highlight #FCD577/#FBE690"
+  },
+  "gold": {
+   "hex": "#D79A33",
+   "oklch": [
+    0.728,
+    0.135,
+    76.1
+   ],
+   "role": "gold base (title letters, crowns, borders)",
+   "src": "game gold mid #C47E23..#DD9D2A"
+  },
+  "gold_lo": {
+   "hex": "#97591A",
+   "oklch": [
+    0.524,
+    0.11,
+    60.7
+   ],
+   "role": "gold shadow"
+  },
+  "gold_deep": {
+   "hex": "#5A300C",
+   "oklch": [
+    0.357,
+    0.077,
+    56.4
+   ],
+   "role": "gold core shadow / outline"
+  },
+  "metal_gold_f0": {
+   "hex": "#E9BE6A",
+   "oklch": [
+    0.822,
+    0.114,
+    82.7
+   ],
+   "role": "couched metal (silver-gilt) thread base colour, metallic=1",
+   "note": "use ONLY on crown, title, oath sword hilt"
+  },
+  "crimson": {
+   "hex": "#A3181A",
+   "oklch": [
+    0.461,
+    0.173,
+    26.9
+   ],
+   "role": "heraldic crimson (Legion, banners, blood-red sky)",
+   "src": "game crimson mid #A10709 desaturated slightly"
+  },
+  "crimson_hi": {
+   "hex": "#CC3A2C",
+   "oklch": [
+    0.565,
+    0.185,
+    29.5
+   ],
+   "role": "crimson lit"
+  },
+  "crimson_deep": {
+   "hex": "#56100E",
+   "oklch": [
+    0.3,
+    0.102,
+    27.1
+   ],
+   "role": "crimson shadow"
+  },
+  "royal_blue": {
+   "hex": "#1F4E96",
+   "oklch": [
+    0.433,
+    0.129,
+    259.0
+   ],
+   "role": "heraldic blue (Merchants)",
+   "src": "game royal_blue mid #0B3E93"
+  },
+  "royal_blue_hi": {
+   "hex": "#3F72BE",
+   "oklch": [
+    0.554,
+    0.131,
+    258.2
+   ],
+   "role": "royal blue lit"
+  },
+  "heraldic_green": {
+   "hex": "#1E6440",
+   "oklch": [
+    0.45,
+    0.091,
+    156.8
+   ],
+   "role": "heraldic green (Nomads)",
+   "src": "game green mid #13673F"
+  },
+  "heraldic_green_hi": {
+   "hex": "#3A8C63",
+   "oklch": [
+    0.578,
+    0.103,
+    158.8
+   ],
+   "role": "heraldic green lit"
+  },
+  "builders_ochre": {
+   "hex": "#CB7A1C",
+   "oklch": [
+    0.653,
+    0.14,
+    62.9
+   ],
+   "role": "heraldic orange-ochre (Builders)",
+   "src": "game orange mid #CE760B"
+  },
+  "royal_purple": {
+   "hex": "#4E2F5E",
+   "oklch": [
+    0.364,
+    0.086,
+    313.2
+   ],
+   "role": "king's robe / funeral (exists in panels p1/p3; NOT a Bayeux dye: justify as madder+woad over-dye)",
+   "src": "panels p1/p3 #4C3858/#584362"
+  },
+  "royal_purple_hi": {
+   "hex": "#71508A",
+   "oklch": [
+    0.491,
+    0.097,
+    309.4
+   ],
+   "role": "purple lit"
+  },
+  "terracotta": {
+   "hex": "#B65E43",
+   "oklch": [
+    0.581,
+    0.121,
+    37.8
+   ],
+   "role": "non-heraldic reds: horses, roofs, ship strakes (Bayeux madder light)"
+  },
+  "madder_dark": {
+   "hex": "#7A3B2C",
+   "oklch": [
+    0.431,
+    0.092,
+    34.6
+   ],
+   "role": "hair, wood, dark reds"
+  },
+  "mustard": {
+   "hex": "#C3963F",
+   "oklch": [
+    0.699,
+    0.117,
+    81.1
+   ],
+   "role": "yellows in narrative fills (Bayeux weld mustard)"
+  },
+  "buff": {
+   "hex": "#D6BE86",
+   "oklch": [
+    0.809,
+    0.078,
+    87.4
+   ],
+   "role": "light fills that must separate from linen"
+  },
+  "sage": {
+   "hex": "#98A068",
+   "oklch": [
+    0.685,
+    0.077,
+    115.1
+   ],
+   "role": "light foliage"
+  },
+  "olive": {
+   "hex": "#6E7343",
+   "oklch": [
+    0.539,
+    0.069,
+    113.6
+   ],
+   "role": "water lines, hills, forest mid (== game archer green highlight #6F7340)"
+  },
+  "forest": {
+   "hex": "#34432F",
+   "oklch": [
+    0.363,
+    0.039,
+    138.0
+   ],
+   "role": "forest dark, encroaching woods"
+  },
+  "woad": {
+   "hex": "#4F6F8A",
+   "oklch": [
+    0.528,
+    0.057,
+    244.6
+   ],
+   "role": "narrative blues (horses, cloaks, distant hills)"
+  },
+  "woad_dark": {
+   "hex": "#2D4460",
+   "oklch": [
+    0.381,
+    0.056,
+    253.9
+   ],
+   "role": "dark narrative blue"
+  },
+  "flesh_fill": {
+   "hex": "#E2C7A2",
+   "oklch": [
+    0.843,
+    0.058,
+    75.5
+   ],
+   "role": "optional face fill (Bayeux leaves faces bare linen: prefer linen_hi + ink outline)"
+  },
+  "flesh_line": {
+   "hex": "#7A4632",
+   "oklch": [
+    0.451,
+    0.078,
+    41.6
+   ],
+   "role": "face features / skin outline when not blue-black"
+  },
+  "fire_core": {
+   "hex": "#F6B54A",
+   "oklch": [
+    0.815,
+    0.142,
+    76.5
+   ],
+   "role": "flame core (laid strands, gold-adjacent)"
+  },
+  "fire": {
+   "hex": "#DE6A2C",
+   "oklch": [
+    0.654,
+    0.162,
+    45.4
+   ],
+   "role": "flame body",
+   "src": "panel p6 #D56436"
+  },
+  "fire_outer": {
+   "hex": "#A5321F",
+   "oklch": [
+    0.488,
+    0.154,
+    32.0
+   ],
+   "role": "flame edge",
+   "src": "panel p6 #A53929"
+  },
+  "ember": {
+   "hex": "#5E1B13",
+   "oklch": [
+    0.329,
+    0.099,
+    30.0
+   ],
+   "role": "ember / scorched"
+  },
+  "smoke_hi": {
+   "hex": "#7A7370",
+   "oklch": [
+    0.561,
+    0.01,
+    44.8
+   ],
+   "role": "smoke spiral light (stem-stitch spirals)"
+  },
+  "smoke": {
+   "hex": "#4A4547",
+   "oklch": [
+    0.396,
+    0.007,
+    351.2
+   ],
+   "role": "smoke"
+  },
+  "smoke_deep": {
+   "hex": "#26222A",
+   "oklch": [
+    0.26,
+    0.016,
+    307.8
+   ],
+   "role": "smoke dark"
+  },
+  "night": {
+   "hex": "#141325",
+   "oklch": [
+    0.198,
+    0.036,
+    285.2
+   ],
+   "role": "night sky field (p3)",
+   "src": "panel p3 #1A152A"
+  },
+  "night_deep": {
+   "hex": "#09090F",
+   "oklch": [
+    0.143,
+    0.013,
+    284.6
+   ],
+   "role": "night shadow"
+  },
+  "dusk_sky": {
+   "hex": "#6A3A38",
+   "oklch": [
+    0.407,
+    0.068,
+    23.0
+   ],
+   "role": "war-sky band (p6)",
+   "src": "panel p6 #62403F"
+  },
+  "steel": {
+   "hex": "#B9BCC2",
+   "oklch": [
+    0.795,
+    0.009,
+    264.5
+   ],
+   "role": "blades, mail (grey wool; or silver thread with metallic 0.6)"
+  },
+  "steel_lo": {
+   "hex": "#6D717A",
+   "oklch": [
+    0.548,
+    0.015,
+    266.6
+   ],
+   "role": "steel shadow"
+  },
+  "foxing": {
+   "hex": "#9C7046",
+   "oklch": [
+    0.581,
+    0.08,
+    63.8
+   ],
+   "role": "foxing spots, multiply 15-35%"
+  },
+  "tideline": {
+   "hex": "#7C5A38",
+   "oklch": [
+    0.495,
+    0.066,
+    65.3
+   ],
+   "role": "water-stain ring edge, multiply 20-40%"
+  },
+  "wax": {
+   "hex": "#EFE6CC",
+   "oklch": [
+    0.925,
+    0.036,
+    91.1
+   ],
+   "role": "candle-wax drip (glossy, roughness 0.25)"
+  },
+  "soot": {
+   "hex": "#3A3330",
+   "oklch": [
+    0.327,
+    0.011,
+    44.7
+   ],
+   "role": "scorch / soot, multiply 30-70% (ruin act)"
+  }
+ },
+ "acts": [
+  {
+   "id": "I_oath",
+   "t": [
+    0.0,
+    14.4
+   ],
+   "text": "one realm, one table, one oath, one crown / raised their cups",
+   "dominant": [
+    "linen",
+    "gold",
+    "terracotta"
+   ],
+   "accents": [
+    "crimson",
+    "royal_blue",
+    "heraldic_green",
+    "builders_ochre",
+    "royal_purple"
+   ],
+   "light": {
+    "key_K": 3000,
+    "key_elev_deg": 22,
+    "fill_ratio": "1:3",
+    "practicals": "candles 1900K flicker 4-9 Hz, amplitude 6-12%"
+   },
+   "grade": {
+    "sat": 1.0,
+    "chroma_cap": 0.17,
+    "lift": "#100C08",
+    "gamma": 1.0,
+    "gain": "#FFF4E2"
+   },
+   "note": "Unity: all four house colours present and balanced; warm, generous light; gold dominant accent."
+  },
+  {
+   "id": "II_death",
+   "t": [
+    14.4,
+    27.4
+   ],
+   "text": "the king died... saw his own head beneath the crown",
+   "dominant": [
+    "night",
+    "royal_purple",
+    "linen_lo"
+   ],
+   "accents": [
+    "gold",
+    "metal_gold_f0"
+   ],
+   "light": {
+    "key_K": 1900,
+    "key_elev_deg": 12,
+    "fill_ratio": "1:6",
+    "practicals": "2-4 candles only"
+   },
+   "grade": {
+    "sat": 0.7,
+    "chroma_cap": 0.12,
+    "lift": "#08080E",
+    "gamma": 0.95,
+    "gain": "#FFE9CF"
+   },
+   "note": "Single gold accent (the crown) carries the eye; everything else desaturates; empty chair = bare linen hole in the composition."
+  },
+  {
+   "id": "III_war_ruin",
+   "t": [
+    27.4,
+    45.5
+   ],
+   "text": "wars lasted a hundred years / cities fell / roads swallowed by forest / world grew dark at its edges",
+   "dominant": [
+    "dusk_sky",
+    "crimson_deep",
+    "smoke",
+    "forest"
+   ],
+   "accents": [
+    "fire",
+    "fire_core",
+    "crimson_hi"
+   ],
+   "light": {
+    "key_K": 2200,
+    "key_elev_deg": 15,
+    "fill_ratio": "1:5",
+    "practicals": "firelight from below, flicker 2-6 Hz, amplitude 15-25%"
+   },
+   "grade": {
+    "sat": 0.85,
+    "chroma_cap": 0.19,
+    "lift": "#0B0607",
+    "gamma": 0.92,
+    "gain": "#FFE2C4",
+    "vignette": "edges -1.5 to -2.5 EV by 44 s"
+   },
+   "note": "Madder + soot. 32.7-34.3 s cities fall (fire). 35-37 s forest green creeps over roads (olive/forest stitches overrun). 38-44.5 s frame edges darken, fray and unravel (literal dark edges)."
+  },
+  {
+   "id": "IV_renewal",
+   "t": [
+    45.5,
+    55.6
+   ],
+   "text": "every ruler believes the world can be made whole / one banner, one village, one blank page",
+   "dominant": [
+    "linen_hi",
+    "linen"
+   ],
+   "accents": [
+    "navy",
+    "gold",
+    "woad"
+   ],
+   "light": {
+    "key_K": 4300,
+    "key_elev_deg": 28,
+    "fill_ratio": "1:2.5",
+    "practicals": "none; dawn wash"
+   },
+   "grade": {
+    "sat": 0.9,
+    "chroma_cap": 0.15,
+    "lift": "#0E0C0A",
+    "gamma": 1.05,
+    "gain": "#FFF8EC"
+   },
+   "note": "Restoration: colour returns from faded (historical aged) to fresh. \"Blank page\" = bare linen with faint underdrawing lines only."
+  },
+  {
+   "id": "V_question_title",
+   "t": [
+    55.6,
+    66.142
+   ],
+   "text": "what will the chronicles say of you? + logo",
+   "dominant": [
+    "navy",
+    "navy_deep"
+   ],
+   "accents": [
+    "gold",
+    "gold_hi",
+    "metal_gold_f0"
+   ],
+   "light": {
+    "key_K": 3200,
+    "key_elev_deg": 20,
+    "fill_ratio": "1:4",
+    "practicals": "gold sheen sweep 1.5-2.5 s across title"
+   },
+   "grade": {
+    "sat": 1.0,
+    "chroma_cap": 0.17,
+    "lift": "#05070C",
+    "gamma": 1.0,
+    "gain": "#FFF2DC"
+   },
+   "note": "Matches logo_title asset (navy cloth + gold letters). Final 2-3 s hold on logo, sheen sweep then fade."
+  }
+ ],
+ "light_kelvin_display": {
+  "1850K": "#FF8100",
+  "1900K": "#FF8400",
+  "2200K": "#FF9227",
+  "2700K": "#FFA757",
+  "3000K": "#FFB16E",
+  "3200K": "#FFB87B",
+  "4300K": "#FFD5B3",
+  "5600K": "#FFEFE1",
+  "6500K": "#FFFEFA",
+  "8000K": "#DDE6FF"
+ },
+ "grading": {
+  "white_point_max": "#F3E8D0",
+  "black_point_min": "#07070A",
+  "rule": "never output pure white or pure black; linen highlights clip at white_point_max; deepest shadows no lower than black_point_min",
+  "chroma_caps": {
+   "narrative_fills": 0.13,
+   "heraldic": 0.2,
+   "fire": 0.19,
+   "global_default": 0.17
+  },
+  "saturation_note": "Bayeux aged dyes sit at OKLCH C 0.03-0.10; game crests at 0.15-0.21. Narrative fills live at 0.06-0.13; only heraldry/title reach game chroma.",
+  "shadow_tint": "#1A1620 (cool-violet) at 10-20% in shadows; highlights warm #FFF0D6"
+ },
+ "variation": {
+  "per_strand": {
+   "L_pct": [
+    -5,
+    5
+   ],
+   "C_pct": [
+    -8,
+    8
+   ],
+   "H_deg": [
+    -3,
+    3
+   ]
+  },
+  "along_strand_noise": {
+   "period_mm": [
+    5,
+    15
+   ],
+   "L_pct": [
+    -3,
+    3
+   ]
+  },
+  "dye_lot_patches": {
+   "size_cm": [
+    5,
+    20
+   ],
+   "L_pct": [
+    -2,
+    2
+   ],
+   "H_deg": [
+    -2,
+    2
+   ],
+   "note": "sharp-ish boundaries where a new skein starts"
+  },
+  "woad_core_effect": "on worn ridges blue reads +6-10% L and -20% C (indigotin dyes the surface only)",
+  "fading_window_side": "one side of a long frieze ~5-10% lighter/less chroma (light exposure gradient)"
+ },
+ "contrast_ratios": {
+  "ink_blueblack on linen": 8.61,
+  "ink_redbrown on linen": 5.37,
+  "gold on navy": 6.48,
+  "gold_hi on navy": 11.2,
+  "terracotta on linen": 2.49,
+  "woad on linen": 2.92,
+  "olive on linen": 2.77,
+  "buff on linen": 1.0,
+  "crimson on linen": 4.3
+ },
+ "deltaE_ok_x100_hist_vs_game": {
+  "linen: bayeux mid vs game millefleurs": 1.8,
+  "terracotta vs game red_lion highlight": 9.0,
+  "madder dark vs game red_lion mid": 2.9,
+  "olive vs game archer green highlight": 1.3,
+  "woad dark vs game navy mid": 16.5,
+  "mustard vs game gold mid": 5.3,
+  "madder light vs game crimson mid": 14.7
+ }
+}

@@ -1,0 +1,20 @@
+newmtl horse
+Kd 0.2086 0.0823 0.0319
+d 1.0
+# palette #7E5132 (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl horse_dark
+Kd 0.0497 0.0242 0.0110
+d 1.0
+# palette #3F2B1B (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl black
+Kd 0.0273 0.0144 0.0060
+d 1.0
+# palette #2E2012 (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl leather
+Kd 0.1746 0.0802 0.0284
+d 1.0
+# palette #74502F (linear); original glb Kd 0.9063 0.9063 0.9063
+

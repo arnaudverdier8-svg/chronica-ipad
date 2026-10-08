@@ -1,0 +1,255 @@
+{
+ "sheet": "war",
+ "PX": 10.0,
+ "size_px": [
+  6600,
+  3450
+ ],
+ "size_mm": [
+  660.0,
+  345.0
+ ],
+ "tile": 2048,
+ "overlap": 64,
+ "grid": [
+  2,
+  4
+ ],
+ "levels": [
+  {
+   "level": 0,
+   "PX": 10.0,
+   "W": 6600,
+   "H": 3450
+  },
+  {
+   "level": 1,
+   "PX": 5.0,
+   "W": 3300,
+   "H": 1725
+  },
+  {
+   "level": 2,
+   "PX": 2.5,
+   "W": 1650,
+   "H": 862
+  },
+  {
+   "level": 3,
+   "PX": 1.25,
+   "W": 825,
+   "H": 431
+  }
+ ],
+ "channels": [
+  "h",
+  "alb",
+  "T",
+  "mat",
+  "cov",
+  "sid",
+  "reg",
+  "grp",
+  "birth",
+  "age_fox",
+  "age_tide",
+  "age_fade",
+  "ud",
+  "holes",
+  "pad",
+  "ghost",
+  "gpoly"
+ ],
+ "written": "2026-10-08 19:54:19",
+ "kit": "bkit",
+ "linen_seed": 0,
+ "groups": [
+  "ground",
+  "slip0",
+  "slip1",
+  "slip2",
+  "slip3",
+  "slip4",
+  "slip5",
+  "slip6",
+  "slip7",
+  "slip8",
+  "slip9",
+  "thread",
+  "border"
+ ],
+ "seed": 899,
+ "frieze_origin_mm": [
+  1800.0,
+  0.0
+ ],
+ "regions": 1761,
+ "scene": "prod/f899/src/scene_war.py",
+ "slips": [
+  {
+   "group": "slip0",
+   "unit": "legionary",
+   "pose": "strike",
+   "realm": "R",
+   "x_mm": 312.0,
+   "y_mm": 300.0,
+   "flip": false,
+   "bbox_mm": [
+    273.8,
+    198.0,
+    350.3,
+    302.3
+   ],
+   "ppm": 4.6
+  },
+  {
+   "group": "slip1",
+   "unit": "man_at_arms",
+   "pose": "strike",
+   "realm": "B",
+   "x_mm": 368.0,
+   "y_mm": 295.0,
+   "flip": true,
+   "bbox_mm": [
+    335.4,
+    168.7,
+    401.5,
+    297.4
+   ],
+   "ppm": 4.6
+  },
+  {
+   "group": "slip2",
+   "unit": "knight",
+   "pose": "strike",
+   "realm": "R",
+   "x_mm": 159.0,
+   "y_mm": 300.0,
+   "flip": false,
+   "bbox_mm": [
+    99.2,
+    178.4,
+    220.8,
+    306.4
+   ],
+   "ppm": 5.0
+  },
+  {
+   "group": "slip3",
+   "unit": "horse_archer",
+   "pose": "strike",
+   "realm": "B",
+   "x_mm": 482.0,
+   "y_mm": 278.0,
+   "flip": true,
+   "bbox_mm": [
+    431.0,
+    175.0,
+    530.2,
+    283.8
+   ],
+   "ppm": 5.0
+  },
+  {
+   "group": "slip4",
+   "unit": "mercenary",
+   "pose": "strike",
+   "realm": "R",
+   "x_mm": 240.0,
+   "y_mm": 283.0,
+   "flip": false,
+   "bbox_mm": [
+    191.8,
+    179.8,
+    271.8,
+    285.4
+   ],
+   "ppm": 5.0
+  },
+  {
+   "group": "slip5",
+   "unit": "spearman",
+   "pose": "strike",
+   "realm": "B",
+   "x_mm": 424.0,
+   "y_mm": 272.0,
+   "flip": true,
+   "bbox_mm": [
+    385.3,
+    165.4,
+    465.3,
+    277.4
+   ],
+   "ppm": 5.0
+  },
+  {
+   "group": "slip6",
+   "unit": "legionary",
+   "pose": "strike",
+   "realm": "R",
+   "x_mm": 274.0,
+   "y_mm": 243.0,
+   "flip": false,
+   "bbox_mm": [
+    243.7,
+    162.1,
+    304.4,
+    244.9
+   ],
+   "ppm": 5.8
+  },
+  {
+   "group": "slip7",
+   "unit": "archer",
+   "pose": "strike",
+   "realm": "B",
+   "x_mm": 457.0,
+   "y_mm": 241.0,
+   "flip": true,
+   "bbox_mm": [
+    432.5,
+    157.6,
+    482.2,
+    243.1
+   ],
+   "ppm": 5.8
+  },
+  {
+   "group": "slip8",
+   "unit": "archer",
+   "pose": "strike",
+   "realm": "R",
+   "x_mm": 103.0,
+   "y_mm": 261.0,
+   "flip": false,
+   "bbox_mm": [
+    78.0,
+    177.6,
+    127.7,
+    263.1
+   ],
+   "ppm": 5.8
+  },
+  {
+   "group": "slip9",
+   "unit": "mercenary",
+   "pose": "strike",
+   "realm": "B",
+   "x_mm": 558.0,
+   "y_mm": 247.0,
+   "flip": true,
+   "bbox_mm": [
+    530.8,
+    158.0,
+    599.8,
+    249.0
+   ],
+   "ppm": 5.8
+  }
+ ],
+ "thread": {
+  "y": 17.5
+ },
+ "dx": 30.0,
+ "stitched": 55616
+}

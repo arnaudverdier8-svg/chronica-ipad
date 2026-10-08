@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Gabarit HTML de l'export Web (iPad, Safari). Plein écran, pas de zoom ni
+     de défilement de page : tous les gestes vont au jeu (view/camera_rig.gd). -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Chronica">
+<meta name="theme-color" content="#e8dcc4">
+<meta name="format-detection" content="telephone=no">
+<title>Chronica</title>
+<style>
+html, body {
+	margin: 0; padding: 0; border: 0;
+	width: 100%; height: 100%;
+	overflow: hidden;
+	overscroll-behavior: none;
+	touch-action: none;
+	-webkit-user-select: none; user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-text-size-adjust: 100%;
+	background: #e8dcc4;
+}
+body { position: fixed; inset: 0; }
+#canvas {
+	display: block; position: absolute; inset: 0;
+	width: 100%; height: 100%;
+	touch-action: none; outline: none;
+}
+/* L'écran de chargement : du lin, un titre brodé, un fil qui avance. */
+#status {
+	position: absolute; inset: 0;
+	display: flex; flex-direction: column; justify-content: center; align-items: center;
+	background:
+		repeating-linear-gradient(0deg, rgba(120, 96, 60, 0.05) 0 1px, transparent 1px 3px),
+		repeating-linear-gradient(90deg, rgba(120, 96, 60, 0.05) 0 1px, transparent 1px 3px),
+		#e8dcc4;
+	color: #4a3a28;
+	font-family: Georgia, 'Times New Roman', serif;
+	transition: opacity 0.5s ease;
+}
+#status h1 {
+	margin: 0 0 0.3em; font-weight: normal; font-size: 3.2rem;
+	letter-spacing: 0.18em; color: #7a2a22;
+}
+#status p { margin: 0 0 2em; font-style: italic; opacity: 0.75; }
+#bar {
+	width: min(46vw, 420px); height: 6px;
+	border: 1px dashed #8a6c44; border-radius: 3px; padding: 2px;
+}
+#fill { height: 100%; width: 0; background: #7a2a22; border-radius: 2px; transition: width 0.2s; }
+#notice { display: none; margin-top: 2em; max-width: 70vw; text-align: center; color: #7a2a22; }
+/* Les marges de l'encoche (lues par window.chronicaDevice). */
+#safe {
+	position: fixed; inset: 0; visibility: hidden; pointer-events: none;
+	padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+/* Un téléphone tenu en portrait : le jeu se joue en paysage. */
+#rotate {
+	display: none; position: fixed; inset: 0; z-index: 10;
+	flex-direction: column; justify-content: center; align-items: center;
+	background: #2a1a10; color: #e8dcc4; text-align: center;
+	font-family: Georgia, 'Times New Roman', serif; padding: 2em;
+}
+#rotate h2 { margin: 0 0 0.6em; font-weight: normal; letter-spacing: 0.12em; color: #d8b04e; }
+#rotate .phone {
+	width: 46px; height: 80px; border: 3px solid #d8b04e; border-radius: 9px;
+	margin-bottom: 1.4em; animation: turn 2.4s ease-in-out infinite;
+}
+@keyframes turn { 0%, 30% { transform: rotate(0deg); } 60%, 100% { transform: rotate(-90deg); } }
+@media (orientation: portrait) and (max-width: 600px) {
+	#rotate { display: flex; }
+}
+</style>
+<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+
+</head>
+<body>
+<canvas id="canvas">Your browser does not support the canvas tag.</canvas>
+<noscript>Your browser does not support JavaScript.</noscript>
+<div id="safe"></div>
+<div id="rotate"><div class="phone"></div><h2>CHRONICA</h2><p>Turn your phone sideways to play.</p></div>
+<div id="status">
+	<h1>CHRONICA</h1>
+	<p>The tapestry is being woven…</p>
+	<div id="bar"><div id="fill"></div></div>
+	<div id="notice"></div>
+</div>
+<!-- ===================== CHRONICA INTRO OVERLAY (prototype) =====================
+     Additive block for index.html. Paste it right AFTER the line
+         <div id="status"> ... </div>
+     and BEFORE the first <script> (the iPad audio-unlock IIFE). Nothing else in
+     index.html, index.js or the .pck changes; the game never knows it exists.
+
+     How it hooks the boot without touching game logic:
+       * engine-ready signal = the existing startGame().then() callback, which sets
+         #status.style.opacity = '0' and removes #status 600 ms later. A
+         MutationObserver watches for that.
+       * failure signal = #notice becoming visible (existing fail()); the overlay
+         then gets out of the way so the error is readable.
+       * Godot's Web Audio output (menu music starts ~immediately at boot, crossfade
+         -40 dB -> 0 dB over 2.5 s) is routed through one GainNode per AudioContext
+         held at 0 while the intro plays and faded in at the handoff, so the menu
+         music never plays under the narration.
+     Assets expected next to index.html (names are suggestions):
+       intro/intro_1080.mp4  (H.264 + AAC, 1920x1080 30 fps, ~3-4 Mb/s; Safari/iPad)
+       intro/intro_1080.webm (VP9 + Opus, optional, smaller for Chrome/Firefox)
+       intro/poster.jpg      (first frame, shown behind "Touch to begin")
+============================================================================== -->
+<style>
+#intro {
+	position: absolute; inset: 0; z-index: 5;            /* above #status, below #rotate (z 10) */
+	background: #e8dcc4; transition: opacity 0.9s ease;
+	touch-action: none; -webkit-user-select: none; user-select: none;
+}
+#intro video {
+	position: absolute; inset: 0; width: 100%; height: 100%;
+	object-fit: cover;                                    /* 16:9 master; keep key art in the central 4:3 */
+	background: #e8dcc4;
+}
+#intro .ui {
+	position: absolute; right: max(18px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom));
+	font: italic 18px Georgia, 'Times New Roman', serif; color: #f3e9d2;
+	background: rgba(20, 36, 63, 0.62); border: 1px solid rgba(201, 162, 78, 0.7);
+	border-radius: 4px; padding: 0.45em 1em; letter-spacing: 0.04em; cursor: pointer;
+}
+#intro .tap {
+	position: absolute; left: 50%; top: 72%; transform: translateX(-50%);
+	font: italic 26px Georgia, 'Times New Roman', serif; color: #7a2a22;
+	letter-spacing: 0.08em; animation: introPulse 2.4s ease-in-out infinite;
+}
+#intro.playing .tap { display: none; }
+#intro .thread {                                          /* shown only if the video ends before the game is ready */
+	position: absolute; left: 50%; bottom: 7%; width: min(46vw, 420px); height: 4px; transform: translateX(-50%);
+	border: 1px dashed rgba(201, 162, 78, 0.8); border-radius: 3px; padding: 2px; opacity: 0; transition: opacity 0.6s;
+}
+#intro .thread i { display: block; height: 100%; width: 0; background: #c9a24e; border-radius: 2px; transition: width 0.2s; }
+#intro.waiting .thread { opacity: 1; }
+@keyframes introPulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+</style>
+<div id="intro">
+	<video id="introVideo" playsinline webkit-playsinline preload="auto" poster="intro/poster.jpg">
+		<source src="intro/intro_1080.webm" type='video/webm; codecs="vp9, opus"'>
+		<source src="intro/intro_1080.mp4" type="video/mp4">
+	</video>
+	<div class="tap">Touch to begin the chronicle</div>
+	<div class="thread"><i></i></div>
+	<button class="ui" type="button">Skip</button>
+</div>
+<script>
+(function () {
+	var intro = document.getElementById('intro');
+	var video = document.getElementById('introVideo');
+	var skip = intro.querySelector('.ui');
+	var threadFill = intro.querySelector('.thread i');
+	var st = { engine: false, videoDone: false, done: false };
+	// gate: resolved when the cinematic has finished (ended / skipped / failed).
+	// Part B (below the boot script) makes engine.start() wait for it, because
+	// callMain blocks the browser main thread for seconds (menu world is simulated
+	// synchronously) and a <video> measured here stalls during that block.
+	var openGate; st.gate = new Promise(function (r) { openGate = r; });
+	window.__chronicaIntro = st;
+
+	// --- 1. Hold Godot's audio at gain 0 until the handoff ------------------------
+	var gains = [];
+	var AN = window.AudioNode && window.AudioNode.prototype;
+	if (AN && AN.connect) {
+		var origConnect = AN.connect;
+		AN.connect = function (dst) {
+			if (!st.done && window.AudioDestinationNode && dst instanceof AudioDestinationNode) {
+				var ctx = dst.context;
+				if (!ctx.__introGain) {
+					var g = ctx.createGain();
+					g.gain.value = 0;
+					origConnect.call(g, dst);
+					ctx.__introGain = g; gains.push(g);
+				}
+				origConnect.call(this, ctx.__introGain);
+				return dst;
+			}
+			return origConnect.apply(this, arguments);
+		};
+	}
+	function fadeInGameAudio(secs) {
+		gains.forEach(function (g) {
+			try {
+				var t = g.context.currentTime;
+				g.gain.cancelScheduledValues(t);
+				g.gain.setValueAtTime(g.gain.value, t);
+				g.gain.linearRampToValueAtTime(1, t + secs);
+			} catch (e) { g.gain.value = 1; }
+		});
+	}
+
+	// --- 2. Handoff --------------------------------------------------------------
+	function finish() {
+		if (st.done) return;
+		st.done = true;
+		fadeInGameAudio(2.5);
+		intro.style.opacity = '0';                            // dissolve to the live canvas
+		setTimeout(function () { intro.remove(); }, 1000);
+		try { document.getElementById('canvas').focus(); } catch (e) {}
+	}
+	function maybeFinish() {
+		if (st.videoDone) openGate();
+		if (st.engine && st.videoDone) finish();
+		else if (st.videoDone) intro.classList.add('waiting'); // hold last frame + gold progress thread
+	}
+	video.addEventListener('ended', function () { st.videoDone = true; maybeFinish(); });
+	function videoFailed() { st.videoDone = true; intro.style.opacity = '0'; maybeFinish(); }
+	video.addEventListener('error', videoFailed);
+	var srcs = video.querySelectorAll('source');                // no playable source -> error on the last <source>
+	if (srcs.length) srcs[srcs.length - 1].addEventListener('error', videoFailed);
+	skip.addEventListener('click', function (e) {
+		e.stopPropagation();
+		st.videoDone = true;
+		try { video.pause(); } catch (err) {}
+		if (!st.engine) intro.style.opacity = '0';           // reveal the linen loading screen underneath
+		maybeFinish();
+	});
+
+	// --- 3. Start: try sound autoplay, else wait for a tap (iPad Safari) ---------
+	function begin() {
+		video.muted = false;
+		var p = video.play();
+		intro.classList.add('playing');
+		if (p && p.catch) p.catch(function () { intro.classList.remove('playing'); });
+	}
+	intro.addEventListener('pointerup', function () { if (video.paused && !st.videoDone) begin(); });
+	var p0 = video.play();
+	if (p0 && p0.then) p0.then(function () { intro.classList.add('playing'); }, function () {});
+
+	// --- 4. Engine signals from the untouched boot script ------------------------
+	// (#status, #notice and #fill are parsed before this block, so observe now.)
+	var status = document.getElementById('status');
+	var notice = document.getElementById('notice');
+	var fill = document.getElementById('fill');
+	new MutationObserver(function () {
+		if (status.style.opacity === '0' || !status.isConnected) { st.engine = true; maybeFinish(); }
+	}).observe(status, { attributes: true, attributeFilter: ['style'] });
+	new MutationObserver(function () {
+		if (notice.style.display === 'block') { st.videoDone = true; st.done = true; intro.remove(); }
+	}).observe(notice, { attributes: true, attributeFilter: ['style'] });
+	new MutationObserver(function () { threadFill.style.width = fill.style.width; })
+		.observe(fill, { attributes: true, attributeFilter: ['style'] });
+})();
+</script>
+<!-- =========================== END INTRO OVERLAY (part A) ===================== -->
+
+
+<script>
+// LE SON SUR IPAD. Godot réveille son AudioContext pendant un « touchstart »,
+// que Safari iOS ne compte pas comme un geste qui autorise le son : le
+// contexte restait suspendu (ni musique ni bruitages). On garde la main sur
+// chaque contexte créé et on le réveille au geste que Safari accepte (doigt
+// relevé, clic, touche), en jouant au passage un tampon muet (le déblocage
+// classique de WebKit). Et la session audio passe en « lecture » (iPadOS 17 :
+// audioSession ; avant : un <audio> muet en boucle) : le mode silencieux de
+// l'appareil ne coupe plus la musique d'un jeu. Le jeu mixe à 48 kHz sur le
+// web (project.godot), le débit natif de l'iPad.
+// L'APPAREIL (ui/device.gd) : un téléphone (le petit côté de l'écran sous
+// 600 px CSS, au doigt), et les marges de l'encoche en px CSS.
+window.chronicaDevice = function () {
+	var touch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+	var small = Math.min(screen.width, screen.height) < 600;
+	var cs = getComputedStyle(document.getElementById('safe'));
+	var px = function (v) { return parseFloat(v) || 0; };
+	return { phone: touch && small,
+		safe: [px(cs.paddingLeft), px(cs.paddingTop), px(cs.paddingRight), px(cs.paddingBottom)],
+		w: window.innerWidth, h: window.innerHeight };
+};
+(function () {
+	try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+	var AC = window.AudioContext || window.webkitAudioContext;
+	if (!AC) return;
+	var all = [];
+	function Tracked(opts) { var c = new AC(opts); all.push(c); return c; }
+	Tracked.prototype = AC.prototype;
+	window.AudioContext = Tracked;
+	if (window.webkitAudioContext) window.webkitAudioContext = Tracked;
+	// Le mode silencieux de l'iPad (centre de contrôle, ou l'interrupteur des
+	// anciens modèles) coupe Web Audio, et `audioSession` n'existe qu'à partir
+	// d'iPadOS 17 : on joue en boucle, au premier geste, un <audio> muet. Un
+	// élément média qui joue fait passer la session audio de la page en
+	// « lecture », que le mode silencieux ne coupe pas (le déblocage classique).
+	var silent = null;
+	function media() {
+		try {
+			if (!silent) {
+				silent = document.createElement('audio');
+				silent.setAttribute('playsinline', '');
+				silent.setAttribute('x-webkit-airplay', 'deny');
+				silent.loop = true;
+				silent.preload = 'auto';
+				silent.src = 'data:audio/wav;base64,UklGRkQDAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YSADAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==';
+			}
+			if (silent.paused) {
+				var p = silent.play();
+				if (p && p.catch) p.catch(function () {});
+			}
+		} catch (e) {}
+	}
+	function unlock() {
+		try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+		media();
+		for (var i = 0; i < all.length; i++) {
+			var c = all[i];
+			// (« interrupted » : iOS après un appel ou un passage en arrière-plan)
+			if (c.state === 'running') continue;
+			try {
+				c.resume();
+				var src = c.createBufferSource();
+				src.buffer = c.createBuffer(1, 1, 22050);
+				src.connect(c.destination);
+				src.start(0);
+			} catch (e) {}
+		}
+	}
+	['touchend', 'pointerup', 'click', 'keydown'].forEach(function (t) {
+		document.addEventListener(t, unlock, true);
+	});
+	// De retour d'arrière-plan, l'élément muet a pu être mis en pause : le
+	// prochain geste le relance (et réveille les contextes).
+	document.addEventListener('visibilitychange', function () {
+		if (document.visibilityState === 'visible' && silent) { try { silent.pause(); } catch (e) {} }
+	});
+})();
+</script>
+<script src="index.js"></script>
+<script>
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":72779828,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_THREADS_ENABLED = false;
+const engine = new Engine(GODOT_CONFIG);
+(function () {
+	const status = document.getElementById('status');
+	const fill = document.getElementById('fill');
+	const notice = document.getElementById('notice');
+	// Safari : pas de zoom par double tap ni par geste, même hors du canevas.
+	for (const t of ['gesturestart', 'gesturechange', 'gestureend']) {
+		document.addEventListener(t, (e) => e.preventDefault(), { passive: false });
+	}
+	document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+	document.addEventListener('contextmenu', (e) => e.preventDefault());
+	function fail(err) {
+		console.error(err);
+		notice.textContent = (err && err.message) ? err.message : String(err);
+		notice.style.display = 'block';
+	}
+	const missing = Engine.getMissingFeatures({ threads: GODOT_THREADS_ENABLED });
+	if (missing.length !== 0) {
+		fail('This browser lacks: ' + missing.join(', '));
+		return;
+	}
+	// Les modes de test de view/main.gd par l'adresse : ?args=match,seed=7
+	// (ou ?args=phone pour voir l'interface du téléphone sur un ordinateur).
+	const q = new URLSearchParams(location.search).get('args');
+	const extra = q ? ['--'].concat(q.split(',').filter((a) => a !== '')) : [];
+	engine.startGame({
+		args: extra,
+		onProgress: function (current, total) {
+			if (current > 0 && total > 0) {
+				fill.style.width = (100 * current / total).toFixed(1) + '%';
+			}
+		},
+	}).then(() => {
+		status.style.opacity = '0';
+		setTimeout(() => status.remove(), 600);
+	}, fail);
+}());
+</script>
+<!-- ===== Part B: paste right AFTER the existing boot <script> (the one that calls
+     engine.startGame). startGame() looks up this.start when the downloads finish,
+     so wrapping the instance method defers only callMain; wasm compile and the
+     72 MB .pck download still run in parallel with the cinematic. ===== -->
+<script>
+(function () {
+	var st = window.__chronicaIntro;
+	if (!st || typeof engine === 'undefined' || !engine.start) return;
+	var origStart = engine.start;
+	engine.start = function () {
+		var me = this, args = arguments;
+		return st.gate.then(function () { return origStart.apply(me, args); });
+	};
+})();
+</script>
+<!-- =========================== END INTRO OVERLAY (part B) ===================== -->
+
+</body>
+</html>
+

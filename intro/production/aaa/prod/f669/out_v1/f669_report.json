@@ -1,0 +1,83 @@
+{
+ "frame": 669,
+ "view": {
+  "cx_mm": 307.7129032258065,
+  "cy_mm": 173.0,
+  "px_per_mm": 5.8125
+ },
+ "level": 0,
+ "timing": {
+  "read": 16.0,
+  "relight": 16.97,
+  "warp": 0.39,
+  "fibres": 0.82,
+  "level": 0,
+  "base": 38.01,
+  "crown": 0.4,
+  "threads": 0.41,
+  "total": 40.01,
+  "loose": 5,
+  "u": 6150.0
+ },
+ "EV_vs_void_head": {
+  "red_face": -2.03,
+  "blue_face": -2.76,
+  "gold_face": -4.16,
+  "green_face": -4.9,
+  "void_lap": -0.59,
+  "crown": -2.43,
+  "table": -2.08
+ },
+ "crops": {
+  "crown_tethers": [
+   820,
+   202,
+   760,
+   560
+  ],
+  "void_holes_underdrawing": [
+   689,
+   539,
+   720,
+   560
+  ],
+  "crown_shadow_in_void": [
+   971,
+   617,
+   760,
+   520
+  ],
+  "loose_purple_strands": [
+   785,
+   809,
+   900,
+   520
+  ],
+  "red_lord_face_rim": [
+   362,
+   364,
+   560,
+   560
+  ],
+  "blue_lord_face_rim": [
+   1513,
+   364,
+   560,
+   560
+  ],
+  "goblet_candle_ghosts_tideline": [
+   1460,
+   1040,
+   1100,
+   400
+  ],
+  "left_goblet_ghost": [
+   57,
+   1020,
+   520,
+   420
+  ]
+ },
+ "wall_s": 56.0,
+ "void_check": "PASS (0 void pixels)"
+}

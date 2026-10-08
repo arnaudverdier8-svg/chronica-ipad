@@ -1,0 +1,60 @@
+newmtl cloth
+Kd 0.4969 0.3712 0.2016
+d 1.0
+# palette #BBA47C (linear); original glb Kd 0.7484 0.6800 0.5838
+
+newmtl stone
+Kd 0.6240 0.5457 0.4020
+d 1.0
+# palette #CFC3AA (linear); original glb Kd 0.8095 0.7977 0.7736
+
+newmtl roof_civic
+Kd 0.4969 0.1356 0.0545
+d 1.0
+# palette #BB6742 (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl window
+Kd 0.0273 0.0160 0.0080
+d 1.0
+# palette #2E2216 (linear); original glb Kd 0.4845 0.4366 0.3811
+
+newmtl thatch
+Kd 0.4793 0.3095 0.1022
+d 1.0
+# palette #B8975A (linear); original glb Kd 0.9063 0.8323 0.6343
+
+newmtl wood_dark
+Kd 0.0612 0.0296 0.0116
+d 1.0
+# palette #46301C (linear); original glb Kd 0.6262 0.5271 0.4236
+
+newmtl slate
+Kd 0.0704 0.0976 0.1221
+d 1.0
+# palette #4B5862 (linear); original glb Kd 0.5838 0.6343 0.7084
+
+newmtl plaster
+Kd 0.7682 0.6654 0.4793
+d 1.0
+# palette #E3D5B8 (linear); original glb Kd 0.9547 0.9357 0.8860
+
+newmtl roof_shingle
+Kd 0.1470 0.1022 0.0648
+d 1.0
+# palette #6B5A48 (linear); original glb Kd 0.6800 0.6262 0.5657
+
+newmtl roof_thatch_old
+Kd 0.2961 0.2159 0.1022
+d 1.0
+# palette #94805A (linear); original glb Kd 0.7858 0.7354 0.6262
+
+newmtl roof_thatch
+Kd 0.5395 0.3231 0.0976
+d 1.0
+# palette #C29A58 (linear); original glb Kd 0.8860 0.7977 0.6262
+
+newmtl roof_moss
+Kd 0.1559 0.1714 0.0844
+d 1.0
+# palette #6E7352 (linear); original glb Kd 0.6872 0.7014 0.6012
+

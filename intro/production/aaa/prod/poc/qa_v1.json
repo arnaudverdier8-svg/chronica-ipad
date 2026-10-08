@@ -1,0 +1,49 @@
+{
+ "swap": {
+  "median_dE_ok_x100": 0.6625174283981323,
+  "median_dE_ok_x100_lowpass_2px": 0.14215239882469177,
+  "p95_dE_ok_x100_lowpass": 0.9776527881622314,
+  "global_shift_px": [
+   -0.07618006522375254,
+   -0.046340721865021806
+  ],
+  "note": "pixel dE includes texture-filter differences (cv2 Gaussian+bilinear vs GPU mip/aniso + 16 TAA); hidden by the 6-frame dissolve"
+ },
+ "crane": {
+  "1726": 90.0,
+  "1740": 76.2804,
+  "1750": 67.3326,
+  "1760": 66.095,
+  "1766": 66.087,
+  "menu_pitch": 66.087,
+  "err_at_1760_deg": 0.0081
+ },
+ "pieces": {
+  "n_rising": 89,
+  "first_rise": 1728,
+  "last_rise": 1748,
+  "settled_by": 1760,
+  "min_tether_frames": 6,
+  "min_footprint_frames": 34,
+  "n_tethers": 410
+ },
+ "void_pixels_sampled_frames": [
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0
+ ]
+}

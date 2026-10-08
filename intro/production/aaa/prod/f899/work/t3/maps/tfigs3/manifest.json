@@ -1,0 +1,76 @@
+{
+ "sheet": "tfigs3",
+ "PX": 10.0,
+ "size_px": [
+  3300,
+  1250
+ ],
+ "size_mm": [
+  330.0,
+  125.0
+ ],
+ "tile": 2048,
+ "overlap": 64,
+ "grid": [
+  1,
+  2
+ ],
+ "levels": [
+  {
+   "level": 0,
+   "PX": 10.0,
+   "W": 3300,
+   "H": 1250
+  },
+  {
+   "level": 1,
+   "PX": 5.0,
+   "W": 1650,
+   "H": 625
+  },
+  {
+   "level": 2,
+   "PX": 2.5,
+   "W": 825,
+   "H": 312
+  },
+  {
+   "level": 3,
+   "PX": 1.25,
+   "W": 412,
+   "H": 156
+  }
+ ],
+ "channels": [
+  "h",
+  "alb",
+  "T",
+  "mat",
+  "cov",
+  "sid",
+  "reg",
+  "grp",
+  "birth",
+  "age_fox",
+  "age_tide",
+  "age_fade",
+  "ud",
+  "holes",
+  "pad",
+  "ghost",
+  "gpoly"
+ ],
+ "written": "2026-10-08 20:29:45",
+ "kit": "bkit",
+ "linen_seed": 0,
+ "groups": [
+  "ground"
+ ],
+ "seed": 5,
+ "frieze_origin_mm": [
+  0.0,
+  0.0
+ ],
+ "regions": 309,
+ "stitched": 6047
+}

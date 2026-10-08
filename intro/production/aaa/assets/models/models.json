@@ -1,0 +1,6558 @@
+[
+ {
+  "name": "archer",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/archer.obj",
+  "parts": [
+   "body",
+   "tool"
+  ],
+  "materials": {
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "cloth_dark": [
+    0.566,
+    0.527,
+    0.506
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "wool": [
+    0.973,
+    0.964,
+    0.936
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "team_dark": [
+    0.701,
+    0.349,
+    0.313
+   ],
+   "white": [
+    0.978,
+    0.973,
+    0.955
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ]
+  },
+  "verts": 1642,
+  "tris": 750,
+  "bbox_min": [
+   -0.153,
+   -0.003,
+   -0.088
+  ],
+  "bbox_max": [
+   0.12,
+   0.369,
+   0.063
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     -0.11,
+     0.16,
+     0.04
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "archer2",
+    "Node3D",
+    -1
+   ],
+   [
+    "archer",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "barracks",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/barracks.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "stone_dark": [
+    0.68,
+    0.673,
+    0.665
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ]
+  },
+  "verts": 612,
+  "tris": 292,
+  "bbox_min": [
+   -0.106,
+   0.0,
+   -0.076
+  ],
+  "bbox_max": [
+   0.106,
+   0.497,
+   0.073
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "barracks2",
+    "Node3D",
+    -1
+   ],
+   [
+    "barracks",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "bridge",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/bridge.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "plank": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 912,
+  "tris": 464,
+  "bbox_min": [
+   -0.946,
+   -0.2,
+   -0.15
+  ],
+  "bbox_max": [
+   0.946,
+   0.182,
+   0.15
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "bridge2",
+    "Node3D",
+    -1
+   ],
+   [
+    "bridge",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "capital",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/capital.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ]
+  },
+  "verts": 2084,
+  "tris": 1000,
+  "bbox_min": [
+   -0.163,
+   0.0,
+   -0.304
+  ],
+  "bbox_max": [
+   0.163,
+   0.653,
+   0.004
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "capital2",
+    "Node3D",
+    -1
+   ],
+   [
+    "capital",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "catapult",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/catapult.obj",
+  "parts": [
+   "arm",
+   "body",
+   "crew"
+  ],
+  "materials": {
+   "wood": [
+    0.767,
+    0.65,
+    0.506
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "stone_dark": [
+    0.68,
+    0.673,
+    0.665
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "iron": [
+    0.665,
+    0.584,
+    0.566
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ]
+  },
+  "verts": 2676,
+  "tris": 1292,
+  "bbox_min": [
+   -0.231,
+   0.0,
+   -0.379
+  ],
+  "bbox_max": [
+   0.169,
+   0.464,
+   0.227
+  ],
+  "part_pivots": {
+   "arm": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.27,
+     -0.02
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.5736,
+      -0.8192
+     ],
+     [
+      0.0,
+      0.8192,
+      0.5736
+     ]
+    ]
+   },
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "crew": {
+    "pivot_godot_xyz": [
+     -0.16,
+     0.0,
+     -0.27
+    ],
+    "basis_rows": [
+     [
+      0.342,
+      0.0,
+      -0.9397
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.9397,
+      0.0,
+      0.342
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "catapult2",
+    "Node3D",
+    -1
+   ],
+   [
+    "catapult",
+    "Node3D",
+    0
+   ],
+   [
+    "arm",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "crew",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "den",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/den.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "rock": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "black": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "bone": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "fire": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 648,
+  "tris": 280,
+  "bbox_min": [
+   -0.26,
+   -0.178,
+   -0.364
+  ],
+  "bbox_max": [
+   0.321,
+   0.181,
+   0.351
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "den2",
+    "Node3D",
+    -1
+   ],
+   [
+    "den",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "fire",
+    "Node3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "engineer",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/engineer.obj",
+  "parts": [
+   "body",
+   "tool"
+  ],
+  "materials": {
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "cloth_dark": [
+    0.566,
+    0.527,
+    0.506
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "wool": [
+    0.973,
+    0.964,
+    0.936
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "hair": [
+    0.584,
+    0.485,
+    0.381
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "metal_dark": [
+    0.601,
+    0.61,
+    0.634
+   ]
+  },
+  "verts": 1885,
+  "tris": 860,
+  "bbox_min": [
+   -0.12,
+   0.0,
+   -0.07
+  ],
+  "bbox_max": [
+   0.14,
+   0.372,
+   0.058
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     0.1,
+     0.15,
+     0.03
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.9848,
+      0.1736
+     ],
+     [
+      0.0,
+      -0.1736,
+      0.9848
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "engineer2",
+    "Node3D",
+    -1
+   ],
+   [
+    "engineer",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "farm",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/farm.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "dirt": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "crop": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "hay": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 1227,
+  "tris": 604,
+  "bbox_min": [
+   -0.528,
+   0.0,
+   -0.41
+  ],
+  "bbox_max": [
+   0.456,
+   0.11,
+   0.427
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "farm2",
+    "Node3D",
+    -1
+   ],
+   [
+    "farm",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "fish_school",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/fish_school.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "fish": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 219,
+  "tris": 78,
+  "bbox_min": [
+   -0.169,
+   -0.014,
+   -0.139
+  ],
+  "bbox_max": [
+   0.23,
+   0.035,
+   0.148
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "fish_school2",
+    "Node3D",
+    -1
+   ],
+   [
+    "fish_school",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "fishery",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/fishery.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "plank": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "fish": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 612,
+  "tris": 308,
+  "bbox_min": [
+   -0.238,
+   -0.06,
+   -0.557
+  ],
+  "bbox_max": [
+   0.195,
+   0.13,
+   0.068
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "fishery2",
+    "Node3D",
+    -1
+   ],
+   [
+    "fishery",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "forge",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/forge.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_hall": [
+    0.537,
+    0.687,
+    0.68
+   ],
+   "fire": [
+    1.0,
+    0.767,
+    0.424
+   ],
+   "stone_dark": [
+    0.68,
+    0.673,
+    0.665
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ]
+  },
+  "verts": 438,
+  "tris": 200,
+  "bbox_min": [
+   -0.116,
+   0.0,
+   -0.086
+  ],
+  "bbox_max": [
+   0.105,
+   0.5,
+   0.066
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "forge2",
+    "Node3D",
+    -1
+   ],
+   [
+    "forge",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "goblin",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/goblin.obj",
+  "parts": [
+   "body",
+   "tool"
+  ],
+  "materials": {
+   "goblin": [
+    0.68,
+    0.786,
+    0.506
+   ],
+   "rag": [
+    0.701,
+    0.437,
+    0.381
+   ],
+   "fire": [
+    1.0,
+    0.767,
+    0.424
+   ],
+   "bone": [
+    0.964,
+    0.945,
+    0.886
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "wood": [
+    0.767,
+    0.65,
+    0.506
+   ]
+  },
+  "verts": 1074,
+  "tris": 496,
+  "bbox_min": [
+   -0.166,
+   0.0,
+   -0.052
+  ],
+  "bbox_max": [
+   0.166,
+   0.337,
+   0.12
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     0.095,
+     0.12,
+     0.03
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.9659,
+      0.2588
+     ],
+     [
+      0.0,
+      -0.2588,
+      0.9659
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "goblin2",
+    "Node3D",
+    -1
+   ],
+   [
+    "goblin",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "goldmine",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/goldmine.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "rock": [
+    0.735,
+    0.722,
+    0.708
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "metal_dark": [
+    0.601,
+    0.61,
+    0.634
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "fire": [
+    1.0,
+    0.767,
+    0.424
+   ]
+  },
+  "verts": 1248,
+  "tris": 508,
+  "bbox_min": [
+   -0.234,
+   -0.148,
+   -0.3
+  ],
+  "bbox_max": [
+   0.276,
+   0.186,
+   0.33
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "goldmine2",
+    "Node3D",
+    -1
+   ],
+   [
+    "goldmine",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "granary",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/granary.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "plank": [
+    0.832,
+    0.735,
+    0.601
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "thatch_store": [
+    0.774,
+    0.722,
+    0.61
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ]
+  },
+  "verts": 732,
+  "tris": 412,
+  "bbox_min": [
+   -0.125,
+   -0.0,
+   -0.11
+  ],
+  "bbox_max": [
+   0.13,
+   0.357,
+   0.11
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "granary2",
+    "Node3D",
+    -1
+   ],
+   [
+    "granary",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "great_work_1",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/great_work_1.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "stone_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "plank": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 456,
+  "tris": 224,
+  "bbox_min": [
+   -0.128,
+   0.0,
+   -0.128
+  ],
+  "bbox_max": [
+   0.14,
+   0.25,
+   0.14
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "great_work_12",
+    "Node3D",
+    -1
+   ],
+   [
+    "great_work_1",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "great_work_2",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/great_work_2.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "stone_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "white": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 672,
+  "tris": 336,
+  "bbox_min": [
+   -0.128,
+   0.0,
+   -0.128
+  ],
+  "bbox_max": [
+   0.128,
+   0.29,
+   0.128
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "great_work_22",
+    "Node3D",
+    -1
+   ],
+   [
+    "great_work_2",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "great_work_3",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/great_work_3.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "stone_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "white": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "gold": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 1104,
+  "tris": 552,
+  "bbox_min": [
+   -0.128,
+   0.0,
+   -0.128
+  ],
+  "bbox_max": [
+   0.128,
+   0.65,
+   0.128
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "great_work_32",
+    "Node3D",
+    -1
+   ],
+   [
+    "great_work_3",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "great_work_4",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/great_work_4.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "stone_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "white": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "gold": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "fire": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "team": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 1491,
+  "tris": 724,
+  "bbox_min": [
+   -0.128,
+   0.0,
+   -0.128
+  ],
+  "bbox_max": [
+   0.133,
+   0.75,
+   0.128
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "great_work_42",
+    "Node3D",
+    -1
+   ],
+   [
+    "great_work_4",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "fire",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "guild",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/guild.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_hall": [
+    0.537,
+    0.687,
+    0.68
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ]
+  },
+  "verts": 552,
+  "tris": 276,
+  "bbox_min": [
+   -0.115,
+   0.0,
+   -0.09
+  ],
+  "bbox_max": [
+   0.109,
+   0.414,
+   0.075
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "guild2",
+    "Node3D",
+    -1
+   ],
+   [
+    "guild",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "horse_archer",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/horse_archer.obj",
+  "parts": [
+   "body",
+   "horse",
+   "tool"
+  ],
+  "materials": {
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "hair": [
+    0.584,
+    0.485,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "horse": [
+    0.722,
+    0.584,
+    0.461
+   ],
+   "horse_dark": [
+    0.485,
+    0.41,
+    0.349
+   ],
+   "white": [
+    0.978,
+    0.973,
+    0.955
+   ]
+  },
+  "verts": 3101,
+  "tris": 1428,
+  "bbox_min": [
+   -0.12,
+   0.0,
+   -0.282
+  ],
+  "bbox_max": [
+   0.12,
+   0.561,
+   0.369
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "horse": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     -0.1,
+     0.33,
+     0.07
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "horse_archer2",
+    "Node3D",
+    -1
+   ],
+   [
+    "horse_archer",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "horse",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "knight",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/knight.obj",
+  "parts": [
+   "body",
+   "horse",
+   "tool"
+  ],
+  "materials": {
+   "metal_dark": [
+    0.601,
+    0.61,
+    0.634
+   ],
+   "metal": [
+    0.854,
+    0.865,
+    0.886
+   ],
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "horse": [
+    0.722,
+    0.584,
+    0.461
+   ],
+   "horse_dark": [
+    0.485,
+    0.41,
+    0.349
+   ],
+   "wood": [
+    0.767,
+    0.65,
+    0.506
+   ]
+  },
+  "verts": 3463,
+  "tris": 1592,
+  "bbox_min": [
+   -0.125,
+   0.0,
+   -0.282
+  ],
+  "bbox_max": [
+   0.125,
+   0.566,
+   0.369
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "horse": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     0.09,
+     0.33,
+     0.02
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.6428,
+      0.766
+     ],
+     [
+      0.0,
+      -0.766,
+      0.6428
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "knight2",
+    "Node3D",
+    -1
+   ],
+   [
+    "knight",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "horse",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "legionary",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/legionary.obj",
+  "parts": [
+   "body",
+   "tool"
+  ],
+  "materials": {
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "metal": [
+    0.854,
+    0.865,
+    0.886
+   ],
+   "metal_dark": [
+    0.601,
+    0.61,
+    0.634
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ]
+  },
+  "verts": 1704,
+  "tris": 772,
+  "bbox_min": [
+   -0.147,
+   0.0,
+   -0.066
+  ],
+  "bbox_max": [
+   0.13,
+   0.391,
+   0.089
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     0.1,
+     0.15,
+     0.03
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "legionary2",
+    "Node3D",
+    -1
+   ],
+   [
+    "legionary",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "library",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/library.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_hall": [
+    0.537,
+    0.687,
+    0.68
+   ],
+   "white": [
+    0.978,
+    0.973,
+    0.955
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "lead": [
+    0.729,
+    0.742,
+    0.742
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ]
+  },
+  "verts": 739,
+  "tris": 392,
+  "bbox_min": [
+   -0.115,
+   0.0,
+   -0.085
+  ],
+  "bbox_max": [
+   0.11,
+   0.491,
+   0.082
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "library2",
+    "Node3D",
+    -1
+   ],
+   [
+    "library",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "lumber",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/lumber.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "plank": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "metal": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 732,
+  "tris": 384,
+  "bbox_min": [
+   -0.188,
+   -0.003,
+   -0.21
+  ],
+  "bbox_max": [
+   0.233,
+   0.126,
+   0.155
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "lumber2",
+    "Node3D",
+    -1
+   ],
+   [
+    "lumber",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "man_at_arms",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/man_at_arms.obj",
+  "parts": [
+   "body",
+   "tool"
+  ],
+  "materials": {
+   "metal_dark": [
+    0.601,
+    0.61,
+    0.634
+   ],
+   "metal": [
+    0.854,
+    0.865,
+    0.886
+   ],
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ]
+  },
+  "verts": 1728,
+  "tris": 776,
+  "bbox_min": [
+   -0.166,
+   0.0,
+   -0.064
+  ],
+  "bbox_max": [
+   0.13,
+   0.367,
+   0.089
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     0.1,
+     0.15,
+     0.03
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "man_at_arms2",
+    "Node3D",
+    -1
+   ],
+   [
+    "man_at_arms",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "market",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/market.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "white": [
+    0.978,
+    0.973,
+    0.955
+   ],
+   "plank": [
+    0.832,
+    0.735,
+    0.601
+   ],
+   "crop": [
+    0.767,
+    0.854,
+    0.537
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "fish": [
+    0.809,
+    0.865,
+    0.896
+   ]
+  },
+  "verts": 720,
+  "tris": 312,
+  "bbox_min": [
+   -0.108,
+   0.0,
+   -0.09
+  ],
+  "bbox_max": [
+   0.108,
+   0.48,
+   0.08
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "market2",
+    "Node3D",
+    -1
+   ],
+   [
+    "market",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "mercenary",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/mercenary.obj",
+  "parts": [
+   "body",
+   "tool"
+  ],
+  "materials": {
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "cloth_dark": [
+    0.566,
+    0.527,
+    0.506
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "white": [
+    0.978,
+    0.973,
+    0.955
+   ],
+   "hair": [
+    0.584,
+    0.485,
+    0.381
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "metal_dark": [
+    0.601,
+    0.61,
+    0.634
+   ],
+   "metal": [
+    0.854,
+    0.865,
+    0.886
+   ]
+  },
+  "verts": 1752,
+  "tris": 808,
+  "bbox_min": [
+   -0.136,
+   0.0,
+   -0.076
+  ],
+  "bbox_max": [
+   0.136,
+   0.385,
+   0.076
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     0.1,
+     0.15,
+     0.03
+    ],
+    "basis_rows": [
+     [
+      0.766,
+      -0.6428,
+      0.0
+     ],
+     [
+      0.6428,
+      0.766,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "mercenary2",
+    "Node3D",
+    -1
+   ],
+   [
+    "mercenary",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "mine",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/mine.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "rock": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "black": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "metal_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "iron": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "fire": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 1128,
+  "tris": 468,
+  "bbox_min": [
+   -0.218,
+   -0.148,
+   -0.3
+  ],
+  "bbox_max": [
+   0.276,
+   0.186,
+   0.33
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "mine2",
+    "Node3D",
+    -1
+   ],
+   [
+    "mine",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "ore_pit",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/ore_pit.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "stone_dark": [
+    0.68,
+    0.673,
+    0.665
+   ],
+   "wood": [
+    0.767,
+    0.65,
+    0.506
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "cloth_dark": [
+    0.566,
+    0.527,
+    0.506
+   ],
+   "plank": [
+    0.832,
+    0.735,
+    0.601
+   ],
+   "iron": [
+    0.665,
+    0.584,
+    0.566
+   ]
+  },
+  "verts": 1140,
+  "tris": 436,
+  "bbox_min": [
+   -0.202,
+   -0.017,
+   -0.176
+  ],
+  "bbox_max": [
+   0.271,
+   0.208,
+   0.095
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "ore_pit2",
+    "Node3D",
+    -1
+   ],
+   [
+    "ore_pit",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "pasture",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/pasture.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "horse": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "horse_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "black": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "leather": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "white": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "hay": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "plank": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 3692,
+  "tris": 1752,
+  "bbox_min": [
+   -0.528,
+   0.0,
+   -0.468
+  ],
+  "bbox_max": [
+   0.528,
+   0.262,
+   0.466
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "pasture2",
+    "Node3D",
+    -1
+   ],
+   [
+    "pasture",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "quarry",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/quarry.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "cloth_dark": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 858,
+  "tris": 396,
+  "bbox_min": [
+   -0.245,
+   -0.002,
+   -0.21
+  ],
+  "bbox_max": [
+   0.265,
+   0.242,
+   0.18
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "quarry2",
+    "Node3D",
+    -1
+   ],
+   [
+    "quarry",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "ruin",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/ruin.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "white": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "leaf": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "gold": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 768,
+  "tris": 376,
+  "bbox_min": [
+   -0.243,
+   0.0,
+   -0.14
+  ],
+  "bbox_max": [
+   0.252,
+   0.32,
+   0.204
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "ruin2",
+    "Node3D",
+    -1
+   ],
+   [
+    "ruin",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "scout",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/scout.obj",
+  "parts": [
+   "body",
+   "tool"
+  ],
+  "materials": {
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "cloth_dark": [
+    0.566,
+    0.527,
+    0.506
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "wool": [
+    0.973,
+    0.964,
+    0.936
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "team_dark": [
+    0.701,
+    0.349,
+    0.313
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "metal": [
+    0.854,
+    0.865,
+    0.886
+   ]
+  },
+  "verts": 1633,
+  "tris": 744,
+  "bbox_min": [
+   -0.147,
+   0.0,
+   -0.069
+  ],
+  "bbox_max": [
+   0.115,
+   0.369,
+   0.074
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     0.1,
+     0.15,
+     0.03
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "scout2",
+    "Node3D",
+    -1
+   ],
+   [
+    "scout",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_0",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_0.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "plank": [
+    0.832,
+    0.735,
+    0.601
+   ],
+   "wood": [
+    0.767,
+    0.65,
+    0.506
+   ],
+   "thatch": [
+    0.906,
+    0.832,
+    0.634
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "white": [
+    0.978,
+    0.973,
+    0.955
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "stone_dark": [
+    0.68,
+    0.673,
+    0.665
+   ],
+   "fire": [
+    1.0,
+    0.767,
+    0.424
+   ]
+  },
+  "verts": 2407,
+  "tris": 1246,
+  "bbox_min": [
+   -0.47,
+   -0.006,
+   -0.284
+  ],
+  "bbox_max": [
+   0.47,
+   0.74,
+   0.285
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_02",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_0",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_1",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_1.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "thatch": [
+    0.906,
+    0.832,
+    0.634
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_shingle": [
+    0.68,
+    0.626,
+    0.566
+   ],
+   "roof_thatch_old": [
+    0.786,
+    0.735,
+    0.626
+   ],
+   "roof_thatch": [
+    0.886,
+    0.798,
+    0.626
+   ],
+   "roof_moss": [
+    0.687,
+    0.701,
+    0.601
+   ]
+  },
+  "verts": 4853,
+  "tris": 2404,
+  "bbox_min": [
+   -0.766,
+   0.0,
+   -0.493
+  ],
+  "bbox_max": [
+   0.766,
+   0.592,
+   0.463
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_12",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_1",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_1_1",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_1_1.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "thatch": [
+    0.906,
+    0.832,
+    0.634
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_shingle": [
+    0.68,
+    0.626,
+    0.566
+   ],
+   "roof_thatch_old": [
+    0.786,
+    0.735,
+    0.626
+   ],
+   "roof_thatch": [
+    0.886,
+    0.798,
+    0.626
+   ],
+   "roof_moss": [
+    0.687,
+    0.701,
+    0.601
+   ]
+  },
+  "verts": 4649,
+  "tris": 2304,
+  "bbox_min": [
+   -0.766,
+   0.0,
+   -0.493
+  ],
+  "bbox_max": [
+   0.766,
+   0.592,
+   0.463
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_1_12",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_1_1",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_1_2",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_1_2.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "thatch": [
+    0.906,
+    0.832,
+    0.634
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_shingle": [
+    0.68,
+    0.626,
+    0.566
+   ],
+   "roof_thatch_old": [
+    0.786,
+    0.735,
+    0.626
+   ],
+   "roof_thatch": [
+    0.886,
+    0.798,
+    0.626
+   ],
+   "roof_moss": [
+    0.687,
+    0.701,
+    0.601
+   ]
+  },
+  "verts": 4445,
+  "tris": 2204,
+  "bbox_min": [
+   -0.766,
+   0.0,
+   -0.493
+  ],
+  "bbox_max": [
+   0.766,
+   0.592,
+   0.463
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_1_22",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_1_2",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_2",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_2.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ],
+   "roof_shingle": [
+    0.68,
+    0.626,
+    0.566
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ]
+  },
+  "verts": 6822,
+  "tris": 3386,
+  "bbox_min": [
+   -0.861,
+   0.0,
+   -0.557
+  ],
+  "bbox_max": [
+   0.861,
+   0.782,
+   0.511
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_22",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_2",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_2_1",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_2_1.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ],
+   "roof_shingle": [
+    0.68,
+    0.626,
+    0.566
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ]
+  },
+  "verts": 6570,
+  "tris": 3262,
+  "bbox_min": [
+   -0.861,
+   0.0,
+   -0.557
+  ],
+  "bbox_max": [
+   0.861,
+   0.782,
+   0.511
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_2_12",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_2_1",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_2_2",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_2_2.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ],
+   "roof_shingle": [
+    0.68,
+    0.626,
+    0.566
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ]
+  },
+  "verts": 6342,
+  "tris": 3150,
+  "bbox_min": [
+   -0.861,
+   0.0,
+   -0.557
+  ],
+  "bbox_max": [
+   0.861,
+   0.782,
+   0.511
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_2_22",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_2_2",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_2_3",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_2_3.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ],
+   "roof_shingle": [
+    0.68,
+    0.626,
+    0.566
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ]
+  },
+  "verts": 6114,
+  "tris": 3038,
+  "bbox_min": [
+   -0.861,
+   0.0,
+   -0.557
+  ],
+  "bbox_max": [
+   0.861,
+   0.782,
+   0.511
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_2_32",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_2_3",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_2_4",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_2_4.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ],
+   "roof_shingle": [
+    0.68,
+    0.626,
+    0.566
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ]
+  },
+  "verts": 5886,
+  "tris": 2926,
+  "bbox_min": [
+   -0.861,
+   0.0,
+   -0.557
+  ],
+  "bbox_max": [
+   0.861,
+   0.782,
+   0.511
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_2_42",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_2_4",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_3",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_3.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ],
+   "roof_lead": [
+    0.729,
+    0.742,
+    0.742
+   ]
+  },
+  "verts": 7726,
+  "tris": 3844,
+  "bbox_min": [
+   -0.934,
+   0.0,
+   -0.606
+  ],
+  "bbox_max": [
+   0.934,
+   1.016,
+   0.562
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_32",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_3",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_3_1",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_3_1.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ],
+   "roof_lead": [
+    0.729,
+    0.742,
+    0.742
+   ]
+  },
+  "verts": 7474,
+  "tris": 3720,
+  "bbox_min": [
+   -0.934,
+   0.0,
+   -0.606
+  ],
+  "bbox_max": [
+   0.934,
+   1.016,
+   0.562
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_3_12",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_3_1",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_3_2",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_3_2.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_lead": [
+    0.729,
+    0.742,
+    0.742
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ]
+  },
+  "verts": 7174,
+  "tris": 3572,
+  "bbox_min": [
+   -0.934,
+   0.0,
+   -0.606
+  ],
+  "bbox_max": [
+   0.934,
+   1.016,
+   0.562
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_3_22",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_3_2",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_3_3",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_3_3.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ]
+  },
+  "verts": 6874,
+  "tris": 3424,
+  "bbox_min": [
+   -0.934,
+   0.0,
+   -0.606
+  ],
+  "bbox_max": [
+   0.934,
+   1.016,
+   0.562
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_3_32",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_3_3",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_3_4",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_3_4.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ],
+   "roof_tile_old": [
+    0.687,
+    0.537,
+    0.485
+   ]
+  },
+  "verts": 6622,
+  "tris": 3300,
+  "bbox_min": [
+   -0.934,
+   0.0,
+   -0.606
+  ],
+  "bbox_max": [
+   0.934,
+   1.016,
+   0.562
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_3_42",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_3_4",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_3_5",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_3_5.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ]
+  },
+  "verts": 6346,
+  "tris": 3164,
+  "bbox_min": [
+   -0.934,
+   0.0,
+   -0.606
+  ],
+  "bbox_max": [
+   0.934,
+   1.016,
+   0.562
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_3_52",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_3_5",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_3_6",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_3_6.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "cloth": [
+    0.748,
+    0.68,
+    0.584
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "roof_civic": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "slate": [
+    0.584,
+    0.634,
+    0.708
+   ],
+   "roof_slate": [
+    0.601,
+    0.634,
+    0.673
+   ],
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_tile": [
+    0.87,
+    0.665,
+    0.547
+   ]
+  },
+  "verts": 6070,
+  "tris": 3028,
+  "bbox_min": [
+   -0.934,
+   0.0,
+   -0.606
+  ],
+  "bbox_max": [
+   0.934,
+   1.016,
+   0.562
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_3_62",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_3_6",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "smoke",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "settle_banner",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/settle_banner.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "white": [
+    0.978,
+    0.973,
+    0.955
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ]
+  },
+  "verts": 388,
+  "tris": 172,
+  "bbox_min": [
+   -0.211,
+   0.0,
+   -0.056
+  ],
+  "bbox_max": [
+   0.211,
+   1.06,
+   0.02
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "settle_banner2",
+    "Node3D",
+    -1
+   ],
+   [
+    "settle_banner",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "site",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/site.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "dirt": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "plank": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "stone": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 624,
+  "tris": 308,
+  "bbox_min": [
+   -0.234,
+   -0.003,
+   -0.1
+  ],
+  "bbox_max": [
+   0.207,
+   0.2,
+   0.183
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "site2",
+    "Node3D",
+    -1
+   ],
+   [
+    "site",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "spearman",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/spearman.obj",
+  "parts": [
+   "body",
+   "tool"
+  ],
+  "materials": {
+   "leather": [
+    0.68,
+    0.547,
+    0.41
+   ],
+   "cloth_dark": [
+    0.566,
+    0.527,
+    0.506
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "skin": [
+    0.964,
+    0.854,
+    0.761
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "metal": [
+    0.854,
+    0.865,
+    0.886
+   ],
+   "blazon": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "wood": [
+    0.767,
+    0.65,
+    0.506
+   ]
+  },
+  "verts": 1446,
+  "tris": 684,
+  "bbox_min": [
+   -0.154,
+   0.0,
+   -0.077
+  ],
+  "bbox_max": [
+   0.124,
+   0.505,
+   0.084
+  ],
+  "part_pivots": {
+   "body": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   },
+   "tool": {
+    "pivot_godot_xyz": [
+     0.1,
+     0.15,
+     0.03
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "spearman2",
+    "Node3D",
+    -1
+   ],
+   [
+    "spearman",
+    "Node3D",
+    0
+   ],
+   [
+    "body",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "tool",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "stable",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/stable.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "wood": [
+    0.767,
+    0.65,
+    0.506
+   ],
+   "thatch": [
+    0.906,
+    0.832,
+    0.634
+   ],
+   "black": [
+    0.272,
+    0.248,
+    0.248
+   ],
+   "plank": [
+    0.832,
+    0.735,
+    0.601
+   ],
+   "horse_dark": [
+    0.485,
+    0.41,
+    0.349
+   ],
+   "horse": [
+    0.722,
+    0.584,
+    0.461
+   ],
+   "hay": [
+    0.936,
+    0.876,
+    0.65
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ]
+  },
+  "verts": 552,
+  "tris": 268,
+  "bbox_min": [
+   -0.113,
+   -0.0,
+   -0.085
+  ],
+  "bbox_max": [
+   0.116,
+   0.472,
+   0.081
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "stable2",
+    "Node3D",
+    -1
+   ],
+   [
+    "stable",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "walls_1",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/walls_1.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ]
+  },
+  "verts": 3284,
+  "tris": 1622,
+  "bbox_min": [
+   -0.82,
+   0.0,
+   -0.532
+  ],
+  "bbox_max": [
+   0.82,
+   0.497,
+   0.499
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "walls_12",
+    "Node3D",
+    -1
+   ],
+   [
+    "walls_1",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "walls_2",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/walls_2.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ]
+  },
+  "verts": 3356,
+  "tris": 1658,
+  "bbox_min": [
+   -0.922,
+   0.0,
+   -0.601
+  ],
+  "bbox_max": [
+   0.922,
+   0.634,
+   0.554
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "walls_22",
+    "Node3D",
+    -1
+   ],
+   [
+    "walls_2",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "walls_3",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/walls_3.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ]
+  },
+  "verts": 3476,
+  "tris": 1718,
+  "bbox_min": [
+   -1.0,
+   0.0,
+   -0.655
+  ],
+  "bbox_max": [
+   1.0,
+   0.754,
+   0.598
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "walls_32",
+    "Node3D",
+    -1
+   ],
+   [
+    "walls_3",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "watchtower",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/watchtower.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "stone": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "wood_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "plank": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "thatch": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "metal_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "fire": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "gold": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "team": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 961,
+  "tris": 460,
+  "bbox_min": [
+   -0.08,
+   0.0,
+   -0.155
+  ],
+  "bbox_max": [
+   0.08,
+   0.6,
+   0.08
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "watchtower2",
+    "Node3D",
+    -1
+   ],
+   [
+    "watchtower",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ],
+   [
+    "fire",
+    "Node3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "wild_horses",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/wild_horses.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "horse": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "horse_dark": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "black": [
+    0.906,
+    0.906,
+    0.906
+   ],
+   "leather": [
+    0.906,
+    0.906,
+    0.906
+   ]
+  },
+  "verts": 2564,
+  "tris": 1184,
+  "bbox_min": [
+   -0.288,
+   0.0,
+   -0.201
+  ],
+  "bbox_max": [
+   0.294,
+   0.262,
+   0.234
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "wild_horses2",
+    "Node3D",
+    -1
+   ],
+   [
+    "wild_horses",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "workshop",
+  "obj": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/workshop.obj",
+  "parts": [
+   "core"
+  ],
+  "materials": {
+   "plaster": [
+    0.955,
+    0.936,
+    0.886
+   ],
+   "roof_hall": [
+    0.537,
+    0.687,
+    0.68
+   ],
+   "wood_dark": [
+    0.626,
+    0.527,
+    0.424
+   ],
+   "window": [
+    0.485,
+    0.437,
+    0.381
+   ],
+   "wood": [
+    0.767,
+    0.65,
+    0.506
+   ],
+   "stone": [
+    0.809,
+    0.798,
+    0.774
+   ],
+   "gold": [
+    0.978,
+    0.881,
+    0.537
+   ],
+   "team": [
+    0.881,
+    0.461,
+    0.424
+   ]
+  },
+  "verts": 768,
+  "tris": 388,
+  "bbox_min": [
+   -0.116,
+   0.0,
+   -0.087
+  ],
+  "bbox_max": [
+   0.108,
+   0.502,
+   0.084
+  ],
+  "part_pivots": {
+   "core": {
+    "pivot_godot_xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "basis_rows": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   }
+  },
+  "scene_nodes": [
+   [
+    "workshop2",
+    "Node3D",
+    -1
+   ],
+   [
+    "workshop",
+    "Node3D",
+    0
+   ],
+   [
+    "core",
+    "MeshInstance3D",
+    1
+   ]
+  ]
+ }
+]

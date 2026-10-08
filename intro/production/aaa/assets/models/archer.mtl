@@ -1,0 +1,50 @@
+newmtl leather
+Kd 0.1746 0.0802 0.0284
+d 1.0
+# palette #74502F (linear); original glb Kd 0.6800 0.5469 0.4100
+
+newmtl cloth_dark
+Kd 0.0762 0.0578 0.0369
+d 1.0
+# palette #4E4436 (linear); original glb Kd 0.5657 0.5271 0.5064
+
+newmtl team
+Kd 0.0242 0.0529 0.0953
+d 1.0
+# palette #2B4157 (linear); original glb Kd 0.8808 0.4614 0.4236
+
+newmtl wool
+Kd 0.8070 0.6867 0.4969
+d 1.0
+# palette #E8D8BB (linear); original glb Kd 0.9731 0.9640 0.9357
+
+newmtl skin
+Kd 0.6867 0.4564 0.2705
+d 1.0
+# palette #D8B48E (linear); original glb Kd 0.9640 0.8543 0.7611
+
+newmtl black
+Kd 0.0273 0.0144 0.0060
+d 1.0
+# palette #2E2012 (linear); original glb Kd 0.2717 0.2478 0.2478
+
+newmtl team_dark
+Kd 0.0137 0.0284 0.0513
+d 1.0
+# palette #1F2F40 (linear); original glb Kd 0.7014 0.3492 0.3133
+
+newmtl white
+Kd 0.8070 0.6867 0.4969
+d 1.0
+# palette #E8D8BB (linear); original glb Kd 0.9777 0.9731 0.9547
+
+newmtl blazon
+Kd 0.0242 0.0529 0.0953
+d 1.0
+# palette #2B4157 (linear); original glb Kd 0.8808 0.4614 0.4236
+
+newmtl wood_dark
+Kd 0.0612 0.0296 0.0116
+d 1.0
+# palette #46301C (linear); original glb Kd 0.6262 0.5271 0.4236
+

@@ -1,0 +1,125 @@
+{
+ "frame": 669,
+ "view": {
+  "cx_mm": 307.7129032258065,
+  "cy_mm": 173.0,
+  "px_per_mm": 5.8125
+ },
+ "level": 0,
+ "timing": {
+  "read": 27.35,
+  "relight": 15.89,
+  "warp": 0.42,
+  "fibres": 1.59,
+  "level": 0,
+  "base": 50.91,
+  "crown": 8.17,
+  "threads": 3.5,
+  "total": 65.64,
+  "loose": 4,
+  "u": 6324.0
+ },
+ "EV_vs_void_head": {
+  "red_face": -0.03,
+  "blue_face": -1.96,
+  "gold_face": -1.53,
+  "green_face": -2.71,
+  "void_lap": -1.23,
+  "crown": -1.64,
+  "table": -1.94
+ },
+ "crops": {
+  "crown_tethers": [
+   820,
+   190,
+   760,
+   560
+  ],
+  "void_holes_underdrawing": [
+   712,
+   550,
+   720,
+   560
+  ],
+  "crown_shadow_in_void": [
+   983,
+   559,
+   760,
+   520
+  ],
+  "loose_purple_strands": [
+   774,
+   791,
+   900,
+   520
+  ],
+  "void_top_edge": [
+   762,
+   376,
+   900,
+   420
+  ],
+  "void_lap_bottom": [
+   735,
+   1024,
+   1000,
+   380
+  ],
+  "red_lord_face_rim": [
+   362,
+   364,
+   560,
+   560
+  ],
+  "blue_lord_face_rim": [
+   1513,
+   364,
+   560,
+   560
+  ],
+  "green_lord_rim": [
+   1943,
+   423,
+   560,
+   560
+  ],
+  "goblet_candle_ghosts_tideline": [
+   1460,
+   1040,
+   1100,
+   400
+  ],
+  "right_edge_candles": [
+   1860,
+   1000,
+   700,
+   440
+  ],
+  "left_goblet_ghost": [
+   57,
+   1020,
+   520,
+   420
+  ],
+  "green_lord_shield": [
+   1920,
+   626,
+   640,
+   560
+  ],
+  "crown_gold_metal": [
+   940,
+   268,
+   520,
+   380
+  ],
+  "void_pool_core": [
+   762,
+   626,
+   900,
+   560
+  ]
+ },
+ "wall_s": 89.7,
+ "void_check": "PASS (0 void pixels)"
+}

@@ -1,0 +1,34 @@
+{
+  "machine": "4 cores, 15 GB RAM, no GPU, llvmpipe (Mesa 25.2.8); measured 2026-10-08 with light background load",
+  "blender_4_0_2_eevee_legacy_xvfb": {
+    "scene": "SUBxSUB grid displaced by CLOUDS texture, principled + noise/bump, sun soft shadows (6 deg), GTAO, animated camera",
+    "per_frame_wall_s": {
+      "1920x1080_16taa_1.05Mverts": {"frame1": 70.7, "frame2": 64.3, "cpu_s_2frames": 350, "avg_cores": 2.54},
+      "1920x1080_4taa_1.05Mverts": 20.1, "1920x1080_1taa_1.05Mverts": 7.0,
+      "1920x1080_4taa_66kverts": 6.6, "1920x1080_8taa_66kverts_3frames": [10.8, 10.0, 11.3],
+      "2560x1440_4taa_1.05Mverts": 24.3, "2560x1440_4taa_66kverts": 9.3, "2560x1440_16taa_66kverts": 34.0,
+      "2560x1440_16taa_1.05Mverts_extrapolated": 80
+    },
+    "per_taa_sample_cost_s": {"1080p_1.05M": 3.75, "1080p_66k": 1.2, "1440p_66k": 2.06},
+    "parallel_1080p_8taa_66k": {"single_proc_s_per_frame": 10.7, "two_procs_effective_s_per_frame": 8.85, "throughput_gain": "+21%", "per_proc_latency_s": 17.1, "rss_per_proc_MB": 750}
+  },
+  "bpy_5_2_2_eevee_next_egl_headless": {"1920x1080_4taa_66k": [10.3, 8.7, 8.5], "2560x1440_16taa_66k_first_frame": 38.6, "avg_cores": 3.26, "rss_MB": 2290},
+  "cycles_cpu": {
+    "4.0.2_1280x720_32spp_1.05M": {"s": 33.8, "avg_cores": 3.46},
+    "5.2.2_1280x720_32spp_1.05M_with_OIDN": {"s": 37.4, "avg_cores": 3.70},
+    "samples_per_sec_approx": 920000,
+    "noise_32spp_vs_512spp_rmse_8bit": {"displaced_highfreq": 4.40, "lowfreq_relief": 0.97, "flat_lowfreq": 0.26},
+    "pyoidn_on_32spp": {"displaced_highfreq": "4.64 -> 4.35 (residual is sub-pixel geometric aliasing, not MC noise)", "lowfreq_relief": "0.97 -> 0.52"}
+  },
+  "oidn_pyoidn_2.5_cpu_2560x1440_s": {"high": 2.46, "balanced": 2.33, "fast": 1.28, "first_call_overhead_s": 1.9},
+  "remotion_4.0.534_2560x1440_60frames": {
+    "programmatic_s_per_frame": {"c1_jpeg": 0.60, "c4_jpeg": 0.35, "c4_jpeg_symlinked_public": 0.31, "c2_png": 0.61},
+    "cli_total_wall_s": {"c2_jpeg": 27.0, "c4_jpeg_flags": 26.0, "c4_full_chrome_cft_mode": 27.0},
+    "bundle_s": 2.7, "selectComposition_s": 0.45, "img_load_5MB_png_ms": "250-310",
+    "audio_offset_check": "startFrom=300 -> output t=0 == source 10.0000 s, xcorr peak 1.000"
+  },
+  "numpy_cv2_compositor_2560x1440": {"s_per_frame": 0.39, "breakdown_s": {"warp_2_layers": 0.052, "relight": 0.050, "vignette_grain": 0.112, "pipe_x264_medium_crf14": 0.061}, "avg_cores": 2.07, "precompute_s": 7.0},
+  "x264_encode_png_seq_1440p_medium_crf16_s_per_frame": 0.10,
+  "realesrgan_ncnn_lavapipe_256px_tile_s": {"animevideov3_x2": 10.7, "x4plus": 117.7},
+  "audio": {"container_duration_s": 66.142041, "mp3_frames": 2532, "gapless_decoded_samples_44100": 2915328, "gapless_duration_s": 66.10721, "lame_encoder_delay": 576, "lame_padding": 960, "frames_1983_s": 66.1, "frames_1984_s": 66.1333, "frames_1985_s": 66.1667}
+}

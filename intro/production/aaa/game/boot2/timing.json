@@ -1,0 +1,82 @@
+{
+ "ev": [
+  [
+   "dcl",
+   422
+  ],
+  [
+   "res_end index.wasm",
+   1036
+  ],
+  [
+   "res_end index.pck",
+   1348
+  ],
+  [
+   "godot_banner",
+   1696
+  ],
+  [
+   "status_style 0",
+   22362
+  ],
+  [
+   "status_removed",
+   23087
+  ]
+ ],
+ "rafGaps": [
+  [
+   558,
+   213
+  ],
+  [
+   1415,
+   20948
+  ],
+  [
+   22363,
+   2725
+  ],
+  [
+   25088,
+   1472
+  ],
+  [
+   26624,
+   1359
+  ]
+ ],
+ "videoGaps": [
+  {
+   "at": 1407,
+   "gap_ms": 23666,
+   "presented_before": 477,
+   "presented_after": 494,
+   "media_before": 21.133,
+   "media_after": 23.867
+  },
+  {
+   "at": 25073,
+   "gap_ms": 1483,
+   "presented_before": 494,
+   "presented_after": 500,
+   "media_before": 23.867,
+   "media_after": 25.067
+  },
+  {
+   "at": 26606,
+   "gap_ms": 1367,
+   "presented_before": 503,
+   "presented_after": 509,
+   "media_before": 25.433,
+   "media_after": 26.767
+  }
+ ],
+ "vfCount": 10,
+ "lastVf": [
+  27973,
+  509,
+  26.767
+ ]
+}

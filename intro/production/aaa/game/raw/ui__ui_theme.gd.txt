@@ -1,0 +1,677 @@
+   1 class_name UiTheme
+   2 extends RefCounted
+  25 const INK: = Color('#2E1F12')
+  26 const INK_DIM: = Color('#5E4A30')
+  29 const INK_FAINT: = Color('#67553E')
+  32 const GOLD: = Color('#7A5410')
+  33 const GOOD: = Color('#3F5B1E')
+  34 const BAD: = Color('#962D18')
+  35 const WARN: = Color('#8C4F0A')
+  37 const CREAM: = Color('#F3E9D2')
+  38 const CREAM_DIM: = Color('#C9BFA9')
+  39 const CREAM_WARN: = Color('#E9B85E')
+  40 const CREAM_GOOD: = Color('#B9CB8C')
+  41 const NIGHT: = Color('#27353F')
+  43 const LINEN: = 'res://assets/ui/linen/'
+  45 const LINEN_MARGINS: = { 'panel': 32, 'panel_flat': 22, 'modal': 34, 'button': 14, 'button_hover': 14,
+  46 'button_pressed': 14, 'button_disabled': 14, 'night': 16, 'night_hover': 16, 'night_pressed': 16,
+  47 'night_disabled': 16, 'plaque': 12, 'groove': 6, 'satin_or': 6, 'frame': 24 }
+  56 const V2: = 'res://assets/ui/embroidery_v2/'
+  57 const _ST_HOVER: = Color(1.06, 1.05, 1.03)
+  58 const _ST_PRESSED: = Color(0.86, 0.84, 0.81)
+  59 const _ST_DISABLED: = Color(0.72, 0.71, 0.68, 0.8)
+  60 const V2_SKIN: = {
+  61 'panel':['panel_linen', 24, Color.WHITE], 'panel_flat':['panel_linen', 24, Color.WHITE],
+  62 'modal':['panel_linen', 24, Color.WHITE], 'walnut':['panel_walnut', 24, Color.WHITE],
+  63 'button':['button_linen', 14, Color.WHITE], 'button_hover':['button_linen', 14, _ST_HOVER],
+  64 'button_pressed':['button_linen', 14, _ST_PRESSED], 'button_disabled':['button_linen', 14, _ST_DISABLED],
+  65 'night':['button_navy', 14, Color.WHITE], 'night_hover':['button_navy', 14, _ST_HOVER],
+  66 'night_pressed':['button_navy', 14, _ST_PRESSED], 'night_disabled':['button_navy', 14, _ST_DISABLED],
+  67 'disc':['disc_linen', 0, Color.WHITE], 'disc_hover':['disc_linen', 0, _ST_HOVER],
+  68 'disc_pressed':['disc_linen', 0, _ST_PRESSED], 'disc_disabled':['disc_linen', 0, _ST_DISABLED],
+  69 'round':['disc_navy', 0, Color.WHITE], 'round_hover':['disc_navy', 0, _ST_HOVER],
+  70 'round_pressed':['disc_navy', 0, _ST_PRESSED], 'round_disabled':['disc_navy', 0, _ST_DISABLED],
+  71 }
+  84 const TABLE: = 'res://assets/ui/table/'
+  86 const WOOD_DARK: = Color(0.66, 0.56, 0.5)
+  88 const TABLE_SKIN: = {
+  90 'panel':[['parchment/card'], Color.WHITE],
+  91 'panel_flat':[['parchment/card'], Color.WHITE],
+  92 'modal':[['parchment/modal', 'parchment/card'], Color.WHITE],
+  93 'menu_card':[['parchment/menu_card', 'parchment/modal', 'parchment/card'], Color.WHITE],
+  94 'plaque':[['parchment/plaque'], Color.WHITE],
+  95 'tooltip':[['parchment/tooltip', 'parchment/plaque'], Color.WHITE],
+  96 'header':[['parchment/card_header'], Color.WHITE],
+  97 'ribbon':[['tapestry/ribbon'], Color.WHITE],
+  99 'button':[['buttons/menu_item_normal'], Color.WHITE],
+ 100 'button_hover':[['buttons/menu_item_normal'], _ST_HOVER],
+ 101 'button_pressed':[['buttons/menu_item_pressed'], Color.WHITE],
+ 102 'button_disabled':[['buttons/menu_item_disabled'], Color.WHITE],
+ 104 'secondary':[['buttons/secondary_normal'], Color.WHITE],
+ 105 'secondary_hover':[['buttons/secondary_normal'], _ST_HOVER],
+ 106 'secondary_pressed':[['buttons/secondary_pressed'], Color.WHITE],
+ 107 'secondary_disabled':[['buttons/secondary_disabled'], Color.WHITE],
+ 109 'night':[['buttons/primary_normal'], Color.WHITE],
+ 110 'night_hover':[['buttons/primary_normal'], _ST_HOVER],
+ 111 'night_pressed':[['buttons/primary_pressed'], Color.WHITE],
+ 112 'night_disabled':[['buttons/primary_disabled'], Color.WHITE],
+ 114 'disc':[['buttons/disc_normal'], Color.WHITE],
+ 115 'disc_hover':[['buttons/disc_normal'], _ST_HOVER],
+ 116 'disc_pressed':[['buttons/disc_pressed'], Color.WHITE],
+ 117 'disc_disabled':[['buttons/disc_disabled'], Color.WHITE],
+ 119 'round':[['buttons/disc_navy_normal'], Color.WHITE],
+ 120 'round_hover':[['buttons/disc_navy_normal'], _ST_HOVER],
+ 121 'round_pressed':[['buttons/disc_navy_pressed'], Color.WHITE],
+ 122 'round_disabled':[['buttons/disc_navy_disabled'], Color.WHITE],
+ 125 'menu':[['buttons/square_navy_normal'], Color.WHITE],
+ 126 'menu_pressed':[['buttons/square_navy_pressed'], Color.WHITE],
+ 128 'close':[['buttons/close_normal'], Color.WHITE],
+ 129 'close_hover':[['buttons/close_normal'], _ST_HOVER],
+ 130 'close_pressed':[['buttons/close_pressed'], Color.WHITE],
+ 131 'close_disabled':[['buttons/close_normal'], _ST_DISABLED],
+ 133 'job_card':[['parchment/job_card_normal'], Color.WHITE],
+ 134 'job_card_hover':[['parchment/job_card_normal'], _ST_HOVER],
+ 135 'job_card_pressed':[['parchment/job_card_pressed'], Color.WHITE],
+ 136 'job_card_selected':[['parchment/job_card_selected'], Color.WHITE],
+ 137 'job_card_disabled':[['parchment/job_card_disabled'], Color.WHITE],
+ 138 'realm_card':[['parchment/realm_card_normal'], Color.WHITE],
+ 139 'realm_card_hover':[['parchment/realm_card_normal'], _ST_HOVER],
+ 140 'realm_card_pressed':[['parchment/realm_card_selected'], Color(0.92, 0.9, 0.86)],
+ 141 'realm_card_selected':[['parchment/realm_card_selected'], Color.WHITE],
+ 144 'bar_top':[['wood/bar_top'], WOOD_DARK],
+ 145 'bar_bottom':[['wood/bar_bottom'], WOOD_DARK],
+ 146 'column':[['wood/column_rail'], WOOD_DARK],
+ 147 'frame_map':[['wood/frame_map'], WOOD_DARK],
+ 149 'slider':[['buttons/slider_track'], Color.WHITE],
+ 150 'progress_bg':[['buttons/progress_track'], Color.WHITE],
+ 151 'progress_fill':[['buttons/progress_fill'], Color.WHITE],
+ 152 'scroll':[['buttons/scroll_track'], Color.WHITE],
+ 153 'scroll_grabber':[['buttons/scroll_grabber'], Color.WHITE],
+ 154 'scroll_grabber_hover':[['buttons/scroll_grabber'], _ST_HOVER],
+ 155 }
+ 160 const TABLE_TEX: = {
+ 161 'g_book': 'glyphs/g_book', 'g_check': 'glyphs/g_check', 'g_close': 'glyphs/g_close',
+ 162 'g_close_cream': 'glyphs/g_close', 'g_compass': 'glyphs/g_compass', 'g_laurel': 'glyphs/g_laurel',
+ 163 'g_lute': 'glyphs/g_lute', 'gear': 'glyphs/g_gear', 'g_gear': 'glyphs/g_gear',
+ 164 'g_hourglass': 'glyphs/g_hourglass', 'g_boot': 'glyphs/g_boot', 'g_rest': 'glyphs/g_rest',
+ 165 'phase_dawn': 'glyphs/phase_dawn', 'phase_day': 'glyphs/phase_day', 'phase_dusk': 'glyphs/phase_dusk',
+ 166 'phase_night': 'glyphs/phase_night', 'check_on': 'buttons/checkbox_on', 'check_off': 'buttons/checkbox_off',
+ 167 'knob': 'buttons/slider_knob', 'toggle_on': 'buttons/toggle_on', 'toggle_off': 'buttons/toggle_off',
+ 168 'logo_banner': 'tapestry/logo_banner', 'logo_title': 'tapestry/logo_title',
+ 169 'banner_side_left': 'tapestry/banner_side_left', 'banner_side_right': 'tapestry/banner_side_right',
+ 170 'rule_line': 'parchment/rule_line', 'rule_orn': 'parchment/rule_orn', 'tooltip_tip': 'parchment/tooltip_tip',
+ 171 'divider_v': 'wood/divider_v', 'wood_tile': 'wood/wood_tile',
+ 172 'candle_left': 'backgrounds/candle_left', 'candle_right': 'backgrounds/candle_right',
+ 173 'lion_statue_left': 'backgrounds/lion_statue_left', 'lion_statue_right': 'backgrounds/lion_statue_right',
+ 174 'table_edge_bottom': 'backgrounds/table_edge_bottom',
+ 175 'shield_blue': 'heraldry/shield_blue', 'shield_gold': 'heraldry/shield_gold',
+ 176 'shield_red': 'heraldry/shield_red', 'shield_green': 'heraldry/shield_green',
+ 177 'realm_banner_blue': 'heraldry/realm_banner_blue', 'realm_banner_gold': 'heraldry/realm_banner_gold',
+ 178 'realm_banner_red': 'heraldry/realm_banner_red', 'realm_banner_green': 'heraldry/realm_banner_green',
+ 179 'realm_banner_neutral': 'heraldry/realm_banner_neutral',
+ 180 'vignette_left': 'tapestry/vignette_left', 'vignette_right': 'tapestry/vignette_right',
+ 181 }
+ 183 const TABLE_TEX_V2: = { 'vignette_left': 'vignette_blue', 'vignette_right': 'vignette_red' }
+ 185 static var _theme: Theme
+ 186 static var _table: = { }
+ 187 static var _table_icons: = { }
+ 188 static var _table_read: = False
+ 189 static var _fonts: = { }
+ 190 static var _icons: = { }
+ 191 static var _tex: = { }
+ 192 static var _muted: ShaderMaterial
+ 202 static func font(kind: String) -> Font:
+ 203 if _fonts.has(kind):
+ 204 return _fonts[kind]
+ 205 var f: Font
+ 206 match kind:
+ 207 'title', 'title_italic', 'fell':
+ 208 var fv: = FontVariation.new()
+ 209 fv.base_font = load('res://assets/fonts/IMFellEnglish-%s.ttf' %('Italic' if kind == 'title_italic' else 'Regular'))
+ 211 fv.fallbacks =[load('res://assets/fonts/AlegreyaSans-Medium.ttf')]
+ 212 if kind == 'fell':
+ 213     fv.variation_embolden = 0.32
+ 214 f = fv
+ 215 'num', 'heavy':
+ 219 var fv: = FontVariation.new()
+ 220 fv.base_font = load('res://assets/fonts/Cinzel.ttf')
+ 221 var wght: = TextServerManager.get_primary_interface().name_to_tag('wght')
+ 222 fv.variation_opentype = { wght: 600 if kind == 'num' else 780 }
+ 223 f = fv
+ 224 _:
+ 225 f = load({
+ 226     'body': 'res://assets/fonts/AlegreyaSans-Regular.ttf',
+ 227     'bold': 'res://assets/fonts/AlegreyaSans-Bold.ttf',
+ 228     'medium': 'res://assets/fonts/AlegreyaSans-Medium.ttf',
+ 229     'italic': 'res://assets/fonts/AlegreyaSans-Italic.ttf',
+ 230 }[kind])
+ 231 _fonts[kind] = f
+ 232 return f
+ 237 const ICON_ALIAS: = { }
+ 243 static func icon(name: String) -> Texture2D:
+ 244 name = ICON_ALIAS.get(name, name)
+ 245 if _icons.has(name):
+ 246 return _icons[name]
+ 247 var path: = 'res://assets/icons/%s.png' % name
+ 248 var t: Texture2D = load(path) if ResourceLoader.exists(path) else None
+ 249 if t != None:
+ 250 var img: = t.get_image()
+ 251 if img != None:
+ 252 if img.is_compressed():
+ 253     img.decompress()
+ 254 img.generate_mipmaps()
+ 255 t = ImageTexture.create_from_image(img)
+ 256 _icons[name] = t
+ 257 return t
+ 263 static func tex(name: String) -> Texture2D:
+ 264 if _tex.has(name):
+ 265 return _tex[name]
+ 266 var t: Texture2D = None
+ 267 if TABLE_TEX.has(name):
+ 268 t = table_tex(TABLE_TEX[name])
+ 269 if t == None and TABLE_TEX_V2.has(name):
+ 270 t = v2_tex(TABLE_TEX_V2[name])
+ 271 if t == None:
+ 272 var path: = LINEN + name + '.png'
+ 273 t = load(path) if ResourceLoader.exists(path) else None
+ 274 _tex[name] = t
+ 275 return t
+ 285 static func _table_manifest() -> void:
+ 286 if _table_read:
+ 287 return
+ 288 _table_read = True
+ 289 var path: = TABLE + 'manifest.gd'
+ 290 if not ResourceLoader.exists(path):
+ 291 return
+ 292 var sc: Script = load(path)
+ 293 if sc == None:
+ 294 return
+ 295 var consts: = sc.get_script_constant_map()
+ 296 _table = consts.get('ASSETS', { })
+ 297 for n in consts.get('ICONS',[]):
+ 298 _table_icons[String(n)] = True
+ 302 static func table_has(asset: String) -> bool:
+ 303 _table_manifest()
+ 304 return _table.has(asset) and ResourceLoader.exists(TABLE + asset + '.png')
+ 309 static func table_tex(asset: String) -> Texture2D:
+ 310 var key: = 'table/' + asset
+ 311 if _tex.has(key):
+ 312 return _tex[key]
+ 313 var t: Texture2D = None
+ 314 if table_has(asset):
+ 315 t = load(TABLE + asset + '.png')
+ 316 if t != None and int(_table[asset].get('scale', 1)) > 1:
+ 317 t = _with_mipmaps(t)
+ 318 _tex[key] = t
+ 319 return t
+ 322 static func _with_mipmaps(t: Texture2D) -> Texture2D:
+ 323 var img: = t.get_image()
+ 324 if img == None:
+ 325 return t
+ 326 if img.is_compressed():
+ 327 img.decompress()
+ 328 img.generate_mipmaps()
+ 329 return ImageTexture.create_from_image(img)
+ 333 static func table_asset(role: String) -> String:
+ 334 if not TABLE_SKIN.has(role):
+ 335 return ''
+ 336 if role in['menu', 'menu_pressed'] and not menu_square():
+ 337 return ''
+ 338 for a in TABLE_SKIN[role][0]:
+ 339 if table_has(a):
+ 340 return a
+ 341 return ''
+ 346 static func menu_square() -> bool:
+ 347 return table_has('buttons/square_navy_normal') and table_has('buttons/square_navy_pressed')
+ 351 static func table_margins(asset: String) -> Array:
+ 352 _table_manifest()
+ 353 var m: Array = _table.get(asset, { }).get('margins',[])
+ 354 return m if m.size() == 4 else[0, 0, 0, 0]
+ 359 static func table_box(role: String, pad: float = 12) -> StyleBoxTexture:
+ 360 var a: = table_asset(role)
+ 361 if a == '':
+ 362 return None
+ 363 var s: = StyleBoxTexture.new()
+ 364 s.texture = table_tex(a)
+ 365 var m: = table_margins(a)
+ 366 s.texture_margin_left = m[0]
+ 367 s.texture_margin_top = m[1]
+ 368 s.texture_margin_right = m[2]
+ 369 s.texture_margin_bottom = m[3]
+ 370 s.modulate_color = TABLE_SKIN[role][1]
+ 371 s.set_content_margin_all(pad)
+ 372 return s
+ 376 static func skin(role: String, pad: float = 12) -> StyleBox:
+ 377 var s: = table_box(role, pad)
+ 378 if s != None:
+ 379 return s
+ 380 if role.begins_with('secondary'):
+ 381 return linen(role.replace('secondary', 'button'), pad)
+ 382 if role in['menu', 'menu_pressed']:
+ 383 return linen(role.replace('menu', 'round'), pad)
+ 384 if role.begins_with('close'):
+ 385 return linen(role.replace('close', 'button'), pad)
+ 386 if role.begins_with('job_card') or role.begins_with('realm_card'):
+ 387 var st: = role.get_slice('_card', 1)
+ 388 return linen('button' +('_pressed' if st == '_selected' else st), pad)
+ 389 if role in['bar_top', 'bar_bottom', 'column', 'frame_map']:
+ 390 return linen('walnut', pad)
+ 391 if role in['menu_card', 'tooltip']:
+ 392 return linen('modal' if role == 'menu_card' else 'plaque', pad)
+ 393 return linen(role, pad)
+ 398 static func linen(name: String, pad: float = 12) -> StyleBoxTexture:
+ 399 var tb: = table_box(name, pad)
+ 400 if tb != None:
+ 401 return tb
+ 402 if V2_SKIN.has(name):
+ 403 return v2(name, pad)
+ 404 var s: = StyleBoxTexture.new()
+ 405 s.texture = tex(name)
+ 406 var m: = float(LINEN_MARGINS.get(name, 12))
+ 407 s.texture_margin_left = m
+ 408 s.texture_margin_top = m
+ 409 s.texture_margin_right = m
+ 410 s.texture_margin_bottom = m
+ 411 s.axis_stretch_horizontal = StyleBoxTexture.AXIS_STRETCH_MODE_TILE_FIT
+ 412 s.axis_stretch_vertical = StyleBoxTexture.AXIS_STRETCH_MODE_TILE_FIT
+ 413 s.set_content_margin_all(pad)
+ 414 return s
+ 419 static func v2(name: String, pad: float = 12) -> StyleBoxTexture:
+ 420 var e: Array = V2_SKIN[name]
+ 421 var s: = StyleBoxTexture.new()
+ 422 s.texture = v2_tex(e[0])
+ 423 var m: = float(e[1])
+ 424 s.texture_margin_left = m
+ 425 s.texture_margin_top = m
+ 426 s.texture_margin_right = m
+ 427 s.texture_margin_bottom = m
+ 428 s.modulate_color = e[2]
+ 429 s.set_content_margin_all(pad)
+ 430 return s
+ 433 static func v2_tex(file: String) -> Texture2D:
+ 434 var key: = 'v2/' + file
+ 435 if not _tex.has(key):
+ 436 _tex[key] = load(V2 + file + '.png')
+ 437 return _tex[key]
+ 441 static func box(bg: Color, edge: Color = INK_FAINT, radius: int = 6, border: int = 1, pad: int = 10) -> StyleBoxFlat:
+ 442 var s: = StyleBoxFlat.new()
+ 443 s.bg_color = bg
+ 444 s.border_color = edge
+ 445 s.set_border_width_all(border)
+ 446 s.set_corner_radius_all(radius)
+ 447 s.set_content_margin_all(pad)
+ 448 s.anti_aliasing = True
+ 449 return s
+ 452 static func _button_styles(t: Theme, cls: String, prefix: String, pad: float) -> void:
+ 453 var n: = linen(prefix, pad)
+ 454 var h: = linen(prefix + '_hover', pad)
+ 455 var p: = linen(prefix + '_pressed', pad)
+ 456 var d: = linen(prefix + '_disabled', pad)
+ 457 t.set_stylebox('normal', cls, n)
+ 458 t.set_stylebox('hover', cls, h)
+ 459 t.set_stylebox('pressed', cls, p)
+ 460 t.set_stylebox('hover_pressed', cls, p)
+ 461 t.set_stylebox('disabled', cls, d)
+ 462 t.set_stylebox('focus', cls, StyleBoxEmpty.new())
+ 465 static func theme() -> Theme:
+ 466 if _theme != None:
+ 467 return _theme
+ 468 var t: = Theme.new()
+ 469 t.default_font = font('body')
+ 470 t.default_font_size = 17
+ 471 t.set_color('font_color', 'Label', INK)
+ 473 t.set_color('font_shadow_color', 'Label', Color(1, 0.97, 0.88, 0.32))
+ 474 t.set_constant('shadow_offset_x', 'Label', 0)
+ 475 t.set_constant('shadow_offset_y', 'Label', 1)
+ 476 t.set_stylebox('panel', 'PanelContainer', linen('panel', 16))
+ 477 t.set_stylebox('panel', 'Panel', linen('panel', 16))
+ 479 for cls in['Button', 'OptionButton']:
+ 480 _button_styles(t, cls, 'button', 10)
+ 481 t.set_color('font_color', cls, INK)
+ 482 t.set_color('font_hover_color', cls, INK)
+ 483 t.set_color('font_pressed_color', cls, INK)
+ 484 t.set_color('font_hover_pressed_color', cls, INK)
+ 485 t.set_color('font_focus_color', cls, INK)
+ 489 t.set_color('font_disabled_color', cls, INK if table_asset('button_disabled') != '' else INK_FAINT)
+ 490 t.set_color('icon_disabled_color', cls, Color(1, 1, 1, 0.45))
+ 491 t.set_font('font', cls, font('medium'))
+ 492 t.set_font_size('font_size', cls, 17)
+ 493 t.set_constant('h_separation', cls, 8)
+ 494 t.set_color('font_outline_color', 'Button', Color(0, 0, 0, 0))
+ 496 t.set_stylebox('panel', 'PopupMenu', linen('panel_flat', 10))
+ 497 var hov: = box(Color(0.48, 0.33, 0.06, 0.18), Color(0, 0, 0, 0), 4, 0, 4)
+ 498 t.set_stylebox('hover', 'PopupMenu', hov)
+ 499 t.set_color('font_color', 'PopupMenu', INK)
+ 500 t.set_color('font_hover_color', 'PopupMenu', INK)
+ 501 t.set_font('font', 'PopupMenu', font('medium'))
+ 502 t.set_font_size('font_size', 'PopupMenu', 17)
+ 504 for cls in['CheckBox', 'CheckButton']:
+ 505 t.set_icon('checked', cls, tex('check_on'))
+ 506 t.set_icon('unchecked', cls, tex('check_off'))
+ 507 t.set_icon('checked_disabled', cls, tex('check_on'))
+ 508 t.set_icon('unchecked_disabled', cls, tex('check_off'))
+ 509 for st in['normal', 'hover', 'pressed', 'hover_pressed', 'focus', 'disabled']:
+ 510 var e: = StyleBoxEmpty.new()
+ 511 e.set_content_margin_all(6)
+ 512 t.set_stylebox(st, cls, e)
+ 513 for c in['font_color', 'font_hover_color', 'font_pressed_color', 'font_hover_pressed_color', 'font_focus_color']:
+ 514 t.set_color(c, cls, INK)
+ 515 t.set_font('font', cls, font('medium'))
+ 516 t.set_font_size('font_size', cls, 17)
+ 517 t.set_constant('h_separation', cls, 10)
+ 520 if table_asset('slider') != '':
+ 521 var track: = table_box('slider', 0)
+ 522 track.content_margin_top = 12
+ 523 track.content_margin_bottom = 12
+ 524 t.set_stylebox('slider', 'HSlider', track)
+ 525 t.set_stylebox('grabber_area', 'HSlider', StyleBoxEmpty.new())
+ 526 t.set_stylebox('grabber_area_highlight', 'HSlider', StyleBoxEmpty.new())
+ 527 else:
+ 528 var groove: = linen('groove', 0)
+ 529 groove.content_margin_top = 5
+ 530 groove.content_margin_bottom = 5
+ 531 t.set_stylebox('slider', 'HSlider', groove)
+ 532 t.set_stylebox('grabber_area', 'HSlider', linen('satin_or', 0))
+ 533 t.set_stylebox('grabber_area_highlight', 'HSlider', linen('satin_or', 0))
+ 534 t.set_icon('grabber', 'HSlider', tex('knob'))
+ 535 t.set_icon('grabber_highlight', 'HSlider', tex('knob'))
+ 537 t.set_stylebox('normal', 'LineEdit', linen('button', 10))
+ 538 t.set_stylebox('focus', 'LineEdit', linen('button_hover', 10))
+ 539 t.set_stylebox('read_only', 'LineEdit', linen('button_disabled', 10))
+ 540 t.set_color('font_color', 'LineEdit', INK)
+ 541 t.set_color('caret_color', 'LineEdit', INK)
+ 542 t.set_color('selection_color', 'LineEdit', Color(0.48, 0.33, 0.06, 0.3))
+ 543 t.set_font('font', 'LineEdit', font('medium'))
+ 544 t.set_font_size('font_size', 'LineEdit', 18)
+ 546 var tip: = skin('tooltip', 10)
+ 547 tip.content_margin_left = 16
+ 548 tip.content_margin_right = 16
+ 549 tip.content_margin_top = 11
+ 550 tip.content_margin_bottom = 12
+ 551 t.set_stylebox('panel', 'TooltipPanel', tip)
+ 552 t.set_color('font_color', 'TooltipLabel', INK)
+ 553 t.set_color('font_shadow_color', 'TooltipLabel', Color(0, 0, 0, 0))
+ 554 t.set_font('font', 'TooltipLabel', font('body'))
+ 555 t.set_font_size('font_size', 'TooltipLabel', 16)
+ 557 if table_asset('progress_bg') != '' and table_asset('progress_fill') != '':
+ 558 t.set_stylebox('background', 'ProgressBar', table_box('progress_bg', 0))
+ 559 t.set_stylebox('fill', 'ProgressBar', table_box('progress_fill', 0))
+ 560 else:
+ 561 t.set_stylebox('background', 'ProgressBar', linen('groove', 0))
+ 562 t.set_stylebox('fill', 'ProgressBar', linen('satin_or', 0))
+ 563 t.set_color('font_color', 'ProgressBar', INK)
+ 567 var sh: = StyleBoxTexture.new()
+ 568 var line: = table_tex('parchment/rule_line')
+ 569 sh.texture = line if line != None else tex('sep_h')
+ 570 sh.axis_stretch_horizontal = StyleBoxTexture.AXIS_STRETCH_MODE_TILE
+ 571 sh.content_margin_top = 6 if line != None else 4
+ 572 sh.content_margin_bottom = 6 if line != None else 4
+ 573 t.set_stylebox('separator', 'HSeparator', sh)
+ 574 t.set_constant('separation', 'HSeparator', 10)
+ 575 var sv: = StyleBoxTexture.new()
+ 576 sv.texture = tex('sep_v')
+ 577 sv.axis_stretch_vertical = StyleBoxTexture.AXIS_STRETCH_MODE_TILE
+ 578 sv.content_margin_left = 4
+ 579 sv.content_margin_right = 4
+ 580 t.set_stylebox('separator', 'VSeparator', sv)
+ 581 t.set_constant('separation', 'VSeparator', 10)
+ 584 var sb: = box(Color('#6B4A24'), Color(0, 0, 0, 0), 4, 0, 4)
+ 585 var sbh: = box(Color('#8C6634'), Color(0, 0, 0, 0), 4, 0, 4)
+ 586 var groove_box: = box(Color(0.3, 0.2, 0.08, 0.14), Color(0, 0, 0, 0), 4, 0, 4)
+ 587 for cls in['VScrollBar', 'HScrollBar']:
+ 588 t.set_stylebox('grabber', cls, sb)
+ 589 t.set_stylebox('grabber_highlight', cls, sbh)
+ 590 t.set_stylebox('grabber_pressed', cls, sbh)
+ 591 t.set_stylebox('scroll', cls, groove_box)
+ 594 if table_asset('scroll') != '' and table_asset('scroll_grabber') != '':
+ 595 var tr: = table_box('scroll', 0)
+ 596 tr.content_margin_left = 8
+ 597 tr.content_margin_right = 8
+ 598 t.set_stylebox('scroll', 'VScrollBar', tr)
+ 599 t.set_stylebox('grabber', 'VScrollBar', table_box('scroll_grabber', 0))
+ 600 t.set_stylebox('grabber_highlight', 'VScrollBar', table_box('scroll_grabber_hover', 0))
+ 601 t.set_stylebox('grabber_pressed', 'VScrollBar', table_box('scroll_grabber_hover', 0))
+ 602 t.set_color('default_color', 'RichTextLabel', INK)
+ 603 t.set_font('normal_font', 'RichTextLabel', font('body'))
+ 604 t.set_font('bold_font', 'RichTextLabel', font('bold'))
+ 605 t.set_font('italics_font', 'RichTextLabel', font('italic'))
+ 606 t.set_font_size('normal_font_size', 'RichTextLabel', 16)
+ 607 t.set_font_size('bold_font_size', 'RichTextLabel', 16)
+ 608 t.set_font_size('italics_font_size', 'RichTextLabel', 16)
+ 609 _theme = t
+ 610 return t
+ 617 static func label(text: String, size: int = 17, col: Color = INK, kind: String = 'body') -> Label:
+ 618 var l: = Label.new()
+ 619 l.text = text
+ 620 l.add_theme_font_override('font', font(kind))
+ 621 l.add_theme_font_size_override('font_size', size)
+ 622 l.add_theme_color_override('font_color', col)
+ 623 return l
+ 626 static func title(text: String, size: int = 22, col: Color = INK) -> Label:
+ 627 return label(text, size, col, 'title')
+ 632 static func title_mark(size: int, orn: Vector2, on_dark: bool = False) -> HBoxContainer:
+ 633 var tl: = hbox(0)
+ 634 tl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 635 tl.alignment = BoxContainer.ALIGNMENT_CENTER
+ 636 var l: = tex_rect('orn_left', orn)
+ 637 l.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+ 638 tl.add_child(l)
+ 640 var ink: = CREAM if on_dark else Color('#3A250E')
+ 641 var name_l: = label('Chronica', size, ink, 'fell')
+ 644 name_l.add_theme_color_override('font_outline_color', ink)
+ 645 name_l.add_theme_constant_override('outline_size', maxi(2, size / 22))
+ 646 name_l.add_theme_color_override('font_shadow_color', Color(0.1, 0.06, 0.02, 0.6) if on_dark else Color(1, 0.95, 0.82, 0.6))
+ 647 name_l.add_theme_constant_override('shadow_offset_y', 2)
+ 648 name_l.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+ 649 tl.add_child(name_l)
+ 650 var r: = tex_rect('orn_right', orn)
+ 651 r.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+ 652 tl.add_child(r)
+ 653 return tl
+ 658 static func muted() -> ShaderMaterial:
+ 659 if _muted == None:
+ 660 _muted = ShaderMaterial.new()
+ 661 _muted.shader = load('res://ui/shaders/icon_muted.gdshader')
+ 662 return _muted
+ 666 static func embroider(r: CanvasItem) -> void:
+ 667 r.material = muted()
+ 668 r.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+ 675 static func is_table_icon(name: String) -> bool:
+ 676 _table_manifest()
+ 677 return _table_icons.has(ICON_ALIAS.get(name, name))
+ 680 static func icon_material(r: CanvasItem, name: String) -> void:
+ 681 if is_table_icon(name):
+ 682 r.material = None
+ 683 r.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+ 684 else:
+ 685 embroider(r)
+ 688 static func icon_rect(name: String, size: float = 24) -> TextureRect:
+ 689 var r: = TextureRect.new()
+ 690 r.texture = icon(name)
+ 691 icon_material(r, name)
+ 692 r.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+ 693 r.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+ 694 r.custom_minimum_size = Vector2(size, size)
+ 695 r.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 696 return r
+ 700 static func tex_rect(name: String, size: Vector2) -> TextureRect:
+ 701 var r: = TextureRect.new()
+ 702 r.texture = tex(name)
+ 704 r.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+ 705 r.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+ 706 r.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+ 707 r.custom_minimum_size = size
+ 708 r.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 709 return r
+ 712 static func button(text: String, icon_name: String = '', size: int = 17) -> Button:
+ 713 var b: = Button.new()
+ 714 b.text = text
+ 715 if icon_name != '':
+ 716 b.icon = icon(icon_name)
+ 717 b.expand_icon = True
+ 718 b.add_theme_font_size_override('font_size', size)
+ 719 b.add_theme_constant_override('icon_max_width', 28)
+ 721 b.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+ 722 b.focus_mode = Control.FOCUS_NONE
+ 723 b.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+ 724 return b
+ 729 static func night_button(text: String, icon_name: String = '', size: int = 20, pad: float = 12) -> Button:
+ 730 var b: = button(text, icon_name, size)
+ 731 for st in['normal', 'hover', 'pressed', 'disabled']:
+ 732 var nm: String = 'night' if st == 'normal' else 'night_' + st
+ 733 b.add_theme_stylebox_override(st, linen(nm, pad))
+ 734 b.add_theme_stylebox_override('hover_pressed', linen('night_pressed', pad))
+ 735 for c in['font_color', 'font_hover_color', 'font_pressed_color', 'font_hover_pressed_color', 'font_focus_color']:
+ 736 b.add_theme_color_override(c, CREAM)
+ 737 b.add_theme_color_override('font_disabled_color', CREAM_DIM)
+ 738 b.add_theme_font_override('font', font('fell'))
+ 739 return b
+ 744 static func big_button(text: String, size: int = 21) -> Button:
+ 745 var b: = button(text, '', size)
+ 746 b.add_theme_font_override('font', font('fell'))
+ 747 return b
+ 752 static func round_button(icon_name: String, size: float = 64, glyph: String = '') -> Button:
+ 753 var b: = _round_base('round', size)
+ 754 var r: TextureRect
+ 755 if icon_name != '':
+ 756 r = icon_rect(icon_name, size * 0.56)
+ 757 else:
+ 758 r = tex_rect(glyph, Vector2(size, size) * 0.5)
+ 759 center_in(r, b, size *(0.22 if icon_name != '' else 0.27))
+ 760 return b
+ 766 static func disc_button(glyph: String, size: float = 60) -> Button:
+ 767 var b: = _round_base('disc', size)
+ 769 var inset: = size *(0.24 if table_asset('disc') != '' else 0.15)
+ 770 center_in(tex_rect(glyph, Vector2.ZERO), b, inset)
+ 771 return b
+ 777 static func menu_button(size: float = 62) -> Button:
+ 778 var b: Button
+ 779 if menu_square():
+ 780 b = Button.new()
+ 781 b.focus_mode = Control.FOCUS_NONE
+ 782 b.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+ 783 b.custom_minimum_size = Vector2(size, size)
+ 784 b.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+ 785 var n: = table_box('menu', 0)
+ 786 var p: = table_box('menu_pressed', 0)
+ 787 for st in['normal', 'hover', 'disabled']:
+ 788 b.add_theme_stylebox_override(st, n)
+ 789 b.add_theme_stylebox_override('pressed', p)
+ 790 b.add_theme_stylebox_override('hover_pressed', p)
+ 791 b.add_theme_stylebox_override('focus', StyleBoxEmpty.new())
+ 792 else:
+ 793 b = _round_base('round', size)
+ 794 center_in(tex_rect('gear', Vector2.ZERO), b, size * 0.23)
+ 795 return b
+ 800 static func close_button(size: float = 60) -> Button:
+ 801 var b: Button
+ 802 if table_asset('close') != '':
+ 803 b = _round_base('close', size)
+ 804 center_in(tex_rect('g_close', Vector2.ZERO), b, size * 0.27)
+ 805 else:
+ 806 b = button('', '', 22)
+ 807 b.custom_minimum_size = Vector2(size, size)
+ 808 center_in(tex_rect('g_close', Vector2(30, 30)), b, size * 0.25)
+ 809 return b
+ 814 static func rule() -> Control:
+ 815 var orn: = tex('rule_orn') if table_has('parchment/rule_orn') else None
+ 816 if orn == None:
+ 817 return HSeparator.new()
+ 818 var h: = hbox(0)
+ 819 h.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 820 for i in 3:
+ 821 if i == 1:
+ 822 var r: = tex_rect('rule_orn', Vector2(orn.get_width() * 0.5, orn.get_height() * 0.5))
+ 823 r.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+ 824 h.add_child(r)
+ 825 else:
+ 826 var sep: = HSeparator.new()
+ 827 sep.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ 828 sep.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+ 829 sep.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 830 h.add_child(sep)
+ 831 return h
+ 836 static func picture(name: String, size: Vector2) -> TextureRect:
+ 837 return tex_rect(name, size)
+ 840 static func _round_base(prefix: String, size: float) -> Button:
+ 841 var b: = Button.new()
+ 842 b.focus_mode = Control.FOCUS_NONE
+ 843 b.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+ 844 b.custom_minimum_size = Vector2(size, size)
+ 846 b.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+ 847 for st in['normal', 'hover', 'pressed', 'disabled']:
+ 848 var s: = linen(prefix if st == 'normal' else prefix + '_' + st, 0)
+ 849 b.add_theme_stylebox_override(st, s)
+ 850 if st == 'pressed':
+ 851 b.add_theme_stylebox_override('hover_pressed', s)
+ 852 b.add_theme_stylebox_override('focus', StyleBoxEmpty.new())
+ 853 return b
+ 856 static func center_in(r: Control, b: Control, inset: float) -> void:
+ 857 r.custom_minimum_size = Vector2.ZERO
+ 858 r.set_anchors_preset(Control.PRESET_FULL_RECT)
+ 859 r.offset_left = inset
+ 860 r.offset_top = inset
+ 861 r.offset_right = - inset
+ 862 r.offset_bottom = - inset
+ 863 r.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 864 b.add_child(r)
+ 867 static func hbox(sep: int = 6) -> HBoxContainer:
+ 868 var h: = HBoxContainer.new()
+ 869 h.add_theme_constant_override('separation', sep)
+ 870 return h
+ 873 static func vbox(sep: int = 6) -> VBoxContainer:
+ 874 var v: = VBoxContainer.new()
+ 875 v.add_theme_constant_override('separation', sep)
+ 876 return v
+ 881 static func panel(kind: String = 'panel', pad: int = 14) -> PanelContainer:
+ 882 var p: = PanelContainer.new()
+ 883 p.add_theme_stylebox_override('panel', linen(kind, pad))
+ 884 return p
+ 890 static func banner(col: Color, size: Vector2 = Vector2(26, 36)) -> Control:
+ 893 var pen: = realm_hue(col)
+ 894 if table_has('heraldry/realm_banner_' + pen):
+ 895 var r: = tex_rect('realm_banner_' + pen, size)
+ 896 return r
+ 897 var c: = Control.new()
+ 898 c.custom_minimum_size = size
+ 899 c.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 900 for n in['banner_fill', 'banner_edge']:
+ 901 var r: = TextureRect.new()
+ 902 r.texture = tex(n)
+ 903 r.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+ 904 r.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+ 905 r.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ 906 r.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ 907 if n == 'banner_fill':
+ 908 r.modulate = col
+ 909 c.add_child(r)
+ 910 return c
+ 915 static func realm_hue(col: Color) -> String:
+ 916 if col.s < 0.15:
+ 917 return 'neutral'
+ 918 var h: = col.h * 360
+ 919 return 'red' if(h < 22.5 or h >= 287.5) else('gold' if h < 82.5 else('green' if h < 167.5 else 'blue'))
+ 924 static func shield(col: Color, size: Vector2 = Vector2(48, 56)) -> Control:
+ 925 var h: = realm_hue(col)
+ 926 if h != 'neutral' and table_has('heraldry/shield_' + h):
+ 927 return tex_rect('shield_' + h, size)
+ 928 return banner(col, size)
+ 933 static func faction_ink(tone: Color) -> Color:
+ 934 var l: = tone.get_luminance()
+ 935 return tone.darkened(clampf((l - 0.18) * 1.6, 0, 0.55))
+ 939 static func cost_row(cost: Dictionary, have: Player = None, size: float = 18) -> HBoxContainer:
+ 940 var h: = hbox(3)
+ 941 if cost.is_empty():
+ 942 h.add_child(label('free', 15, INK_DIM, 'italic'))
+ 943 return h
+ 944 for k in Bal.RES:
+ 945 if not cost.has(k) or int(cost[k]) == 0:
+ 946 continue
+ 947 h.add_child(icon_rect('res_' + k, size))
+ 948 var ok: = have == None or have.r(k) >= int(cost[k])
+ 949 h.add_child(label(str(int(cost[k])), 15, INK if ok else BAD, 'bold'))
+ 950 h.add_child(Control.new())
+ 951 return h
+ 955 static func res_color(k: String) -> Color:
+ 956 return { 'food': Color('#6B4E12'), 'wood': Color('#6A3F1C'), 'stone': Color('#4E4A42'),
+ 957 'iron': Color('#3E4A55'), 'gold': Color('#7A5410'), 'knowledge': Color('#2E4660') }.get(k, INK)

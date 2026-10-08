@@ -1,0 +1,30 @@
+newmtl stone
+Kd 0.6240 0.5457 0.4020
+d 1.0
+# palette #CFC3AA (linear); original glb Kd 0.8095 0.7977 0.7736
+
+newmtl roof_hall
+Kd 0.0497 0.1559 0.1441
+d 1.0
+# palette #3F6E6A (linear); original glb Kd 0.5371 0.6872 0.6800
+
+newmtl fire
+Kd 0.6939 0.2232 0.0242
+d 1.0
+# palette #D9822B (linear); original glb Kd 1.0000 0.7674 0.4236
+
+newmtl stone_dark
+Kd 0.2542 0.2122 0.1500
+d 1.0
+# palette #8A7F6C (linear); original glb Kd 0.6800 0.6726 0.6652
+
+newmtl window
+Kd 0.0273 0.0160 0.0080
+d 1.0
+# palette #2E2216 (linear); original glb Kd 0.4845 0.4366 0.3811
+
+newmtl gold
+Kd 0.4564 0.2874 0.0648
+d 1.0
+# palette #B49248 (linear); original glb Kd 0.9777 0.8808 0.5371
+

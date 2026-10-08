@@ -1,0 +1,39 @@
+   1 class_name Device
+   2 extends RefCounted
+  16 const PHONE_H: = 560
+  18 const BASE_H: = 900
+  20 static var phone: = False
+  22 static var _safe_css: = Vector4.ZERO
+  23 static var _css_w: = 0
+  27 static func detect(force_phone: bool) -> void:
+  28 phone = force_phone
+  29 refresh()
+  30 if not force_phone and OS.has_feature('web'):
+  31 var info: = _page_info()
+  32 phone = bool(info.get('phone', False))
+  35 static func _page_info() -> Dictionary:
+  36 if not OS.has_feature('web'):
+  37 return { }
+  38 var s: Variant = JavaScriptBridge.eval("window.chronicaDevice ? JSON.stringify(window.chronicaDevice()) : ''", True)
+  39 if not(s is String) or String(s) == '':
+  40 return { }
+  41 var d: Variant = JSON.parse_string(String(s))
+  42 return d if d is Dictionary else { }
+  47 static func refresh() -> void:
+  48 var info: = _page_info()
+  49 var sa: Variant = info.get('safe', None)
+  50 if sa is Array and(sa as Array).size() == 4:
+  51 _safe_css = Vector4(float(sa[0]), float(sa[1]), float(sa[2]), float(sa[3]))
+  52 _css_w = float(info.get('w', 0))
+  56 static func apply_scale(win: Window) -> void:
+  57 if phone:
+  58 win.content_scale_factor = BASE_H / PHONE_H
+  63 static func insets(vp: Viewport) -> Vector4:
+  64 if _css_w <= 0 or vp == None:
+  65 return Vector4.ZERO
+  66 var k: = vp.get_visible_rect().size.x / _css_w
+  70 var side: = maxf(_safe_css.x, _safe_css.z)
+  71 return Vector4(side, _safe_css.y, side, _safe_css.w) * k
+  76 static func simulate_notch() -> void:
+  77 _safe_css = Vector4(47, 0, 47, 21)
+  78 _css_w = 844

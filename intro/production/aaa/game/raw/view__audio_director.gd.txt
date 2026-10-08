@@ -1,0 +1,257 @@
+   1 class_name AudioDirector
+   2 extends Node
+   8 const M: = 'res://audio/music/'
+  11 const M_WEB: = 'res://audio/music_web/'
+  12 const S: = 'res://audio/sfx/'
+  14 const MUSIC: = {
+  15 'menu':['main_theme/court_of_the_queen.mp3', 'main_theme/wendaleabbey.ogg', 'main_theme/kings_feast.mp3'],
+  16 'day':['ambient_exploration/morning.mp3', 'ambient_exploration/the_britons.mp3', 'ambient_exploration/minstrel_dance.mp3',
+  17 'ambient_exploration/the_bards_tale_1.mp3', 'ambient_exploration/market_day.mp3', 'ambient_exploration/flutenist_dance_3.ogg',
+  18 'ambient_exploration/soliloquy_0.mp3', 'ambient_exploration/interweave.ogg', 'ambient_exploration/magical_theme.ogg'],
+  19 'autumn':['main_theme/longing_and_concern.mp3', 'seasonal_stingers/on_the_shore.mp3', 'seasonal_stingers/relent.mp3',
+  20 'seasonal_stingers/teller_of_the_tales.mp3', 'seasonal_stingers/the_parting.mp3'],
+  21 'winter':['seasonal_stingers/decline.mp3', 'ambient_exploration/night_vigil.mp3', 'night_scary/cold_silence.ogg'],
+  22 'night':['night_scary/creepy_forest.ogg', 'night_scary/mysterious.ogg', 'night_scary/cave_theme.ogg',
+  23 'night_scary/forgotten_tombs.mp3', 'ambient_exploration/night_vigil.mp3'],
+  24 'war':['combat/hidden_past.mp3', 'combat/lost_frontier.mp3', 'combat/blessed_to_kill.ogg', 'combat/the_dark_amulet.mp3'],
+  25 'victory':['main_theme/071914triumphanttheme_shortver.mp3'],
+  26 'defeat':['combat/lament_for_a_warriors_soul_0.mp3'],
+  27 }
+  28 const AMBIENT: = { 'day': 'ambient/forest_ambenv_3.mp3', 'night': 'ambient/wind_scary_ambient.ogg', 'winter': 'ambient/wind_wind1.ogg' }
+  30 const SFX: = {
+  31 'click':['ui/click_bois_01.ogg', 'ui/click_bois_02.ogg', 'ui/click_bois_03.ogg', 'ui/click_bois_04.ogg'],
+  32 'deny':['ui/click_ui_03.ogg'],
+  33 'order':['ui/click_ui_01.ogg', 'ui/click_ui_02.ogg'],
+  34 'toast':['ui/jingle_01.ogg', 'ui/jingle_02.ogg'],
+  35 'good':['ui/jingle_03.ogg', 'ui/jingle_04.ogg'],
+  36 'bad':['ui/jingle_07.ogg', 'ui/jingle_08.ogg'],
+  37 'hit':['combat/impact_mou_01.ogg', 'combat/impact_mou_02.ogg', 'combat/impact_mou_03.ogg', 'combat/impact_chair_01.ogg', 'combat/impact_chair_02.ogg'],
+  38 'swing':['combat/sword_air_01.ogg', 'combat/sword_air_02.ogg', 'combat/sword_air_03.ogg', 'combat/sword_air_04.ogg'],
+  39 'shoot':['combat/arrow_arc_01.ogg', 'combat/arrow_arc_02.ogg', 'combat/arrow_arc_03.ogg', 'combat/arrow_arc_04.ogg'],
+  40 'launch':['combat/launch_01.ogg', 'combat/launch_02.ogg', 'combat/launch_03.ogg'],
+  41 'built':['buildings/anvil_forger.ogg', 'buildings/atelier_01.ogg', 'buildings/atelier_02.ogg'],
+  42 'work':['buildings/metal_bois_01.ogg', 'buildings/metal_bois_02.ogg', 'buildings/metal_bois_03.ogg', 'buildings/metal_bois_04.ogg'],
+  43 'chop':['combat/axe_axe_chop_into_wood_little_debris.mp3', 'combat/impact_wood_chop_9.mp3'],
+  44 'pillage':['combat/axe_axe_hits_2.mp3', 'combat/chain_01.ogg'],
+  45 'recruit':['combat/sword_unsheathing_a_sword.mp3'],
+  46 }
+  48 var g: GameState
+  49 var _music: Array[AudioStreamPlayer] =[]
+  50 var _active: = 0
+  51 var _mood: = ''
+  52 var _ambient: = AudioStreamPlayer.new()
+  53 var _amb_key: = ''
+  54 var _pool: Array[AudioStreamPlayer] =[]
+  55 var _cache: = { }
+  56 var _synth: = { }
+  57 var _rng: = RandomNumberGenerator.new()
+  60 func _ready() -> void:
+  61 ensure_buses()
+  62 for i in 2:
+  63 var p: = AudioStreamPlayer.new()
+  64 p.bus = 'Music'
+  65 p.volume_db = -80
+  66 p.finished.connect(_on_track_end.bind(i))
+  67 add_child(p)
+  68 _music.append(p)
+  69 _ambient.bus = 'Ambient'
+  70 _ambient.volume_db = -14
+  71 _ambient.finished.connect(func() -> void: _ambient.play())
+  72 add_child(_ambient)
+  73 for i in 10:
+  74 var p: = AudioStreamPlayer.new()
+  75 p.bus = 'SFX'
+  76 add_child(p)
+  77 _pool.append(p)
+  78 _rng.randomize()
+  81 static func ensure_buses() -> void:
+  82 for name in['Music', 'SFX', 'Ambient']:
+  83 if AudioServer.get_bus_index(name) == -1:
+  84 AudioServer.add_bus()
+  85 var i: = AudioServer.bus_count - 1
+  86 AudioServer.set_bus_name(i, name)
+  87 AudioServer.set_bus_send(i, 'Master')
+  88 Settings.apply_audio()
+  91 func start(game: GameState) -> void:
+  92 g = game
+  93 update_mood()
+  96 func menu_music() -> void:
+  97 _set_mood('menu')
+ 104 func _load(path: String) -> AudioStream:
+ 105 if _cache.has(path):
+ 106 return _cache[path]
+ 107 var s: AudioStream = load(path) if ResourceLoader.exists(path) else None
+ 108 _cache[path] = s
+ 109 return s
+ 112 func mood_of(game: GameState) -> String:
+ 113 if game.over:
+ 114 return 'victory' if game.winner == game.human else 'defeat'
+ 115 var me: = game.human
+ 116 for q in game.players:
+ 117 if q.id != me and q.alive and game.rel_state(me, q.id) == 'war':
+ 119 for u in game.units_of(q.id):
+ 120     if not u.is_civil():
+ 121     for s in game.settlements_of(me):
+ 122     if Hex.dist_v(u.c, s.c) <= 5:
+ 123     return 'war'
+ 124 if Rules.is_night(game):
+ 125 return 'night'
+ 126 match Rules.season(game):
+ 127 'winter':
+ 128 return 'winter'
+ 129 'autumn':
+ 130 return 'autumn'
+ 131 return 'day'
+ 134 func update_mood() -> void:
+ 135 if g == None:
+ 136 return
+ 137 _set_mood(mood_of(g))
+ 138 var amb: = 'night' if Rules.is_night(g) else('winter' if Rules.season(g) == 'winter' else 'day')
+ 139 if amb != _amb_key:
+ 140 _amb_key = amb
+ 141 var s: = _load(S + AMBIENT[amb])
+ 142 if s != None:
+ 143 _ambient.stream = s
+ 144 _ambient.play()
+ 147 func _set_mood(m: String) -> void:
+ 148 if m == _mood:
+ 149 return
+ 150 _mood = m
+ 151 _crossfade(_pick(m))
+ 154 func _pick(m: String) -> AudioStream:
+ 155 var list: Array = MUSIC.get(m, MUSIC['day'])
+ 156 for i in 4:
+ 157 var s: = _load(_music_path(String(list[_rng.randi() % list.size()])))
+ 158 if s != None and s != _music[_active].stream:
+ 159 return s
+ 160 return _load(_music_path(String(list[0])))
+ 164 static func _music_path(rel: String) -> String:
+ 165 if OS.has_feature('web'):
+ 166 return M_WEB + rel.get_basename() + '.ogg'
+ 167 return M + rel
+ 170 func _crossfade(s: AudioStream, secs: float = 2.5) -> void:
+ 171 if s == None:
+ 172 return
+ 173 var old: = _music[_active]
+ 174 _active = 1 - _active
+ 175 var nu: = _music[_active]
+ 176 nu.stream = s
+ 177 nu.volume_db = -40
+ 178 nu.play()
+ 179 var tw: = create_tween().set_parallel(True)
+ 180 tw.tween_property(nu, 'volume_db', 0, secs)
+ 181 tw.tween_property(old, 'volume_db', -60, secs)
+ 182 tw.chain().tween_callback(old.stop)
+ 185 func _on_track_end(i: int) -> void:
+ 186 if i != _active:
+ 187 return
+ 189 await get_tree().create_timer(4).timeout
+ 190 if i == _active and not _music[i].playing:
+ 191 _crossfade(_pick(_mood), 1)
+ 194 func game_over(won: bool) -> void:
+ 195 _set_mood('victory' if won else 'defeat')
+ 202 func sfx(kind: String, vol_db: float = 0) -> void:
+ 203 var s: AudioStream
+ 204 if kind == 'coins' or kind == 'step' or kind == 'horn' or kind == 'bell':
+ 205 s = _synth_stream(kind)
+ 206 else:
+ 207 var list: Array = SFX.get(kind,[])
+ 208 if list.is_empty():
+ 209 return
+ 210 s = _load(S + String(list[_rng.randi() % list.size()]))
+ 211 if s == None:
+ 212 return
+ 213 for p in _pool:
+ 214 if not p.playing:
+ 215 p.stream = s
+ 216 p.volume_db = vol_db
+ 217 p.pitch_scale = _rng.randf_range(0.94, 1.06)
+ 218 p.play()
+ 219 return
+ 222 func on_act(act: Dictionary) -> void:
+ 223 match String(act['a']):
+ 224 'job':
+ 225 sfx('order', -4)
+ 226 'recruit':
+ 227 sfx('recruit', -6)
+ 228 'research', 'diplo':
+ 229 sfx('click')
+ 230 'move':
+ 231 sfx('step', -8)
+ 234 func on_event(ev: Dictionary) -> void:
+ 235 match String(ev['type']):
+ 236 'sfx':
+ 237 match String(ev['name']):
+ 238     'hit':
+ 239     sfx('swing', -6)
+ 240     sfx('hit', -3)
+ 241     'shoot':
+ 242     sfx('shoot', -4)
+ 243     'built':
+ 244     sfx('built', -4)
+ 245     sfx('bell', -10)
+ 246     'pillage':
+ 247     sfx('pillage', -4)
+ 248 'loot', 'ruin':
+ 249 sfx('coins', -6)
+ 250 'toast':
+ 251 match String(ev.get('kind', '')):
+ 252     'bad':
+ 253     sfx('bad', -6)
+ 254     'good', 'crown', 'diplo':
+ 255     sfx('good', -6)
+ 256     'season':
+ 257     pass
+ 258     _:
+ 259     sfx('toast', -8)
+ 260 'season', 'phase', 'relation', 'capture', 'turn_start':
+ 261 update_mood()
+ 262 'gather':
+ 263 sfx('chop', -8)
+ 264 'tech':
+ 265 if g != None and int(ev['pid']) == g.human:
+ 266     sfx('good', -4)
+ 267 'goblins_out':
+ 268 sfx('horn', -10)
+ 275 func _synth_stream(kind: String) -> AudioStreamWAV:
+ 276 if _synth.has(kind):
+ 277 return _synth[kind]
+ 278 var rate: = 22050
+ 279 var secs: float = { 'coins': 0.7, 'step': 0.18, 'horn': 1.6, 'bell': 1.4 }[kind]
+ 280 var n: = int(rate * secs)
+ 281 var data: = PackedByteArray()
+ 282 data.resize(n * 2)
+ 283 var r: = RandomNumberGenerator.new()
+ 284 r.seed = 7
+ 285 for i in n:
+ 286 var t: = float(i) / rate
+ 287 var v: = 0
+ 288 match kind:
+ 289 'coins':
+ 291     for k in 3:
+ 292     var t0: = t - k * 0.11
+ 293     if t0 > 0:
+ 294     var f: = 2400 + k * 530
+ 295     v +=(sin(TAU * f * t0) * 0.6 + sin(TAU * f * 2.76 * t0) * 0.3) * exp(- t0 * 14)
+ 296     v *= 0.35
+ 297 'step':
+ 298     v =(r.randf() * 2 - 1) * exp(- t * 30) * 0.5
+ 299     v += sin(TAU * 90 * t) * exp(- t * 25) * 0.4
+ 300 'horn':
+ 302     var env: = smoothstep(0, 0.25, t) *(1 - smoothstep(1.1, 1.6, t))
+ 303     var f: = 110 + 8 * sin(TAU * 5 * t)
+ 304     for h in 6:
+ 305     v += sin(TAU * f *(h + 1) * t) /(h + 1.5)
+ 306     v = v * env * 0.28
+ 307 'bell':
+ 308     for h in[1, 2, 2.4, 3, 4.2]:
+ 309     v += sin(TAU * 660 * h * t) * exp(- t *(3 + h)) / h
+ 310     v *= 0.3
+ 311 var s: = int(clampf(v, -1, 1) * 32767)
+ 312 data.encode_s16(i * 2, s)
+ 313 var w: = AudioStreamWAV.new()
+ 314 w.format = AudioStreamWAV.FORMAT_16_BITS
+ 315 w.mix_rate = rate
+ 316 w.data = data
+ 317 _synth[kind] = w
+ 318 return w

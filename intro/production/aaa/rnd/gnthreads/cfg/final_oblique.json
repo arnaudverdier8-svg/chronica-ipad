@@ -1,0 +1,74 @@
+{
+ "motifs": [
+  {
+   "name": "king",
+   "npz": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/rnd/gnthreads/work/m1_tubes.npz",
+   "offset": [
+    -63,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "knight",
+   "npz": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/rnd/gnthreads/work/knight_tubes.npz",
+   "offset": [
+    70,
+    -4,
+    0
+   ]
+  }
+ ],
+ "extras": [
+  {
+   "name": "backing_knight",
+   "npz": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/rnd/gnthreads/work/knight_backing.npz"
+  }
+ ],
+ "linen": {
+  "albedo": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/rnd/gnthreads/work/linen_albedo.png",
+  "height": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/rnd/gnthreads/work/linen_height.png",
+  "w_mm": 300,
+  "h_mm": 180,
+  "imprint": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/rnd/gnthreads/work/linen_ink.png"
+ },
+ "lights": {
+  "key_az": 140,
+  "key_el": 22,
+  "key_energy": 4.0
+ },
+ "camera": {
+  "loc": [
+   -83.78511028396709,
+   -208.4252512690488,
+   183.19446876066368
+  ],
+  "target": [
+   -2,
+   -6,
+   0
+  ],
+  "lens": 40,
+  "clip_start": 120,
+  "clip_end": 1200,
+  "cascade_max": 650,
+  "fstop": 11,
+  "focus_point": [
+   -35,
+   0,
+   0
+  ]
+ },
+ "render": {
+  "w": 2560,
+  "h": 1440,
+  "taa": 16,
+  "out": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/rnd/gnthreads/renders/oblique_%04d.png",
+  "frames": [
+   1
+  ],
+  "gtao_factor": 0.55,
+  "gtao_distance": 0.8
+ },
+ "cascades": 3
+}

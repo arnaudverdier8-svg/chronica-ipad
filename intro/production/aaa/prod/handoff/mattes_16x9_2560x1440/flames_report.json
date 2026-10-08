@@ -1,0 +1,46 @@
+{
+ "candle_left": {
+  "max_pm_rgb_255": 1.0,
+  "max_alpha_255": 1.0,
+  "px_over_1_255": 0,
+  "flame_px": 1303,
+  "dark_residue_px_moved_to_unlit": 554,
+  "core_px": 305,
+  "glow_px": 998,
+  "ref_rgb": [
+   229.0,
+   192.0,
+   135.0
+  ],
+  "glow_gain_max": [
+   0.914613664150238,
+   0.8665114045143127,
+   0.7799013257026672
+  ],
+  "wick_top_row": 55,
+  "flame_region_texels": 1146,
+  "wax_texels": 47508
+ },
+ "candle_right": {
+  "max_pm_rgb_255": 1.0,
+  "max_alpha_255": 1.0,
+  "px_over_1_255": 0,
+  "flame_px": 2634,
+  "dark_residue_px_moved_to_unlit": 165,
+  "core_px": 467,
+  "glow_px": 2167,
+  "ref_rgb": [
+   225.0,
+   184.0,
+   122.0
+  ],
+  "glow_gain_max": [
+   0.8940847516059875,
+   0.8847872614860535,
+   0.92403644323349
+  ],
+  "wick_top_row": 77,
+  "flame_region_texels": 1862,
+  "wax_texels": 62560
+ }
+}

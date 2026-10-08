@@ -1,0 +1,284 @@
+{
+ "_doc": "Hints for p3_death (source px, 5 px/mm). Groups: the four stitched candle flames (S07 unpicks the nearest one).",
+ "panel": "p3_death",
+ "seed": 303,
+ "linen_seed": 13,
+ "glows": [],
+ "groups": [
+  {
+   "name": "flame_0",
+   "policy": "region",
+   "poly": [
+    [
+     212,
+     528
+    ],
+    [
+     268,
+     528
+    ],
+    [
+     268,
+     622
+    ],
+    [
+     212,
+     622
+    ]
+   ],
+   "families": [
+    "gold",
+    "orange",
+    "buff",
+    "light",
+    "white",
+    "flame",
+    "red"
+   ]
+  },
+  {
+   "name": "flame_1",
+   "policy": "region",
+   "poly": [
+    [
+     428,
+     352
+    ],
+    [
+     484,
+     352
+    ],
+    [
+     484,
+     446
+    ],
+    [
+     428,
+     446
+    ]
+   ],
+   "families": [
+    "gold",
+    "orange",
+    "buff",
+    "light",
+    "white",
+    "flame",
+    "red"
+   ]
+  },
+  {
+   "name": "flame_2",
+   "policy": "region",
+   "poly": [
+    [
+     2272,
+     352
+    ],
+    [
+     2328,
+     352
+    ],
+    [
+     2328,
+     446
+    ],
+    [
+     2272,
+     446
+    ]
+   ],
+   "families": [
+    "gold",
+    "orange",
+    "buff",
+    "light",
+    "white",
+    "flame",
+    "red"
+   ]
+  },
+  {
+   "name": "flame_3",
+   "policy": "region",
+   "poly": [
+    [
+     2482,
+     528
+    ],
+    [
+     2538,
+     528
+    ],
+    [
+     2538,
+     622
+    ],
+    [
+     2482,
+     622
+    ]
+   ],
+   "families": [
+    "gold",
+    "orange",
+    "buff",
+    "light",
+    "white",
+    "flame",
+    "red"
+   ]
+  }
+ ],
+ "faces": [
+  [
+   1958,
+   652,
+   48,
+   56
+  ],
+  [
+   1450,
+   705,
+   45,
+   40
+  ]
+ ],
+ "beards": [
+  [
+   [
+    1760,
+    700
+   ],
+   [
+    1880,
+    660
+   ],
+   [
+    1990,
+    700
+   ],
+   [
+    2010,
+    780
+   ],
+   [
+    1960,
+    860
+   ],
+   [
+    1850,
+    880
+   ],
+   [
+    1770,
+    820
+   ]
+  ]
+ ],
+ "metal": [
+  [
+   1985,
+   505,
+   2275,
+   795
+  ]
+ ],
+ "metal_groups": [],
+ "ermine": [
+  [
+   [
+    1680,
+    700
+   ],
+   [
+    1850,
+    720
+   ],
+   [
+    1990,
+    860
+   ],
+   [
+    1990,
+    1000
+   ],
+   [
+    1860,
+    1040
+   ],
+   [
+    1700,
+    960
+   ]
+  ]
+ ],
+ "zones": [
+  {
+   "poly": [
+    [
+     500,
+     1050
+    ],
+    [
+     2250,
+     1050
+    ],
+    [
+     2250,
+     1490
+    ],
+    [
+     500,
+     1490
+    ]
+   ],
+   "families": [
+    "purple",
+    "darkred",
+    "navy"
+   ],
+   "field": "axis",
+   "angle": 90
+  },
+  {
+   "poly": [
+    [
+     60,
+     40
+    ],
+    [
+     2700,
+     40
+    ],
+    [
+     2700,
+     1490
+    ],
+    [
+     60,
+     1490
+    ]
+   ],
+   "families": [
+    "navy",
+    "blue",
+    "darkgrey"
+   ],
+   "field": "auto",
+   "angle": 0
+  }
+ ],
+ "busy_zones": [
+  [
+   1985,
+   505,
+   2275,
+   795
+  ]
+ ],
+ "laid_axis_default": 90,
+ "tide": [],
+ "outline_min_local_lum": 0.4,
+ "outline_max_density": 0.3
+}

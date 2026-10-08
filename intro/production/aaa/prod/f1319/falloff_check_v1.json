@@ -1,0 +1,43 @@
+{
+ "frame centre (0,0)": {
+  "radiance": 0.158351331949234,
+  "EV_vs_pool_peak": -0.0386192540345772,
+  "EV_vs_frame_centre": 0.0
+ },
+ "pool peak": {
+  "radiance": 0.16264745593070984,
+  "EV_vs_pool_peak": 0.0,
+  "EV_vs_frame_centre": 0.03861925403457723
+ },
+ "left edge mid": {
+  "radiance": 0.026983564719557762,
+  "EV_vs_pool_peak": -2.5915954002738903,
+  "EV_vs_frame_centre": -2.5529761462393132
+ },
+ "right edge mid": {
+  "radiance": 0.02249811589717865,
+  "EV_vs_pool_peak": -2.8538721632326416,
+  "EV_vs_frame_centre": -2.8152529091980645
+ },
+ "top edge mid": {
+  "radiance": 0.027653660625219345,
+  "EV_vs_pool_peak": -2.556205882967991,
+  "EV_vs_frame_centre": -2.5175866289334135
+ },
+ "bottom edge mid": {
+  "radiance": 0.02834472618997097,
+  "EV_vs_pool_peak": -2.5205960185670384,
+  "EV_vs_frame_centre": -2.4819767645324613
+ },
+ "top-left corner": {
+  "radiance": 0.012809284962713718,
+  "EV_vs_pool_peak": -3.6664864072592773,
+  "EV_vs_frame_centre": -3.6278671532247007
+ },
+ "bottom-right corner": {
+  "radiance": 0.010957438498735428,
+  "EV_vs_pool_peak": -3.891765769947265,
+  "EV_vs_frame_centre": -3.853146515912688
+ },
+ "mean_EV_edge_midpoints_vs_pool_peak": -2.6305673662603906
+}

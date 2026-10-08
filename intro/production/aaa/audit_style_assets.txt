@@ -1,0 +1,129 @@
+===== style
+I wrote the style bible, palette.json, two tested procedural reference renders, the generator scripts and the lettering fonts, all in aaa/style/. Nothing in the repo was touched.
+
+Bayeux research:
+- The ten original wool colours are taken verbatim from Lewis & Gameson (Durham PDF). They come from madder, weld, woad and an unidentified brown: light madder red, dark red-brown, mustard, beige, three greens, mid blue, dark blue and blue-black.
+- Woad blues fade most. The 1860s restorations (518 patches) faded nearly white and their blues turned green.
+- The January 2020 survey counted 24,204 stains, 16,445 creases, 9,646 losses and 30 tears. That is about 7 stains, 3 losses and 5 creases per 10x10 cm. The bible recommends using 20-40% of that density.
+- Size: 68.38 m long, 45.7-53.6 cm high, nine linen pieces joined by eight seams. Main band about 33 cm with borders about 7 cm each (weakly sourced). Linen about 18x19 threads/cm (secondary sources). Yarn mostly two-ply wool.
+- The two working stitches are laid-and-couched fills and stem-stitch outlines and lettering. No published measurement of yarn diameter or couching-bar spacing was found, so those numbers are estimates and are marked as such.
+- The bible also covers how figures, faces, horses, ships, water, buildings, trees, borders, Latin captions and the underdrawing are depicted.
+
+Palette:
+- The historical dye hexes are visual estimates, not measured. They are given in an aged and a fresh form.
+- Game colours were sampled with masks from the crests, logo, units and vignettes.
+- Several game colours already match Bayeux almost exactly: the linen ground (1.8), the archer green (1.3) and the red lion (2.9). The OKLab differences are scaled by 100.
+- The crests are 2-3 times more saturated than the Bayeux dyes. So the bible splits embroidery into two kinds:
+  - **Narrative:** matte wool on linen, colour kept low.
+  - **Heraldic:** crests, banners, crown and title; raised satin and gold at game-level colour.
+- There are 52 cinematic colour roles. A five-act colour script is tied to the narration word times, with light colour temperatures, grading limits and contrast ratios. Two examples: blue-black ink on linen is 8.6:1, gold on navy 6.5:1.
+
+Cloth scale, measured on the existing panel p1_oath:
+- The linen thread spacing is 3.35 px and painted strands are 3.5-4.5 px wide.
+- I set the panels' own scale at 5 px/mm, which makes a panel 55x31 cm.
+- I worked out pixels per mm for four framings at 2560x1440: 3.3, 4.65, 12.8 and 51 px/mm. At full tapestry height the weave falls below the sampling limit and must be filtered down or it will shimmer.
+- Do not push into the panels past 1.4x without re-synthesising stitch detail, and never past 2.5x.
+
+Rendering:
+- tools/stitch_ref.py renders a 48x36 mm patch twice, as naive CG and as the recommended look. Both together take about 5 s on one core.
+- It covers linen weave, laid strands with ply twist, couching bars and tie-downs, stem-stitch rope, gold thread, a fibre-direction highlight, soft raking shadows, and fuzz and halo.
+- The bible gives the shading numbers, a method to add stitch detail to the AI panels without doubling their baked shading, Blender 4.0 Eevee limits with Principled material values, and a table of what makes CG embroidery look fake and how to fix it.
+
+Cinematic language:
+- References include the BBC 2018 World Cup tapestry, which was 650 machine-embroidered frames, plus Newton, Hocus Pocus/British Museum, The Vikings (1958) and Robin Hood (1991).
+- Camera rules: move parallel to the cloth at no more than 12-15 px per frame; zoom exponentially for scale reveals; at a 50 mm field, depth of field is 1.6 mm at f/8; keep the cloth within 25 degrees of facing the camera.
+- The bible also gives a motion vocabulary, transitions mapped to the narration, and suggested Latin captions.
+RECS
+- Treat the existing panels as the scale anchor (5 px/mm) and build every new stitched element to the bible's cloth spec, so new and AI-generated work sit at the same stitch scale.
+- Split the embroidery into two kinds: matte, low-relief Bayeux wool for the story (colour cap 0.13) and raised satin plus gold for crests, banners, crown and title (colour up to 0.20). This is how the muted dyes and the saturated game art coexist.
+- Make the main pipeline 2.5D: per-layer maps (colour, height in mm, thread direction, material, wool coverage) relit in numpy with stitch_ref.py's shading model. Relight only during light-sweep shots and cache a shaded plate otherwise. Keep Blender Eevee for macro geometry and map parallax.
+- For push-ins on p1, p3 and p6, add stitch detail by tracing the thread direction (structure tensor), generating strand texture along it, and relighting as a ratio over the baked shading. Never go past 1.4x without this and never past 2.5x at all; cut to a procedural or 3D insert instead.
+- Use raking light at 15-30 degrees from the upper left as the default, with moving light sweeps (60-120 degrees over 2-4 s) as the main 'awakening' device; sweep left-to-right for progress and right-to-left for decline.
+- Animate through thread rather than cartoon motion: stitch-on, unpick and unravel, re-randomised stitch jitter every 2-3 frames on animated parts only, rigid cut-out figure poses with 6-12 frame holds, flames as laid strands and smoke as stem-stitch spirals.
+- Follow the per-act colour script in palette.json > acts, including the Act IV shift of dye colours from aged to fresh values ('world made whole').
+- Use textile transitions mapped to the narration: tree-divider wipes, a burn-through at 32.7-34 s, frayed frame edges at 42-45 s, a page-fold to bare linen for 'blank page', and a gold sheen sweep on the logo.
+- Optionally add stitched Latin captions from Cinzel 700 (woff2 loads in PIL): trace each glyph's centre line and stem-stitch along it. Suggested captions are in style_bible section 7.6, e.g. QVID DE TE DICENT CHRONICA?
+- Filter out weave and strand detail finer than 2.5 px on screen, and move over stitch texture at no more than 12-15 px per frame (or add motion blur), to avoid shimmer at full-tapestry framings.
+RISKS
+- The historical dye hexes are visual estimates of the aged and fresh look (about +/-6 OKLab x100), not spectrophotometer data. Image hosts (Wikimedia, the Bayeux Museum site) are blocked by the proxy, so I could not calibrate against photographs.
+- No published Bayeux measurements were found for yarn diameter, couching-bar spacing or tie-down spacing. The bible's values are estimates from modern practice and reproductions; the 33/7 cm band heights and 18x19 threads/cm come from secondary sources.
+- The three AI panels are not Bayeux technique: they use form-following long strands, modelled faces and shading, mild perspective, and purple. New Bayeux-style laid-and-couched work next to panel fills at the same scale could clash. The bible confines it to borders, banners, captions, the map and the blank-page beat.
+- The 3-6 s per frame figure for a full 2560x1440 relight is extrapolated from the 960x720 test, not measured at master resolution. With 4 shared cores, a fully relit 66 s sequence would need parallel jobs or per-shot caching.
+- The Firecrawl account reported low credits during research; the user may want to top it up. WebFetch to several sources was blocked by egress policy.
+- Fonts were fetched from npm (@fontsource 5.0.0, SIL OFL) and are stored in style/fonts. The .woff versions fail to load in PIL; only the .woff2 files work.
+FILES ['/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/style_bible.md', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/palette.json', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/palette.png', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/stitch_ref.png', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/light_compare.png', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/stitch_ref_height_mm.npy', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/tools/stitch_ref.py', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/tools/make_palette.py', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/fonts/cinzel-latin-700-normal.woff2', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/fonts/cinzel-latin-400-normal.woff2', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/fonts/uncial-antiqua-latin-400-normal.woff2', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/style/work/game_samples.json']
+===== assets
+I extracted every texture in the pck: 348 .ctex files plus the raw icon.png, 349 PNGs in all, with alpha kept. They are in aaa/assets/tex/<source folder>/, which also includes the pure UI widgets. I also decoded all 59 3D models to OBJ. catalog.json has 504 entries: the textures, 88 realm-tinted figure cards, the 59 models, and the 3 tapestry panels plus 5 other v1 images. There are 12 labelled contact sheets on mid-grey. Nothing in the repo was modified (git status is clean).
+
+**Extraction.** 304 textures are lossless WebP and decode directly. 44 are not: the figure albedo and normal maps are stored as KTX2/UASTC+zstd (Basis). I decoded these with the Basis transcoder from the three@0.169.0 npm package, run in Node (work/transcode.cjs). The normal maps store X in R and Y in A, so I rebuilt them as standard RGB normals (OpenGL Y-up) with alpha taken from the albedo.
+
+**Unit sprite sheets (task 2): these are not animation strips.** Each of the 11 units has exactly 2 single-frame poses, idle and strike, and each pose has 3 maps:
+- **Albedo:** full resolution, RGBA, with alpha cut at 0.5 for the edge.
+- **Normal:** full resolution.
+- **Mask:** half resolution, lossless WebP. R = team livery areas, G = shield field (the game draws a heraldic charge there), B = thread sheen, A = brown outline cord.
+
+Full sizes (width x height):
+- knight 608x640, horse_archer 496x544, catapult 528x448
+- spearman 400x560, mercenary 400x528, man_at_arms 304x592
+- legionary 352x480, goblin 384x432, engineer 320x432
+- archer 288x496, scout 288x432
+
+Per-unit metadata is in assets/figures/<unit>.json: foot point, head height, pixels per metre (ppm 420), the g0 grey value, the shield frame for each pose, and the opaque horizontal span of each pose.
+
+In game a strike is a pose swap plus a short lunge. I decompiled the timing from view/unit_piece.gd using the decompiler in aaa/game/gdc2.py:
+- **Strike:** flip to face the target (0.08 s), wait 0.06 s, swap to strike, lunge min(0.35, 0.3 × distance) with quad ease-in over 0.12 s, hold 0.08 s, return over 0.22 s, back to idle.
+- **Ranged:** 0.05 recoil over 0.1 s, return over 0.2 s.
+- **Hurt:** red flash Color(1, 0.25, 0.15) fading over 0.35 s, plus a 0.04 x-recoil.
+- **Walk:** one hop per 0.22 s.
+
+So "knight striking" works as a two-key-pose cutout animation: idle to strike (lance couched, horse galloping) plus lunge, squash and parallax. There is no in-between frame data.
+
+**Realm recolouring.** Team colours follow the game's own formula: col = mix(albedo, team × mean(rgb)/g0, mask.R). I put this in aaa/assets/figure_tint.py and pre-rendered every unit, pose and realm into tex_tinted/ (88 PNGs). The realm colours come from the game palette: red #843C1E, gold #C29632, green #3A4F1F, blue #2B4157. One pitfall for whoever composites these: resizing the masks with PIL as RGBA wipes the R/G/B channels, because PIL multiplies by alpha (the cord). Resize masks per channel with cv2.
+
+**3D models (task 3): fully recoverable, and already done in about 10 minutes.** The .scn files are Godot 4 compressed binary resources. I wrote a resource parser plus vertex decoder (work/rsrc.py, work/scn2obj.py) and exported all 59 models to models/*.obj + .mtl, assembled with their node transforms.
+- **Size:** 78 to 3,844 triangles each.
+- **Colours:** materials are named surfaces (stone, roof_tile, team, blazon…). The MTLs use the game's palette, pulled from view/palettes.gd into models/game_palette.json (48 colours), as linear Kd.
+- **Blender:** a headless import into Blender 4.0.2 works.
+- **Part pivots:** models.json records each part's pivot. Units are rigid parts (body/horse/tool; catapult arm/body/crew) with no skinning, so a strike can be done by rotating the tool about its pivot.
+- **Coverage:**
+  - Units: archer, catapult, engineer, goblin, horse_archer, knight, legionary, man_at_arms, mercenary, scout, spearman.
+  - Buildings: barracks, forge, granary, guild, library, market, stable, workshop.
+  - Settlements: 19 settle_* variants (camp up to walled city); capital; walls_1..3; watchtower; great_work_1..4.
+  - Other: ruin, bridge, farm, fishery, fish_school, den, goldmine, mine, ore_pit, quarry, pasture, wild_horses, site, settle_banner, lumber.
+- **Look:** they are flat-shaded low-poly. Matching the tapestry look needs a stitch/relief material; the game's shaders are dumped as text in work/shaders/ (stitch.gdshaderinc, piece.gdshader, figure.gdshader) to port from.
+
+**Key art.**
+- **Title:** logo_title 1741x520 (navy velvet valance, gold blackletter "Chronica"), logo_banner 1021x300, logo_chronica 1800x440 wordmark, icon_source 512 monogram.
+- **Banners:** game_over_victory 1520x400 (crown and laurels), game_over_defeat 1520x400 (torn banner, broken spear), banner_side_left/right (lion hangings).
+- **Backgrounds and dressing:**
+  - menu_veil 1800x2400 (dark curtain, gold vine border, fades to transparent).
+  - vignette_blue/red 720x208 (lions).
+  - table_edge_bottom 1336x320 (desk with candle, books, sealed scroll, coins).
+  - candle_left/right 200x720.
+  - lion_statue_left/right.
+- **Heraldry:** crest_builders/legion/merchants/nomads at 512. Their emblems match the four lords' tunics in p1_oath.
+- **Clouds:** a full quilted kit — corners, three 512-wide edges, a tileable 512 fill, 8 puffs and an atlas.
+
+**Existing panels (honest assessment).**
+- **Quality and style:** p1_oath, p3_death and p6_ruin are high quality and consistent with each other (same king, linen ground and stitch scale). They are a refined, realistic embroidery style, finer than Bayeux and finer than the cartoonish in-game figure cards. Their palette matches the game menu art well.
+- **Resolution:** each is only 1.075× the 2560x1440 master, so a push-in is limited to about 7% before upscaling.
+- **p1_empty is not usable as-is:** the empty chair is a flat, unstitched navy fill, and a blur smear remains at roughly x 1240–1490, y 450–540.
+- **Narration fit:** p1 suits the opening oath; nobody raises a cup, though there are goblets on the table. p3 suits the king's death. p6 suits the war and ruin lines.
+- **Gaps:** the narration lines about forests, the world going dark, every ruler, one banner/village/page, and the final question need game assets or procedural work.
+RECS
+- Build the war montage (28.16-34.28s) as 2.5D cutouts: the tinted figure cards from tex_tinted/ on intro/war_bg, animated with the game's idle/strike timing, a relight from the normal maps, thread glints from mask.B, and the red hurt flash. Two opposing realms (blue vs red) read clearly.
+- Repair p1_empty before using it for 'looked at the empty chair' (18.72-26.64s): re-stitch the chair back procedurally to match p1's carved throne and remove the smear. Then overlay intro/crown.png floating over the empty chair, cross-cutting to the four crests.
+- Use the decoded models in the Blender map scene for 'Cities fell to ruin' (32.74s: settle_3 -> ruin), the forest/roads beat (35-37s) and 'One banner, one village' (50.8-54.9s: settle_banner + settle_0 rising), recoloured with game_palette.json. Port pc_relief/stitch from work/shaders/ (or use a cheap procedural stitch normal) so they don't read as plain low-poly.
+- For 'the world grew dark at its edges' (37.96-44.54s), close the cloud edges, corners and fill in from the frame borders over the map, optionally with phase_dusk -> phase_night medallions and the menu_veil curtain.
+- For 'every ruler' (46.08-49.72s), line up the four crests or the four realm shields (202-256 px; keep them under about 2x on screen). For 'one blank page', use menu_card or panel_parchment with the ribbon. For the closing question, use table_edge_bottom (chronicler's desk) and end on logo_title shown at 1:1 or at most 1.3x.
+- Because the three panels are only 1.075x the master, avoid deep Ken Burns zooms; use lateral pans with small zooms and composite moving elements (candles, flames, crows, clouds) rather than relying on digital push-ins.
+- When compositing masks, resize them per channel with cv2 (or set alpha to 255 first); PIL RGBA resize premultiplies by the cord alpha and erases R/G/B.
+RISKS
+- Style gap: the AI panels are finer and more realistic than the flatter, cartoonish figure cards, which have thick brown cords. Cutting directly between them may feel inconsistent; unify with a shared linen ground, grain and stitch-relief pass or a matching frame.
+- Resolution limits: figure cards are 288-640 px tall and icons are 128-256 px. A full-height soldier on a 1440p frame would need 2-5x upscaling and will soften, so keep figures in mid or wide shots. The panels allow only about 7% push-in.
+- The 3D models are low-poly flat-colour meshes. Without a stitch material they will look like a different game. The in-game look comes from heavy shaders (stitch.gdshaderinc is 40 KB) that would need porting or approximating.
+- Only two key poses per unit, with no in-betweens: strikes will read as pose pops plus lunges. Smoother motion needs mesh warps or puppet deformation, at more cost.
+- The approximation of the game's Models.view_tone in figure_tint.py (saturation 1.3, value 0.92) may differ slightly from in-game hues.
+- p1_oath shows a sword oath, not raised cups: a small mismatch with the narration 'They raised their cups and swore' (9.22-13.42s).
+- The decompiled GDScript (via the gdc2.py decompiler in aaa/game) has lost its indentation; I read the timing values from it directly, but small misreads are possible.
+FILES ['/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/catalog.json', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_branding.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_heraldry.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_ornaments.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_panels.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_units.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_figure_maps.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_figures_tinted.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_icons.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_clouds.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_ui_widgets.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_models3d.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/contact_tapestry_panels.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/tex/', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/tex_tinted/', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/figure_tint.py', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/models.json', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/models/game_palette.json', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/scn2obj.py', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/rsrc.py', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/transcode.cjs', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/extract.py', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/shaders/', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/gdc/unit_piece.gd.txt', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/gdc/figures.gd.txt', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/gdc/palettes.gd.txt', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/tint_demo.jpg', '/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/assets/work/panel_crops.jpg']

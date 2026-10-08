@@ -1,0 +1,50 @@
+{
+ "version": "v2 (fix round after three critiques; v1 kept as kf_f669_v1.json, out_v1/, src_v1/, README_v1.md)",
+ "keyframe_png": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/prod/f669/out/f669_2560x1440.png",
+ "video_mp4": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/prod/f669/out/f669_unpick_test_f600-660_720p.mp4",
+ "source_dir": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/prod/f669/src",
+ "readme": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/prod/f669/README.md",
+ "measured": {
+  "void_luma_mean": {
+   "v1": 0.574,
+   "v2": 0.411
+  },
+  "void_luma_p95": {
+   "v1": 0.748,
+   "v2": 0.626
+  },
+  "red_face": 0.466,
+  "gold_face": 0.278,
+  "blue_face": 0.23,
+  "green_face": 0.167,
+  "wall_left": 0.281,
+  "wall_right": 0.193,
+  "fft_peak_over_mean_void": {
+   "v1": 108.6,
+   "v2": 59.1
+  },
+  "crown_shadow_throw_mm": {
+   "v1": 71.2,
+   "v2": 72.8
+  },
+  "render_1440p": {
+   "wall_s": 81.1,
+   "peak_rss_gb": 2.94,
+   "bit_identical_rerun": true
+  },
+  "unpick_test": {
+   "frames": 61,
+   "s_per_frame": "7-12",
+   "codec": "h264 1280x720 30fps + aac 61 frames"
+  }
+ },
+ "not_fixed": [
+  "crown shadow still ~73 mm from the crown (storyboard 12 deg / 15 mm lift kept; client decision)"
+ ],
+ "files_with_v1_suffix": [
+  "out_v1/",
+  "src_v1/",
+  "README_v1.md",
+  "_state/kf_f669_v1.json"
+ ]
+}

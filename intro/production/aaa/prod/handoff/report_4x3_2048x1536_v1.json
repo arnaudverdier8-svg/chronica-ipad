@@ -1,0 +1,239 @@
+{
+ "capture": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/prod/handoff/capture/c133_a/menu_2048x1536_mf030_r0.png",
+ "size": [
+  2048,
+  1536
+ ],
+ "canvas_scale": 1.28,
+ "card_min_size_base_fitted": [
+  629.0,
+  665.02
+ ],
+ "card_draw_rect_base": [
+  140.0,
+  199.0,
+  629.0,
+  665.02
+ ],
+ "card_draw_rect_px": [
+  179.2,
+  254.72,
+  805.12,
+  851.23
+ ],
+ "card_frame_fit_err_sum_255": 4.072,
+ "outside_card_rect": {
+  "max_abs_diff": 0,
+  "changed_px": 0
+ },
+ "outside_replaced_region": {
+  "max_abs_diff": 0
+ },
+ "replaced_px": 587577,
+ "content_free_parchment_ring": {
+  "px": 189258,
+  "mean_abs_255": 0.419,
+  "p99_abs_255": 4.0
+ },
+ "feather_band": {
+  "px": 8108,
+  "mean_abs_255": 0.014
+ },
+ "matte_check_vs_capture": {
+  "bar_top": {
+   "opaque_px": 114979,
+   "mean_abs_255": 0.293,
+   "p99_abs_255": 1.04
+  },
+  "banner_side_left": {
+   "opaque_px": 28848,
+   "mean_abs_255": 0.598,
+   "p99_abs_255": 3.35
+  },
+  "banner_side_right": {
+   "opaque_px": 25847,
+   "mean_abs_255": 0.406,
+   "p99_abs_255": 1.84
+  },
+  "candle_left": {
+   "opaque_px": 9979,
+   "mean_abs_255": 0.337,
+   "p99_abs_255": 1.1
+  },
+  "candle_right": {
+   "opaque_px": 13738,
+   "mean_abs_255": 0.334,
+   "p99_abs_255": 1.09
+  },
+  "lion_statue_left": {
+   "opaque_px": 39847,
+   "mean_abs_255": 0.395,
+   "p99_abs_255": 1.71
+  },
+  "lion_statue_right": {
+   "opaque_px": 39288,
+   "mean_abs_255": 0.404,
+   "p99_abs_255": 1.93
+  },
+  "table_edge_bottom": {
+   "opaque_px": 84633,
+   "mean_abs_255": 0.29,
+   "p99_abs_255": 0.83
+  },
+  "logo_title": {
+   "opaque_px": 134145,
+   "mean_abs_255": 0.482,
+   "p99_abs_255": 2.47
+  },
+  "menu_card": null
+ },
+ "chrome_all_opaque_vs_capture_mean_abs_255": 0.387,
+ "parchment_field_px": [
+  207.36,
+  280.32,
+  748.8,
+  800.03
+ ],
+ "parchment_field_texels": [
+  22,
+  20,
+  238,
+  320
+ ],
+ "rects_base": {
+  "bar_top": [
+   0.0,
+   0.0,
+   1600.0,
+   80.0
+  ],
+  "logo_title": [
+   490.0,
+   0.0905,
+   620.0,
+   185.0
+  ],
+  "menu_card": [
+   140.0,
+   199.0,
+   629.0,
+   665.02
+  ],
+  "banner_side_left": [
+   10.3364,
+   40.0,
+   104.0,
+   280.0
+  ],
+  "banner_side_right": [
+   1490.2778,
+   40.0,
+   99.0,
+   280.0
+  ],
+  "candle_left": [
+   6.3333,
+   572.0,
+   76.0,
+   276.0
+  ],
+  "candle_right": [
+   1513.1333,
+   572.0,
+   81.0,
+   276.0
+  ],
+  "lion_statue_left": [
+   4.1423,
+   970.0,
+   158.0,
+   228.0
+  ],
+  "lion_statue_right": [
+   1436.3,
+   970.0,
+   159.0,
+   228.0
+  ],
+  "table_edge_bottom": [
+   168.125,
+   1050.0,
+   626.0,
+   150.0
+  ]
+ },
+ "rects_px": {
+  "bar_top": [
+   0.0,
+   0.0,
+   2048.0,
+   102.4
+  ],
+  "logo_title": [
+   627.2,
+   0.116,
+   793.6,
+   236.8
+  ],
+  "menu_card": [
+   179.2,
+   254.72,
+   805.12,
+   851.226
+  ],
+  "banner_side_left": [
+   13.231,
+   51.2,
+   133.12,
+   358.4
+  ],
+  "banner_side_right": [
+   1907.556,
+   51.2,
+   126.72,
+   358.4
+  ],
+  "candle_left": [
+   8.107,
+   732.16,
+   97.28,
+   353.28
+  ],
+  "candle_right": [
+   1936.811,
+   732.16,
+   103.68,
+   353.28
+  ],
+  "lion_statue_left": [
+   5.302,
+   1241.6,
+   202.24,
+   291.84
+  ],
+  "lion_statue_right": [
+   1838.464,
+   1241.6,
+   203.52,
+   291.84
+  ],
+  "table_edge_bottom": [
+   215.2,
+   1344.0,
+   801.28,
+   192.0
+  ]
+ },
+ "draw_order": [
+  "bar_top",
+  "banner_side_left",
+  "banner_side_right",
+  "candle_left",
+  "candle_right",
+  "lion_statue_left",
+  "lion_statue_right",
+  "table_edge_bottom",
+  "logo_title",
+  "menu_card"
+ ]
+}

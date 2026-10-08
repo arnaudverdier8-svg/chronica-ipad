@@ -1,0 +1,615 @@
+{
+"source": "ElevenLabs Scribe v1 transcription of the supplied MP3 (md5 f0837d29396534df54023882e93861ee). Times in seconds from file start as decoded.",
+"words": [
+{
+"w": "There",
+"start": 0.14,
+"end": 0.26
+},
+{
+"w": "was",
+"start": 0.3,
+"end": 0.44
+},
+{
+"w": "a",
+"start": 0.5,
+"end": 0.6
+},
+{
+"w": "time",
+"start": 0.64,
+"end": 0.98
+},
+{
+"w": "when",
+"start": 1,
+"end": 1.12
+},
+{
+"w": "the",
+"start": 1.16,
+"end": 1.24
+},
+{
+"w": "world",
+"start": 1.3,
+"end": 1.68
+},
+{
+"w": "knew",
+"start": 1.72,
+"end": 2.02
+},
+{
+"w": "only",
+"start": 2.1,
+"end": 2.4
+},
+{
+"w": "one",
+"start": 2.56,
+"end": 2.9
+},
+{
+"w": "realm,",
+"start": 3.04,
+"end": 3.48
+},
+{
+"w": "one",
+"start": 4.2,
+"end": 4.52
+},
+{
+"w": "table,",
+"start": 4.68,
+"end": 5.06
+},
+{
+"w": "one",
+"start": 5.42,
+"end": 5.62
+},
+{
+"w": "oath,",
+"start": 5.78,
+"end": 6.16
+},
+{
+"w": "one",
+"start": 7.08,
+"end": 7.5
+},
+{
+"w": "crown.",
+"start": 7.68,
+"end": 8.28
+},
+{
+"w": "They",
+"start": 9.22,
+"end": 9.38
+},
+{
+"w": "raised",
+"start": 9.5,
+"end": 9.94
+},
+{
+"w": "their",
+"start": 9.98,
+"end": 10.14
+},
+{
+"w": "cups",
+"start": 10.28,
+"end": 10.74
+},
+{
+"w": "and",
+"start": 11.32,
+"end": 11.46
+},
+{
+"w": "swore",
+"start": 11.64,
+"end": 12.14
+},
+{
+"w": "it",
+"start": 12.24,
+"end": 12.36
+},
+{
+"w": "would",
+"start": 12.4,
+"end": 12.6
+},
+{
+"w": "never",
+"start": 12.7,
+"end": 12.94
+},
+{
+"w": "end.",
+"start": 13.04,
+"end": 13.42
+},
+{
+"w": "Then",
+"start": 14.88,
+"end": 15.08
+},
+{
+"w": "the",
+"start": 15.12,
+"end": 15.24
+},
+{
+"w": "king",
+"start": 15.28,
+"end": 15.56
+},
+{
+"w": "died",
+"start": 15.64,
+"end": 16.12
+},
+{
+"w": "and",
+"start": 16.62,
+"end": 16.74
+},
+{
+"w": "left",
+"start": 16.84,
+"end": 17.12
+},
+{
+"w": "no",
+"start": 17.18,
+"end": 17.32
+},
+{
+"w": "heir,",
+"start": 17.42,
+"end": 17.76
+},
+{
+"w": "and",
+"start": 18.72,
+"end": 18.82
+},
+{
+"w": "every",
+"start": 18.9,
+"end": 19.16
+},
+{
+"w": "lord",
+"start": 19.28,
+"end": 19.66
+},
+{
+"w": "who",
+"start": 19.72,
+"end": 19.82
+},
+{
+"w": "had",
+"start": 19.86,
+"end": 20.0
+},
+{
+"w": "sat",
+"start": 20.06,
+"end": 20.26
+},
+{
+"w": "at",
+"start": 20.3,
+"end": 20.4
+},
+{
+"w": "that",
+"start": 20.44,
+"end": 20.64
+},
+{
+"w": "table",
+"start": 20.7,
+"end": 21.06
+},
+{
+"w": "looked",
+"start": 21.24,
+"end": 21.56
+},
+{
+"w": "at",
+"start": 21.6,
+"end": 21.7
+},
+{
+"w": "the",
+"start": 21.74,
+"end": 21.82
+},
+{
+"w": "empty",
+"start": 21.88,
+"end": 22.18
+},
+{
+"w": "chair",
+"start": 22.32,
+"end": 22.72
+},
+{
+"w": "and",
+"start": 23.9,
+"end": 24.04
+},
+{
+"w": "saw",
+"start": 24.14,
+"end": 24.38
+},
+{
+"w": "his",
+"start": 24.42,
+"end": 24.62
+},
+{
+"w": "own",
+"start": 24.72,
+"end": 25.0
+},
+{
+"w": "head",
+"start": 25.12,
+"end": 25.4
+},
+{
+"w": "beneath",
+"start": 25.56,
+"end": 25.96
+},
+{
+"w": "the",
+"start": 26.02,
+"end": 26.08
+},
+{
+"w": "crown.",
+"start": 26.18,
+"end": 26.64
+},
+{
+"w": "The",
+"start": 28.16,
+"end": 28.26
+},
+{
+"w": "wars",
+"start": 28.34,
+"end": 28.8
+},
+{
+"w": "lasted",
+"start": 28.9,
+"end": 29.3
+},
+{
+"w": "a",
+"start": 29.38,
+"end": 29.42
+},
+{
+"w": "hundred",
+"start": 29.48,
+"end": 29.9
+},
+{
+"w": "years",
+"start": 29.98,
+"end": 30.54
+},
+{
+"w": "and",
+"start": 30.6,
+"end": 30.74
+},
+{
+"w": "ended",
+"start": 30.86,
+"end": 31.28
+},
+{
+"w": "nothing.",
+"start": 31.4,
+"end": 31.84
+},
+{
+"w": "Cities",
+"start": 32.74,
+"end": 33.22
+},
+{
+"w": "fell",
+"start": 33.32,
+"end": 33.6
+},
+{
+"w": "to",
+"start": 33.66,
+"end": 33.74
+},
+{
+"w": "ruin.",
+"start": 33.84,
+"end": 34.28
+},
+{
+"w": "Roads",
+"start": 35.04,
+"end": 35.56
+},
+{
+"w": "were",
+"start": 35.62,
+"end": 35.78
+},
+{
+"w": "swallowed",
+"start": 35.86,
+"end": 36.34
+},
+{
+"w": "by",
+"start": 36.4,
+"end": 36.5
+},
+{
+"w": "the",
+"start": 36.54,
+"end": 36.64
+},
+{
+"w": "forest.",
+"start": 36.7,
+"end": 37.18
+},
+{
+"w": "Men",
+"start": 37.96,
+"end": 38.18
+},
+{
+"w": "forgot",
+"start": 38.3,
+"end": 38.8
+},
+{
+"w": "what",
+"start": 38.88,
+"end": 39.02
+},
+{
+"w": "lay",
+"start": 39.12,
+"end": 39.34
+},
+{
+"w": "beyond",
+"start": 39.42,
+"end": 39.84
+},
+{
+"w": "their",
+"start": 39.88,
+"end": 40.02
+},
+{
+"w": "own",
+"start": 40.06,
+"end": 40.28
+},
+{
+"w": "borders,",
+"start": 40.38,
+"end": 40.98
+},
+{
+"w": "and",
+"start": 41.8,
+"end": 41.9
+},
+{
+"w": "the",
+"start": 41.94,
+"end": 42.04
+},
+{
+"w": "world",
+"start": 42.1,
+"end": 42.54
+},
+{
+"w": "grew",
+"start": 42.7,
+"end": 42.94
+},
+{
+"w": "dark",
+"start": 43.08,
+"end": 43.54
+},
+{
+"w": "at",
+"start": 43.62,
+"end": 43.72
+},
+{
+"w": "its",
+"start": 43.78,
+"end": 43.94
+},
+{
+"w": "edges.",
+"start": 43.98,
+"end": 44.54
+},
+{
+"w": "Now",
+"start": 46.08,
+"end": 46.4
+},
+{
+"w": "every",
+"start": 46.5,
+"end": 46.8
+},
+{
+"w": "ruler",
+"start": 46.92,
+"end": 47.26
+},
+{
+"w": "believes",
+"start": 47.3,
+"end": 47.72
+},
+{
+"w": "the",
+"start": 47.76,
+"end": 47.84
+},
+{
+"w": "world",
+"start": 47.88,
+"end": 48.18
+},
+{
+"w": "can",
+"start": 48.26,
+"end": 48.38
+},
+{
+"w": "be",
+"start": 48.44,
+"end": 48.54
+},
+{
+"w": "made",
+"start": 48.6,
+"end": 48.82
+},
+{
+"w": "whole",
+"start": 48.88,
+"end": 49.2
+},
+{
+"w": "again.",
+"start": 49.26,
+"end": 49.72
+},
+{
+"w": "One",
+"start": 50.8,
+"end": 51.0
+},
+{
+"w": "banner,",
+"start": 51.1,
+"end": 51.48
+},
+{
+"w": "one",
+"start": 51.98,
+"end": 52.2
+},
+{
+"w": "village,",
+"start": 52.3,
+"end": 52.78
+},
+{
+"w": "one",
+"start": 53.3,
+"end": 53.68
+},
+{
+"w": "blank",
+"start": 53.8,
+"end": 54.2
+},
+{
+"w": "page.",
+"start": 54.36,
+"end": 54.86
+},
+{
+"w": "When",
+"start": 56.32,
+"end": 56.54
+},
+{
+"w": "this",
+"start": 56.6,
+"end": 56.8
+},
+{
+"w": "age",
+"start": 56.92,
+"end": 57.26
+},
+{
+"w": "is",
+"start": 57.32,
+"end": 57.48
+},
+{
+"w": "remembered,",
+"start": 57.54,
+"end": 58.14
+},
+{
+"w": "what",
+"start": 59.46,
+"end": 59.68
+},
+{
+"w": "will",
+"start": 59.74,
+"end": 59.88
+},
+{
+"w": "the",
+"start": 59.92,
+"end": 60.02
+},
+{
+"w": "chronicles",
+"start": 60.06,
+"end": 60.72
+},
+{
+"w": "say",
+"start": 60.8,
+"end": 61.18
+},
+{
+"w": "of",
+"start": 61.28,
+"end": 61.46
+},
+{
+"w": "you?",
+"start": 61.56,
+"end": 61.84
+}
+]
+}

@@ -1,0 +1,141 @@
+{
+ "size": [
+  2560,
+  1440
+ ],
+ "canvas_scale": 1.6,
+ "draw_order": [
+  "bar_top",
+  "banner_side_left",
+  "banner_side_right",
+  "candle_left",
+  "candle_right",
+  "lion_statue_left",
+  "lion_statue_right",
+  "logo_title",
+  "menu_card"
+ ],
+ "card_min_size_base": [
+  628.98,
+  664.98
+ ],
+ "parchment_field_px": [
+  259.2,
+  350.4,
+  935.97,
+  999.97
+ ],
+ "rects_base": {
+  "bar_top": [
+   0.0,
+   0.0,
+   1600.0,
+   80.0
+  ],
+  "logo_title": [
+   490.0,
+   0.0905,
+   620.0,
+   185.0
+  ],
+  "menu_card": [
+   140.0,
+   199.0,
+   628.98,
+   664.98
+  ],
+  "banner_side_left": [
+   10.3738,
+   40.0,
+   80.0,
+   216.0
+  ],
+  "banner_side_right": [
+   1513.4,
+   40.0,
+   76.0,
+   216.0
+  ],
+  "candle_left": [
+   6.25,
+   429.0,
+   57.0,
+   207.0
+  ],
+  "candle_right": [
+   1533.475,
+   429.0,
+   60.0,
+   207.0
+  ],
+  "lion_statue_left": [
+   4.3567,
+   727.0,
+   118.0,
+   171.0
+  ],
+  "lion_statue_right": [
+   1476.35,
+   727.0,
+   119.0,
+   171.0
+  ]
+ },
+ "rects_px": {
+  "bar_top": [
+   0.0,
+   0.0,
+   2560.0,
+   128.0
+  ],
+  "logo_title": [
+   784.0,
+   0.145,
+   992.0,
+   296.0
+  ],
+  "menu_card": [
+   224.0,
+   318.4,
+   1006.368,
+   1063.968
+  ],
+  "banner_side_left": [
+   16.598,
+   64.0,
+   128.0,
+   345.6
+  ],
+  "banner_side_right": [
+   2421.44,
+   64.0,
+   121.6,
+   345.6
+  ],
+  "candle_left": [
+   10.0,
+   686.4,
+   91.2,
+   331.2
+  ],
+  "candle_right": [
+   2453.56,
+   686.4,
+   96.0,
+   331.2
+  ],
+  "lion_statue_left": [
+   6.971,
+   1163.2,
+   188.8,
+   273.6
+  ],
+  "lion_statue_right": [
+   2362.16,
+   1163.2,
+   190.4,
+   273.6
+  ]
+ },
+ "note": "straight (non-premultiplied) RGBA, sRGB-encoded, full frame, aligned to the live menu; composite in draw_order with plain over (Godot Compatibility 2D blends in sRGB space)"
+}

@@ -1,0 +1,6 @@
+{
+ "i": {"pool_all": {"cx_mm": 485, "cy_mm": 175, "r_mm": 150, "floor": 0.10, "aspect": 1.9, "gradient": 0.30, "accents": [{"cx_mm": 300, "cy_mm": 24, "r_mm": 60, "gain": 0.6, "aspect": 1.6}]},
+       "grade": {"exposure": 1.0}, "split_tone": {"sh_knee": 0.35, "sh_amt": 0.40, "hi_lo": 0.35, "hi_amt": 0.12}},
+ "j": {"pool_all": {"cx_mm": 485, "cy_mm": 175, "r_mm": 135, "floor": 0.08, "aspect": 2.0, "gradient": 0.35, "accents": [{"cx_mm": 300, "cy_mm": 24, "r_mm": 60, "gain": 0.6, "aspect": 1.6}]},
+       "grade": {"exposure": 0.85}, "split_tone": {"sh_knee": 0.35, "sh_amt": 0.40, "hi_lo": 0.35, "hi_amt": 0.12}}
+}

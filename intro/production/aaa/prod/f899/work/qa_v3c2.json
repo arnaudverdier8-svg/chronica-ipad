@@ -1,0 +1,97 @@
+{
+ "size": [
+  2560,
+  1440
+ ],
+ "dtype": "uint8",
+ "linear_finite": true,
+ "linear_min": 0.0009307861328125,
+ "linear_max": 9.046875,
+ "p0.1_rgb": [
+  12.0,
+  9.0,
+  11.0
+ ],
+ "p99.9_rgb": [
+  207.0,
+  136.0,
+  82.0
+ ],
+ "clipped_white_frac": 0.0,
+ "pure_black_frac": 0.0,
+ "frame_corners_mm": [
+  [
+   17.2,
+   0.9
+  ],
+  [
+   629.1,
+   -36.4
+  ],
+  [
+   74.4,
+   342.7
+  ],
+  [
+   604.6,
+   314.7
+  ]
+ ],
+ "plate_rect_mm": [
+  -20.0,
+  -20.0,
+  680.0,
+  400.0
+ ],
+ "plate_covers_frame": true,
+ "top_right_corner_y_mm": -36.41316786074407,
+ "cloth_edge_visible": true,
+ "chroma_p99": 0.12314874678850174,
+ "chroma_max": 0.16036194562911987,
+ "frac_chroma_gt_0.20": 0.0,
+ "laplacian_var": {
+  "front_left": 836.7850952148438,
+  "centre": 356.5570068359375,
+  "right": 527.7127075195312,
+  "sky": 50.388328552246094,
+  "border": 43.90229415893555
+ },
+ "standing_slip_bbox_px": {
+  "slip0_mercenary_R": [
+   229,
+   868,
+   587,
+   1204
+  ],
+  "slip1_legionary_R": [
+   466,
+   987,
+   862,
+   1272
+  ],
+  "slip2_knight_R": [
+   753,
+   925,
+   1402,
+   1332
+  ],
+  "slip3_spearman_B": [
+   1611,
+   1068,
+   2077,
+   1335
+  ],
+  "slip4_man_at_arms_B": [
+   1992,
+   925,
+   2449,
+   1312
+  ]
+ },
+ "focal_pair_x_range_px": [
+  753,
+  2077
+ ],
+ "focal_pair_inside_320_2240": true,
+ "standing_count": 5
+}

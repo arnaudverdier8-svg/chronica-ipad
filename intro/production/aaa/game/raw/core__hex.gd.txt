@@ -1,0 +1,74 @@
+   1 class_name Hex
+   2 extends RefCounted
+  12 const DIRS: Array[Vector2i] =[
+  13 Vector2i(1, 0),
+  14 Vector2i(1, -1),
+  15 Vector2i(0, -1),
+  16 Vector2i(-1, 0),
+  17 Vector2i(-1, 1),
+  18 Vector2i(0, 1),
+  19 ]
+  21 const SQRT3: float = 1.73205
+  23 const SIZE: float = 1
+  26 static func key(q: int, r: int) -> Vector2i:
+  27 return Vector2i(q, r)
+  30 static func dist(aq: int, ar: int, bq: int, br: int) -> int:
+  31 return(absi(aq - bq) + absi(aq + ar - bq - br) + absi(ar - br)) / 2
+  34 static func dist_v(a: Vector2i, b: Vector2i) -> int:
+  35 return dist(a.x, a.y, b.x, b.y)
+  39 static func ring(q: int, r: int, rad: int) -> Array[Vector2i]:
+  40 var out: Array[Vector2i] =[]
+  41 if rad == 0:
+  42 out.append(Vector2i(q, r))
+  43 return out
+  44 var cq: int = q + DIRS[4].x * rad
+  45 var cr: int = r + DIRS[4].y * rad
+  46 for d in range(6):
+  47 for i in range(rad):
+  48 out.append(Vector2i(cq, cr))
+  49 cq += DIRS[d].x
+  50 cr += DIRS[d].y
+  51 return out
+  55 static func disc(q: int, r: int, rad: int) -> Array[Vector2i]:
+  56 var out: Array[Vector2i] =[]
+  57 for i in range(rad + 1):
+  58 out.append_array(ring(q, r, i))
+  59 return out
+  62 static func neighbors(c: Vector2i) -> Array[Vector2i]:
+  63 var out: Array[Vector2i] =[]
+  64 for d in DIRS:
+  65 out.append(c + d)
+  66 return out
+  70 static func to_world(c: Vector2i) -> Vector3:
+  71 return Vector3(SIZE * SQRT3 *(float(c.x) + float(c.y) / 2), 0, SIZE * 1.5 * float(c.y))
+  75 static func from_world(p: Vector3) -> Vector2i:
+  76 var r: float = p.z /(SIZE * 1.5)
+  77 var q: float = p.x /(SIZE * SQRT3) - r / 2
+  78 return round_axial(q, r)
+  82 static func round_axial(qf: float, rf: float) -> Vector2i:
+  83 var xf: float = qf
+  84 var zf: float = rf
+  85 var yf: float = - xf - zf
+  86 var rx: float = roundf(xf)
+  87 var ry: float = roundf(yf)
+  88 var rz: float = roundf(zf)
+  89 var dx: float = absf(rx - xf)
+  90 var dy: float = absf(ry - yf)
+  91 var dz: float = absf(rz - zf)
+  92 if dx > dy and dx > dz:
+  93 rx = - ry - rz
+  94 elif dy > dz:
+  95 ry = - rx - rz
+  96 else:
+  97 rz = - rx - ry
+  98 return Vector2i(int(rx), int(rz))
+ 103 static func from_offset(col: int, row: int) -> Vector2i:
+ 104 return Vector2i(col -(row -(row & 1)) / 2, row)
+ 107 static func to_offset(c: Vector2i) -> Vector2i:
+ 108 return Vector2i(c.x +(c.y -(c.y & 1)) / 2, c.y)
+ 112 static func corners(center: Vector3, radius: float = SIZE) -> PackedVector3Array:
+ 113 var out: = PackedVector3Array()
+ 114 for i in 6:
+ 115 var a: = deg_to_rad(60 * i - 30)
+ 116 out.append(center + Vector3(cos(a) * radius, 0, sin(a) * radius))
+ 117 return out

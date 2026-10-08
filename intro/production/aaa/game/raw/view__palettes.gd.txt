@@ -1,0 +1,595 @@
+   1 class_name Palettes
+   2 extends RefCounted
+  43 const DEFAULT: = 'millefleurs'
+  45 const ORDER: =['tapisserie', 'bayeux', 'millefleurs', 'cible_plus', 'carte', 'enluminure']
+  48 static var current: = DEFAULT
+  49 static var _resolved: = { }
+  59 static func steady(p: Dictionary) -> Dictionary:
+  60 var out: = p.duplicate(True)
+  61 for key in['terrain', 'leaf', 'pine', 'crop']:
+  62 var d: Dictionary = out[key]
+  63 for season in['summer', 'autumn']:
+  64 d[season] = d['spring']
+  65 var day: Dictionary = out['light']['day']
+  66 for ph in['dawn', 'dusk', 'night']:
+  67 out['light'][ph] = day
+  68 return out
+  73 static func resolve(name: String) -> Dictionary:
+  74 if _resolved.has(name):
+  75 return _resolved[name]
+  76 var out: Dictionary = TAPISSERIE.duplicate(True)
+  77 if name != 'tapisserie' and ALL.has(name):
+  78 var src: Dictionary = ALL[name]
+  79 var sh: Dictionary = src.get('shader', { })
+  80 if not sh.has('st'):
+  81 (out['shader'] as Dictionary).erase('st')
+  82 _merge(out, src)
+  83 _resolved[name] = out
+  84 return out
+  88 static func active() -> Dictionary:
+  89 return steady(resolve(current)) if Vis.STEADY_LOOK else resolve(current)
+  92 static func _merge(dst: Dictionary, src: Dictionary) -> void:
+  93 for k in src:
+  94 if dst.get(k) is Dictionary and src[k] is Dictionary:
+  95 _merge(dst[k], src[k])
+  96 else:
+  97 dst[k] = src[k].duplicate(True) if(src[k] is Dictionary or src[k] is Array) else src[k]
+ 105 const TAPISSERIE: = {
+ 106 'title': 'Tapisserie (la cible)',
+ 107 'vis': {
+ 108 'LIN': Color('#C8AD81'),
+ 109 'CREME': Color('#E8D8BB'),
+ 110 'OCRE': Color('#A38654'),
+ 111 'OR': Color('#B49248'),
+ 112 'DENIM': Color('#364751'),
+ 113 'NUIT': Color('#27353F'),
+ 114 'BRIQUE': Color('#722815'),
+ 115 'BRIQUE_VIF': Color('#9B3B24'),
+ 116 'SAPIN': Color('#373D2A'),
+ 117 'SAPIN_CLAIR': Color('#5E6B3A'),
+ 118 'BRUN': Color('#3B2711'),
+ 121 'NUIT_FACTION': Color('#2B4157'),
+ 123 'SIDE_COLOR': Color('#7A6446'), 'SIDE_COLOR_ROCK': Color('#6E6556'),
+ 125 'CLOTH': Color('#5E4A31'),
+ 127 'C_SELECT': Color('#F2DC9B'),
+ 128 'C_MOVE': Color('#F4EAD2'),
+ 129 'C_ATTACK': Color('#A8402A'),
+ 130 'C_WORK': Color('#C9A24E'),
+ 131 'C_DANGER': Color('#8E2A18'),
+ 132 'C_NEUTRAL': Color('#A0947E'),
+ 133 },
+ 137 'terrain': {
+ 138 'spring': { 'plains': Color('#C4AC7B'), 'forest': Color('#958A57'), 'hills': Color('#B09C62'),
+ 139 'mountain': Color('#ACA17B'), 'river': Color('#3F5368'), 'lake': Color('#3E525E'), 'sea': Color('#364751') },
+ 140 'summer': { 'plains': Color('#CAAD75'), 'forest': Color('#8F834F'), 'hills': Color('#B49C5A'),
+ 141 'mountain': Color('#B1A480'), 'river': Color('#3F5368'), 'lake': Color('#3E525E'), 'sea': Color('#364751') },
+ 142 'autumn': { 'plains': Color('#C4A26E'), 'forest': Color('#8D7449'), 'hills': Color('#A98A55'),
+ 143 'mountain': Color('#A99A7B'), 'river': Color('#3F5368'), 'lake': Color('#3F505A'), 'sea': Color('#374650') },
+ 144 'winter': { 'plains': Color('#DCD4C2'), 'forest': Color('#B9BBB2'), 'hills': Color('#D2CAB8'),
+ 145 'mountain': Color('#C7CAC6'), 'river': Color('#A4B0B6'), 'lake': Color('#9DAAB0'), 'sea': Color('#3A4A54') },
+ 146 },
+ 149 'leaf': { 'spring': Color('#5E6140'), 'summer': Color('#575C3A'), 'autumn': Color('#7C5934'), 'winter': Color('#706656') },
+ 151 'pine': { 'spring': Color('#373D2A'), 'summer': Color('#343B28'), 'autumn': Color('#3A3E2B'), 'winter': Color('#303B3A') },
+ 153 'crop': { 'spring': Color('#7E8A48'), 'summer': Color('#C4A157'), 'autumn': Color('#A57841'), 'winter': Color('#A99E88') },
+ 155 'pieces': {
+ 156 'wood': Color('#6E5032'), 'wood_dark': Color('#46301C'), 'plank': Color('#A68A5E'),
+ 157 'stone': Color('#CFC3AA'), 'stone_dark': Color('#8A7F6C'), 'rock': Color('#8C8070'),
+ 158 'plaster': Color('#E3D5B8'), 'roof': Color('#8C5236'), 'thatch': Color('#B8975A'),
+ 159 'slate': Color('#4B5862'), 'skin': Color('#D8B48E'), 'hair': Color('#4A3420'),
+ 160 'cloth': Color('#BBA47C'), 'cloth_dark': Color('#4E4436'), 'leather': Color('#74502F'),
+ 161 'metal': Color('#B3B1A6'), 'metal_dark': Color('#68675F'), 'gold': Color('#B49248'),
+ 162 'window': Color('#2E2216'), 'fire': Color('#D9822B'), 'black': Color('#2E2012'),
+ 163 'leaf': Color('#6E7A42'), 'crop': Color('#7E8A48'), 'dirt': Color('#7D5E3C'),
+ 164 'hay': Color('#C9A65E'), 'horse': Color('#7E5132'), 'horse_dark': Color('#3F2B1B'),
+ 165 'goblin': Color('#6B7540'), 'rag': Color('#722815'), 'bone': Color('#E3D5B8'),
+ 166 'white': Color('#E8D8BB'), 'iron': Color('#6E5248'), 'fish': Color('#A9B2AC'),
+ 167 'water': Color('#4A6372'), 'wool': Color('#E8D8BB'),
+ 172 'roof_tile': Color('#BB6742'), 'roof_tile_old': Color('#6E4033'),
+ 173 'roof_thatch': Color('#C29A58'), 'roof_thatch_old': Color('#94805A'),
+ 174 'roof_slate': Color('#525D68'), 'roof_shingle': Color('#6B5A48'),
+ 175 'roof_lead': Color('#7C8182'), 'roof_moss': Color('#6E7352'),
+ 178 'roof_civic': Color('#BB6742'),
+ 182 'roof_hall': Color('#3F6E6A'),
+ 186 'thatch_store': Color('#8E7A55'), 'lead': Color('#7C8182'),
+ 188 'earth': Color('#6A5338'),
+ 189 },
+ 192 'fig_pieces': {
+ 193 'metal': Color('#DAD8CE'), 'metal_dark': Color('#9A988E'), 'cloth': Color('#EDE2C6'),
+ 194 'wool': Color('#F0E6CE'), 'white': Color('#F0E6CE'), 'gold': Color('#D2A947'),
+ 195 },
+ 197 'fig_team_sat':[1.3, 0.92],
+ 198 'props': {
+ 199 'C_ROCK': Color('#857867'), 'C_ROCK_GOLD': Color('#B49248'),
+ 201 'C_PEAK': Color('#5A4A3C'), 'C_PEAK_LIT': Color('#86725E'),
+ 202 'C_REED': Color('#8C8253'),
+ 203 },
+ 205 'hem': Color('#4A3519'),
+ 210 'border':[Color('#843C1E'), Color('#C29632'), Color('#3A4F1F'), Color('#2B4157')],
+ 211 'shader': {
+ 213 'st_fade': Vector2(2, 4.5),
+ 215 'terrain_under': Vector3(0.5, 0.49, 0.38),
+ 217 'terrain_cord_mix': 0,
+ 221 'water_tint': Vector3(1.3, 1.22, 1.17),
+ 222 'water_under': 0.8,
+ 223 'water_mott': 0.07,
+ 225 'river_col': Vector3(0.247, 0.325, 0.408),
+ 226 'river_ice': Vector3(0.643, 0.69, 0.714),
+ 230 'nu_thread': Vector3(0.87, 0.82, 0.715),
+ 231 'nu_under': Vector3(0.62, 0.535, 0.41),
+ 232 'nu_cord': Vector3(0.38, 0.285, 0.17),
+ 233 'nu_curl': Vector3(0.92, 0.88, 0.8),
+ 236 'tulle': Vector2(0.1, 0.15),
+ 238 'st': {
+ 239 'LIN': Vector3(0.784, 0.678, 0.506), 'CREME': Vector3(0.91, 0.847, 0.733),
+ 240 'OCRE': Vector3(0.639, 0.525, 0.329), 'OR': Vector3(0.706, 0.573, 0.282),
+ 241 'DENIM': Vector3(0.212, 0.278, 0.318), 'NUIT': Vector3(0.153, 0.208, 0.247),
+ 242 'BRIQUE': Vector3(0.447, 0.157, 0.082), 'BRIQUE_VIF': Vector3(0.608, 0.231, 0.141),
+ 243 'SAPIN': Vector3(0.216, 0.239, 0.165), 'SAPIN_CLAIR': Vector3(0.369, 0.42, 0.227),
+ 244 'BRUN': Vector3(0.231, 0.153, 0.067),
+ 245 },
+ 246 },
+ 248 'light': {
+ 249 'dawn': { 'sun': Color(1, 0.9, 0.86), 'sun_share': 0.54, 'pitch': -30, 'yaw': 245,
+ 250 'amb': Color(0.9, 0.92, 1), 'amb_share': 0.42, 'shadow': 0.6, 'bg': Color('#BB9766'),
+ 251 'veil': Color('#B4B2C6'), 'veil_a': 0.05 },
+ 252 'day': { 'sun': Color(1, 0.98, 0.95), 'sun_share': 0.6, 'pitch': -42, 'yaw': 225,
+ 253 'amb': Color(0.99, 0.98, 0.97), 'amb_share': 0.42, 'shadow': 0.65, 'bg': Color('#C9AA77'),
+ 254 'veil': Color('#50699A'), 'veil_a': 0 },
+ 255 'dusk': { 'sun': Color(1, 0.86, 0.7), 'sun_share': 0.52, 'pitch': -28, 'yaw': 205,
+ 256 'amb': Color(0.84, 0.84, 0.98), 'amb_share': 0.42, 'shadow': 0.6, 'bg': Color('#B68D60'),
+ 257 'veil': Color('#50699A'), 'veil_a': 0 },
+ 258 'night': { 'sun': Color(0.64, 0.73, 1), 'sun_share': 0.45, 'pitch': -56, 'yaw': 235,
+ 259 'amb': Color(0.56, 0.67, 1), 'amb_share': 0.55, 'shadow': 0.5, 'bg': Color('#686F7A'),
+ 260 'veil': Color('#50699A'), 'veil_a': 0.14 },
+ 261 },
+ 263 'grade': { 'contrast': 1, 'saturation': 1, 'brightness': 1 },
+ 264 }
+ 317 const BAYEUX: = {
+ 318 'title': 'Bayeux ravivé (le revers)',
+ 319 'vis': {
+ 320 'LIN': Color('#DED0BB'), 'CREME': Color('#E8DECF'), 'OCRE': Color('#BA864E'),
+ 321 'OR': Color('#E8B746'), 'DENIM': Color('#446180'), 'NUIT': Color('#304B69'),
+ 322 'BRIQUE': Color('#803328'), 'BRIQUE_VIF': Color('#9F352E'), 'SAPIN': Color('#2A4932'),
+ 323 'SAPIN_CLAIR': Color('#539678'), 'BRUN': Color('#37261C'), 'NUIT_FACTION': Color('#28498B'),
+ 324 'SIDE_COLOR': Color('#815C3E'), 'SIDE_COLOR_ROCK': Color('#928477'),
+ 325 'CLOTH': Color('#534435'), 'C_SELECT': Color('#F2DC9B'), 'C_MOVE': Color('#F4EAD2'),
+ 326 'C_ATTACK': Color('#B34338'), 'C_WORK': Color('#CEA23A'), 'C_DANGER': Color('#892A23'),
+ 327 'C_NEUTRAL': Color('#9D958A'),
+ 328 },
+ 329 'terrain': {
+ 330 'spring': {
+ 331 'plains': Color('#D4BE85'), 'forest': Color('#70794F'), 'hills': Color('#C39364'),
+ 332 'mountain': Color('#DCD0C1'), 'river': Color('#5784A2'), 'lake': Color('#477190'),
+ 333 'sea': Color('#3B6480'),
+ 334 },
+ 335 'summer': {
+ 336 'plains': Color('#D9C087'), 'forest': Color('#6E7449'), 'hills': Color('#C29061'),
+ 337 'mountain': Color('#E0D3C2'), 'river': Color('#5784A2'), 'lake': Color('#477190'),
+ 338 'sea': Color('#3B6480'),
+ 339 },
+ 340 'autumn': {
+ 341 'plains': Color('#DBB680'), 'forest': Color('#866F43'), 'hills': Color('#C08E63'),
+ 342 'mountain': Color('#DAC9BA'), 'river': Color('#5784A2'), 'lake': Color('#4B6D88'),
+ 343 'sea': Color('#42657C'),
+ 344 },
+ 345 'winter': {
+ 346 'plains': Color('#DCD7CC'), 'forest': Color('#ACAC9F'), 'hills': Color('#D5C7BC'),
+ 347 'mountain': Color('#CCD6D9'), 'river': Color('#A0B4BB'), 'lake': Color('#95A9B0'),
+ 348 'sea': Color('#456275'),
+ 349 },
+ 350 },
+ 351 'leaf': { 'spring': Color('#596F3E'), 'summer': Color('#576638'), 'autumn': Color('#9F5B39'), 'winter': Color('#6F6154') },
+ 352 'pine': { 'spring': Color('#24422B'), 'summer': Color('#213F29'), 'autumn': Color('#2D492E'), 'winter': Color('#244846') },
+ 353 'crop': { 'spring': Color('#80934C'), 'summer': Color('#CEA54E'), 'autumn': Color('#B67046'), 'winter': Color('#B9AFA2') },
+ 354 'pieces': {
+ 355 'roof': Color('#904233'), 'slate': Color('#425166'), 'rag': Color('#803328'),
+ 356 'gold': Color('#C89D39'), 'leaf': Color('#677F49'), 'crop': Color('#80934C'),
+ 357 'water': Color('#5784A2'), 'plaster': Color('#E3D8C8'), 'bone': Color('#E3D8C8'),
+ 358 'white': Color('#E8DECF'), 'wool': Color('#E8DECF'), 'thatch': Color('#BC9C60'),
+ 359 'hay': Color('#C7A762'), 'stone': Color('#CFC5B8'), 'stone_dark': Color('#8E8579'),
+ 360 'rock': Color('#8F8579'), 'cloth': Color('#C8B69E'), 'cloth_dark': Color('#4C423D'),
+ 361 'metal': Color('#B3B0A9'), 'metal_dark': Color('#6A6861'), 'goblin': Color('#6A7840'),
+ 362 },
+ 363 'fig_pieces': {
+ 364 'metal': Color('#D3D2CA'), 'metal_dark': Color('#98968F'), 'cloth': Color('#E7DBC8'),
+ 365 'wool': Color('#EDE7DF'), 'white': Color('#EDE7DF'), 'gold': Color('#E6B74F'),
+ 366 },
+ 367 'fig_team_sat':[1.05, 0.96],
+ 368 'card_blue': Color('#435791'),
+ 369 'props': {
+ 370 'C_ROCK': Color('#8D7F71'), 'C_ROCK_GOLD': Color('#DAA851'), 'C_PEAK': Color('#465763'),
+ 371 'C_PEAK_LIT': Color('#7D8E97'), 'C_REED': Color('#908D62'),
+ 372 },
+ 373 'hem': Color('#583E2C'),
+ 374 'border':[Color('#962D28'), Color('#BA881D'), Color('#3E8768'), Color('#28498B')],
+ 375 'shader': {
+ 376 'st_fade': Vector2(1.3, 3), 'terrain_under': Vector3(0.46, 0.44, 0.36),
+ 377 'terrain_cord_mix': 0.3, 'water_tint': Vector3(1, 1, 1), 'water_under': 0.62,
+ 378 'water_mott': 0.14, 'river_col': Color('#5784A2'), 'river_ice': Color('#A0B4BB'),
+ 379 'nu_thread': Color('#DCC8AB'), 'nu_under': Color('#A28E74'), 'nu_cord': Color('#304553'),
+ 380 'nu_curl': Color('#EDE1CE'), 'tulle': Vector2(0.06, 0.08),
+ 381 },
+ 382 'light': {
+ 383 'dawn': {
+ 384 'sun': Color(1, 0.88, 0.8), 'sun_share': 0.6, 'amb': Color(0.82, 0.86, 1),
+ 385 'amb_share': 0.36, 'shadow': 0.7, 'bg': Color('#C7AE9D'), 'veil': Color('#B4B2C6'),
+ 386 'veil_a': 0.04,
+ 387 },
+ 388 'day': {
+ 389 'sun': Color(1, 0.95, 0.86), 'sun_share': 0.68, 'amb': Color(0.84, 0.9, 1),
+ 390 'amb_share': 0.38, 'shadow': 0.74, 'bg': Color('#DECEB4'), 'veil': Color('#50699A'),
+ 391 'veil_a': 0,
+ 392 },
+ 393 'dusk': {
+ 394 'sun': Color(1, 0.82, 0.62), 'sun_share': 0.58, 'amb': Color(0.8, 0.81, 0.98),
+ 395 'amb_share': 0.4, 'shadow': 0.7, 'bg': Color('#BC9C87'), 'veil': Color('#50699A'),
+ 396 'veil_a': 0,
+ 397 },
+ 398 'night': {
+ 399 'sun': Color(0.66, 0.79, 1), 'sun_share': 0.52, 'amb': Color(0.58, 0.72, 0.97),
+ 400 'amb_share': 0.5, 'shadow': 0.62, 'bg': Color('#6C788B'), 'veil': Color('#50699A'),
+ 401 'veil_a': 0.08,
+ 402 },
+ 403 },
+ 404 'grade': { 'contrast': 1.05, 'saturation': 1, 'brightness': 1 },
+ 405 }
+ 424 const MILLEFLEURS: = {
+ 425 'title': 'Mille-fleurs et crewel (verdure profonde)',
+ 426 'vis': {
+ 427 'LIN': Color('#D2C5AC'), 'CREME': Color('#E4D5BD'), 'OCRE': Color('#BE9455'),
+ 428 'OR': Color('#EEB84A'), 'DENIM': Color('#294B71'), 'NUIT': Color('#14365B'),
+ 429 'BRIQUE': Color('#8A332B'), 'BRIQUE_VIF': Color('#AF3B34'), 'SAPIN': Color('#133930'),
+ 430 'SAPIN_CLAIR': Color('#5DAF95'), 'BRUN': Color('#2E1E13'), 'NUIT_FACTION': Color('#4C79B0'),
+ 431 'SIDE_COLOR': Color('#774E33'), 'SIDE_COLOR_ROCK': Color('#847769'),
+ 432 'CLOTH': Color('#222C27'), 'C_SELECT': Color('#F2DC9B'), 'C_MOVE': Color('#F4EAD2'),
+ 433 'C_ATTACK': Color('#AF3B34'), 'C_WORK': Color('#D4A33E'), 'C_DANGER': Color('#85221F'),
+ 434 'C_NEUTRAL': Color('#9D958A'),
+ 435 },
+ 436 'terrain': {
+ 437 'spring': {
+ 438 'plains': Color('#CDBD87'), 'forest': Color('#62845A'), 'hills': Color('#C08C5E'),
+ 439 'mountain': Color('#CEC5B5'), 'river': Color('#3B7E91'), 'lake': Color('#3C6E8E'),
+ 440 'sea': Color('#36638A'),
+ 441 },
+ 442 'summer': {
+ 443 'plains': Color('#CAB67E'), 'forest': Color('#56704B'), 'hills': Color('#BC8154'),
+ 444 'mountain': Color('#CEC3B0'), 'river': Color('#357588'), 'lake': Color('#346382'),
+ 445 'sea': Color('#2E587A'),
+ 446 },
+ 447 'autumn': {
+ 448 'plains': Color('#C1A56F'), 'forest': Color('#7B6238'), 'hills': Color('#B6784F'),
+ 449 'mountain': Color('#C8BAA8'), 'river': Color('#357588'), 'lake': Color('#3B6180'),
+ 450 'sea': Color('#35556F'),
+ 451 },
+ 452 'winter': {
+ 453 'plains': Color('#DAD7CC'), 'forest': Color('#A9ACA0'), 'hills': Color('#D6C6BA'),
+ 454 'mountain': Color('#CCD6DA'), 'river': Color('#A0B4BC'), 'lake': Color('#96A9B1'),
+ 455 'sea': Color('#3A5470'),
+ 456 },
+ 457 },
+ 458 'leaf': { 'spring': Color('#41673E'), 'summer': Color('#415E36'), 'autumn': Color('#A15235'), 'winter': Color('#6F6154') },
+ 459 'pine': { 'spring': Color('#173426'), 'summer': Color('#153224'), 'autumn': Color('#14392D'), 'winter': Color('#1C3735') },
+ 462 'crop': { 'spring': Color('#769550'), 'summer': Color('#D4AB54'), 'autumn': Color('#B66743'), 'winter': Color('#8E7A5E') },
+ 463 'pieces': {
+ 468 'roof': Color('#BB6742'), 'slate': Color('#2E4962'), 'rag': Color('#8A332B'),
+ 469 'gold': Color('#CD9E3D'), 'leaf': Color('#4D774A'), 'crop': Color('#769550'),
+ 470 'water': Color('#357588'), 'plaster': Color('#DFCFB6'), 'bone': Color('#DFCFB6'),
+ 471 'white': Color('#E4D5BD'), 'wool': Color('#E4D5BD'), 'thatch': Color('#C6A05E'),
+ 472 'hay': Color('#D2AB60'), 'stone': Color('#CEC5B8'), 'stone_dark': Color('#8D8579'),
+ 473 'rock': Color('#8E8579'), 'cloth': Color('#C4AD8D'), 'cloth_dark': Color('#433933'),
+ 474 'metal': Color('#B3B0A9'), 'metal_dark': Color('#6A6861'), 'goblin': Color('#517040'),
+ 475 },
+ 476 'fig_pieces': {
+ 477 'metal': Color('#D3D2CA'), 'metal_dark': Color('#98968F'), 'cloth': Color('#E3D2B7'),
+ 478 'wool': Color('#E9DECD'), 'white': Color('#E9DECD'), 'gold': Color('#ECB853'),
+ 479 },
+ 480 'fig_team_sat':[1.05, 0.96],
+ 481 'card_blue': Color('#4C79B0'),
+ 482 'props': {
+ 483 'C_ROCK': Color('#8C7F71'), 'C_ROCK_GOLD': Color('#D49B30'), 'C_PEAK': Color('#5D4D3E'),
+ 484 'C_PEAK_LIT': Color('#948472'), 'C_REED': Color('#7A865D'),
+ 485 },
+ 486 'hem': Color('#26291E'),
+ 487 'border':[Color('#A3302B'), Color('#D49B30'), Color('#46A085'), Color('#4C79B0')],
+ 488 'shader': {
+ 489 'st_fade': Vector2(1.3, 3), 'terrain_under': Vector3(0.46, 0.44, 0.36),
+ 490 'terrain_cord_mix': 0.3, 'water_tint': Vector3(1, 1, 1), 'water_under': 0.62,
+ 491 'water_mott': 0.14, 'river_col': Color('#357588'), 'river_ice': Color('#A0B4BC'),
+ 492 'nu_thread': Color('#DBC8AB'), 'nu_under': Color('#98856A'), 'nu_cord': Color('#463020'),
+ 493 'nu_curl': Color('#EBE0CE'), 'tulle': Vector2(0.06, 0.08),
+ 494 },
+ 495 'light': {
+ 496 'dawn': {
+ 497 'sun': Color(1, 0.88, 0.8), 'sun_share': 0.62, 'amb': Color(0.82, 0.86, 1),
+ 498 'amb_share': 0.34, 'shadow': 0.74, 'bg': Color('#BDA590'), 'veil': Color('#B4B2C6'),
+ 499 'veil_a': 0.04,
+ 500 },
+ 501 'day': {
+ 502 'sun': Color(1, 0.95, 0.86), 'sun_share': 0.7, 'amb': Color(0.84, 0.9, 1),
+ 503 'amb_share': 0.36, 'shadow': 0.78, 'bg': Color('#D3C3A5'), 'veil': Color('#50699A'),
+ 504 'veil_a': 0,
+ 505 },
+ 506 'dusk': {
+ 507 'sun': Color(1, 0.82, 0.62), 'sun_share': 0.64, 'amb': Color(0.8, 0.81, 0.98),
+ 508 'amb_share': 0.4, 'shadow': 0.74, 'bg': Color('#B3947A'), 'veil': Color('#50699A'),
+ 509 'veil_a': 0,
+ 510 },
+ 511 'night': {
+ 512 'sun': Color(0.66, 0.79, 1), 'sun_share': 0.54, 'amb': Color(0.58, 0.72, 0.97),
+ 513 'amb_share': 0.54, 'shadow': 0.62, 'bg': Color('#6C788B'), 'veil': Color('#50699A'),
+ 514 'veil_a': 0.06,
+ 515 },
+ 516 },
+ 517 'grade': { 'contrast': 1.04, 'saturation': 1, 'brightness': 1 },
+ 518 }
+ 536 const CIBLE_PLUS: = {
+ 537 'title': 'La cible, contrastée (variante prudente)',
+ 538 'vis': {
+ 539 'LIN': Color('#D7C4A5'), 'CREME': Color('#E8D8BB'), 'OCRE': Color('#A38654'),
+ 540 'OR': Color('#E0AE48'), 'DENIM': Color('#3C5E71'), 'NUIT': Color('#27485B'),
+ 541 'BRIQUE': Color('#722815'), 'BRIQUE_VIF': Color('#9A372C'), 'SAPIN': Color('#363E2A'),
+ 542 'SAPIN_CLAIR': Color('#559372'), 'BRUN': Color('#3B2711'), 'NUIT_FACTION': Color('#1B4975'),
+ 543 'SIDE_COLOR': Color('#7B5A36'), 'SIDE_COLOR_ROCK': Color('#938472'),
+ 544 'CLOTH': Color('#503F2E'), 'C_SELECT': Color('#F2DC9B'), 'C_MOVE': Color('#F4EAD2'),
+ 545 'C_ATTACK': Color('#AB402F'), 'C_WORK': Color('#C6993C'), 'C_DANGER': Color('#82271B'),
+ 546 'C_NEUTRAL': Color('#9D958A'),
+ 547 },
+ 548 'terrain': {
+ 549 'spring': {
+ 550 'plains': Color('#D3B884'), 'forest': Color('#707550'), 'hills': Color('#B88A5F'),
+ 551 'mountain': Color('#DBD0C1'), 'river': Color('#537B9B'), 'lake': Color('#3F6882'),
+ 552 'sea': Color('#355F7A'),
+ 553 },
+ 554 'summer': {
+ 555 'plains': Color('#D7BB85'), 'forest': Color('#6E714A'), 'hills': Color('#B7875C'),
+ 556 'mountain': Color('#DFD3C2'), 'river': Color('#537B9B'), 'lake': Color('#3F6882'),
+ 557 'sea': Color('#355F7A'),
+ 558 },
+ 559 'autumn': {
+ 560 'plains': Color('#D3A979'), 'forest': Color('#7B653B'), 'hills': Color('#B17B4F'),
+ 561 'mountain': Color('#D9C9BA'), 'river': Color('#537B9B'), 'lake': Color('#486679'),
+ 562 'sea': Color('#3D5E73'),
+ 563 },
+ 564 'winter': {
+ 565 'plains': Color('#DDD6CC'), 'forest': Color('#ADAC9F'), 'hills': Color('#D4C7BB'),
+ 566 'mountain': Color('#CBD6D7'), 'river': Color('#9FB5B6'), 'lake': Color('#94AAAC'),
+ 567 'sea': Color('#3D5A6E'),
+ 568 },
+ 569 },
+ 570 'leaf': { 'spring': Color('#5D6B40'), 'summer': Color('#5A5935'), 'autumn': Color('#98603A'), 'winter': Color('#6F6154') },
+ 571 'pine': { 'spring': Color('#2B3826'), 'summer': Color('#293624'), 'autumn': Color('#383E28'), 'winter': Color('#293F3D') },
+ 572 'crop': { 'spring': Color('#7E8D49'), 'summer': Color('#D0A553'), 'autumn': Color('#AF7444'), 'winter': Color('#AEA498') },
+ 573 'pieces': {
+ 574 'roof': Color('#8C5236'), 'slate': Color('#4B5862'), 'rag': Color('#722815'),
+ 575 'gold': Color('#C0943B'), 'leaf': Color('#6D7044'), 'crop': Color('#7E8D49'),
+ 576 'water': Color('#537B9B'), 'plaster': Color('#E3D2B4'), 'bone': Color('#E3D2B4'),
+ 577 'white': Color('#E8D8BB'), 'wool': Color('#E8D8BB'), 'thatch': Color('#B8975A'),
+ 578 'hay': Color('#C3A25C'), 'stone': Color('#CFC3AA'), 'stone_dark': Color('#8E836C'),
+ 579 'rock': Color('#90826C'), 'cloth': Color('#C7B08B'), 'cloth_dark': Color('#534333'),
+ 580 'metal': Color('#B3B1A6'), 'metal_dark': Color('#68675F'), 'goblin': Color('#6E693D'),
+ 581 },
+ 582 'fig_pieces': {
+ 583 'metal': Color('#D3D2CA'), 'metal_dark': Color('#98968F'), 'cloth': Color('#E7D5B4'),
+ 584 'wool': Color('#EDE1CB'), 'white': Color('#EDE1CB'), 'gold': Color('#DEAE51'),
+ 585 },
+ 586 'fig_team_sat':[1.05, 0.96],
+ 587 'card_blue': Color('#3C5A78'),
+ 588 'props': {
+ 589 'C_ROCK': Color('#8D7D64'), 'C_ROCK_GOLD': Color('#D7A23F'), 'C_PEAK': Color('#5A4A3C'),
+ 590 'C_PEAK_LIT': Color('#86725E'), 'C_REED': Color('#8D8062'),
+ 591 },
+ 592 'hem': Color('#583E22'),
+ 593 'border':[Color('#9F3626'), Color('#D7A23F'), Color('#418462'), Color('#1B4975')],
+ 594 'shader': {
+ 595 'st_fade': Vector2(1.3, 3), 'terrain_under': Vector3(0.46, 0.44, 0.36),
+ 596 'terrain_cord_mix': 0.3, 'water_tint': Vector3(1, 1, 1), 'water_under': 0.62,
+ 597 'water_mott': 0.14, 'river_col': Color('#537B9B'), 'river_ice': Color('#9FB5B6'),
+ 598 'nu_thread': Color('#D8C4A5'), 'nu_under': Color('#9D8262'), 'nu_cord': Color('#5B4227'),
+ 599 'nu_curl': Color('#E6DCCA'), 'tulle': Vector2(0.06, 0.08),
+ 600 },
+ 601 'light': {
+ 602 'dawn': {
+ 603 'sun': Color(1, 0.88, 0.8), 'sun_share': 0.6, 'amb': Color(0.82, 0.86, 1),
+ 604 'amb_share': 0.36, 'shadow': 0.7, 'bg': Color('#C0A48B'), 'veil': Color('#B4B2C6'),
+ 605 'veil_a': 0.04,
+ 606 },
+ 607 'day': {
+ 608 'sun': Color(1, 0.95, 0.86), 'sun_share': 0.68, 'amb': Color(0.84, 0.9, 1),
+ 609 'amb_share': 0.38, 'shadow': 0.74, 'bg': Color('#D7C29F'), 'veil': Color('#50699A'),
+ 610 'veil_a': 0,
+ 611 },
+ 612 'dusk': {
+ 613 'sun': Color(1, 0.82, 0.62), 'sun_share': 0.58, 'amb': Color(0.8, 0.81, 0.98),
+ 614 'amb_share': 0.4, 'shadow': 0.7, 'bg': Color('#B69377'), 'veil': Color('#50699A'),
+ 615 'veil_a': 0,
+ 616 },
+ 617 'night': {
+ 618 'sun': Color(0.66, 0.79, 1), 'sun_share': 0.52, 'amb': Color(0.58, 0.72, 0.97),
+ 619 'amb_share': 0.5, 'shadow': 0.62, 'bg': Color('#6C788B'), 'veil': Color('#50699A'),
+ 620 'veil_a': 0.08,
+ 621 },
+ 622 },
+ 623 'grade': { 'contrast': 1.08, 'saturation': 1.05, 'brightness': 1 },
+ 624 }
+ 637 const CARTE: = {
+ 638 'title': 'Carte coloriée à la main (Blaeu, Homann)',
+ 639 'vis': {
+ 640 'LIN': Color('#E5DCCC'), 'CREME': Color('#EEE8DB'), 'OCRE': Color('#C59154'),
+ 641 'OR': Color('#E2BE3D'), 'DENIM': Color('#688AA4'), 'NUIT': Color('#53738D'),
+ 642 'BRIQUE': Color('#9D413C'), 'BRIQUE_VIF': Color('#AE2D42'), 'SAPIN': Color('#305339'),
+ 643 'SAPIN_CLAIR': Color('#2F9777'), 'BRUN': Color('#302015'), 'NUIT_FACTION': Color('#1B4A8F'),
+ 644 'SIDE_COLOR': Color('#8B6153'), 'SIDE_COLOR_ROCK': Color('#94877C'),
+ 645 'CLOTH': Color('#47352A'), 'C_SELECT': Color('#F2DC9B'), 'C_MOVE': Color('#F4EAD2'),
+ 646 'C_ATTACK': Color('#AE2D42'), 'C_WORK': Color('#C9A931'), 'C_DANGER': Color('#84112A'),
+ 647 'C_NEUTRAL': Color('#9D958A'),
+ 648 },
+ 649 'terrain': {
+ 650 'spring': {
+ 651 'plains': Color('#DFD19F'), 'forest': Color('#819261'), 'hills': Color('#D59786'),
+ 652 'mountain': Color('#E5DBD0'), 'river': Color('#396C96'), 'lake': Color('#718FA6'),
+ 653 'sea': Color('#688AA4'),
+ 654 },
+ 655 'summer': {
+ 656 'plains': Color('#E4D3A0'), 'forest': Color('#7D895A'), 'hills': Color('#D79282'),
+ 657 'mountain': Color('#E9DED1'), 'river': Color('#396C96'), 'lake': Color('#718FA6'),
+ 658 'sea': Color('#688AA4'),
+ 659 },
+ 660 'autumn': {
+ 661 'plains': Color('#E5C896'), 'forest': Color('#A88651'), 'hills': Color('#D48F83'),
+ 662 'mountain': Color('#E2D5C9'), 'river': Color('#396C96'), 'lake': Color('#778EA1'),
+ 663 'sea': Color('#6E899F'),
+ 664 },
+ 665 'winter': {
+ 666 'plains': Color('#DBD7CC'), 'forest': Color('#A9ADA0'), 'hills': Color('#D9C5C0'),
+ 667 'mountain': Color('#CBD6D8'), 'river': Color('#9FB4B8'), 'lake': Color('#94AAAD'),
+ 668 'sea': Color('#6E8398'),
+ 669 },
+ 670 },
+ 671 'leaf': { 'spring': Color('#5F7A46'), 'summer': Color('#5E713F'), 'autumn': Color('#AE6341'), 'winter': Color('#6F6154') },
+ 672 'pine': { 'spring': Color('#305339'), 'summer': Color('#2E5137'), 'autumn': Color('#335335'), 'winter': Color('#29524F') },
+ 673 'crop': { 'spring': Color('#89A55A'), 'summer': Color('#D8B959'), 'autumn': Color('#C87F50'), 'winter': Color('#C7C0B6') },
+ 674 'pieces': {
+ 675 'roof': Color('#B34C47'), 'slate': Color('#415D72'), 'rag': Color('#9D413C'),
+ 676 'gold': Color('#C3A330'), 'leaf': Color('#6D8A51'), 'crop': Color('#89A55A'),
+ 677 'water': Color('#396C96'), 'plaster': Color('#E9E2D3'), 'bone': Color('#E9E2D3'),
+ 678 'white': Color('#EEE8DB'), 'wool': Color('#EEE8DB'), 'thatch': Color('#CAAD67'),
+ 679 'hay': Color('#D5B869'), 'stone': Color('#D7D1C6'), 'stone_dark': Color('#969086'),
+ 680 'rock': Color('#979086'), 'cloth': Color('#CCC0A9'), 'cloth_dark': Color('#453C35'),
+ 681 'metal': Color('#B3B0A9'), 'metal_dark': Color('#6A6861'), 'goblin': Color('#708348'),
+ 682 },
+ 683 'fig_pieces': {
+ 684 'metal': Color('#D3D2CA'), 'metal_dark': Color('#98968F'), 'cloth': Color('#EDE5D4'),
+ 685 'wool': Color('#F3F1EB'), 'white': Color('#F3F1EB'), 'gold': Color('#E1BE47'),
+ 686 },
+ 687 'fig_team_sat':[1.05, 0.96],
+ 688 'card_blue': Color('#3F5892'),
+ 689 'props': {
+ 690 'C_ROCK': Color('#948A7D'), 'C_ROCK_GOLD': Color('#C9A11F'), 'C_PEAK': Color('#624530'),
+ 691 'C_PEAK_LIT': Color('#96765A'), 'C_REED': Color('#989969'),
+ 692 },
+ 693 'hem': Color('#593E31'),
+ 694 'border':[Color('#A22039'), Color('#C9A11F'), Color('#058867'), Color('#1B4A8F')],
+ 695 'shader': {
+ 696 'st_fade': Vector2(1.3, 3), 'terrain_under': Vector3(0.42, 0.4, 0.34),
+ 697 'terrain_cord_mix': 0.3, 'water_tint': Vector3(1, 1, 1), 'water_under': 0.62,
+ 698 'water_mott': 0.14, 'river_col': Color('#396C96'), 'river_ice': Color('#9FB4B8'),
+ 699 'nu_thread': Color('#EAE5DA'), 'nu_under': Color('#B4AA99'), 'nu_cord': Color('#5C412F'),
+ 700 'nu_curl': Color('#F1EDE6'),
+ 701 },
+ 702 'light': {
+ 703 'dawn': {
+ 704 'sun': Color(1, 0.88, 0.8), 'sun_share': 0.58, 'amb': Color(0.82, 0.86, 1),
+ 705 'amb_share': 0.34, 'shadow': 0.66, 'bg': Color('#C5B1A4'), 'veil': Color('#B4B2C6'),
+ 706 'veil_a': 0.04,
+ 707 },
+ 708 'day': {
+ 709 'sun': Color(1, 0.97, 0.92), 'sun_share': 0.66, 'amb': Color(0.9, 0.94, 1),
+ 710 'amb_share': 0.36, 'shadow': 0.7, 'bg': Color('#E1D7C5'), 'veil': Color('#50699A'),
+ 711 'veil_a': 0,
+ 712 },
+ 713 'dusk': {
+ 714 'sun': Color(1, 0.82, 0.62), 'sun_share': 0.56, 'amb': Color(0.74, 0.76, 1),
+ 715 'amb_share': 0.34, 'shadow': 0.66, 'bg': Color('#BA9E8C'), 'veil': Color('#50699A'),
+ 716 'veil_a': 0,
+ 717 },
+ 718 'night': {
+ 719 'sun': Color(0.6, 0.7, 1), 'sun_share': 0.48, 'amb': Color(0.5, 0.62, 1),
+ 720 'amb_share': 0.5, 'shadow': 0.62, 'bg': Color('#7B8EC8'), 'veil': Color('#50699A'),
+ 721 'veil_a': 0.08,
+ 722 },
+ 723 },
+ 724 'grade': { 'contrast': 1.08, 'saturation': 1, 'brightness': 0.98 },
+ 725 }
+ 738 const ENLUMINURE: = {
+ 739 'title': 'Enluminure (outremer, vermillon, or)',
+ 740 'vis': {
+ 741 'LIN': Color('#E0D6C4'), 'CREME': Color('#ECE5D6'), 'OCRE': Color('#C7894A'),
+ 742 'OR': Color('#EDB93F'), 'DENIM': Color('#366889'), 'NUIT': Color('#1F5273'),
+ 743 'BRIQUE': Color('#91372B'), 'BRIQUE_VIF': Color('#C74637'), 'SAPIN': Color('#054637'),
+ 744 'SAPIN_CLAIR': Color('#3FA185'), 'BRUN': Color('#362117'), 'NUIT_FACTION': Color('#28428B'),
+ 745 'SIDE_COLOR': Color('#834F3A'), 'SIDE_COLOR_ROCK': Color('#90857C'),
+ 746 'CLOTH': Color('#283044'), 'C_SELECT': Color('#F9D990'), 'C_MOVE': Color('#F4EAD2'),
+ 747 'C_ATTACK': Color('#C74637'), 'C_WORK': Color('#D3A433'), 'C_DANGER': Color('#9C2C22'),
+ 748 'C_NEUTRAL': Color('#9D958A'),
+ 749 },
+ 750 'terrain': {
+ 751 'spring': {
+ 752 'plains': Color('#D7B77D'), 'forest': Color('#487755'), 'hills': Color('#C27556'),
+ 753 'mountain': Color('#DAD7CE'), 'river': Color('#3B7DA8'), 'lake': Color('#427293'),
+ 754 'sea': Color('#366889'),
+ 755 },
+ 756 'summer': {
+ 757 'plains': Color('#DCB97E'), 'forest': Color('#466F4C'), 'hills': Color('#C46F53'),
+ 758 'mountain': Color('#DDDACF'), 'river': Color('#3B7DA8'), 'lake': Color('#427293'),
+ 759 'sea': Color('#366889'),
+ 760 },
+ 761 'autumn': {
+ 762 'plains': Color('#DEAD78'), 'forest': Color('#A38148'), 'hills': Color('#C26C54'),
+ 763 'mountain': Color('#D7D1C7'), 'river': Color('#3B7DA8'), 'lake': Color('#4A718E'),
+ 764 'sea': Color('#3F6784'),
+ 765 },
+ 766 'winter': {
+ 767 'plains': Color('#DDD6CC'), 'forest': Color('#A2AEA5'), 'hills': Color('#D8C5BE'),
+ 768 'mountain': Color('#CBD6D8'), 'river': Color('#9FB4B8'), 'lake': Color('#94AAAE'),
+ 769 'sea': Color('#44617B'),
+ 770 },
+ 771 },
+ 772 'leaf': { 'spring': Color('#3A6E42'), 'summer': Color('#3C6539'), 'autumn': Color('#AF5A3B'), 'winter': Color('#6F6154') },
+ 773 'pine': { 'spring': Color('#054637'), 'summer': Color('#024435'), 'autumn': Color('#0A4633'), 'winter': Color('#164441') },
+ 774 'crop': { 'spring': Color('#7DA150'), 'summer': Color('#DAB147'), 'autumn': Color('#C37143'), 'winter': Color('#BEB5A7') },
+ 775 'pieces': {
+ 776 'roof': Color('#A74335'), 'slate': Color('#375273'), 'rag': Color('#91372B'),
+ 777 'gold': Color('#CC9F32'), 'leaf': Color('#467E4E'), 'crop': Color('#7DA150'),
+ 778 'water': Color('#3B7DA8'), 'plaster': Color('#E7DFCF'), 'bone': Color('#E7DFCF'),
+ 779 'white': Color('#ECE5D6'), 'wool': Color('#ECE5D6'), 'thatch': Color('#C9A75A'),
+ 780 'hay': Color('#D4B25C'), 'stone': Color('#D0CCC1'), 'stone_dark': Color('#8F8B81'),
+ 781 'rock': Color('#908B81'), 'cloth': Color('#CABDA4'), 'cloth_dark': Color('#4B3D37'),
+ 782 'metal': Color('#B7BCC0'), 'metal_dark': Color('#6A6861'), 'goblin': Color('#4C7743'),
+ 783 },
+ 784 'fig_pieces': {
+ 785 'metal': Color('#D2D8DC'), 'metal_dark': Color('#98968F'), 'cloth': Color('#EBE2CF'),
+ 786 'wool': Color('#F1EEE6'), 'white': Color('#F1EEE6'), 'gold': Color('#EBB949'),
+ 787 },
+ 788 'fig_team_sat':[1.05, 0.96],
+ 789 'card_blue': Color('#4B5690'),
+ 790 'props': {
+ 791 'C_ROCK': Color('#8D8679'), 'C_ROCK_GOLD': Color('#D49C23'), 'C_PEAK': Color('#6C5546'),
+ 792 'C_PEAK_LIT': Color('#A39385'), 'C_REED': Color('#788D5E'),
+ 793 },
+ 794 'hem': Color('#593627'),
+ 795 'border':[Color('#BB3B2E'), Color('#D49C23'), Color('#229275'), Color('#28428B')],
+ 796 'shader': {
+ 797 'st_fade': Vector2(1.3, 3), 'terrain_under': Vector3(0.42, 0.4, 0.34),
+ 798 'terrain_cord_mix': 0.3, 'water_tint': Vector3(1, 1, 1), 'water_under': 0.62,
+ 799 'water_mott': 0.14, 'river_col': Color('#3B7DA8'), 'river_ice': Color('#9FB4B8'),
+ 800 'nu_thread': Color('#E3DCCE'), 'nu_under': Color('#A79986'), 'nu_cord': Color('#926B2A'),
+ 801 'nu_curl': Color('#EFEAE1'),
+ 802 },
+ 803 'light': {
+ 804 'dawn': {
+ 805 'sun': Color(1, 0.88, 0.8), 'sun_share': 0.61, 'amb': Color(0.82, 0.86, 1),
+ 806 'amb_share': 0.36, 'shadow': 0.7, 'bg': Color('#CBB5A6'), 'veil': Color('#B4B2C6'),
+ 807 'veil_a': 0.04,
+ 808 },
+ 809 'day': {
+ 810 'sun': Color(1, 0.94, 0.82), 'sun_share': 0.69, 'amb': Color(0.82, 0.88, 1),
+ 811 'amb_share': 0.38, 'shadow': 0.74, 'bg': Color('#E0D2B9'), 'veil': Color('#50699A'),
+ 812 'veil_a': 0,
+ 813 },
+ 814 'dusk': {
+ 815 'sun': Color(1, 0.82, 0.62), 'sun_share': 0.59, 'amb': Color(0.74, 0.76, 1),
+ 816 'amb_share': 0.36, 'shadow': 0.7, 'bg': Color('#C0A28E'), 'veil': Color('#50699A'),
+ 817 'veil_a': 0,
+ 818 },
+ 819 'night': {
+ 820 'sun': Color(0.6, 0.7, 1), 'sun_share': 0.48, 'amb': Color(0.5, 0.62, 1),
+ 821 'amb_share': 0.5, 'shadow': 0.62, 'bg': Color('#798AC0'), 'veil': Color('#50699A'),
+ 822 'veil_a': 0.08,
+ 823 },
+ 824 },
+ 825 'grade': { 'contrast': 1.06, 'saturation': 1, 'brightness': 1 },
+ 826 }
+ 831 const ALL: = {
+ 832 'tapisserie': TAPISSERIE, 'bayeux': BAYEUX, 'millefleurs': MILLEFLEURS,
+ 833 'cible_plus': CIBLE_PLUS, 'carte': CARTE, 'enluminure': ENLUMINURE,
+ 834 }

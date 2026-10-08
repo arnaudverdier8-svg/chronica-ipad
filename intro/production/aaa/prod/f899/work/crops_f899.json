@@ -1,0 +1,11 @@
+{
+ "crop_01_legion_left_slips": [20, 900, 700, 1320],
+ "crop_02_knight_footprints_tethers": [380, 800, 1060, 1220],
+ "crop_03_centre_clash": [960, 780, 1640, 1200],
+ "crop_04_merchants_right": [1560, 860, 2240, 1280],
+ "crop_05_shadows_over_sky": [1000, 360, 1680, 780],
+ "crop_06_border_gold_thread_hem_table": [1400, 0, 2560, 330],
+ "crop_07_left_pale_arc_bleach_fox_tide": [0, 640, 680, 1060],
+ "crop_08_footprints_needle_holes_underdrawing": [1480, 740, 2100, 1100],
+ "crop_09_hills_far_ranks_ghosts": [380, 640, 1060, 1000]
+}

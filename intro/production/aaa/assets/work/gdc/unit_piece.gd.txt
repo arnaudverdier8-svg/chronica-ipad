@@ -1,0 +1,423 @@
+   1 class_name UnitPiece
+   2 extends Node3D
+  18 const SCALE: = 2.5
+  19 const PROFILE_K: = 0.88
+  20 const HOP: = 0.07
+  27 const LEAN: = 0.44
+  28 const SQUASH: = 0.84
+  31 const BAR_H: = 0.6
+  32 const BAR_H_TALL: = 0.78
+  38 const PROFILE: =['knight', 'horse_archer', 'catapult']
+  40 var uid: int = -1
+  41 var type: String = ''
+  42 var owner_id: int = -99
+  44 var card: MeshInstance3D
+  45 var model: Node3D
+  47 var stand: Node3D
+  48 var tool: Node3D
+  49 var arm: Node3D
+  50 var bar: Node3D
+  51 var bar_fill: MeshInstance3D
+  52 var working: = False
+  53 var busy: = False
+  54 var _phase: = 0
+  55 var _tool_rest: = Vector3.ZERO
+  56 var _arm_rest: = Vector3.ZERO
+  57 var _yaw: = 0
+  58 var _mirror: = 1
+  59 var _k: = SCALE
+  62 var _pose: = 'idle'
+  63 var _team: = Color.WHITE
+  64 var _face: = 1
+  65 var _flash: ShaderMaterial
+  66 var _turn: Tween
+  69 var _bar_h: = 0
+  70 var _bar_aspect: = 0
+  74 var _act: Tween
+  75 var _recoil: Tween
+  76 var _dying: = False
+  78 static var _bar_mesh: QuadMesh
+  79 static var _shadow_mat: ShaderMaterial
+  80 static var _shadow_meshes: = { }
+  83 func build(u: Unit, color: Color) -> void:
+  84 uid = u.id
+  85 type = u.type
+  86 owner_id = u.owner
+  87 _phase = float(u.id % 17) * 0.37
+  88 if Figures.has(u.type):
+  89 _build_card(u, color)
+  90 return
+  91 model = Models.make(u.type, color, Models.FIGURE)
+  96 for c in model.find_children('*', 'MeshInstance3D', True, False):
+  97 (c as MeshInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+  98 stand = Node3D.new()
+  99 stand.rotation.x = - LEAN
+ 100 add_child(stand)
+ 101 stand.add_child(model)
+ 102 tool = model.find_child('tool', True, False) as Node3D
+ 103 arm = model.find_child('arm', True, False) as Node3D
+ 104 if tool:
+ 105 _tool_rest = tool.rotation
+ 106 if arm:
+ 107 _arm_rest = arm.rotation
+ 108 _build_bar((BAR_H_TALL if PROFILE.has(u.type) else BAR_H) * SCALE / 1.75)
+ 109 _build_shadow(PROFILE.has(u.type))
+ 113 _yaw = deg_to_rad(float((u.id * 37) % 50) - 25)
+ 114 if PROFILE.has(u.type):
+ 115 _mirror = 1 if u.id % 2 == 0 else -1
+ 116 _yaw = deg_to_rad(70 + float((u.id * 13) % 15)) * _mirror
+ 117 _k = SCALE *(PROFILE_K if PROFILE.has(u.type) else 1)
+ 118 model.scale = Vector3(_k * _mirror, _k * SQUASH, _k)
+ 119 model.rotation.y = _yaw
+ 125 func _build_card(u: Unit, color: Color) -> void:
+ 126 _team = color
+ 127 _shape = u.type
+ 128 card = MeshInstance3D.new()
+ 129 card.mesh = Figures.mesh(_shape)
+ 130 card.material_override = Figures.material(u.type, _pose, color, _selected)
+ 131 card.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+ 132 card.extra_cull_margin = Models.CULL_MARGIN
+ 133 add_child(card)
+ 134 _face = 1 if u.id % 2 == 0 else -1
+ 135 card.scale = Vector3(_face, 1, 1)
+ 136 _bar_h = _bar_height()
+ 137 _bar_aspect = Figures.aspect(get_viewport() if is_inside_tree() else None)
+ 138 _build_bar_at(Figures.lift(_bar_h, _bar_aspect))
+ 139 _build_aura(u.type, color)
+ 143 var _selected: = False
+ 146 func set_selected(on: bool) -> void:
+ 147 if on == _selected:
+ 148 return
+ 149 _selected = on
+ 150 if card != None:
+ 151 card.material_override = Figures.material(type, _pose, _team, _selected)
+ 156 var _shape: = ''
+ 159 func _bar_height() -> float:
+ 160 return Figures.crown_height(_shape) +(CARD_BAR_GAP_BADGE if Figures.has_badge(_shape) else CARD_BAR_GAP)
+ 165 func set_line(on: bool) -> void:
+ 166 if card == None:
+ 167 return
+ 168 var shape: = Figures.line_shape(type) if on else type
+ 169 if shape == _shape:
+ 170 return
+ 171 _shape = shape
+ 172 card.mesh = Figures.mesh(_shape)
+ 173 _bar_h = _bar_height()
+ 174 bar.position = Figures.lift(_bar_h, _bar_aspect)
+ 175 if aura != None:
+ 176 aura.mesh = _aura_mesh(_shape)
+ 181 const CARD_BAR_GAP: = 0.12
+ 184 const CARD_BAR_GAP_BADGE: = 0.05
+ 190 func _place_bar() -> void:
+ 191 var a: = Figures.aspect(get_viewport())
+ 192 if absf(a - _bar_aspect) > 0.0005:
+ 193 _bar_aspect = a
+ 194 bar.position = Figures.lift(_bar_h, a)
+ 199 static func ground_slope(cam: Camera3D) -> float:
+ 200 if cam == None:
+ 201 return 1.064
+ 202 return 1 / clampf(cam.global_transform.basis.z.y, 0.3, 1)
+ 209 func label_up(slope: float = 1.064) -> float:
+ 210 if card == None:
+ 211 return CityLabel.FIGURE_UP
+ 212 return Figures.crown_height(_shape) * slope + 0.04
+ 217 func set_pose(pose: String) -> void:
+ 218 if card == None or pose == _pose or _dying:
+ 219 return
+ 220 _set_pose(pose)
+ 223 func _set_pose(pose: String) -> void:
+ 224 _pose = pose
+ 225 card.material_override = Figures.material(type, pose, _team, _selected)
+ 226 if _flash != None:
+ 227 _flash.set_shader_parameter('albedo_tex', Figures.albedo(type, pose))
+ 232 func face(dir: float, secs: float = 0.08) -> void:
+ 233 if card == None or dir == 0 or _dying:
+ 234 return
+ 235 var f: = signf(dir)
+ 236 if f == _face:
+ 237 return
+ 238 _face = f
+ 239 if _turn:
+ 240 _turn.kill()
+ 241 _turn = create_tween()
+ 242 _turn.tween_property(card, 'scale:x', f, secs).set_trans(Tween.TRANS_SINE)
+ 249 static func head_offset(h: float) -> Vector3:
+ 250 var y: = h * cos(LEAN)
+ 251 return Vector3(0, y, - h * sin(LEAN)) + Models.lean(y)
+ 256 func _build_shadow(long: bool) -> void:
+ 257 if _shadow_mat == None:
+ 258 _shadow_mat = ShaderMaterial.new()
+ 259 _shadow_mat.shader = preload('res://view/shaders/piece_shadow.gdshader')
+ 260 var pm: PlaneMesh = _shadow_meshes.get(long)
+ 261 if pm == None:
+ 262 pm = PlaneMesh.new()
+ 263 pm.size = Vector2(0.8, 0.4) if long else Vector2(0.56, 0.34)
+ 264 _shadow_meshes[long] = pm
+ 265 var sh: = MeshInstance3D.new()
+ 266 sh.mesh = pm
+ 267 sh.material_override = _shadow_mat
+ 268 sh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+ 269 sh.position = Vector3(0.07, 0.012, 0.1)
+ 270 add_child(sh)
+ 278 var aura: MeshInstance3D
+ 279 static var _aura_mats: = { }
+ 282 func _build_aura(t: String, color: Color) -> void:
+ 283 aura = MeshInstance3D.new()
+ 284 aura.mesh = _aura_mesh(t)
+ 285 aura.material_override = _aura_mat(color)
+ 286 aura.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+ 287 aura.position = Vector3(0.03, 0.012, 0.03)
+ 288 add_child(aura)
+ 291 static func _aura_mesh(shape: String) -> PlaneMesh:
+ 292 var pm: PlaneMesh = _shadow_meshes.get(shape)
+ 293 if pm == None:
+ 294 pm = PlaneMesh.new()
+ 295 pm.size = Figures.footprint(shape) * 2
+ 296 _shadow_meshes[shape] = pm
+ 297 return pm
+ 300 static func _aura_mat(color: Color) -> ShaderMaterial:
+ 301 var tone: = Figures.card_tone(Models.view_tone(color))
+ 302 var key: = tone.to_html()
+ 303 var m: ShaderMaterial = _aura_mats.get(key)
+ 304 if m == None:
+ 305 m = ShaderMaterial.new()
+ 306 m.shader = preload('res://view/shaders/piece_shadow.gdshader')
+ 307 m.set_shader_parameter('ring', True)
+ 308 m.set_shader_parameter('team', Vector3(tone.r, tone.g, tone.b))
+ 309 m.set_shader_parameter('strength', 0.5)
+ 310 _aura_mats[key] = m
+ 311 return m
+ 314 func _build_bar(h: float) -> void:
+ 315 _build_bar_at(head_offset(h))
+ 318 func _build_bar_at(at: Vector3) -> void:
+ 319 if _bar_mesh == None:
+ 320 _bar_mesh = QuadMesh.new()
+ 321 _bar_mesh.size = Vector2(0.3, 0.045)
+ 322 bar = Node3D.new()
+ 323 bar.position = at
+ 324 add_child(bar)
+ 325 var back: = MeshInstance3D.new()
+ 326 back.mesh = _bar_mesh
+ 327 back.material_override = _flat(Color(Vis.BRUN, 0.9), 0)
+ 328 back.scale = Vector3(1.08, 1.5, 1)
+ 329 bar.add_child(back)
+ 330 bar_fill = MeshInstance3D.new()
+ 331 bar_fill.mesh = _bar_mesh
+ 332 bar_fill.material_override = _flat(C_HP_HIGH, 1)
+ 333 bar.add_child(bar_fill)
+ 334 bar.visible = False
+ 339 const C_HP_HIGH: = Color('#9DAE5C')
+ 340 const C_HP_MID: = Color('#D8B04E')
+ 341 const C_HP_LOW: = Color('#C2502F')
+ 343 static var _flats: = { }
+ 346 static func _flat(col: Color, prio: int) -> StandardMaterial3D:
+ 347 var key: = col.to_html() + str(prio)
+ 348 if _flats.has(key):
+ 349 return _flats[key]
+ 350 var m: = StandardMaterial3D.new()
+ 351 m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+ 352 m.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+ 353 m.albedo_color = col
+ 354 m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+ 355 m.no_depth_test = True
+ 356 m.render_priority = 10 + prio
+ 357 _flats[key] = m
+ 358 return m
+ 362 func sync(u: Unit) -> void:
+ 363 var ratio: = clampf(u.hp / u.maxhp(), 0, 1)
+ 364 bar.visible = ratio < 0.999
+ 365 bar_fill.scale.x = maxf(ratio, 0.02)
+ 367 bar_fill.position.x = -0.15 *(1 - ratio)
+ 368 var col: = C_HP_HIGH if ratio > 0.6 else(C_HP_MID if ratio > 0.3 else C_HP_LOW)
+ 369 bar_fill.material_override = _flat(col, 1)
+ 370 working = not u.task.is_empty() and not bool(u.task.get('pending', False))
+ 375 const WORK_BEAT: = 0.72
+ 376 const WORK_HIT: = 0.3
+ 379 func _process(delta: float) -> void:
+ 380 _phase += delta
+ 381 if card != None:
+ 382 _place_bar()
+ 383 if busy or _dying:
+ 384 return
+ 385 if card != None:
+ 388 var sy: = 1 + sin(_phase * 2.2) * 0.012
+ 389 if working:
+ 390 var t: = fposmod(_phase, WORK_BEAT) / WORK_BEAT
+ 391 set_pose('strike' if t < WORK_HIT else 'idle')
+ 392 sy *= 1 - 0.03 *(1 - t / WORK_HIT) * float(t < WORK_HIT)
+ 393 elif _pose != 'idle':
+ 394 set_pose('idle')
+ 395 card.scale.y = sy
+ 396 return
+ 398 model.scale.y = _k * SQUASH *(1 + sin(_phase * 2.2) * 0.012)
+ 399 if tool and working:
+ 401 var k: = pow(absf(sin(_phase * 5)), 3)
+ 402 tool.rotation = _tool_rest + Vector3(-1.3 * k, 0, 0)
+ 403 elif tool:
+ 404 tool.rotation = _tool_rest + Vector3(sin(_phase * 1.3) * 0.04, 0, 0)
+ 413 func walk(points: Array, secs_per_step: float = 0.22) -> Tween:
+ 414 busy = True
+ 415 var tw: = create_tween()
+ 416 _act = tw
+ 417 var from: = position
+ 418 if card != None:
+ 419 set_pose('idle')
+ 420 card.scale.y = 1
+ 421 for p in points:
+ 422 var to: Vector3 = p
+ 423 var dx: = to.x - from.x
+ 424 if absf(dx) > 0.05:
+ 425     tw.tween_callback(face.bind(dx))
+ 426 tw.tween_method(_hop.bind(from, to), 0, 1, secs_per_step)
+ 427 from = to
+ 428 tw.tween_callback(func() -> void: busy = False)
+ 429 return tw
+ 430 for p in points:
+ 431 var to: Vector3 = p
+ 432 var dir: = to - from
+ 433 if Vector2(dir.x, dir.z).length() > 0.01:
+ 434 var yaw: = atan2(dir.x, dir.z)
+ 435 tw.tween_property(model, 'rotation:y', _short_angle(model.rotation.y, yaw), 0.06)
+ 436 tw.tween_method(_hop.bind(from, to), 0, 1, secs_per_step)
+ 437 from = to
+ 438 tw.tween_property(model, 'rotation:y', _yaw, 0.18)
+ 439 tw.tween_callback(func() -> void: busy = False)
+ 440 return tw
+ 443 func _hop(t: float, a: Vector3, b: Vector3) -> void:
+ 444 position = a.lerp(b, t) + Vector3(0, sin(t * PI) * HOP, 0)
+ 447 static func _short_angle(from: float, to: float) -> float:
+ 448 return from + wrapf(to - from, - PI, PI)
+ 453 func strike(target: Vector3, ranged: bool) -> Tween:
+ 454 busy = True
+ 455 var tw: = create_tween()
+ 456 _act = tw
+ 457 var dir: =(target - position)
+ 458 dir.y = 0
+ 459 if card != None:
+ 460 return _strike_card(tw, dir, ranged)
+ 461 var yaw: = atan2(dir.x, dir.z)
+ 462 tw.tween_property(model, 'rotation:y', _short_angle(model.rotation.y, yaw), 0.08)
+ 463 var home: = position
+ 464 if arm:
+ 465 tw.tween_property(arm, 'rotation:x', _arm_rest.x - 2, 0.12).set_trans(Tween.TRANS_BACK)
+ 466 tw.tween_property(arm, 'rotation:x', _arm_rest.x, 0.5)
+ 467 elif ranged:
+ 468 tw.tween_property(model, 'position:z', model.position.z - 0.03, 0.1)
+ 469 tw.tween_property(model, 'position:z', model.position.z, 0.15)
+ 470 else:
+ 471 var lunge: = home + dir.normalized() * minf(0.35, dir.length() * 0.3)
+ 472 tw.tween_property(self, 'position', lunge, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+ 473 if tool:
+ 474 tw.parallel().tween_property(tool, 'rotation:x', _tool_rest.x - 1.4, 0.12)
+ 475 tw.tween_property(self, 'position', home, 0.22).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+ 476 if tool:
+ 477 tw.parallel().tween_property(tool, 'rotation:x', _tool_rest.x, 0.22)
+ 478 tw.tween_property(model, 'rotation:y', _yaw, 0.2)
+ 479 tw.tween_callback(func() -> void: busy = False)
+ 480 return tw
+ 483 func _strike_card(tw: Tween, dir: Vector3, ranged: bool) -> Tween:
+ 484 var home: = position
+ 485 card.scale.y = 1
+ 486 if absf(dir.x) > 0.05:
+ 487 face(dir.x)
+ 488 tw.tween_interval(0.06)
+ 489 tw.tween_callback(set_pose.bind('strike'))
+ 490 var n: = dir.normalized() if dir.length() > 0.001 else Vector3.ZERO
+ 491 if ranged:
+ 493 tw.tween_property(self, 'position', home - n * 0.05, 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+ 494 tw.tween_property(self, 'position', home, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+ 495 tw.tween_interval(0.12)
+ 496 else:
+ 497 var lunge: = home + n * minf(0.35, dir.length() * 0.3)
+ 498 tw.tween_property(self, 'position', lunge, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+ 499 tw.tween_interval(0.08)
+ 500 tw.tween_property(self, 'position', home, 0.22).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+ 501 tw.tween_callback(set_pose.bind('idle'))
+ 502 tw.tween_callback(func() -> void: busy = False)
+ 503 return tw
+ 509 func hurt() -> Tween:
+ 510 var tw: = create_tween()
+ 511 if _recoil != None:
+ 512 _recoil.kill()
+ 513 _recoil = None
+ 514 if not _dying:
+ 515 _recoil = create_tween()
+ 516 if card != None:
+ 517 _flash = Figures.flash_material(type, _pose)
+ 518 var fm: = _flash
+ 519 card.material_overlay = fm
+ 520 tw.tween_method(func(a: float) -> void: fm.set_shader_parameter('flash', Color(1, 0.25, 0.15, a)), 1, 0, 0.35)
+ 521 if _recoil != None:
+ 522 _recoil.tween_property(card, 'position:x', 0.04 * - _face, 0.05)
+ 523 _recoil.tween_property(card, 'position:x', 0, 0.12)
+ 524 tw.tween_callback(func() -> void:
+ 525 if _flash == fm:
+ 526     card.material_overlay = None
+ 527     _flash = None)
+ 528 return tw
+ 529 var fm: = Models.flash_material()
+ 530 Models.overlay(model, fm)
+ 531 tw.tween_method(func(a: float) -> void: fm.set_shader_parameter('flash', Color(1, 0.25, 0.15, a)), 1, 0, 0.35)
+ 532 if _recoil != None:
+ 533 _recoil.tween_property(model, 'position:x', 0.04, 0.05)
+ 534 _recoil.tween_property(model, 'position:x', 0, 0.12)
+ 535 tw.tween_callback(func() -> void: Models.overlay(model, None))
+ 536 return tw
+ 548 const DIE_TILT: = 0.5
+ 549 const DIE_TILT_PROFILE: = 0.24
+ 550 const DIE_SINK: = 1.2
+ 553 func die() -> Tween:
+ 554 busy = True
+ 555 if _act != None:
+ 556 _act.kill()
+ 557 _act = None
+ 558 if _recoil != None:
+ 559 _recoil.kill()
+ 560 _recoil = None
+ 561 var tw: = create_tween()
+ 562 if card != None:
+ 563 if _turn != None:
+ 564 _turn.kill()
+ 565 _turn = None
+ 566 _set_pose('idle')
+ 567 _dying = True
+ 568 card.scale = Vector3(_face, 1, 1)
+ 569 card.position = Vector3.ZERO
+ 570 if PROFILE.has(type):
+ 573 var rear: = Figures.span(_shape, 'idle').x * _face
+ 574 var sgn: = - _face
+ 575 var c: = card
+ 576 var tilt: = func(a: float) -> void:
+ 577     var b: = a * sgn
+ 578     c.rotation.z = b
+ 579     c.position = Vector3(rear - rear * cos(b), - rear * sin(b), 0)
+ 580 tw.tween_method(tilt, 0, DIE_TILT_PROFILE, 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+ 581 else:
+ 582 tw.tween_property(card, 'rotation:z', DIE_TILT * _face, 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+ 583 tw.parallel().tween_property(bar, 'scale', Vector3.ZERO, 0.2)
+ 584 tw.tween_interval(0.15)
+ 585 tw.tween_property(self, 'position:y', position.y - DIE_SINK, 0.6).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+ 586 tw.tween_callback(queue_free)
+ 587 return tw
+ 588 _dying = True
+ 589 model.position.x = 0
+ 590 tw.tween_property(model, 'rotation:x', - PI / 2, 0.35).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+ 591 tw.parallel().tween_property(bar, 'scale', Vector3.ZERO, 0.2)
+ 592 tw.tween_interval(0.25)
+ 593 tw.tween_property(self, 'position:y', position.y - 0.4, 0.5)
+ 594 tw.parallel().tween_property(self, 'scale', Vector3(0.6, 0.6, 0.6), 0.5)
+ 595 tw.tween_callback(queue_free)
+ 596 return tw
+ 600 func appear() -> Tween:
+ 601 scale = Vector3(0.2, 0.2, 0.2)
+ 602 var tw: = create_tween()
+ 603 tw.tween_property(self, 'scale', Vector3.ONE, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+ 604 return tw
+ 608 func repaint(color: Color) -> void:
+ 609 if card != None:
+ 610 _team = color
+ 611 card.material_override = Figures.material(type, _pose, color, _selected)
+ 612 if aura != None:
+ 613 aura.material_override = _aura_mat(color)
+ 614 return
+ 615 Models.paint(model, color, Models.FIGURE)

@@ -1,0 +1,251 @@
+{
+ "source": "decoded ui/main_menu.gd _layout() + ui_theme.gd; Godot stretch canvas_items/expand, base 1600x900",
+ "base_16x9": {
+  "bar_top_wood": [
+   0,
+   0,
+   1600,
+   80
+  ],
+  "logo_title_banner": [
+   490.0,
+   0,
+   620,
+   185.18093049971282
+  ],
+  "menu_card(PanelContainer, measured size)": [
+   140,
+   199.18093049971282,
+   627,
+   661
+  ],
+  "menu_card_parchment_interior(measured)": [
+   170,
+   223.3,
+   569.2,
+   610
+  ],
+  "banner_side_left(blue lion)": [
+   10,
+   40,
+   80.74766355140187,
+   216.0
+  ],
+  "banner_side_right(red lion)": [
+   1513.2,
+   40,
+   76.8,
+   216.0
+  ],
+  "candle_left": [
+   6,
+   429.3,
+   57.5,
+   207.0
+  ],
+  "candle_right": [
+   1533.05,
+   429.3,
+   60.95,
+   207.0
+  ],
+  "lion_statue_left": [
+   4,
+   727.0,
+   118.71346153846154,
+   171.0
+  ],
+  "lion_statue_right": [
+   1476.3,
+   727.0,
+   119.7,
+   171.0
+  ],
+  "table_edge_bottom(books,scroll)": "hidden (th=24<90)"
+ },
+ "base_4x3": {
+  "bar_top_wood": [
+   0,
+   0,
+   1600,
+   80
+  ],
+  "logo_title_banner": [
+   490.0,
+   0,
+   620,
+   185.18093049971282
+  ],
+  "menu_card(PanelContainer, measured size)": [
+   140,
+   199.18093049971282,
+   627,
+   661
+  ],
+  "menu_card_parchment_interior(measured)": [
+   170,
+   223.3,
+   569.2,
+   610
+  ],
+  "banner_side_left(blue lion)": [
+   10,
+   40,
+   104.67289719626169,
+   280
+  ],
+  "banner_side_right(red lion)": [
+   1490.4444444444443,
+   40,
+   99.55555555555556,
+   280
+  ],
+  "candle_left": [
+   6,
+   572.4,
+   76.66666666666667,
+   276.0
+  ],
+  "candle_right": [
+   1512.7333333333333,
+   572.4,
+   81.26666666666667,
+   276.0
+  ],
+  "lion_statue_left": [
+   4,
+   970.0,
+   158.2846153846154,
+   228.0
+  ],
+  "lion_statue_right": [
+   1436.4,
+   970.0,
+   159.6,
+   228.0
+  ],
+  "table_edge_bottom(books,scroll)": [
+   168.2846153846154,
+   1050,
+   626.25,
+   150
+  ]
+ },
+ "px_scale": {
+  "1920x1080": 1.2,
+  "2560x1440": 1.6,
+  "1600x1200(4:3)": 1.0
+ },
+ "measured_2560": {
+  "logo_navy_field_bbox": [
+   871,
+   64,
+   1688,
+   233
+  ],
+  "new_game_navy_button_interior_bbox": [
+   307,
+   708,
+   1145,
+   783
+  ],
+  "parchment_interior_bbox": [
+   272,
+   358,
+   1182,
+   1334
+  ]
+ },
+ "menu_buttons_order": [
+  "Continue (only if autosave; navy primary)",
+  "New Game (navy primary when no save)",
+  "Load Game (only if quicksave)",
+  "How to Play",
+  "Settings",
+  "Credits",
+  "Quit"
+ ],
+ "menu_button_min_size_base": [
+  470,
+  64
+ ],
+ "button_font": "IM Fell English Regular, embolden 0.32, 27 px base",
+ "title_mark": "orn_left 128x61 + \"Chronica\" IM Fell English (fell) 74 px base, ink #3A250E, outline max(2,74/22)=3 px same ink, shadow rgba(255,242,209,0.6) offset y 2 + orn_right",
+ "subtitle": "Workers shape the land. The land feeds the realm. / The realm raises the army. The army takes new land.  (IM Fell English Italic 21 px base, INK_DIM #5E4A30)",
+ "footer": "A turn-based strategy of engineers and kingdoms \u00b7 v1.0 (IM Fell Italic 15 px, INK_FAINT #67553E)",
+ "camera_menu": {
+  "seed": 4242,
+  "map": "small",
+  "zoom": 11,
+  "fov_v_deg": 30,
+  "pitch_deg": 66.09,
+  "distance": 20.9,
+  "height": 19.11,
+  "back_offset": 8.47,
+  "tour": "focus first owned settlement + (-2.2,0,0.5); loop: hold 3 s, sine in-out pan 14 s to next settlement"
+ },
+ "clear_color": "#12141a (project default), sky day bg #D3C3A5 (millefleurs light.day)",
+ "px_2560x1440": {
+  "bar_top_wood": [
+   0.0,
+   0.0,
+   2560.0,
+   128.0
+  ],
+  "logo_title_banner": [
+   784.0,
+   0.0,
+   992.0,
+   296.3
+  ],
+  "menu_card(PanelContainer, measured size)": [
+   224.0,
+   318.7,
+   1003.2,
+   1057.6
+  ],
+  "menu_card_parchment_interior(measured)": [
+   272.0,
+   357.3,
+   910.7,
+   976.0
+  ],
+  "banner_side_left(blue lion)": [
+   16.0,
+   64.0,
+   129.2,
+   345.6
+  ],
+  "banner_side_right(red lion)": [
+   2421.1,
+   64.0,
+   122.9,
+   345.6
+  ],
+  "candle_left": [
+   9.6,
+   686.9,
+   92.0,
+   331.2
+  ],
+  "candle_right": [
+   2452.9,
+   686.9,
+   97.5,
+   331.2
+  ],
+  "lion_statue_left": [
+   6.4,
+   1163.2,
+   189.9,
+   273.6
+  ],
+  "lion_statue_right": [
+   2362.1,
+   1163.2,
+   191.5,
+   273.6
+  ],
+  "table_edge_bottom(books,scroll)": "hidden (th=24<90)"
+ }
+}

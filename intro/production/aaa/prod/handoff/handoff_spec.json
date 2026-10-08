@@ -1,0 +1,301 @@
+{
+ "about": "KEYFRAME f1983 (S26) hand-off: non-pixel specification, v2 (review polish). Pixel deliverables are in mattes_<bucket>/ and the two keyframes.",
+ "frame_choice": {
+  "menu_frame": 30,
+  "game_time_s": 0.5,
+  "wording": "Replace 'the live menu's first frame' in S26, section 13 and G12 with 'menu frame 30 (0.5 s after callMain: nameplates settled, camera on its first focus)'. f1983 is built on that frame; G12 and the on-device check must compare against the same state."
+ },
+ "overlay_timing": {
+  "finding": "The overlay's engine-ready signal (#status opacity '0' -> finish() in intro_overlay_snippet.html) fires at about menu frame 1. Started there, the 0.9 s dissolve runs while the nameplates (Sablon, Grandbois, Hautecouronne) are still popping in larger and offset (frames 1 to about 20), so for about 0.3 s, at 40-55 % live opacity, they show ghosted doubles. The earlier README sentence 'that is the state the live game shows during the hand-off dissolve' is only true from about frame 20 on.",
+  "recommendation": "finish() waits for at least 30 PRESENTED canvas rAF frames after the engine-ready signal before it starts the 0.9 s dissolve and the 1.2 s card wipe. Count frames, not milliseconds: the first iPad frames hitch.",
+  "budget_s": {
+   "wait_30_frames": 0.5,
+   "dissolve": 0.9,
+   "card_wipe": 1.2,
+   "wait_plus_card_wipe": 1.7,
+   "tour_hold_before_pan": 3.0,
+   "verdict": "wait + wipe = 1.7 s, inside the 3 s tour hold (the hold starts after callMain)"
+  },
+  "evidence": {
+   "what": "alpha(t) = 1 - cubic-bezier(.25,.1,.25,1)(t / 0.9 s); shown = alpha f1983 + (1 - alpha) live; outside the card rect",
+   "result_table": [
+    {
+     "t_s": 0.1,
+     "overlay_opacity": 0.887,
+     "A_start_at_frame1_mean_abs": 0.179,
+     "A_px_over_16": 0.24,
+     "B_after_30_frames_mean_abs": 0.0,
+     "B_px_over_16": 0.0,
+     "B_later_state_mf120_mean_abs": 0.125
+    },
+    {
+     "t_s": 0.2,
+     "overlay_opacity": 0.654,
+     "A_start_at_frame1_mean_abs": 0.551,
+     "A_px_over_16": 1.22,
+     "B_after_30_frames_mean_abs": 0.0,
+     "B_px_over_16": 0.0,
+     "B_later_state_mf120_mean_abs": 0.384
+    },
+    {
+     "t_s": 0.3,
+     "overlay_opacity": 0.424,
+     "A_start_at_frame1_mean_abs": 0.918,
+     "A_px_over_16": 1.53,
+     "B_after_30_frames_mean_abs": 0.0,
+     "B_px_over_16": 0.0,
+     "B_later_state_mf120_mean_abs": 0.638
+    },
+    {
+     "t_s": 0.45,
+     "overlay_opacity": 0.198,
+     "A_start_at_frame1_mean_abs": 1.279,
+     "A_px_over_16": 1.73,
+     "B_after_30_frames_mean_abs": 0.0,
+     "B_px_over_16": 0.0,
+     "B_later_state_mf120_mean_abs": 0.889
+    },
+    {
+     "t_s": 0.6,
+     "overlay_opacity": 0.075,
+     "A_start_at_frame1_mean_abs": 1.474,
+     "A_px_over_16": 1.83,
+     "B_after_30_frames_mean_abs": 0.0,
+     "B_px_over_16": 0.0,
+     "B_later_state_mf120_mean_abs": 1.025
+    }
+   ],
+   "crops": "qa/dissolve_ghost_sim_16x9.png",
+   "caveat": "arithmetic on stored captures; not the real overlay on a device",
+   "not_done": "The real overlay was NOT run through the deterministic-clock harness (about 6 min per frame at 1440p, and the overlay build is not in this stage). The proof by capture is open: run it with the 30-frame wait and capture 4-5 mid-dissolve frames, then G12 on device."
+  },
+  "fallback_if_the_wait_is_refused": "Rebuild f1983 on the live frame that matches the dissolve midpoint instead of frame 30 (one command: make_all.sh with FRAMES=<n>)."
+ },
+ "storyboard_corrections": {
+  "owner": "orchestrator / storyboard owner (this stage does not edit the storyboard)",
+  "card_minimum_size_base_units": {
+   "was": [
+    627,
+    661
+   ],
+   "is": [
+    629,
+    665
+   ],
+   "note": "holds at three scales (fitted on 2560 and 2048 captures, checked on the 1920x1080 reference: frame edges at 134.2/770.8/195.4/861.25 base units); 'card is 661 base px high' becomes 665; the 'tall' test still holds"
+  },
+  "B169_2560x1440": {
+   "six_keyframes_f1983_card": {
+    "was": "(224,319)-(1227,1376)",
+    "is": "(224.0,318.4)-(1230.37,1382.37)"
+   },
+   "section_13_menu_card": {
+    "was": "(224,318.7,1003.2x1057.6)",
+    "is": [
+     224.0,
+     318.4,
+     1006.37,
+     1063.97
+    ]
+   },
+   "parchment_interior_S24_f1766_leaf_target": {
+    "was": "(272,357.3,910.7x976)",
+    "is": [
+     259.2,
+     350.4,
+     935.97,
+     999.97
+    ],
+    "tolerance_px": 0.5,
+    "note": "the visible field inside the inner dark line (what the leaf must cover); the leaf lands UNDER menu_card_frame.png"
+   }
+  },
+  "B133_2048x1536": {
+   "section_13_menu_card": {
+    "was": "(179,255,803x846)",
+    "is": [
+     179.2,
+     254.72,
+     805.12,
+     851.23
+    ]
+   },
+   "parchment_field": [
+    207.36,
+    280.32,
+    748.8,
+    800.03
+   ]
+  },
+  "other_buckets": "menu_layout.layout(W, H, card_min=(629, 665)) and draw_rects(); confirm each with fit_card.py on a native capture.",
+  "title_baseline_and_rule (storyboard line 390, critique #31)": {
+   "B169": {
+    "title_baseline_y_px": 481,
+    "rule_centre_y_px": 669.99
+   },
+   "B133": {
+    "title_baseline_y_px": 385,
+    "rule_centre_y_px": 536.0
+   },
+   "note": "in base units both buckets agree (title baseline 300.6-300.8, rule centre 418.7); every band and rect is in mattes_<bucket>/rects.json -> content_geometry"
+  }
+ },
+ "desk_light_cues": {
+  "B133_chamberstick": "The 4:3 table edge carries a third lit flame (the chamberstick) that no desk-light cue covered (left candle f1664, right candle f1707, G14). Suggested: light it with the left candle at f1664 so the 4:3 desk reveal reaches f1983 without a flame popping on. Layers: table_edge_bottom_unlit / _flame / _flame_core / _waxglow, exact residual (see README)."
+ },
+ "g12": {
+  "mask_png": "mattes_<bucket>/units_water_g12_mask.png (255 = exclude)",
+  "derivation": "mask = dilate(max over stored captures of |capture - menu frame 30| > 6/255, 6 px); empirical, from the captures listed. A frame in which no unit moved differently is not covered: re-derive it from a wider capture set if G12 starts flagging units.",
+  "B169": {
+   "mask_fraction_of_frame": 0.0545,
+   "outlook": {
+    "c169_a/menu_2560x1440_mf003_r0.png": {
+     "mean_abs_255_no_mask": 1.594,
+     "mean_abs_255_with_mask": 0.061,
+     "px_over_16_pct_no_mask": 1.86,
+     "px_over_16_pct_with_mask": 0.0
+    },
+    "c169_a/menu_2560x1440_mf120_r0.png": {
+     "mean_abs_255_no_mask": 1.109,
+     "mean_abs_255_with_mask": 0.215,
+     "px_over_16_pct_no_mask": 1.45,
+     "px_over_16_pct_with_mask": 0.0
+    },
+    "c169_b/menu_2560x1440_mf030_r0.png": {
+     "mean_abs_255_no_mask": 0.001,
+     "mean_abs_255_with_mask": 0.0,
+     "px_over_16_pct_no_mask": 0.0,
+     "px_over_16_pct_with_mask": 0.0
+    }
+   }
+  },
+  "B133": {
+   "mask_fraction_of_frame": 0.0499,
+   "outlook": {
+    "c133_a/menu_2048x1536_mf060_r0.png": {
+     "mean_abs_255_no_mask": 0.854,
+     "mean_abs_255_with_mask": 0.052,
+     "px_over_16_pct_no_mask": 1.22,
+     "px_over_16_pct_with_mask": 0.0
+    }
+   }
+  },
+  "also_exclude": "text (nameplates), flames, card interior (as in the storyboard G12 definition); the mask already covers nameplate pop-in where the 16:9 frame-3 capture shows it"
+ },
+ "encode_guard": {
+  "risk": "The blank parchment field is the game 260x340 texture stretched about 3.9x: extremely low-frequency (2 px high-pass std about 0.45/255, about 37 luma levels across the field). It is the area most likely to band or macroblock in an 8-bit H.264 delivery, especially during the S24-S26 dissolve.",
+  "recommendation": "Encode the master at 10-bit (HEVC Main10 / H.264 High10 where the target decodes it) or, for 8-bit H.264, tune=grain or film with high AQ strength; add the field to the G12 check on the ENCODED file (device-decoded), not only the PNG. Do NOT add grain to the master PNG: that would break the bit match with the live game.",
+  "colour": "Flag the shipped encode BT.709 (primaries, transfer, matrix), range matched to how the game presents on device (tv in the storyboard; verify the mapping on device).",
+  "measured_once": {
+   "source_png": {
+    "mean_abs_err_255": 0.0,
+    "max_abs_err_255": 0,
+    "luma_levels_spanned": 37,
+    "max_block_step_255": 4.395,
+    "highpass_std_sigma2": 0.452
+   },
+   "x264_8bit_crf18_default": {
+    "mean_abs_err_255": 1.891,
+    "max_abs_err_255": 7,
+    "luma_levels_spanned": 37,
+    "max_block_step_255": 4.546,
+    "highpass_std_sigma2": 0.646,
+    "file_kb": 1209.9
+   },
+   "x264_8bit_crf18_grain_aq3": {
+    "mean_abs_err_255": 1.842,
+    "max_abs_err_255": 8,
+    "luma_levels_spanned": 37,
+    "max_block_step_255": 4.565,
+    "highpass_std_sigma2": 0.689,
+    "file_kb": 1188.9
+   },
+   "x265_10bit_crf18": {
+    "mean_abs_err_255": 2.683,
+    "max_abs_err_255": 9,
+    "luma_levels_spanned": 36,
+    "max_block_step_255": 4.248,
+    "highpass_std_sigma2": 0.546,
+    "file_kb": 940.1
+   },
+   "note": "16:9 keyframe, 45 frames at 30 fps, field eroded 40 px. luma_levels_spanned is the count of distinct rounded luma values in the field; BT.709 tv-range 8-bit squeezes the 25-level span further. One still and three encoder settings: evidence, not a guarantee."
+  },
+  "reading_of_the_measurement": "One still, three settings at CRF 18: none collapsed the field levels (37 -> 36-37) or raised the largest 24 px block step (4.4 -> 4.2-4.6), but every setting moved the field by a mean 1.8-2.7/255 (max 7-9) and the 8-bit settings added high-pass energy (0.45 -> 0.65-0.69); the 10-bit run was not better on mean error. So this test neither proves banding nor clears the risk: it shows the field is not untouched by the encode. The dissolve frames and the ~6 Mb/s cap were not tested."
+ },
+ "downstream_continuity": {
+  "parchment_target_for_S24_S25": {
+   "B169": {
+    "mean_rgb": [
+     232.2,
+     208.65,
+     173.95
+    ],
+    "mean_luminance_255": 204.93,
+    "highpass_std_sigma2_255": 0.452,
+    "laplacian_variance": 0.115,
+    "luminance_levels_spanned": 25,
+    "foxing_specks_per_megapixel": 95.3,
+    "foxing_speck_rule": "connected areas of >= 3 px darker than the 8 px local mean by > 5/255, field eroded by 40 px (scale dependent: the specks are stretched with the card)",
+    "note": "Measured on f1983 inside the field eroded by 40 px. The game card is a 260x340 texture stretched about 3.9x: very soft and low-frequency by design. The S24 leaf must be low-passed and graded to these numbers before the dissolve, or the hand-off reads as a pop from sharp textile to soft bitmap."
+   },
+   "B133": {
+    "mean_rgb": [
+     232.32,
+     208.85,
+     174.27
+    ],
+    "mean_luminance_255": 205.15,
+    "highpass_std_sigma2_255": 0.552,
+    "laplacian_variance": 0.183,
+    "luminance_levels_spanned": 21,
+    "foxing_specks_per_megapixel": 147.5,
+    "foxing_speck_rule": "connected areas of >= 3 px darker than the 8 px local mean by > 5/255, field eroded by 40 px (scale dependent: the specks are stretched with the card)",
+    "note": "Measured on f1983 inside the field eroded by 40 px. The game card is a 260x340 texture stretched about 3.9x: very soft and low-frequency by design. The S24 leaf must be low-passed and graded to these numbers before the dissolve, or the hand-off reads as a pop from sharp textile to soft bitmap."
+   }
+  },
+  "light_target": {
+   "card_shadow_probe_B169": {
+    "rows": [
+     1169,
+     1329
+    ],
+    "near_6_26px_mean_lum": 84.91,
+    "far_120_220px_mean_lum": 82.85,
+    "ratio": 1.025
+   },
+   "reading": "The game frame has flat, even lighting with no raking light and no measurable card drop shadow on the board (ratio of the sea just right of the card to the sea 120-220 px out is close to 1). The cinematic's raking light and any card shadow must be fully graded out by the start of the dissolve."
+  }
+ },
+ "colour_metadata": {
+  "pngs": "v2 deliverables carry an sRGB chunk (intent 0) inserted without recompression; pixels are unchanged (keyframe identical to the v1 file). The native captures in capture/ are left byte-identical to what Playwright wrote (untagged = sRGB).",
+  "matte_alpha": "straight (non-premultiplied)",
+  "blend": "sRGB-space over (Godot Compatibility)"
+ },
+ "game_team_notes_out_of_scope": [
+  "4:3 (the main iPad platform): the 'Hautecouronne' nameplate is clipped at the right frame edge and partly hidden behind the right candle in the menu-camera framing.",
+  "The frozen white floe and fish sprites in the lower sea read as stray paper scraps in a still; a cinematic that matches the menu pixel for pixel cannot fix either.",
+  "Both are live game art / menu-camera composition (the repo is read-only here): pass them on as 4:3 composition notes."
+ ],
+ "not_applied": [
+  {
+   "item": "Mid-dissolve captures through the real overlay (review 3, P1 proof)",
+   "why": "needs the overlay build and about 6 min per frame at 1440p; replaced by the arithmetic simulation, clearly labelled"
+  },
+  {
+   "item": "Inpainting the airborne fish, or choosing a fish-free frame (review 2, P3, optional)",
+   "why": "keeps the literal bit match with the live frame; the fish are live art; revisit if the client prefers a calmer poster"
+  },
+  {
+   "item": "Grain on the master PNG (review 1, P3)",
+   "why": "would break the bit match; the guard is on the encode instead"
+  },
+  {
+   "item": "Valance letter / ornament inpainting for S24-S26",
+   "why": "out of scope for this stage (unchanged from v1)"
+  },
+  {
+   "item": "Editing storyboard_final.md",
+   "why": "owned elsewhere; corrections are listed above for the orchestrator"
+  }
+ ]
+}

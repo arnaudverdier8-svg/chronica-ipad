@@ -1,0 +1,142 @@
+{
+ "navy(logo_title)": {
+  "n": 348681,
+  "frac": 0.512,
+  "shadow": "#060b13",
+  "mid": "#101b2e",
+  "highlight": "#223554"
+ },
+ "gold(logo_title)": {
+  "n": 222834,
+  "frac": 0.327,
+  "shadow": "#693706",
+  "mid": "#c47e23",
+  "highlight": "#fcd577"
+ },
+ "gold(crest_legion eagle)": {
+  "n": 46974,
+  "frac": 0.415,
+  "shadow": "#925003",
+  "mid": "#dd9d2a",
+  "highlight": "#fbe690"
+ },
+ "crimson(crest_legion)": {
+  "n": 43356,
+  "frac": 0.383,
+  "shadow": "#4f0101",
+  "mid": "#a10709",
+  "highlight": "#d31e20"
+ },
+ "royal_blue(crest_merchants)": {
+  "n": 49023,
+  "frac": 0.433,
+  "shadow": "#02194b",
+  "mid": "#0b3e93",
+  "highlight": "#1f63c2"
+ },
+ "green(crest_nomads)": {
+  "n": 40648,
+  "frac": 0.36,
+  "shadow": "#043218",
+  "mid": "#13673f",
+  "highlight": "#329167"
+ },
+ "orange(crest_builders)": {
+  "n": 68700,
+  "frac": 0.601,
+  "shadow": "#904601",
+  "mid": "#ce760b",
+  "highlight": "#eda62d"
+ },
+ "ivory_horse(crest_nomads)": {
+  "n": 31234,
+  "frac": 0.277,
+  "shadow": "#cd8717",
+  "mid": "#eacea5",
+  "highlight": "#f9f3e5"
+ },
+ "linen(vignette_blue)": {
+  "n": 81245,
+  "frac": 0.561,
+  "shadow": "#ad8d62",
+  "mid": "#c3a780",
+  "highlight": "#cfb994"
+ },
+ "blue_lion(vignette_blue)": {
+  "n": 20290,
+  "frac": 0.14,
+  "shadow": "#1c2327",
+  "mid": "#2f3a42",
+  "highlight": "#485866"
+ },
+ "red_lion(vignette_red)": {
+  "n": 17539,
+  "frac": 0.128,
+  "shadow": "#37251c",
+  "mid": "#723223",
+  "highlight": "#954631"
+ },
+ "linen(millefleurs)": {
+  "n": 19772,
+  "frac": 0.792,
+  "shadow": "#b79c63",
+  "mid": "#d4be97",
+  "highlight": "#d7c199"
+ },
+ "parchment(menu_card)": {
+  "n": 64743,
+  "frac": 0.752,
+  "shadow": "#dcba86",
+  "mid": "#e7ceaa",
+  "highlight": "#ead4b3"
+ },
+ "dark_veil(menu_veil)": {
+  "n": 2408339,
+  "frac": 0.897,
+  "shadow": "#0f0a06",
+  "mid": "#1b130c",
+  "highlight": "#2c2016"
+ },
+ "knight_navy(unit_knight)": {
+  "n": 8787,
+  "frac": 0.278,
+  "shadow": "#020a21",
+  "mid": "#0b1b3d",
+  "highlight": "#1d3464"
+ },
+ "knight_gold(unit_knight)": {
+  "n": 8168,
+  "frac": 0.259,
+  "shadow": "#8b4c0c",
+  "mid": "#c78228",
+  "highlight": "#f7c157"
+ },
+ "archer_green(unit_archer)": {
+  "n": 11679,
+  "frac": 0.308,
+  "shadow": "#1c1f0d",
+  "mid": "#3c401e",
+  "highlight": "#6f7340"
+ },
+ "flesh(unit_archer)": {
+  "n": 7858,
+  "frac": 0.207,
+  "shadow": "#a15d29",
+  "mid": "#c69363",
+  "highlight": "#e1c099"
+ },
+ "red_shield(shield_red)": {
+  "n": 18600,
+  "frac": 0.486,
+  "shadow": "#5b0605",
+  "mid": "#89100e",
+  "highlight": "#a71c17"
+ },
+ "banner_green(realm_banner_green)": {
+  "n": 3435,
+  "frac": 0.727,
+  "shadow": "#162d18",
+  "mid": "#274429",
+  "highlight": "#355736"
+ }
+}

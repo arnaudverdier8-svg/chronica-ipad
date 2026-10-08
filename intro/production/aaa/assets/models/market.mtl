@@ -1,0 +1,40 @@
+newmtl stone
+Kd 0.6240 0.5457 0.4020
+d 1.0
+# palette #CFC3AA (linear); original glb Kd 0.8095 0.7977 0.7736
+
+newmtl wood_dark
+Kd 0.0612 0.0296 0.0116
+d 1.0
+# palette #46301C (linear); original glb Kd 0.6262 0.5271 0.4236
+
+newmtl team
+Kd 0.0242 0.0529 0.0953
+d 1.0
+# palette #2B4157 (linear); original glb Kd 0.8808 0.4614 0.4236
+
+newmtl white
+Kd 0.8070 0.6867 0.4969
+d 1.0
+# palette #E8D8BB (linear); original glb Kd 0.9777 0.9731 0.9547
+
+newmtl plank
+Kd 0.3813 0.2542 0.1119
+d 1.0
+# palette #A68A5E (linear); original glb Kd 0.8323 0.7354 0.6012
+
+newmtl crop
+Kd 0.2086 0.2542 0.0648
+d 1.0
+# palette #7E8A48 (linear); original glb Kd 0.7674 0.8543 0.5371
+
+newmtl gold
+Kd 0.4564 0.2874 0.0648
+d 1.0
+# palette #B49248 (linear); original glb Kd 0.9777 0.8808 0.5371
+
+newmtl fish
+Kd 0.3968 0.4452 0.4125
+d 1.0
+# palette #A9B2AC (linear); original glb Kd 0.8095 0.8650 0.8962
+

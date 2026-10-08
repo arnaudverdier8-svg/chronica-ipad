@@ -1,0 +1,36 @@
+{
+ "note": "world units mm, x right, y down (image convention); Blender maps (x,y)->(X,-Y). Frame for the frontal still is x[-200,200] y[-112.5,112.5].",
+ "px": 16,
+ "linen_tile_mm": 80,
+ "ground": {
+  "x0": -340,
+  "y0": -400,
+  "x1": 340,
+  "y1": 220,
+  "step": 2.0
+ },
+ "king": {
+  "x0": -178,
+  "y0": -88,
+  "mesh": [
+   -178,
+   -88,
+   -8,
+   86
+  ]
+ },
+ "knight": {
+  "x0": 16,
+  "y0": -88,
+  "card_mm_h": 165.0,
+  "margin_mm": 6.0,
+  "mesh": [
+   16,
+   -88,
+   184,
+   88
+  ]
+ },
+ "mesh_dv_mm": 0.3333,
+ "mesh_hp_sigma_mm": 0.3
+}

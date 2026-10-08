@@ -1,0 +1,540 @@
+   1 extends Node
+  26 var args: = { }
+  27 var audio: AudioDirector
+  28 var _current: Node
+  31 func _ready() -> void:
+  32 for a in OS.get_cmdline_user_args():
+  33 var kv: = a.split('=')
+  34 args[kv[0]] = kv[1] if kv.size() > 1 else '1'
+  37 Device.detect(args.has('phone'))
+  38 if args.has('notch'):
+  39 Device.simulate_notch()
+  40 Device.apply_scale(get_window())
+  41 if args.has('nosquad'):
+  42 Figures.squads = False
+  43 if args.has('hideunits'):
+  44 Pieces.set_units_hidden(True)
+  47 var pal: = Vis.use_palette(args.get('palette', Palettes.DEFAULT))
+  48 if args.has('palette'):
+  49 print('palette: ', pal)
+  50 if args.has('novsync'):
+  51 DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+  52 Settings.apply_display()
+  53 if args.has('web'):
+  54 _emulate_web()
+  55 if OS.has_feature('web') or args.has('pace'):
+  56 var pace: = FramePace.new()
+  57 pace.busy = _animating
+  58 pace.verbose = args.has('pace')
+  59 add_child(pace)
+  60 if args.has('nocards'):
+  61 Figures.enabled = False
+  62 if args.has('scale3d'):
+  63 get_viewport().scaling_3d_scale = float(args['scale3d'])
+  64 if args.has('gallery'):
+  65 _gallery()
+  66 elif args.has('demo'):
+  67 _demo()
+  68 else:
+  69 audio = AudioDirector.new()
+  70 add_child(audio)
+  71 if args.has('match'):
+  72 await _start_test_match()
+  73 else:
+  74 show_menu(args.get('menu', '') == 'new')
+  76 if args.has('press'):
+  77 for label in String(args['press']).split(','):
+  78 for i in 20:
+  79     await get_tree().process_frame
+  80 var b: = _find_button(self, label.replace('_', ' '))
+  81 print('press ', label, ': ', 'ok' if b != None else 'NOT FOUND')
+  82 if b != None:
+  83     b.pressed.emit()
+  84 if args.has('shot'):
+  85 for i in int(args.get('frames', '40')):
+  86 await get_tree().process_frame
+  87 get_viewport().get_texture().get_image().save_png(args['shot'])
+  88 get_tree().quit()
+  93 func _animating() -> bool:
+  94 var m: = _current as Match
+  95 return m != None and m.animating()
+ 101 func _emulate_web() -> void:
+ 102 Vis.web = True
+ 103 var k: = 'rendering/lights_and_shadows/directional_shadow/'
+ 104 RenderingServer.directional_shadow_atlas_set_size(int(ProjectSettings.get_setting(k + 'size.web', 4096)),
+ 105 bool(ProjectSettings.get_setting(k + '16_bits', True)))
+ 106 RenderingServer.directional_soft_shadow_filter_set_quality(
+ 107 int(ProjectSettings.get_setting(k + 'soft_shadow_filter_quality.web', 2)) as RenderingServer.ShadowQuality)
+ 110 func _find_button(n: Node, label: String) -> Button:
+ 111 if n is Button and(n as Button).text == label and(n as Button).is_visible_in_tree():
+ 112 return n
+ 113 for c in n.get_children():
+ 114 var b: = _find_button(c, label)
+ 115 if b != None:
+ 116 return b
+ 117 return None
+ 120 func _swap(n: Node) -> void:
+ 121 if _current != None:
+ 122 _current.queue_free()
+ 123 _current = n
+ 124 add_child(n)
+ 131 func show_menu(open_new: bool = False) -> void:
+ 132 var root: = Node3D.new()
+ 133 _swap(root)
+ 134 _menu_world(root)
+ 135 var ui: = CanvasLayer.new()
+ 136 root.add_child(ui)
+ 137 var menu: = MainMenu.new()
+ 138 ui.add_child(menu)
+ 139 menu.start.connect(start_match)
+ 140 menu.resume.connect(resume)
+ 141 audio.g = None
+ 142 audio.menu_music()
+ 143 if open_new:
+ 144 menu._new_game()
+ 149 func _menu_world(root: Node3D) -> void:
+ 150 var g: = Rules.new_game({ 'seed': 4242, 'size': 'small', 'all_ai': True, 'headless': True })
+ 153 while not g.over and g.turn < 40:
+ 154 AI.play_turn(g, g.current)
+ 155 Rules.end_turn(g)
+ 156 if g.turn >= 16 and g.current == 0 and Rules.season(g) in['summer', 'autumn'] and Rules.phase(g) == 'day':
+ 157 break
+ 158 g.headless = False
+ 159 g.events.clear()
+ 160 for t in g.tiles:
+ 161 for p in g.players:
+ 162 p.explored[t.idx] = 1
+ 163 var sky: = SkyRig.new()
+ 164 root.add_child(sky)
+ 165 sky.set_phase('day', True)
+ 166 var board: = Board.new()
+ 167 root.add_child(board)
+ 168 board.setup(g, 0)
+ 169 board.set_night(0)
+ 170 RenderingServer.global_shader_parameter_set('g_night', 0)
+ 171 var pieces: = Pieces.new()
+ 172 root.add_child(pieces)
+ 173 pieces.setup(g, board)
+ 174 Models.set_season(board.season)
+ 175 var rig: = CameraRig.new()
+ 176 root.add_child(rig)
+ 177 rig.setup_bounds(g)
+ 178 rig.input_enabled = False
+ 179 rig.set_zoom(11, True)
+ 181 var stops: Array =[]
+ 182 for s in g.settlements:
+ 183 if s.owner >= 0:
+ 184 stops.append(Hex.to_world(s.c) + Vector3(-2.2, 0, 0.5))
+ 185 if stops.is_empty():
+ 186 stops.append(Vector3.ZERO)
+ 187 rig.focus_on(stops[0], 0)
+ 188 var tw: = rig.create_tween().set_loops()
+ 189 for i in stops.size():
+ 190 var nxt: Vector3 = stops[(i + 1) % stops.size()]
+ 191 tw.tween_interval(3)
+ 192 tw.tween_property(rig, 'position', nxt, 14).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+ 199 func start_match(setup: Dictionary) -> void:
+ 200 var m: = Match.new()
+ 201 m.audio = audio
+ 202 _swap(m)
+ 203 m.leave.connect(_on_leave)
+ 204 m.start_new(setup)
+ 207 func resume(slot: String) -> void:
+ 208 var st: = Match.load_state(slot)
+ 209 if st == None:
+ 210 show_menu()
+ 211 return
+ 212 var m: = Match.new()
+ 213 m.audio = audio
+ 214 _swap(m)
+ 215 m.leave.connect(_on_leave)
+ 216 m.start_from(st)
+ 219 func _on_leave(to: String) -> void:
+ 220 if to == 'menu':
+ 221 show_menu()
+ 222 elif to == 'new':
+ 223 show_menu(True)
+ 224 elif to.begins_with('load:'):
+ 225 resume(to.trim_prefix('load:'))
+ 230 func _start_test_match() -> void:
+ 231 var setup: = { 'seed': int(args.get('seed', '7')), 'size': args.get('size', 'medium'),
+ 232 'human_faction': args.get('faction', 'builders'), 'difficulty': args.get('difficulty', 'normal'),
+ 233 'tutorial': args.has('tutorial') }
+ 234 var until: = int(args.get('play', '0'))
+ 235 if until <= 0:
+ 236 start_match(setup)
+ 237 else:
+ 238 setup['headless'] = True
+ 239 var g: = Rules.new_game(setup)
+ 240 g.players[0].is_ai = True
+ 241 while not g.over and g.turn < until:
+ 242 AI.play_turn(g, g.current)
+ 243 Rules.end_turn(g)
+ 245 while g.current != g.human and not g.over:
+ 246 AI.play_turn(g, g.current)
+ 247 Rules.end_turn(g)
+ 248 g.players[0].is_ai = False
+ 249 g.headless = False
+ 250 g.events.clear()
+ 251 var m: = Match.new()
+ 252 m.audio = audio
+ 253 _swap(m)
+ 254 m.leave.connect(_on_leave)
+ 255 m.start_from(g)
+ 256 await get_tree().process_frame
+ 257 var mt: = _current as Match
+ 258 mt.autosave = False
+ 261 for i in int(args.get('turns', '0')):
+ 262 if mt.g.over:
+ 263 break
+ 264 AI.play_turn(mt.g, mt.human)
+ 265 await mt.director.feed()
+ 266 mt._after()
+ 267 await mt.end_turn()
+ 268 print('turn ', mt.g.turn, ' done at ', Time.get_ticks_msec())
+ 269 if args.has('zoom'):
+ 270 mt.rig.set_zoom(float(args['zoom']), True)
+ 271 if args.has('phase'):
+ 272 mt.sky.set_phase(args['phase'], True)
+ 273 if args.has('season'):
+ 275 mt.board.apply_season(args['season'])
+ 276 Models.set_season(args['season'])
+ 277 mt._set_weather(args['season'])
+ 278 if args.has('select'):
+ 279 await get_tree().process_frame
+ 280 var m: = _current as Match
+ 281 match String(args['select']):
+ 282 'city':
+ 283     m.select_settlement(m.g.settlement(m.g.player(m.human).capital))
+ 284 'army':
+ 285     for u in m.g.units_of(m.human):
+ 286     if not u.is_civil():
+ 287     m.select_unit(u)
+ 288     break
+ 289 'drawer':
+ 291     if m.hud.compact:
+ 292     m.hud._set_drawer(1)
+ 293 'research':
+ 294     Panels.research(m.hud, m.g, m.human, m._panel_act)
+ 295 'diplomacy':
+ 296     Panels.diplomacy(m.hud, m.g, m.human, -1, m._panel_act)
+ 297 'pause':
+ 298     Panels.pause(m.hud, m._panel_act)
+ 299 'settings':
+ 300     Settings.open(m.hud)
+ 301 'help':
+ 302     Panels.message(m.hud, 'How to play', Help.text(), 760)
+ 303 'credits':
+ 304     Panels.message(m.hud, 'Credits', Credits.TEXT, 820)
+ 305 'gameover':
+ 306     m.g.over = True
+ 307     m.g.winner = m.human
+ 308     m.g.win_by = 'crown'
+ 309     m._game_over()
+ 310 'offer':
+ 311     var foe: =(m.human + 1) % m.g.n_players()
+ 312     m.g.pending_offer = { 'from': foe, 'kind': 'demand', 'terms': Diplo.fair_terms(m.g, m.human, foe) }
+ 313     Panels.offer(m.hud, m.g, m._panel_act)
+ 314 'ore_pit':
+ 319     var p: = m.g.player(m.human)
+ 320     if not p.techs.has('mining'):
+ 321     p.techs.append('mining')
+ 322     for t in m.g.tiles:
+ 323     if t.owner == m.human and t.sid == p.capital and t.terrain == 'hills' and t.deposit == ''
+ 324 and t.improvement == '' and t.settlement < 0 and t.site.is_empty():
+ 325     t.improvement = 'ore_pit'
+ 326     m.pieces.sync_tile(t)
+ 328     m.board.refresh_terrain()
+ 329     m.board.refresh_props()
+ 330     m.rig.focus_on(Vis.pos(m.g, t.c), 0)
+ 331     m.overlays.select(t.c, Vis.C_NEUTRAL)
+ 332     m.hud.show_tile(t)
+ 333     break
+ 334 'reload':
+ 336     m.save_game('quicksave')
+ 337     resume('quicksave')
+ 338 _:
+ 339     m.select_next()
+ 340 if args.has('mousedrag'):
+ 343 var mt2: = _current as Match
+ 344 for i in 3:
+ 345 await get_tree().process_frame
+ 346 var c0: = mt2.hud.map_area().get_center()
+ 347 var before: = mt2.rig.position
+ 348 var sel0: = mt2.sel_uid
+ 349 var ev: = InputEventMouseButton.new()
+ 350 ev.button_index = MOUSE_BUTTON_LEFT
+ 351 ev.pressed = True
+ 352 ev.position = c0
+ 353 Input.parse_input_event(ev)
+ 354 await get_tree().process_frame
+ 355 for i in 12:
+ 356 var mm: = InputEventMouseMotion.new()
+ 357 mm.position = c0 + Vector2(-220, -140) * float(i + 1) / 12
+ 358 mm.button_mask = MOUSE_BUTTON_MASK_LEFT
+ 359 Input.parse_input_event(mm)
+ 360 await get_tree().process_frame
+ 361 var up: = InputEventMouseButton.new()
+ 362 up.button_index = MOUSE_BUTTON_LEFT
+ 363 up.pressed = False
+ 364 up.position = c0 + Vector2(-220, -140)
+ 365 Input.parse_input_event(up)
+ 366 for i in 3:
+ 367 await get_tree().process_frame
+ 368 print('MOUSEDRAG moved=',(mt2.rig.position - before).length(), ' selected_before=', sel0, ' after=', mt2.sel_uid)
+ 369 if args.has('probe'):
+ 370 for i in 3:
+ 371 await get_tree().process_frame
+ 372 await _probe(_current as Match)
+ 373 if args.has('perf'):
+ 374 await _perf(_current as Match)
+ 379 func _perf(m: Match) -> void:
+ 380 for zoom in[m.rig.zoom, CameraRig.ZOOM_MAX]:
+ 381 m.rig.set_zoom(zoom, True)
+ 382 for i in 30:
+ 383 await get_tree().process_frame
+ 384 var acc: = { 'draw': 0, 'obj': 0, 'prim': 0, 'proc': 0 }
+ 385 var n: = 60
+ 386 for i in n:
+ 387 await get_tree().process_frame
+ 388 acc['draw'] += Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)
+ 389 acc['obj'] += Performance.get_monitor(Performance.RENDER_TOTAL_OBJECTS_IN_FRAME)
+ 390 acc['prim'] += Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME)
+ 391 acc['proc'] += Performance.get_monitor(Performance.TIME_PROCESS) * 1000
+ 392 print('perf zoom=%.1f draw=%d obj=%d prim=%d process=%.2fms fps=%d nodes=%d' %[zoom,
+ 393 acc['draw'] / n, acc['obj'] / n, acc['prim'] / n, acc['proc'] / n,
+ 394 Performance.get_monitor(Performance.TIME_FPS), Performance.get_monitor(Performance.OBJECT_NODE_COUNT)])
+ 397 var vp: = get_viewport()
+ 398 print('perf   passes : couleur=%d ombres=%d canevas=%d' %[
+ 399 vp.get_render_info(Viewport.RENDER_INFO_TYPE_VISIBLE, Viewport.RENDER_INFO_DRAW_CALLS_IN_FRAME),
+ 400 vp.get_render_info(Viewport.RENDER_INFO_TYPE_SHADOW, Viewport.RENDER_INFO_DRAW_CALLS_IN_FRAME),
+ 401 vp.get_render_info(Viewport.RENDER_INFO_TYPE_CANVAS, Viewport.RENDER_INFO_DRAW_CALLS_IN_FRAME)])
+ 403 var parts: = { 'pieces': m.pieces, 'board': m.board, 'overlays': m.overlays, 'ui': m.ui }
+ 404 for k in parts:
+ 405 var nd: Node = parts[k]
+ 406 nd.set('visible', False)
+ 407 for i in 4:
+ 408 await get_tree().process_frame
+ 409 print('perf sans %s : draw=%d' %[k, Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)])
+ 410 nd.set('visible', True)
+ 413 var n_card: = 0
+ 414 var n_model: = 0
+ 415 var inst_model: = 0
+ 416 for id in m.pieces.units:
+ 417 var up: UnitPiece = m.pieces.units[id]
+ 418 if not up.visible:
+ 419 continue
+ 420 if up.card != None:
+ 421 n_card += 1
+ 422 else:
+ 423 n_model += 1
+ 424 inst_model += up.model.find_children('*', 'MeshInstance3D', True, False).size()
+ 425 up.visible = False
+ 426 for i in 4:
+ 427 await get_tree().process_frame
+ 428 print('perf figurines : %d cartes (1 maillage chacune), %d modèles (%d maillages) ; sans figurines : draw=%d ; mémoire des cartes %.1f Mo' %[
+ 429 n_card, n_model, inst_model, Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),
+ 430 Figures.memory() / 1.04858e+06])
+ 431 m.pieces.sync_units()
+ 432 m.sky.sun.shadow_enabled = False
+ 433 for i in 4:
+ 434 await get_tree().process_frame
+ 435 print('perf sans ombres : draw=%d' % Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME))
+ 436 m.sky.sun.shadow_enabled = True
+ 439 var casters: Array =[]
+ 440 for c in m.find_children('*', 'GeometryInstance3D', True, False):
+ 441 var gi: = c as GeometryInstance3D
+ 442 if gi.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_OFF:
+ 443 casters.append([gi, gi.cast_shadow])
+ 444 gi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+ 445 for i in 4:
+ 446 await get_tree().process_frame
+ 447 print("perf sans lanceurs d'ombre : draw=%d" % Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME))
+ 449 for e in casters:
+ 450 (e[0] as GeometryInstance3D).cast_shadow = e[1]
+ 451 var per: = { }
+ 452 for c in m.find_children('*', 'GeometryInstance3D', True, False):
+ 453 var gi: = c as GeometryInstance3D
+ 454 if not gi.is_visible_in_tree():
+ 455 continue
+ 456 var top: = String(m.get_path_to(gi)).split('/')[0]
+ 457 top = m.get_node(top).get_script().resource_path.get_file() if m.get_node(top).get_script() else top
+ 458 var surf: = 1
+ 459 if gi is MeshInstance3D and(gi as MeshInstance3D).mesh:
+ 460 surf =(gi as MeshInstance3D).mesh.get_surface_count()
+ 461 var e: Array = per.get(top,[0, 0, 0])
+ 462 e[0] += 1
+ 463 e[1] += surf
+ 464 e[2] += 1 if gi.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_OFF else 0
+ 465 per[top] = e
+ 466 for k in per:
+ 467 print('perf %s : %d instances, %d surfaces, %d jettent une ombre' %[k, per[k][0], per[k][1], per[k][2]])
+ 468 var procs: = 0
+ 469 for c in m.find_children('*', 'Node', True, False):
+ 470 if c.is_processing():
+ 471 procs += 1
+ 472 print('perf noeuds avec _process : ', procs)
+ 478 func _probe(m: Match) -> void:
+ 479 var rig: = m.rig
+ 480 var cam: = rig.cam
+ 481 var vr: = get_viewport().get_visible_rect()
+ 482 var area: = rig.map_area if rig.map_area.has_area() else vr
+ 483 print('probe viewport=', vr, ' map_area=', rig.map_area, ' centre=', rig.map_center(),
+ 484 ' offsets=', Vector2(cam.h_offset, cam.v_offset), ' zoom=', rig.zoom)
+ 485 print('probe visée ', rig.position, ' -> écran ', cam.unproject_position(rig.position))
+ 486 var gp: = rig.ground_at(rig.map_center())
+ 487 print('probe ground_at(centre) écart au point visé : %.3f' % Vector2(gp.x - rig.position.x, gp.z - rig.position.z).length())
+ 488 var ok: = 0
+ 489 var bad: = 0
+ 490 var n_cols: = { }
+ 491 for t in m.g.tiles:
+ 492 var y: = Vis.top_y(t) if t.is_land() else Vis.WATER_Y
+ 493 var w: = Hex.to_world(t.c)
+ 494 var sp: = cam.unproject_position(Vector3(w.x, y, w.z))
+ 495 if not area.has_point(sp):
+ 496 continue
+ 497 n_cols[t.c.y] = int(n_cols.get(t.c.y, 0)) + 1
+ 498 if rig.pick_tile(sp, m.g) == t.c:
+ 499 ok += 1
+ 500 else:
+ 501 bad += 1
+ 502 print('probe pick FAUX ', t.c, ' -> ', rig.pick_tile(sp, m.g))
+ 503 var widest: = 0
+ 504 for r in n_cols:
+ 505 widest = maxi(widest, int(n_cols[r]))
+ 506 print('probe pick_tile : %d justes, %d faux ; %d centres de case au plus par rang dans la zone de carte' %[ok, bad, widest])
+ 508 m.deselect()
+ 509 for u in m.g.units_of(m.human):
+ 510 var sp: = cam.unproject_position(Vis.pos(m.g, u.c))
+ 511 if not area.has_point(sp) or m.hud.blocks(sp):
+ 512 continue
+ 513 for pressed in[True, False]:
+ 514 var ev: = InputEventMouseButton.new()
+ 515 ev.button_index = MOUSE_BUTTON_LEFT
+ 516 ev.pressed = pressed
+ 517 ev.position = sp
+ 518 ev.global_position = sp
+ 519 get_viewport().push_input(ev)
+ 520 await get_tree().process_frame
+ 521 var got: = m.g.unit_by_id(m.sel_uid)
+ 522 print("probe clic sur l'unité %d en %s (écran %s) -> choisie : %s" %[u.id, u.c, sp,
+ 523 'unité %d en %s' %[got.id, got.c] if got != None else 'rien'])
+ 524 break
+ 532 func _demo() -> void:
+ 533 var g: = Rules.new_game({ 'seed': int(args.get('seed', '7')), 'size': args.get('size', 'medium'),
+ 534 'all_ai': args.has('play'), 'headless': args.has('play'), 'n_players': 4 })
+ 535 if args.has('play'):
+ 537 var until: = int(args['play'])
+ 538 while not g.over and g.turn < until:
+ 539 AI.play_turn(g, g.current)
+ 540 Rules.end_turn(g)
+ 541 g.headless = False
+ 542 g.events.clear()
+ 543 if args.has('reveal'):
+ 544 for t in g.tiles:
+ 545 g.players[0].explored[t.idx] = 1
+ 546 var sky: = SkyRig.new()
+ 547 add_child(sky)
+ 548 var board: = Board.new()
+ 549 add_child(board)
+ 550 board.setup(g, 0)
+ 551 sky.night_changed.connect(board.set_night)
+ 552 var pieces: = Pieces.new()
+ 553 add_child(pieces)
+ 554 pieces.setup(g, board)
+ 555 Models.set_season(board.season)
+ 556 var wx: = Fx.weather(board.season)
+ 557 var rig: = CameraRig.new()
+ 558 add_child(rig)
+ 559 rig.setup_bounds(g)
+ 560 var cap: = g.settlement(g.players[0].capital)
+ 561 rig.focus_on(Hex.to_world(cap.c), 0)
+ 562 rig.set_zoom(float(args.get('zoom', '16')), True)
+ 563 if wx:
+ 564 rig.add_child(wx)
+ 565 if args.has('at'):
+ 566 var xy: PackedStringArray = args['at'].split(',')
+ 567 rig.focus_on(Hex.to_world(Hex.from_offset(int(xy[0]), int(xy[1]))), 0)
+ 568 if args.has('phase'):
+ 569 sky.set_phase(args['phase'], True)
+ 570 if args.has('season'):
+ 571 board.apply_season(args['season'])
+ 572 Models.set_season(args['season'])
+ 573 RenderingServer.global_shader_parameter_set('g_night', sky.night)
+ 574 sky.night_changed.connect(func(f: float) -> void: RenderingServer.global_shader_parameter_set('g_night', f))
+ 581 func _gallery_act(p: UnitPiece, act: String) -> void:
+ 582 var kv: = act.split(':')
+ 583 var at: = float(kv[1]) if kv.size() > 1 else 0.1
+ 584 var tw: Tween
+ 585 match kv[0]:
+ 586 'walk':
+ 587 tw = p.walk([p.position + Vector3(1, 0, 0)], 0.4)
+ 588 'strike':
+ 589 tw = p.strike(p.position + Vector3(-1, 0, 0), False)
+ 590 'hurt':
+ 591 tw = p.hurt()
+ 592 'die':
+ 593 tw = p.die()
+ 594 'work':
+ 596 p.working = True
+ 597 p._phase = at
+ 598 if tw != None:
+ 599 tw.pause()
+ 600 tw.custom_step(at)
+ 604 func _gallery() -> void:
+ 605 var sky: = SkyRig.new()
+ 606 add_child(sky)
+ 607 var ground: = MeshInstance3D.new()
+ 608 var pm: = PlaneMesh.new()
+ 609 pm.size = Vector2(40, 40)
+ 610 ground.mesh = pm
+ 611 var gm: = StandardMaterial3D.new()
+ 612 gm.albedo_color = Color(0.46, 0.62, 0.3)
+ 613 ground.material_override = gm
+ 614 add_child(ground)
+ 615 var names: Array = Array(args.get('gallery', '1').split(',')) if args.get('gallery', '1') != '1' else[]
+ 616 if names.is_empty():
+ 617 names =['engineer', 'scout', 'spearman', 'archer', 'man_at_arms', 'legionary', 'mercenary',
+ 618 'knight', 'horse_archer', 'catapult', 'goblin',
+ 619 'settle_0', 'settle_1', 'settle_2', 'settle_3', 'capital', 'granary', 'barracks', 'forge',
+ 620 'stable', 'workshop', 'market', 'library', 'guild', 'great_work_1', 'great_work_2',
+ 621 'great_work_3', 'great_work_4', 'farm', 'lumber', 'quarry', 'mine', 'ore_pit', 'goldmine', 'pasture',
+ 622 'fishery', 'watchtower', 'wild_horses', 'fish_school', 'site', 'den', 'ruin', 'walls_1', 'walls_2', 'walls_3', 'bridge']
+ 623 var cols: = int(args.get('cols', '8'))
+ 624 var step: = float(args.get('step', '1.0'))
+ 625 var teams: =[Color(0.8, 0.22, 0.18), Color(0.2, 0.42, 0.78), Color(0.86, 0.68, 0.16), Color(0.3, 0.62, 0.34)]
+ 626 for i in names.size():
+ 627 var at: = Vector3((i % cols -(cols - 1) / 2) * step, 0, float(i / cols) * step)
+ 628 var col: Color = teams[i % teams.size()]
+ 629 if Figures.has(names[i]):
+ 632 var u: = Unit.new()
+ 633 u.id = i
+ 634 u.type = names[i]
+ 635 var p: = UnitPiece.new()
+ 636 add_child(p)
+ 637 p.build(u, col)
+ 638 p.position = at
+ 639 if args.has('pose'):
+ 640     p.set_pose(String(args['pose']))
+ 641     p.busy = True
+ 642 if args.has('act'):
+ 643     var acts: = String(args['act']).split(',')
+ 644     _gallery_act(p, acts[i % acts.size()])
+ 645 continue
+ 646 var n: = Models.make(names[i], col)
+ 647 n.position = at
+ 648 add_child(n)
+ 649 if args.has('season'):
+ 650 Models.set_season(args['season'])
+ 651 var rig: = CameraRig.new()
+ 652 add_child(rig)
+ 653 rig.bounds = Rect2(-50, -50, 100, 100)
+ 654 rig.focus_on(Vector3(float(args.get('fx', '0.0')), 0, float(args.get('fz', '1.0'))), 0)
+ 655 rig.set_zoom(float(args.get('zoom', '9')), True)
+ 656 if args.has('close'):
+ 658 var d: = float(args['close'])
+ 659 rig.cam.position = Vector3(0, d * 0.62, d * 0.78)
+ 660 rig.cam.rotation = Vector3(deg_to_rad(-38), 0, 0)
+ 661 if args.has('phase'):
+ 662 sky.set_phase(args['phase'], True)
+ 663 RenderingServer.global_shader_parameter_set('g_night', 1 if args['phase'] == 'night' else 0)

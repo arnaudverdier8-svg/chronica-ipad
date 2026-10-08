@@ -1,0 +1,20 @@
+newmtl stone
+Kd 0.6240 0.5457 0.4020
+d 1.0
+# palette #CFC3AA (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl stone_dark
+Kd 0.2542 0.2122 0.1500
+d 1.0
+# palette #8A7F6C (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl wood
+Kd 0.1559 0.0802 0.0319
+d 1.0
+# palette #6E5032 (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl plank
+Kd 0.3813 0.2542 0.1119
+d 1.0
+# palette #A68A5E (linear); original glb Kd 0.9063 0.9063 0.9063
+

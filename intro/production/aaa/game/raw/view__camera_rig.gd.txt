@@ -1,0 +1,262 @@
+   1 class_name CameraRig
+   2 extends Node3D
+   8 signal moved
+  11 signal tapped(pos: Vector2)
+  12 signal long_pressed(pos: Vector2)
+  20 const ZOOM_MIN: = 7
+  21 const ZOOM_MAX: = 30
+  23 const FOV: = 30
+  24 const DIST_K: = 1.9
+  28 const PITCH_NEAR: = 64
+  29 const PITCH_FAR: = 76
+  30 const PITCH_ZOOM_NEAR: = 7
+  31 const PITCH_ZOOM_FAR: = 30
+  32 const PAN_SPEED: = 18
+  34 const PAN_GESTURE: = 0.065
+  36 var cam: = Camera3D.new()
+  37 var zoom: = 16
+  38 var _zoom_target: = 16
+  39 var _focus_target: = Vector3.ZERO
+  40 var bounds: = Rect2(Vector2.ZERO, Vector2(40, 25))
+  45 var map_area: = Rect2()
+  46 var _drag: = False
+  47 var _drag_origin: = Vector3.ZERO
+  53 const MOUSE_SLOP: = 7
+  54 var _lmb: = False
+  55 var _lmb_start: = Vector2.ZERO
+  56 var input_enabled: = True
+  57 var _tween: Tween
+  64 const TAP_SLOP: = 14
+  66 const LONG_PRESS: = 0.55
+  69 const LONG_PRESS_FRAMES: = 12
+  72 var blocker: Callable
+  73 var _touches: = { }
+  74 var _t_start: = Vector2.ZERO
+  75 var _t_time: = 0
+  76 var _t_frame: = 0
+  80 var _gesture: = ''
+  81 var _pinch_dist: = 0
+  82 var _pinch_mid: = Vector2.ZERO
+  85 func _ready() -> void:
+  86 cam.fov = FOV
+  87 cam.near = 0.3
+  88 cam.far = 200
+  89 add_child(cam)
+  90 get_viewport().size_changed.connect(_apply)
+  91 _apply()
+  95 func set_map_area(r: Rect2) -> void:
+  96 map_area = r
+  97 _apply()
+ 102 func map_center() -> Vector2:
+ 103 if not is_inside_tree():
+ 104 return map_area.get_center()
+ 105 var vr: = get_viewport().get_visible_rect()
+ 106 return(map_area if map_area.has_area() else vr).get_center()
+ 109 func setup_bounds(g: GameState) -> void:
+ 110 var a: = Hex.to_world(Hex.from_offset(0, 0))
+ 111 var b: = Hex.to_world(Hex.from_offset(g.width - 1, g.height - 1))
+ 112 bounds = Rect2(Vector2(a.x, a.z), Vector2(b.x - a.x, b.z - a.z))
+ 115 func focus_on(p: Vector3, secs: float = 0.6) -> void:
+ 116 _focus_target = _clamp(Vector3(p.x, 0, p.z))
+ 117 if _tween:
+ 118 _tween.kill()
+ 119 if secs <= 0:
+ 120 position = _focus_target
+ 121 _apply()
+ 122 return
+ 123 _tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+ 124 _tween.tween_property(self, 'position', _focus_target, secs)
+ 129 func is_moving() -> bool:
+ 130 return absf(zoom - _zoom_target) > 0.01 or(_tween != None and _tween.is_running())
+ 131 or not _touches.is_empty() or _drag
+ 134 func set_zoom(z: float, instant: bool = False) -> void:
+ 135 _zoom_target = clampf(z, ZOOM_MIN, ZOOM_MAX)
+ 136 if instant:
+ 137 zoom = _zoom_target
+ 138 _apply()
+ 141 func _clamp(p: Vector3) -> Vector3:
+ 142 return Vector3(clampf(p.x, bounds.position.x, bounds.end.x), 0,
+ 143 clampf(p.z, bounds.position.y - 2, bounds.end.y + 1))
+ 146 func _apply() -> void:
+ 147 var t: = clampf(inverse_lerp(PITCH_ZOOM_NEAR, PITCH_ZOOM_FAR, zoom), 0, 1)
+ 148 var pitch: = deg_to_rad(lerpf(PITCH_NEAR, PITCH_FAR, t))
+ 150 var d: = zoom * DIST_K
+ 151 cam.position = Vector3(0, sin(pitch) * d, cos(pitch) * d)
+ 152 cam.rotation = Vector3(- pitch, 0, 0)
+ 159 if not is_inside_tree():
+ 160 return
+ 161 var vr: = get_viewport().get_visible_rect()
+ 162 if vr.size.y <= 0:
+ 163 return
+ 164 var dp: = map_center() - vr.get_center()
+ 165 var wpp: = 2 * d * tan(deg_to_rad(cam.fov) * 0.5) / vr.size.y
+ 166 cam.h_offset = - dp.x * wpp
+ 167 cam.v_offset = dp.y * wpp
+ 170 func _process(delta: float) -> void:
+ 171 if absf(zoom - _zoom_target) > 0.01:
+ 172 zoom = lerpf(zoom, _zoom_target, clampf(delta * 10, 0, 1))
+ 173 _apply()
+ 174 moved.emit()
+ 175 if not input_enabled:
+ 176 return
+ 177 if _gesture == 'tap' and Time.get_ticks_msec() / 1000 - _t_time >= LONG_PRESS
+ 178 and Engine.get_process_frames() - _t_frame >= LONG_PRESS_FRAMES:
+ 179 _gesture = 'done'
+ 180 long_pressed.emit(_t_start)
+ 181 var v: = Vector2.ZERO
+ 182 if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT):
+ 183 v.x -= 1
+ 184 if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT):
+ 185 v.x += 1
+ 186 if Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP):
+ 187 v.y -= 1
+ 188 if Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):
+ 189 v.y += 1
+ 190 if v != Vector2.ZERO:
+ 191 if _tween:
+ 192 _tween.kill()
+ 193 var sp: = PAN_SPEED *(zoom / 16) * delta
+ 194 position = _clamp(position + Vector3(v.x, 0, v.y).normalized() * sp)
+ 195 moved.emit()
+ 198 func _unhandled_input(ev: InputEvent) -> void:
+ 199 if ev is InputEventScreenTouch or ev is InputEventScreenDrag:
+ 200 _touch(ev)
+ 201 return
+ 202 if not input_enabled:
+ 203 return
+ 204 if ev is InputEventMouse and ev.device == InputEvent.DEVICE_ID_EMULATION:
+ 205 return
+ 206 if ev is InputEventMouseButton and(ev as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
+ 207 var lb: = ev as InputEventMouseButton
+ 208 if lb.pressed:
+ 209 _lmb = not(blocker.is_valid() and bool(blocker.call(lb.position)))
+ 210 _lmb_start = lb.position
+ 211 else:
+ 212 _lmb = False
+ 213 _drag = False
+ 214 return
+ 215 if ev is InputEventMouseMotion and _lmb and not _drag:
+ 216 var mm: = ev as InputEventMouseMotion
+ 217 if mm.position.distance_to(_lmb_start) >= MOUSE_SLOP:
+ 218 _drag = True
+ 219 _drag_origin = ground_at(_lmb_start)
+ 220 if ev is InputEventMouseButton:
+ 221 var mb: = ev as InputEventMouseButton
+ 222 if mb.pressed and mb.button_index == MOUSE_BUTTON_WHEEL_UP:
+ 223 set_zoom(_zoom_target * 0.88)
+ 224 elif mb.pressed and mb.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+ 225 set_zoom(_zoom_target * 1.13)
+ 226 elif mb.button_index == MOUSE_BUTTON_MIDDLE or mb.button_index == MOUSE_BUTTON_RIGHT:
+ 227 if mb.pressed and mb.button_index == MOUSE_BUTTON_MIDDLE:
+ 228     _drag = True
+ 229     _drag_origin = ground_at(mb.position)
+ 230 elif not mb.pressed:
+ 231     _drag = False
+ 232 elif ev is InputEventMouseMotion and _drag:
+ 233 var now: = ground_at((ev as InputEventMouseMotion).position)
+ 234 if _tween:
+ 235 _tween.kill()
+ 236 position = _clamp(position +(_drag_origin - now))
+ 237 moved.emit()
+ 238 elif ev is InputEventMagnifyGesture:
+ 239 set_zoom(_zoom_target /(ev as InputEventMagnifyGesture).factor)
+ 240 elif ev is InputEventPanGesture:
+ 241 var d: =(ev as InputEventPanGesture).delta
+ 242 position = _clamp(position + Vector3(d.x, 0, d.y) * PAN_GESTURE * zoom)
+ 243 moved.emit()
+ 255 func _touch(ev: InputEvent) -> void:
+ 256 var now: = Time.get_ticks_msec() / 1000
+ 257 if ev is InputEventScreenTouch:
+ 258 var st: = ev as InputEventScreenTouch
+ 259 if st.pressed:
+ 260 if _touches.is_empty():
+ 261     _t_start = st.position
+ 262     _t_time = now
+ 263     _t_frame = Engine.get_process_frames()
+ 264     var on_ui: = blocker.is_valid() and bool(blocker.call(st.position))
+ 265     _gesture = 'ui' if on_ui else 'tap'
+ 266 _touches[st.index] = st.position
+ 267 if _touches.size() >= 2 and _gesture != 'ui':
+ 268     _gesture = 'pinch'
+ 269     _pinch_reset()
+ 270 else:
+ 271 _touches.erase(st.index)
+ 272 if _touches.is_empty():
+ 273     if _gesture == 'tap' and st.position.distance_to(_t_start) < TAP_SLOP:
+ 274     tapped.emit(st.position)
+ 275     _gesture = ''
+ 276 elif _gesture == 'pinch':
+ 279     _pinch_reset()
+ 280 return
+ 281 var sd: = ev as InputEventScreenDrag
+ 282 var prev: Vector2 = _touches.get(sd.index, sd.position)
+ 283 _touches[sd.index] = sd.position
+ 284 if _gesture == 'tap' and sd.position.distance_to(_t_start) >= TAP_SLOP:
+ 285 _gesture = 'pan'
+ 286 prev = _t_start
+ 287 if not input_enabled:
+ 288 return
+ 289 if _gesture == 'pan':
+ 290 _pan_screen(prev, sd.position)
+ 291 elif _gesture == 'pinch':
+ 292 var pts: = _touches.values()
+ 293 var mid: Vector2 = pts[0]
+ 294 var dist: = 0
+ 295 if pts.size() >= 2:
+ 296 mid =(pts[0] + pts[1]) * 0.5
+ 297 dist =(pts[0] as Vector2).distance_to(pts[1])
+ 300 _pan_screen(_pinch_mid, mid)
+ 301 if _pinch_dist > 1 and dist > 1:
+ 302 var before: = ground_at(mid)
+ 303 set_zoom(zoom * _pinch_dist / dist, True)
+ 304 position = _clamp(position + before - ground_at(mid))
+ 305 _pinch_dist = dist
+ 306 _pinch_mid = mid
+ 307 moved.emit()
+ 310 func _pinch_reset() -> void:
+ 311 var pts: = _touches.values()
+ 312 if pts.size() >= 2:
+ 313 _pinch_mid =(pts[0] + pts[1]) * 0.5
+ 314 _pinch_dist =(pts[0] as Vector2).distance_to(pts[1])
+ 315 elif pts.size() == 1:
+ 316 _pinch_mid = pts[0]
+ 317 _pinch_dist = 0
+ 321 func _pan_screen(a: Vector2, b: Vector2) -> void:
+ 322 if a == b:
+ 323 return
+ 324 if _tween:
+ 325 _tween.kill()
+ 326 position = _clamp(position +(ground_at(a) - ground_at(b)))
+ 327 moved.emit()
+ 331 func touching() -> bool:
+ 332 return not _touches.is_empty()
+ 336 func ground_at(screen: Vector2, y: float = Vis.GROUND_Y) -> Vector3:
+ 337 var from: = cam.project_ray_origin(screen)
+ 338 var dir: = cam.project_ray_normal(screen)
+ 339 if absf(dir.y) < 0.0001:
+ 340 return Vector3.ZERO
+ 341 var k: =(y - from.y) / dir.y
+ 342 return from + dir * k
+ 349 func pick_tile(screen: Vector2, g: GameState) -> Vector2i:
+ 350 var from: = cam.project_ray_origin(screen)
+ 351 var dir: = cam.project_ray_normal(screen)
+ 352 if absf(dir.y) < 0.0001:
+ 353 return Vector2i(-999, -999)
+ 354 var guess: = Hex.from_world(ground_at(screen, Vis.GROUND_Y))
+ 355 var best: = Vector2i(-999, -999)
+ 356 var best_y: = - INF
+ 357 var cands: Array[Vector2i] =[guess]
+ 358 cands.append_array(Hex.neighbors(guess))
+ 359 for c in cands:
+ 360 var t: = g.tile(c)
+ 361 if t == None:
+ 362 continue
+ 363 var y: = Vis.top_y(t) if t.is_land() else Vis.WATER_Y
+ 364 var k: =(y - from.y) / dir.y
+ 365 var hit: = from + dir * k
+ 366 if Hex.from_world(hit) == c and y > best_y:
+ 367 best_y = y
+ 368 best = c
+ 369 if best.x == -999 and g.tile(guess) != None:
+ 370 return guess
+ 371 return best

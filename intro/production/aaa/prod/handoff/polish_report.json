@@ -1,0 +1,588 @@
+{
+ "16x9_2560x1440": {
+  "frame_field": {
+   "field_px_bbox": [
+    259,
+    350,
+    1195,
+    1350
+   ],
+   "field_px": 934072
+  },
+  "contents": {
+   "content_px": 528407,
+   "recompose_max_abs_255": 2.0,
+   "recompose_mean_abs_255": 0.1574,
+   "recompose_px_over_2_255": 0
+  },
+  "geometry": {
+   "title": {
+    "x": [
+     299,
+     1155
+    ],
+    "y": [
+     389,
+     493
+    ],
+    "rect_px": [
+     299,
+     389,
+     856,
+     104
+    ],
+    "rect_base": [
+     186.875,
+     243.125,
+     535.0,
+     65.0
+    ],
+    "word_x_px": [
+     504,
+     956
+    ],
+    "ornament_left_x_px": [
+     299,
+     504
+    ],
+    "ornament_right_x_px": [
+     956,
+     1155
+    ],
+    "baseline_y_px": 481,
+    "baseline_y_base": 300.625,
+    "baseline_note": "first pixel row below the bodies of the tall letters of the word (median of the letter components), serif feet included"
+   },
+   "subtitle_1": {
+    "x": [
+     434,
+     1020
+    ],
+    "y": [
+     549,
+     586
+    ],
+    "rect_px": [
+     434,
+     549,
+     586,
+     37
+    ],
+    "rect_base": [
+     271.25,
+     343.125,
+     366.25,
+     23.125
+    ]
+   },
+   "subtitle_2": {
+    "x": [
+     409,
+     1044
+    ],
+    "y": [
+     598,
+     637
+    ],
+    "rect_px": [
+     409,
+     598,
+     635,
+     39
+    ],
+    "rect_base": [
+     255.625,
+     373.75,
+     396.875,
+     24.375
+    ]
+   },
+   "rule": {
+    "x": [
+     294,
+     1160
+    ],
+    "y": [
+     656,
+     675
+    ],
+    "rect_px": [
+     294,
+     656,
+     866,
+     19
+    ],
+    "rect_base": [
+     183.75,
+     410.0,
+     541.25,
+     11.875
+    ],
+    "centre_y_px": 669.99,
+    "centre_y_base": 418.741,
+    "boss_x_px": 725
+   },
+   "button_1": {
+    "x": [
+     294,
+     1160
+    ],
+    "y": [
+     694,
+     797
+    ],
+    "rect_px": [
+     294,
+     694,
+     866,
+     103
+    ],
+    "rect_base": [
+     183.75,
+     433.75,
+     541.25,
+     64.375
+    ]
+   },
+   "button_2": {
+    "x": [
+     294,
+     1160
+    ],
+    "y": [
+     816,
+     918
+    ],
+    "rect_px": [
+     294,
+     816,
+     866,
+     102
+    ],
+    "rect_base": [
+     183.75,
+     510.0,
+     541.25,
+     63.75
+    ]
+   },
+   "button_3": {
+    "x": [
+     294,
+     1160
+    ],
+    "y": [
+     938,
+     1040
+    ],
+    "rect_px": [
+     294,
+     938,
+     866,
+     102
+    ],
+    "rect_base": [
+     183.75,
+     586.25,
+     541.25,
+     63.75
+    ]
+   },
+   "button_4": {
+    "x": [
+     294,
+     1160
+    ],
+    "y": [
+     1059,
+     1162
+    ],
+    "rect_px": [
+     294,
+     1059,
+     866,
+     103
+    ],
+    "rect_base": [
+     183.75,
+     661.875,
+     541.25,
+     64.375
+    ]
+   },
+   "button_5": {
+    "x": [
+     294,
+     1160
+    ],
+    "y": [
+     1181,
+     1283
+    ],
+    "rect_px": [
+     294,
+     1181,
+     866,
+     102
+    ],
+    "rect_base": [
+     183.75,
+     738.125,
+     541.25,
+     63.75
+    ]
+   },
+   "footer": {
+    "x": [
+     489,
+     959
+    ],
+    "y": [
+     1307,
+     1335
+    ],
+    "rect_px": [
+     489,
+     1307,
+     470,
+     28
+    ],
+    "rect_base": [
+     305.625,
+     816.875,
+     293.75,
+     17.5
+    ]
+   }
+  },
+  "parchment": {
+   "mean_rgb": [
+    232.2,
+    208.65,
+    173.95
+   ],
+   "mean_luminance_255": 204.93,
+   "highpass_std_sigma2_255": 0.452,
+   "laplacian_variance": 0.115,
+   "luminance_levels_spanned": 25,
+   "foxing_specks_per_megapixel": 95.3,
+   "foxing_speck_rule": "connected areas of >= 3 px darker than the 8 px local mean by > 5/255, field eroded by 40 px (scale dependent: the specks are stretched with the card)",
+   "note": "Measured on f1983 inside the field eroded by 40 px. The game card is a 260x340 texture stretched about 3.9x: very soft and low-frequency by design. The S24 leaf must be low-passed and graded to these numbers before the dissolve, or the hand-off reads as a pop from sharp textile to soft bitmap."
+  },
+  "g12": {
+   "mask_fraction_of_frame": 0.0545,
+   "captures_used": [
+    "capture/c169_a/menu_2560x1440_mf003_r0.png",
+    "capture/c169_a/menu_2560x1440_mf120_r0.png",
+    "capture/c169_b/menu_2560x1440_mf030_r0.png"
+   ],
+   "g12_outlook_outside_card": {
+    "c169_a/menu_2560x1440_mf003_r0.png": {
+     "mean_abs_255_no_mask": 1.594,
+     "mean_abs_255_with_mask": 0.061,
+     "px_over_16_pct_no_mask": 1.86,
+     "px_over_16_pct_with_mask": 0.0
+    },
+    "c169_a/menu_2560x1440_mf120_r0.png": {
+     "mean_abs_255_no_mask": 1.109,
+     "mean_abs_255_with_mask": 0.215,
+     "px_over_16_pct_no_mask": 1.45,
+     "px_over_16_pct_with_mask": 0.0
+    },
+    "c169_b/menu_2560x1440_mf030_r0.png": {
+     "mean_abs_255_no_mask": 0.001,
+     "mean_abs_255_with_mask": 0.0,
+     "px_over_16_pct_no_mask": 0.0,
+     "px_over_16_pct_with_mask": 0.0
+    }
+   },
+   "rule": "mask = dilate(max over stored captures of |capture - menu frame 30| > 6/255, 6 px); empirical, from the captures listed. A frame in which no unit moved differently is not covered: re-derive it from a wider capture set if G12 starts flagging units."
+  }
+ },
+ "4x3_2048x1536": {
+  "frame_field": {
+   "field_px_bbox": [
+    207,
+    280,
+    956,
+    1080
+   ],
+   "field_px": 597916
+  },
+  "contents": {
+   "content_px": 338866,
+   "recompose_max_abs_255": 2.0,
+   "recompose_mean_abs_255": 0.1599,
+   "recompose_px_over_2_255": 0
+  },
+  "geometry": {
+   "title": {
+    "x": [
+     239,
+     924
+    ],
+    "y": [
+     311,
+     395
+    ],
+    "rect_px": [
+     239,
+     311,
+     685,
+     84
+    ],
+    "rect_base": [
+     186.719,
+     242.969,
+     535.156,
+     65.625
+    ],
+    "word_x_px": [
+     404,
+     765
+    ],
+    "ornament_left_x_px": [
+     239,
+     404
+    ],
+    "ornament_right_x_px": [
+     765,
+     924
+    ],
+    "baseline_y_px": 385,
+    "baseline_y_base": 300.781,
+    "baseline_note": "first pixel row below the bodies of the tall letters of the word (median of the letter components), serif feet included"
+   },
+   "subtitle_1": {
+    "x": [
+     347,
+     816
+    ],
+    "y": [
+     439,
+     470
+    ],
+    "rect_px": [
+     347,
+     439,
+     469,
+     31
+    ],
+    "rect_base": [
+     271.094,
+     342.969,
+     366.406,
+     24.219
+    ]
+   },
+   "subtitle_2": {
+    "x": [
+     327,
+     835
+    ],
+    "y": [
+     479,
+     509
+    ],
+    "rect_px": [
+     327,
+     479,
+     508,
+     30
+    ],
+    "rect_base": [
+     255.469,
+     374.219,
+     396.875,
+     23.438
+    ]
+   },
+   "rule": {
+    "x": [
+     235,
+     928
+    ],
+    "y": [
+     525,
+     540
+    ],
+    "rect_px": [
+     235,
+     525,
+     693,
+     15
+    ],
+    "rect_base": [
+     183.594,
+     410.156,
+     541.406,
+     11.719
+    ],
+    "centre_y_px": 536.0,
+    "centre_y_base": 418.75,
+    "boss_x_px": 580
+   },
+   "button_1": {
+    "x": [
+     235,
+     928
+    ],
+    "y": [
+     555,
+     637
+    ],
+    "rect_px": [
+     235,
+     555,
+     693,
+     82
+    ],
+    "rect_base": [
+     183.594,
+     433.594,
+     541.406,
+     64.062
+    ]
+   },
+   "button_2": {
+    "x": [
+     235,
+     928
+    ],
+    "y": [
+     653,
+     735
+    ],
+    "rect_px": [
+     235,
+     653,
+     693,
+     82
+    ],
+    "rect_base": [
+     183.594,
+     510.156,
+     541.406,
+     64.062
+    ]
+   },
+   "button_3": {
+    "x": [
+     235,
+     928
+    ],
+    "y": [
+     750,
+     832
+    ],
+    "rect_px": [
+     235,
+     750,
+     693,
+     82
+    ],
+    "rect_base": [
+     183.594,
+     585.938,
+     541.406,
+     64.062
+    ]
+   },
+   "button_4": {
+    "x": [
+     235,
+     928
+    ],
+    "y": [
+     847,
+     929
+    ],
+    "rect_px": [
+     235,
+     847,
+     693,
+     82
+    ],
+    "rect_base": [
+     183.594,
+     661.719,
+     541.406,
+     64.062
+    ]
+   },
+   "button_5": {
+    "x": [
+     235,
+     928
+    ],
+    "y": [
+     945,
+     1027
+    ],
+    "rect_px": [
+     235,
+     945,
+     693,
+     82
+    ],
+    "rect_base": [
+     183.594,
+     738.281,
+     541.406,
+     64.062
+    ]
+   },
+   "footer": {
+    "x": [
+     391,
+     768
+    ],
+    "y": [
+     1045,
+     1068
+    ],
+    "rect_px": [
+     391,
+     1045,
+     377,
+     23
+    ],
+    "rect_base": [
+     305.469,
+     816.406,
+     294.531,
+     17.969
+    ]
+   }
+  },
+  "parchment": {
+   "mean_rgb": [
+    232.32,
+    208.85,
+    174.27
+   ],
+   "mean_luminance_255": 205.15,
+   "highpass_std_sigma2_255": 0.552,
+   "laplacian_variance": 0.183,
+   "luminance_levels_spanned": 21,
+   "foxing_specks_per_megapixel": 147.5,
+   "foxing_speck_rule": "connected areas of >= 3 px darker than the 8 px local mean by > 5/255, field eroded by 40 px (scale dependent: the specks are stretched with the card)",
+   "note": "Measured on f1983 inside the field eroded by 40 px. The game card is a 260x340 texture stretched about 3.9x: very soft and low-frequency by design. The S24 leaf must be low-passed and graded to these numbers before the dissolve, or the hand-off reads as a pop from sharp textile to soft bitmap."
+  },
+  "g12": {
+   "mask_fraction_of_frame": 0.0499,
+   "captures_used": [
+    "capture/c133_a/menu_2048x1536_mf060_r0.png"
+   ],
+   "g12_outlook_outside_card": {
+    "c133_a/menu_2048x1536_mf060_r0.png": {
+     "mean_abs_255_no_mask": 0.854,
+     "mean_abs_255_with_mask": 0.052,
+     "px_over_16_pct_no_mask": 1.22,
+     "px_over_16_pct_with_mask": 0.0
+    }
+   },
+   "rule": "mask = dilate(max over stored captures of |capture - menu frame 30| > 6/255, 6 px); empirical, from the captures listed. A frame in which no unit moved differently is not covered: re-derive it from a wider capture set if G12 starts flagging units."
+  }
+ }
+}

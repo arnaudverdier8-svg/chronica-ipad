@@ -1,0 +1,35 @@
+newmtl black
+Kd 0.0273 0.0144 0.0060
+d 1.0
+# palette #2E2012 (linear); original glb Kd 0.2717 0.2478 0.2478
+
+newmtl stone_dark
+Kd 0.2542 0.2122 0.1500
+d 1.0
+# palette #8A7F6C (linear); original glb Kd 0.6800 0.6726 0.6652
+
+newmtl wood
+Kd 0.1559 0.0802 0.0319
+d 1.0
+# palette #6E5032 (linear); original glb Kd 0.7674 0.6500 0.5064
+
+newmtl wood_dark
+Kd 0.0612 0.0296 0.0116
+d 1.0
+# palette #46301C (linear); original glb Kd 0.6262 0.5271 0.4236
+
+newmtl cloth_dark
+Kd 0.0762 0.0578 0.0369
+d 1.0
+# palette #4E4436 (linear); original glb Kd 0.5657 0.5271 0.5064
+
+newmtl plank
+Kd 0.3813 0.2542 0.1119
+d 1.0
+# palette #A68A5E (linear); original glb Kd 0.8323 0.7354 0.6012
+
+newmtl iron
+Kd 0.1559 0.0844 0.0648
+d 1.0
+# palette #6E5248 (linear); original glb Kd 0.6652 0.5838 0.5657
+

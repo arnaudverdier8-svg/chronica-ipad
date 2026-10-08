@@ -1,0 +1,2193 @@
+{
+ "title": "CHRONICA - The Living Frieze (storyboard final)",
+ "version": "final",
+ "base": "storyboard_v1 (frieze base + table/scale grafts + relight25d) with all 33 points of the adversarial review applied",
+ "logline": "A forgotten embroidered roll-chronicle on a candle-lit walnut table reads itself left to right: a needle draws its first gold thread, one realm is stitched into being, a king is unpicked out of his own oath, a silent war rises and sinks in the cloth, fire, forest and four borders age it into darkness, dawn mends it, and its unwritten end is stitched into the living game board, where a blank page is left for the player.",
+ "master": {
+  "width": 2560,
+  "height": 1440,
+  "fps": 30,
+  "frames": 1984,
+  "first_frame": 0,
+  "last_frame": 1983,
+  "duration_s": 66.133,
+  "audio": "aaa/audio/audio_master_1984f_s16.wav",
+  "frame_convention": "frame = floor(t*30)"
+ },
+ "technique_codes": {
+  "R25-F": "relight25d frontal relight from cached stitch maps (5 s/frame with a moving light, 1.26 s camera-only)",
+  "R25-S": "relight25d stitch-on / unpick (stitch_id order, dirty-rect recompute, snapshot re-rasters)",
+  "R25-L": "relight25d frontal slip lift (<= 10 deg off normal, <= 15 mm, PCSS shadow, tethers)",
+  "EV-MR": "Eevee macro rig (block E0): displaced linen patch, thread tubes, needle, real DOF and motion blur",
+  "EV-DM/G": "Eevee render of a displaced mesh built from R25 maps (geometry ground): E1, E4",
+  "EV-DM/P": "Eevee pieces over an R25 plate with shadow-ratio transfer (tilt <= 10 deg): E2, E3",
+  "COMP": "numpy/cv2 compositor: transforms, desk layers, grade, grain, fuzz (every frame)",
+  "GP": "game demo-mode plates and native captures"
+ },
+ "coverage": {
+  "shots": 26,
+  "frames_covered": 1984,
+  "contiguous": true,
+  "first": 0,
+  "last": 1983
+ },
+ "shots": [
+  {
+   "id": "S01",
+   "name": "The first thread",
+   "act": "I Oath",
+   "start_frame": 0,
+   "end_frame": 90,
+   "start_s": 0.0,
+   "end_s": 3.033,
+   "frames": 91,
+   "anchor": "silence f0-3 (dim still = poster); 'There' f4/f5; 'world' f39",
+   "summary": "From a dim still, window light blooms on linen in macro; a needle draws the gold chronicle thread up through the weave; pull-back between the threads",
+   "audio_event": "f0-3 digital silence. f4 D-drone fade-in with 'There' (strongest attack of the file, f5); 'time' f19; 'world' f39 (stressed); 'only' f63; 'one' f76 on a +9 dB drone swell.",
+   "visual_action": "f0-3: the poster image, held: bare linen weave in macro in near-darkness (the f4 frame before its key arrives: ambient only, about -3 EV, the faint brown underdrawing of the upper border just readable). f4: the bloom: a shutter opens off-frame and a low shaft of late-day window light (1900 K, elev 8 deg, from upper left) rakes across the weave: slubs, fuzz, underdrawing. f5 'There': the point of a steel needle breaks up through the weave from behind, its eye dragging the two-ply silver-gilt chronicle thread; f5-38 the thread slides up through the hole, a modest glint riding its twist, linen fibres springing back round the hole. f39 'world': the thread draws taut and lies down along the underdrawn line, a crimson silk tie-down pinches it (the first couching stitch of the chronicle) and the needle leaves frame top right. f40-90: the pull-back starts; we rise off the weave, between the couched pair and out over the upper border (paired lion beasts in diagonal-bar compartments, set off-centre; the first nail holes and foxing); on 'one' f76 the hillock bands of the realm enter below. As the shutter swings fully open the window light widens, climbs toward 22 deg and warms toward 3000 K.",
+   "camera": "f0-39 locked macro, ~96 mm field (27 px/mm), f/8, cloth tilted 15 deg so a ~5 mm focus band crosses the thread; focus racks needle tip (f5) to thread (f30); 1 px/frame drift. f40-114 exponential pull-back 96 -> 776 mm field (8x), smoothstep over 74 frames, landing at F0 (3.3 px/mm) by f114 in S02. Over f40-62 the tilt unwinds 15 -> 0 deg and the depth of field opens to the whole field, so the R25 hand-over is frontal and sharp; field 149 mm at f62, 220 mm at f72. Frame centre < 8 px/frame; frame-edge texture peaks ~54 px/frame (f77), always under 180-deg motion blur (real Eevee blur to f72, sub-frame warps in R25 after).",
+   "technique": "EV-MR macro rig E0: Blender 4.0.2 Eevee 1920x1080, 16 TAA, on ones f4-72 (69 renders) + 1 ambient-only light-split render of f4 that makes f0-3 and the poster. 260x150 mm linen patch (covers the 220 x 124 mm field at f72 with margin) displaced from R25's linen generator: 4-5 vertices/mm in the focus band, 1 vertex/mm outside (low-pass height as geometry, high-pass as normal map); border underdrawing and lion albedo from the R25 border kit at 20 px/mm; the thread as a 2-ply twisted tube sliding along its path, steel needle mesh, real DOF and camera motion blur. Registered crossfade to R25-F f62-72 on the frontal pose (same maps, same light vector; qa/swap); R25-F carries the pull from f73 (20 px/mm border bake, then mips). COMP adds fuzz halo, grain and the act grade; Lanczos upscale 1080 -> 1440.",
+   "material_behavior": "Linen tabby with slubs and per-thread tone, back-lit fuzz halo. Silver-gilt pair: thin anisotropic glint (level L2, capped at gold_hi #F8D57C) interrupted at the crimson tie-down. Steel needle: one hard highlight for 1-3 frames (L2). Lion beasts matte wool. Ageing at 20-30 % of survey density, concentrated on the top hem (nail holes with rust halo).",
+   "transition_out": "Continuous: the pull-back carries into S02.",
+   "emotional_purpose": "Hush and material truth before any story: a real, old, handmade object, and the chronicle begins with a verb, a needle drawing one thread.",
+   "est_render_cost": "Eevee E0 70 renders @1080p 16 TAA (~65 s, ~1.1M-vert patch) = ~76 min single process; R25-F 28 frames x ~5 s = ~2 CPU-min; COMP 91 x 0.4 s.",
+   "eevee": {
+    "block": "E0",
+    "renders_1080": 70,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S02",
+   "name": "One realm",
+   "act": "I Oath",
+   "start_frame": 91,
+   "end_frame": 139,
+   "start_s": 3.033,
+   "end_s": 4.667,
+   "frames": 49,
+   "anchor": "'realm' f91; gap f104-126; 'one' f126",
+   "summary": "The pull-back lands on the one realm: four unequal towns joined by one four-colour road; the landscape breathes by light alone",
+   "audio_event": "'realm' f91 (to f104). Music-only gap f104-126 (Dadd9 drone, -37 dBFS). 'one' f126 with a drone/bass re-swell (+12.5 dB).",
+   "visual_action": "The pull-back eases out over the one realm in Bayeux idiom: multicolour hillock bands, a river in paired olive lines with a bridge, ploughed strips, four small walled towns of different sizes (stitched elevations of settle_0/1/2: one on a hill, one by the river, one large, one a hamlet), each with a house-colour pennant, joined by ONE road couched in four alternating colours (gold, crimson, woad, green: Bayeux alternation as the image of unity) that enters from the left and climbs to a crowned capital set right of centre (frame x ~0.62) on a rise. No titulus. In the gap the landscape breathes by light alone: the window key drifts az 120 -> 150 deg while its elevation dips 22 -> 16 -> 20 deg, so the shadows of hills and towns lengthen, swing and shorten again; nothing in the cloth moves. On 'one' f126 a slow truck right begins and tree divider T1 (interlace, trunk banded in the four house colours) crosses frame f126-139.",
+   "camera": "Pull-back lands at F0 (3.3 px/mm) by f114 with ease-out; hold with 2 px/frame drift f114-125; truck right 0 -> 10 px/frame f126-139 (180-deg blur only above 12 px/frame, the global threshold). Key action inside x 320-2240 (4:3 safe).",
+   "technique": "R25-F on the procedural Bayeux kit (albedo, height_mm, tangent, material, coverage, stitch_id at 6.6 px/mm; shaded on the 5 px/mm mip); per-frame relight during the breath driven by key azimuth and elevation only (heights fixed); shared low-frequency fold field. Town elevations: game OBJs rendered side-on as flat colour-ID stills, re-stitched by the kit. COMP grade/grain. Gate G1: this shot is proved side by side with p1 at matched px/mm and identical relight before any other procedural section is built.",
+   "material_behavior": "Narrative register: matte wool laid-and-couched fills with the couching-bar shadow grid (the Bayeux signature) under the 22-deg key; stem-stitch outlines with 0-1 mm linen gaps; linen 40-55 % of frame; Act I dyes near fresh values but at or below chroma .13; pennants slightly raised satin (heraldic, <= .20).",
+   "transition_out": "T1 tree-divider splice: 8-frame match dissolve on the identical tree into p1.",
+   "emotional_purpose": "Plenitude and unity: one land, one road, all four colours in balance.",
+   "est_render_cost": "R25-F 49 frames x ~5 s = ~4 CPU-min (kit build is prep, gated by G1).",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S03",
+   "name": "One table, one oath",
+   "act": "I Oath",
+   "start_frame": 140,
+   "end_frame": 211,
+   "start_s": 4.667,
+   "end_s": 7.067,
+   "frames": 72,
+   "anchor": "'table' f140; 'oath' f173; near-silence f185-198",
+   "summary": "p1 slides in; a real candle is lit on the walnut table for 'table' and its pool blooms from the left",
+   "audio_event": "'table' f140 (accent); 'one' f162, 'oath' f173 (to f184); near-silence f185-198 (-45 dBFS); +10 dB in-gap swell f198-212 (bass f201).",
+   "visual_action": "p1, the king and four lords at the oath table, slides in. Its stitched candles are only embroidery: laid-strand flames that never emit (the four glows painted into the AI panel, one left and three right, are inpainted out of its maps). Anticipating 'table', a real candle is lit on the walnut table just off-frame left (f134-146): its flame catches, gutters once and steadies, and a warm 1900 K pool blooms across the left half of the panel and fades toward the right: the film's first practical light, from one side. 'one oath' f167-181: the pool steadies over the hands joined on the sword (light only, no metal glint). f185-198: everything holds; only the real flame breathes (1-3 Hz sway on the pool, <= 8 %). On the swell f198-212 the flame lifts and the pool warms and widens (+0.2 EV over 14 frames).",
+   "camera": "Truck decelerating 10 -> 2 px/frame while pushing F0 -> F1 (3.3 -> 4.65 px/mm; faces at 0.93x panel-native); p1 fills the frame width by f200; 2 px/frame drift in the near-silence.",
+   "technique": "R25-F on p1 re-embroidered by relight25d (tiled bake at 10 px/mm with ~15 min of art-direction hints: the four baked flame glows inpainted, face zones kept at <= 1.0x native, phase-field stitch directions where the structure tensor is incoherent). The real candle is a shadowed point practical in the relight (inverse-square pool from a frieze-mm position beyond the panel's left edge; seeded flicker 1-3 Hz <= 8 % plus 8-12 Hz <= 3 %); no flame layer is animated.",
+   "material_behavior": "Needle-painted fills re-embroidered as wool strands with fuzz; stitched flames are matte laid wool with no glow; the candle pool warms the linen within ~20 cm of the left edge and leaves the right-hand lords cooler.",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "Ceremony and bond: the litany lands on light beats instead of cuts.",
+   "est_render_cost": "R25-F 72 x ~6 s (one shadowed practical) = ~7 CPU-min (p1 bake ~8 min + hints, shared with S04-S06, S09-S11).",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S04",
+   "name": "One crown",
+   "act": "I Oath",
+   "start_frame": 212,
+   "end_frame": 275,
+   "start_s": 7.067,
+   "end_s": 9.2,
+   "frames": 64,
+   "anchor": "'crown' f230; gap f248-276",
+   "summary": "Gentle push to the king; metal flare 1 of 2 on the crown; symmetry broken by light from one side",
+   "audio_event": "'one' f212, 'crown' f230 (attack f229, to f248). Music-only gap f248-276 (-32.8 dBFS), crescendo peaking f271.",
+   "visual_action": "Slow push toward the king. On 'crown' (f224-236) METAL FLARE 1 of 2: the crown's couched gold flares (reaching #FFF3D6 for 2 frames at f230) and a glint circles the circlet once. Through the gap the light is at its warmest: the window key from upper left and the candle pool on the left; purple king; the four house tunics lit unevenly (gold and red inside the pool, blue and green cooler); nothing else moves.",
+   "camera": "Exponential push 1.00 -> 1.07x (faces reach 1.0x panel-native, no further), frame centre at panel x 0.515 so the king sits at frame x 0.47 and all four lords stay inside x 320-2240; 2 px/frame drift. p1's symmetry is broken by light and pool, not by framing (the panel allows the king only x 0.43-0.57 at this scale).",
+   "technique": "R25-F with the metal environment term (warm studio-gradient lobe so the crown reads as metal at the key azimuth); art-directed contour-parallel crown mask so the fleurs-de-lis do not dissolve into couched rows; candle practical as in S03.",
+   "material_behavior": "Metal glint confined to the crown (< 1 % of pixels); royal purple (madder over woad) reserved for the king; wool sheen <= 0.06.",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "The height of the golden age: authority, warmth, order.",
+   "est_render_cost": "R25-F 64 x ~6 s = ~6 CPU-min.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S05",
+   "name": "They raised their cups",
+   "act": "I Oath",
+   "start_frame": 276,
+   "end_frame": 338,
+   "start_s": 9.2,
+   "end_s": 11.3,
+   "frames": 63,
+   "anchor": "'raised' f285; 'cups' f308",
+   "summary": "First tiny awakening: the four goblets peel up out of the cloth on thread tethers (real Eevee pieces over the plate)",
+   "audio_event": "'They' f276, 'raised' f285 (bass f296), 'their' f299, 'cups' f308 (attack f307, to f322). Gap f322-339 (bass blip f323).",
+   "visual_action": "Pull back to the whole table. First awakening, tiny: the four gold goblets peel up out of the cloth on thread tethers (anticipation dip f280, rise f283-292 on twos, staggered 2 frames left to right, lift 10-12 mm), their stitches tautening, contact shadows opening and softening beneath them; where they lay the linen shows protected unfaded ground, needle holes and an underdrawn outline. They hang at the top of the lift on 'cups' f308, turning very slightly on their tethers.",
+   "camera": "Exponential pull-back 1.07 -> 1.00x to full p1 (F1), done in 2D over the composite (pieces <= 12 mm high: parallax error < 1 px).",
+   "technique": "EV-DM/P block E2: the goblets are real pieces (displaced slips cut from the p1 maps, 1.5 mm padded cards with a felt edge and a peel bend key, tethers as bevelled curves) rendered in Eevee 1920x1080 16 TAA on twos at the F1 pose over a shadow-catcher copy of the ground; their shadows are transferred to the R25-F plate as a ratio (pipeline 7.6) with contact AO; the ghost (protected linen, holes, underdrawing) lives in the ground maps. No R25-L parallax lift.",
+   "material_behavior": "Goblet gold at L1 (soft sheen, no travelling glint); tethers are wool strands catching a 25 % rim light; linen lips round the needle holes.",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "Celebration, and the first sign that the cloth is alive.",
+   "est_render_cost": "Eevee E2 32 renders @1080p (~18 s) = ~10 min; R25-F/COMP 63 x ~3 s = ~3 CPU-min.",
+   "eevee": {
+    "block": "E2",
+    "renders_1080": 32,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S06",
+   "name": "And swore it would never end",
+   "act": "I Oath",
+   "start_frame": 339,
+   "end_frame": 445,
+   "start_s": 11.3,
+   "end_s": 14.867,
+   "frames": 107,
+   "anchor": "'swore' f349; 'end' f391; gap f402-446",
+   "summary": "Goblets settle; the camera leaves the table for the border and follows the gold thread; the window light dies; T2 splice",
+   "audio_event": "'and' f339, 'swore' f349 (strongest early drone swell f358), 'it' f367, 'never' f381, 'end' f391 (to f402). Music-only gap f402-446 (1.46 s, Dmaj7; bass f428).",
+   "visual_action": "On 'swore' the goblets settle back into the cloth on twos (f349-357), tethers slackening, shadows closing. Then the camera leaves the full table: it rises to the upper border and releases rightward along it in close detail (tie-downs, nail holes, the border beasts), following the gold chronicle thread couched there, which runs on and on out of frame ('never end') under a soft travelling sheen (L1). In the gap the window light fades with the day (3000 -> 1900 K, elev 22 -> 12 deg, -0.7 EV) until the candle on the left is the only key, its pool contracting. Tree divider T2 (dark woad bands) crosses frame f428-445.",
+   "camera": "Hold F1 to f357 while the goblets settle; f358-385 rise to the upper border and push to ~1.3x F1 (6 px/mm, shaded on the 10 px/mm level); truck right 0 -> 12 px/frame (f365-400), held at 12 px/frame with 180-deg blur across the divider. Full-p1 framing ends at f357, about 30 frames earlier than v1.",
+   "technique": "E2 pieces on twos f339-357 (10 renders, same rig as S05), then R25-F, relit per frame only during the light change; cached plates moved in 2D elsewhere.",
+   "material_behavior": "Dye warmth drains as the light cools; the thread's sheen leads the eye right; border couching and nail holes read at full stitch scale.",
+   "transition_out": "T2 tree-divider splice (8-frame match dissolve f438-445) into p3.",
+   "emotional_purpose": "Confidence curdling into foreboding: the promise outruns the frame while the light dies.",
+   "est_render_cost": "Eevee E2 10 renders (~18 s) = ~3 min; R25-F 107 x ~4 s = ~7 CPU-min.",
+   "eevee": {
+    "block": "E2",
+    "renders_1080": 10,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S07",
+   "name": "Then the king died",
+   "act": "II Death",
+   "start_frame": 446,
+   "end_frame": 497,
+   "start_s": 14.867,
+   "end_s": 16.6,
+   "frames": 52,
+   "anchor": "'king' f458; 'died' f469; drone -6 dB f480",
+   "summary": "p3, the king on his bier; on 'died' the real candle gutters and a stitched flame is unpicked",
+   "audio_event": "'Then' f446, 'the' f453, 'king' f458, 'died' f469 (to f483); the D drone starts to exit (-6 dB f480); bass f495.",
+   "visual_action": "p3: the king lies in state on the purple bier, night-blue ground, four tall stitched candles. Act II light: the real candle on the left is the only key (1900 K, 12 deg), saturation 0.7, only the crown carries gold. On 'died' (f465-471) the real candle gutters: its flame dips and drowns in its own wax and the light on the cloth falls -0.5 EV, recovering only to a smaller, lower flame. In the same frames the nearest stitched candle flame on p3 is unpicked: its threads drawn out in reverse stitch order over 6 frames, curling up to 20 mm before they vanish, leaving needle holes and a bare underdrawn flame. The drone, the floor of the score, follows them out from f480.",
+   "camera": "1.05x F1 (faces 0.98x native), framed right of centre so the crowned head sits at frame x ~0.72 and the left candle pair is cut by the frame edge; truck decelerating 12 -> 2 px/frame, landing on 'died'; then 2 px/frame drift.",
+   "technique": "R25-F on p3 re-embroidered (tiled bake 10 px/mm; baked flame highlights inpainted) + R25-S unpick (stitch_id threshold run backwards, snapshot re-raster every 2 frames, loose ends from the fibre/curve renderer); the guttering is the candle practical's intensity and height curve in the relight (a single slow drop, not a flicker).",
+   "material_behavior": "Unpicked strands kinked where they were couched and hairier at the cut ends; holes are dark pits with raised linen lips; the crown keeps the only gold.",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "Death told by the room and the cloth losing the same flame, not by melodrama.",
+   "est_render_cost": "R25-F/S 52 x ~6 s = ~5 CPU-min (p3 bake ~8 min).",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S08",
+   "name": "And left no heir",
+   "act": "II Death",
+   "start_frame": 498,
+   "end_frame": 560,
+   "start_s": 16.6,
+   "end_s": 18.7,
+   "frames": 63,
+   "anchor": "'heir' f522; drone gone f548; gap f532-561",
+   "summary": "An underdrawn heir that was never stitched; the film's only titulus, SINE HEREDE",
+   "audio_event": "'and' f498, 'left' f505, 'no' f515, 'heir' f522 (to f532). Drone -15 dB f534, gone by f548. Music-only gap f532-561 (F6, -28 dBFS) as the lament chords take over.",
+   "visual_action": "The camera drifts past the foot of the bier into a narrow strip of bare linen between two blue-black couched bars. Here there is only the designer's underdrawing: a small crowned figure in faint brown ink that was never stitched, the heir who never was, set low and left in the strip, and beneath it the film's only titulus, SINE HEREDE, in red-brown stem stitch. Nothing moves; the guttered candle's pool barely reaches it. As the drone disappears we stay on the unstitched figure. T3, a leafless winter tree in blue-black, crosses frame f548-560.",
+   "camera": "F1 truck 2 -> 6 px/frame (slow, so the figure holds for ~1.5 s), 180-deg blur only across the divider.",
+   "technique": "R25-F (underdrawing = warm-brown ink line with slight bleed into the weave, no relief; titulus from Cinzel 700 skeletons stem-stitched by the R25 titulus module, baseline wobble +/-0.8 mm).",
+   "material_behavior": "Bare linen and ink: the absence of relief is the image. The titulus is the only wool in frame.",
+   "transition_out": "T3 tree-divider splice (match dissolve f553-560) into the repeated oath table.",
+   "emotional_purpose": "Vacancy: the score loses its floor exactly as the line of succession does.",
+   "est_render_cost": "R25-F 63 x ~2 s = ~2 CPU-min.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S09",
+   "name": "Every lord looked at the empty chair",
+   "act": "II Death",
+   "start_frame": 561,
+   "end_frame": 716,
+   "start_s": 18.7,
+   "end_s": 23.9,
+   "frames": 156,
+   "anchor": "'lord' f578; 'looked' f637; 'chair' f669; gap f681-716",
+   "summary": "The oath table again, changed by light and age; the king is unpicked live; the crown slip hangs on tethers over a king-shaped void",
+   "audio_event": "'and' f561, 'every' f567, 'lord' f578, 'who had sat' f591-607, 'at that table' f609-631, 'looked' f637, 'at the' f648-654, 'empty' f656, 'chair' f669 (to f681). Lament chords ~-28 dBFS; gap f681-716 (fullest music 23-25.5 s).",
+   "visual_action": "The oath table again, further along the roll (Bayeux repeats scenes), unmistakably different at first sight by light and age rather than by framing: one guttered candle low on the left (12 deg) pools light on the throne and leaves the right of the scene in shadow; dyes aged and desaturated, a tideline across the tablecloth, the stitched candles unpicked to needle holes, and the four goblets gone, only their needle-hole outlines left. The king is still on the throne, and comes undone as we watch (f561-640): his couching bars release first, then his purple, ermine and beard strands slacken in a ripple, lift and curl 5-20 mm off the cloth and pull out through the linen, top to bottom, on twos. What remains on the throne is bare linen pricked with needle holes and the faint red-brown underdrawing of his silhouette: the empty chair is a king-shaped absence. The four lords and the throne stay. The crown (heraldic couched gold) is not unpicked: it is a separate slip that hangs where his head was, lifted 15 mm on four gold tethers, its soft shadow falling into the void. On 'looked' f637 the push begins; it lands on the void on 'chair' f669. Gap: hold; the crown turns very slightly on its tethers.",
+   "camera": "Locked at 1.06x (faces 0.99x native), frame centre at panel x 0.527 so the throne sits at frame x 0.47 and all four lords are inside x 320-2240, 1 px/frame drift (f561-636); exponential push 1.06 -> 1.25x onto the void (f637-669), the void held at frame x 0.47; at 1.25x the red and blue lords' faces (1.16x native) sit at the rim of the candle pool, -1.5 EV, in shadow; hold with 2 px/frame drift through the gap.",
+   "technique": "R25-F on the p1 maps with an Act II re-dye (aged values, sat 0.7, tideline and foxing layers; glows already inpainted) + R25-S unpick of the king's stitch_ids in top-to-bottom order (snapshot re-rasters, loose-end curls from the fibre/curve renderer, needle-hole and underdrawing reveal underneath); crown slip by R25-L frontal lift (15 mm, the G5 maximum) with PCSS shadow and 2D tethers; the candle is a shadowed point practical. Neither the broken p1_empty plate nor a second panel is used.",
+   "material_behavior": "Unpicked wool crinkled and kinked where it was couched; 0.6 mm needle holes with a slight linen halo catch the raking light; underdrawing has no relief and no sheen; the crown is the only highlight (L1).",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "Absence: every gaze in the scene converges on a hole in the cloth.",
+   "est_render_cost": "R25-F/S/L 156 x ~8 s = ~21 CPU-min; prep: king stitch order + unpick snapshots ~3 h.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S10",
+   "name": "His own head beneath the crown",
+   "act": "II Death",
+   "start_frame": 717,
+   "end_frame": 783,
+   "start_s": 23.9,
+   "end_s": 26.133,
+   "frames": 67,
+   "anchor": "'own' f741; 'head' f753; 'beneath' f766; cut f783/784",
+   "summary": "The candle is carried round over the crown; the crown's shadow crowns each lord in turn, left to right, and leaves an underdrawn ghost crown",
+   "audio_event": "'and' f717, 'saw' f724, 'his' f732, 'own' f741 (stressed), 'head' f753, 'beneath' f766, 'the' f780; low swell f750; the lament at its fullest. 'crown.' f785 falls in S11 (cut one frame early).",
+   "visual_action": "An unseen hand lifts the guttered candle and carries it round the table in an arc over the crown, right to left. The hanging crown's shadow travels across the linen and crowns each lord in turn, left to right: the gold tunic on 'own' f741 (candle low at the right, az 10 deg, elev 4.9 deg, shadow thrown 177 mm), the red on 'head' f753 (candle raised to 8.4 deg, shadow drawn in to 101 mm); then the candle passes over the top (f753-766, elevation arcing up to ~30 deg) so the shadow shrinks under the crown and rests for three frames on the king-shaped void (f758-761), and swings out to the blue on 'beneath' f766 (az 166 deg, elev 8.3 deg) and the green at f778 (az 173 deg, elev 4.8 deg). Where the shadow-crown touches, a ghost crown in faint red-brown underdrawing is left on the lord's head: the ambition drawn, never stitched. Four ghost crowns accumulate. The candle burns brighter as it is carried low (it is nearer), so the lit cloth stays within +/-10 % of its mean brightness.",
+   "camera": "Exponential pull-back 1.25 -> 1.00x (f717-738) with a 13 mm leftward drift (frame centre panel x 0.524 -> 0.50), so all four lords are in frame and inside x 320-2240 by f738; then locked with 1 px/frame drift. Cut at f783/784, one frame before 'crown.' f785 (audio report: cut one frame early on an attack).",
+   "technique": "R25-F with per-frame relight of the moving point practical (az/elev curve keyed to f741/753/766/778; the 4.8-4.9 deg extremes are a documented exception to the 12-30 deg key rule, like the 6-deg S13 graze); crown shadow done in COMP as the slip alpha offset by lift/tan(elev) along the light (15 mm lift; 101-177 mm throws), PCSS penumbra growing with the throw; ghost crowns = intro/crown silhouette traced to running-line underdrawing, revealed in stitch order on twos (6 frames each).",
+   "material_behavior": "The raking candle walks across the couching bars, so the bar-shadow grid comes alive on the tunics; one small crown glint (L2) as the candle passes over the top (f757-762).",
+   "transition_out": "HARD CUT f783/784 to the crown-slip macro, matched on the crown's screen position and light direction.",
+   "emotional_purpose": "Ambition and inevitability: each lord sees himself crowned; the war is already decided.",
+   "est_render_cost": "R25-F 67 x ~6 s = ~7 CPU-min.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S11",
+   "name": "The oath unpicked",
+   "act": "II Death",
+   "start_frame": 784,
+   "end_frame": 843,
+   "start_s": 26.133,
+   "end_s": 28.133,
+   "frames": 60,
+   "anchor": "cut f784; 'crown.' f785; collapse f797-798; near-silence f797-843",
+   "summary": "Macro: the crown slip's tethers pop and it is yanked out as the music collapses; the candle dies; near-black",
+   "audio_event": "'crown.' f785-799 (the cut lands one frame earlier, f784). The music collapses ~20 dB at f797-798, the strongest internal boundary of the score. Near-silence f797-843 (-47 dBFS, Gm(add9) whisper).",
+   "visual_action": "Extreme macro on the hanging crown slip, matched to the crown's position at the cut: its couched gold over padding, the felt edge, the four gold tethers and the slip's soft shadow on the linen 15 mm below. f786-797: the tethers pop one after another, each recoiling and curling, and the slip tips as it loses them; on f797-798 the last tether goes and the crown is yanked up and out of frame by a thread leading off-frame, motion-blurred, exactly as the music falls away. The candle dies with it: the key decays to a cold graze (-4 EV) by f812. What remains: the crown's footprint in the linen (needle holes, protected unfaded ground in its shape, crushed fibres where the tethers were anchored). f813-843: near-black (floor #07070A, cool fill #141325 at 10 %); only one loose tether end settles. An invisible splice in the dark at f820 moves us to the war strip at the S12 opening pose. From f832 a low ember glow from the hearth rises from the bottom edge of frame. The chronicle thread itself is untouched: only the crown is taken.",
+   "camera": "Macro ~48 mm field, f/8, cloth tilted 15 deg; whip-follow of the escaping slip f790-798 with motion blur; then locked, 1 px/frame drift. After the f820 dark splice the frame is the S12 opening pose (F2, ~240 mm field, 22-deg oblique), still in darkness.",
+   "technique": "EV-MR macro rig E0 reused: Eevee 1920x1080 16 TAA on ones f784-812 (29 renders): the crown slip baked at 40 px/mm from p1's crown segmentation (contour-parallel couched gold from the same hint zone, so the hard cut matches the panel crown; 40 px/mm on screen = 1.0x, no magnification) as a 1.5 mm padded card over a 40 px/mm procedural linen patch, tethers as curves with pop and recoil, the slip on an animated path. f813-843 COMP hold on the last render with light decay and grain. The war-strip opening pose as 2 E1-rig stills with split lights (cool fill, ember) mixed in COMP for the rising glow (counted here).",
+   "material_behavior": "Heraldic padded gold on a felt edge; tethers recoil and curl; the footprint shows holes, protected linen and crushed fibres; the crown's metal (L2 at most) dies with the light; then only the weave relief reads.",
+   "transition_out": "Darkness; the ember glow becomes S12's hearth light (continuous).",
+   "emotional_purpose": "The oath breaks, and the silence is the shock.",
+   "est_render_cost": "Eevee E0 29 renders + 2 light-split stills @1080p (~65 s) = ~34 min; COMP 31 frames.",
+   "eevee": {
+    "block": "E0",
+    "renders_1080": 31,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S12",
+   "name": "The wars lasted a hundred years",
+   "act": "III War",
+   "start_frame": 844,
+   "end_frame": 924,
+   "start_s": 28.133,
+   "end_s": 30.833,
+   "frames": 81,
+   "anchor": "'wars' f850; 'lasted' f867; 'hundred' f884; 'years' f899",
+   "summary": "A slow crane reveals two armies lying in the cloth; once the camera settles they stand up into strike poses and freeze while one slow light arc ages the cloth by a century",
+   "audio_event": "'The' f844, 'wars' f850, 'lasted' f867, 'a' f881, 'hundred' f884, 'years' f899 (stressed, to f916), 'and' f918. Music at or below -45 dBFS (thin, airy, no bass); crescendo from f896.",
+   "visual_action": "The hearth's firelight grazes the war strip from the bottom edge of frame (2200 K): a madder-and-woad-grey dusk sky over hillocks and, lying flat in the cloth close to us, one stitched soldier of the merchants' blue, long shadows thrown up-frame from every thread ('The wars' f844-850). From 'wars' the camera cranes slowly up and back to reveal the two armies lying flat: the merchants' blue facing right to left against the reading direction, the legion's crimson facing them, far horse legs in alternating colours. On 'lasted' (f867-877) their stitches begin to tauten: the only anticipation while the camera moves. The camera settles at f877. From f878 the front ranks stand up out of the cloth into their strike poses: each slip peels from its head, hinges at its feet to ~70 deg like the game's figure cards, felt edge showing, its stitches stretching into thread tethers that snap one by one, contact shadows tightening at the feet, needle-hole footprints left open where they lay; the last rises on 'hundred' (f884-896). They stand frozen mid-strike: one clash, held. 'years' (f899-917): a hundred years pass in one slow arc of light: the firelight sinks and a single pale daylight arc crosses the strip once, left to right, while the cloth ages around and under the frozen soldiers (dyes bleach, foxing and a tideline bloom, tethers sag) and the gold chronicle thread in the upper border tarnishes (#E9BE6A -> #7A5A2A). One generation only; nothing else moves. From f912 the camera begins its slow crane back to face-on (S13).",
+   "camera": "F2 opening (~240 mm field, 10.7 px/mm, 22-deg oblique, f/8 with a ~25 mm focus band, 3-deg dutch in-camera). f844-877 eased crane up and back to F1 (550 mm) at the same oblique: 2.3x in 34 frames (smoothstep), centre <= 5 px/frame, frame edges ~31 px/frame on average (peak ~47 at f861, easing to rest at f877) under real Eevee motion blur; settled at f877, before any figure stands. f878-911 locked in 3D, with a 2D drift right to left at 2-3 px/frame on an 8 % overscan; from f912 the crane back to face-on begins (S13), the dutch unwinding with it.",
+   "technique": "EV-DM/G block E1: Eevee 1920x1080 (2080x1170 where the drift overscan is needed, +17 % pixels, costed), 16 TAA on the F2 frames, 8 TAA wide. War strip = displaced mesh from R25 maps of war_bg re-embroidered (its violet sky bands re-dyed to madder and woad-grey through the hints) with a 20 px/mm procedural linen and ground patch for the near region over f844-870 (<= 1.4x on the 1080 render); figure slips from R25's figure builder (16 slips: 2 realms x 4 units x idle/strike; Legion livery in game crimson with a couched-gold cross shield) exported as 1.5 mm padded cards with a felt edge, foot hinges and a peel bend key; tethers as bevelled curves with snap animation; area light from the bottom edge; real DOF. On ones f844-877 while the camera moves (34 renders), slips on twos f878-911 with the camera locked (17 renders), on ones again f912-924 for the crane (13 renders). The ageing is done in COMP by re-texturing the ground through Eevee's UV and shading-ratio passes with 6 keyed R25 ageing states; the light arc is a relight ratio in COMP; no extra renders.",
+   "material_behavior": "Figure satin (mask B channel) catches the firelight; wool fuzz haloes glow on the risen slips' edges; the ground is matte; thread boil on twos only on moving figures; dyes visibly age. The firelight never pumps the whole frame: slow 0.3-1.5 Hz drift <= 15 %, components above 3 Hz <= 4 % of whole-frame luminance; strong flicker only in the hearth glow at the bottom edge.",
+   "transition_out": "Continuous into S13 (the crane to face-on starts f912).",
+   "emotional_purpose": "Violence without progress: a war fought in silence that only ages the cloth.",
+   "est_render_cost": "Eevee E1 64 renders @1080p (34 x ~35 s + 30 x ~18 s) = ~29 min; COMP 81 frames.",
+   "eevee": {
+    "block": "E1",
+    "renders_1080": 64,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S13",
+   "name": "And ended nothing",
+   "act": "III War",
+   "start_frame": 925,
+   "end_frame": 981,
+   "start_s": 30.833,
+   "end_s": 32.733,
+   "frames": 57,
+   "anchor": "'ended' f925; 'nothing' f942; silent gap f952-979",
+   "summary": "The soldiers topple as the crane lands face-on; on a static pose the film swaps to R25; on 'nothing' they are unpicked into a field of needle holes",
+   "audio_event": "'ended' f925, 'nothing' f942 (to f955). Near-silent gap f952-979 (-47 dBFS).",
+   "visual_action": "'ended' (f925-936): the soldiers topple back flat into the cloth one by one, staggered, like falling cards, as the camera finishes its crane up to face the cloth; topple and crane are both complete at f936, and f936-941 hold on the static pose. 'nothing' f942: every figure is unpicked at once, threads withdrawn along their outlines in a single breath (f942-952). Left behind: aged linen pocked with needle holes in the shapes of men and horses, snipped ends, faint underdrawn ghosts. In the silent gap the frame is still: a slow grazing light (elev 6 deg) slides across the hole field and every hole casts a tiny shadow. f975-981: at the right edge the linen begins to brown; a scorch is coming.",
+   "camera": "Eevee crane from the 22-deg oblique (3-deg dutch unwinding) to face-on over f912-936 (25 frames, eased, ~0.9 deg/frame); locked at F1 from f936, then a slow push 1.00 -> 1.06x through the gap: a held, locked frame for the silence (not a tight one).",
+   "technique": "EV-DM/G E1 on ones f925-936 (12 renders, topple poses stepped on twos inside them) + one 32-TAA registration render of the static face-on pose at f936; registered swap to R25 over f936-941 on that static pose (median dE_ok x100 < 2, no edge shift > 1 px; qa/swap); from f942 everything is R25: R25-S mass unpick (snapshot re-rasters every 2 frames) + R25-F relight of the hole height field under the moving grazing light; scorch start = R25 burn mask.",
+   "material_behavior": "Holes as relief (0.3 mm pits with raised lips), loose fibres rim-lit, all wool gone; the hundred-year ageing remains on the linen.",
+   "transition_out": "The scorch carries into S14.",
+   "emotional_purpose": "'Nothing' made visible: a hundred years leaves only holes.",
+   "est_render_cost": "Eevee E1 13 renders @1080p (12 x ~18 s + 1 x ~60 s) = ~5 min; R25-F/S 46 frames x ~6 s = ~5 CPU-min.",
+   "eevee": {
+    "block": "E1",
+    "renders_1080": 13,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S14",
+   "name": "Cities fell to ruin",
+   "act": "III War",
+   "start_frame": 982,
+   "end_frame": 1050,
+   "start_s": 32.733,
+   "end_s": 35.033,
+   "frames": 69,
+   "anchor": "'Cities' f982; 'fell' f999; 'ruin' f1015; pad returns f1017",
+   "summary": "The real linen burns through onto p6, re-dyed in Bayeux terms; tower courses are unpicked, one tower top peels away; the burn eats the margins",
+   "audio_event": "'Cities' f982 (attack f987), 'fell' f999, 'to' f1009, 'ruin' f1015 (to f1028). Soft pad returns f1017 (+5 dB). Near-silence f1029-1047, gap to f1051.",
+   "visual_action": "On 'Cities' the scorch spreads across the hole field from the right: this is the real linen burning, browning to soot behind a thin glowing ember rim (the only glowing thing in the film: a real smoulder, not embroidery). It burns right through to the dark walnut beneath, and the camera trucks across the burnt hole (ember-rimmed dark, f988-997) onto p6, the walled city in flames, re-embroidered in Bayeux terms: a banded sky of madder, woad-grey and buff (the AI panel's violet bands and gradient re-dyed and flattened into laid work) and a fire of three dye lots in laid-and-couched flame tongues (terracotta, mustard, madder_dark). 'fell' (f999-1010): the upper courses of the cracked towers are unpicked course by course, top down, on twos, their masonry threads drawn out; and one tower top, the cracked one on the left, peels off the cloth on its tethers and slumps sideways out of its outline. 'ruin' f1015: the torn banner at the gate slumps. As the pad returns (f1017) the stitched flames re-stitch themselves taller in a few stop-motion steps (no glow: they are wool) while the real burn creeps into the panel's margins, browning and small ember-rimmed holes eating the border: the chronicle consumed by what it depicts. Near-silence f1029-1047: only the smoke advances, its stem-stitch spirals stitching themselves on along their curls. f1040-1050: a charred interlace tree crosses frame as the truck resumes.",
+   "camera": "Truck 0 -> 10 px/frame f984-992 (180-deg blur above 12) across the burnt hole, decelerating to 2 px/frame by f1006; F1, 2-3 deg dutch, hearth light from the bottom edge; locked drift; ease back in from f1038 for the divider. The city is framed left of centre so the gate and the slumping banner sit at frame x ~0.40.",
+   "technique": "R25-F on p6 re-embroidered (hints re-dye the sky bands, flatten the gradient sky into banded laid work and reduce the fire to 3 dye lots in laid-flame shapes) + R25 burn mask (noise-advected distance field: linen -> foxing #9C7046 -> soot #3A3330 -> char, 1-3 px ember rim #DE6A2C -> #F6B54A flickering locally, curled edge as a relit height lift). R25-S unpick of the tower courses and stitch-on of the flame and smoke strands, all on twos; one tower-top peel by R25-L (<= 12 mm, tethers, PCSS). The dark burnt hole hides the splice. No particles. Burn and soot maps persist as ageing layers through S15-S18. The hearth is the key (slow swells <= 15 %, components above 3 Hz <= 4 % of whole-frame luminance).",
+   "material_behavior": "Fire is wool and smoke is stem stitch, both at narrative chroma (<= .13); wool fills singe faster than outlines; only the real ember rim glows (chroma exempt).",
+   "transition_out": "Charred tree-divider splice into S15.",
+   "emotional_purpose": "Loss of civilisation made tactile: the cloth itself burns.",
+   "est_render_cost": "R25-F/S/L 69 x ~7 s = ~8 CPU-min (p6 bake ~8 min; burn sim prep ~3 h).",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S15",
+   "name": "Roads swallowed by the forest",
+   "act": "III War",
+   "start_frame": 1051,
+   "end_frame": 1137,
+   "start_s": 35.033,
+   "end_s": 37.933,
+   "frames": 87,
+   "anchor": "'Roads' f1051; 'swallowed' f1075; 'forest' f1101",
+   "summary": "The four-colour road returns; one needle leads a forest that grows over it",
+   "audio_event": "'Roads' f1051 (stressed), 'were' f1068, 'swallowed' f1075, 'by the' f1092-1099, 'forest' f1101 (to f1115). M4 pad plateau ~-40 dBFS (Dm add9). Gap f1115-1137.",
+   "visual_action": "Beyond the charred tree the four-colour road of the one realm (S02) returns as a rhyme: faded, broken, its couching loose, singed where the fire reached. A forest grows over it in stitches: a single steel needle leads one stem-stitch tendril along the road from the left border (one needle frontier at a time; its steel catches the light for 1-2 frames per pass), and behind it couched leaves bloom in olive/sage/forest alternation and banded trunks rise as stitch-on growth without needles, each strand growing along its length. On 'forest' f1101 the last stretch of road disappears. In the gap the forest thins.",
+   "camera": "Truck right 6 -> 4 px/frame at F0. The hearth light sinks to an ember glow from the bottom edge; a cool dusk fill rises.",
+   "technique": "R25-S procedural stitch-on: vector trees -> stitch maps with stitch_id in needle-path order (spatial adjacency), each strand growing along its length with a pop-in height curve, 20-60 mm/s physical, laid -> bars -> tie-downs -> outline; only the lead tendril carries the needle sprite; dirty-rect recompute of normals/AO/fibres; R25-F relight.",
+   "material_behavior": "Fresh green wool, slightly proud and unaged, over faded road dyes and the S14 scorch; the needle is the shot's only metal (L2, 1-2 frames per pass).",
+   "transition_out": "Tree-divider splice f1120-1137 into the four towns.",
+   "emotional_purpose": "The world returning to wildness; the paths between people close.",
+   "est_render_cost": "R25-S/F 87 x ~6 s = ~9 CPU-min.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S16",
+   "name": "Men forgot their own borders",
+   "act": "III War",
+   "start_frame": 1138,
+   "end_frame": 1253,
+   "start_s": 37.933,
+   "end_s": 41.8,
+   "frames": 116,
+   "anchor": "'forgot' f1149; 'beyond' f1182; 'borders' f1211; gap f1229-1253",
+   "summary": "Bars wall the strip into cells; each town's road is unpicked and a realm ring is stitched on in its place; fog quilts peel down over the rest",
+   "audio_event": "'Men' f1138, 'forgot' f1149, 'what' f1166, 'lay' f1173, 'beyond' f1182, 'their' f1196, 'own' f1201, 'borders' f1211 (stressed, to f1229). Gap f1229-1253 (D7 colour, in-gap swell from f1241).",
+   "visual_action": "Four walled towns of different sizes along the register (a hill town, a river town, a large walled town and a hamlet; stitched elevations of settle_0/1/2), still joined by the last of the four-colour road. 'forgot' (f1149-1165): vertical couched bars stitch themselves down between them like walls (the Bayeux compartment device, alternating slant), snipping the road at every bar; the cut ends curl. 'what lay beyond' (f1166-1195): the land between the towns bleaches back toward underdrawing, and padded quilts of cloud (the game's own fog-of-war kit), hinged at the bars, peel down over it like flaps, their padding swelling and their shadows tightening as they settle. 'own borders' (f1196-1211): each town's stretch of road is unpicked, and in its place a closed ring is stitched on round the town in its realm colour (gold, crimson, royal blue, green): the game's border idiom, a thick running-stitch cord between brown edgings. Three rings close by 'borders' f1211; the green one closes late (f1220), its last stitches crooked and visibly re-stitched. Gap: four towns, four colours, four uneven rings, fog between them.",
+   "camera": "F0; truck 4 -> 1 px/frame by f1180, then locked with 1 px/frame drift. No move into the bass yet.",
+   "technique": "R25-S stitch-on (bars, rings) and unpick (road segments, bleach-back) driven by stitch_id masks; cloud_puff_1-8 / cloud_edge_1-3 / cloud_corner_in/out as height-mapped padded layers, peeled down by R25-L hinged lifts (<= 12 mm) on twos and relit by R25; COMP.",
+   "material_behavior": "Couched bars alternate blue-black and red-brown; realm cords are wool/silk with 10-15 % sheen; fog quilts are cream cotton with brown running-stitch outlines puffing 2-3 mm.",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "Suspicion and small worlds: the one realm splits into the game's four.",
+   "est_render_cost": "R25-S/F/L 116 x ~6 s = ~12 CPU-min.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S17",
+   "name": "And the world grew...",
+   "act": "III War",
+   "start_frame": 1254,
+   "end_frame": 1282,
+   "start_s": 41.8,
+   "end_s": 42.767,
+   "frames": 29,
+   "anchor": "'world' f1263; 'grew' f1281; bass enters f1283",
+   "summary": "Held breath before the bass: the hearth embers gutter, the quilts swell, the first weft threads lift",
+   "audio_event": "'and' f1254, 'the' f1258, 'world' f1263 (stressed), 'grew' f1281. In-gap swell f1241-1257; music creeping up to ~-36 dBFS. The bass enters on the next frame.",
+   "visual_action": "A held breath. The hearth's ember glow gutters lower (a slow fall, no flicker pumping), the fog quilts' padding swells at the margins, and the first weft threads at the cloth's top and bottom edges loosen and lift. Nothing travels.",
+   "camera": "Locked, 1 px/frame drift. Nothing launches before f1283.",
+   "technique": "R25-F relight with a falling key; fray masks begin (R25 fibre/curve renderer).",
+   "material_behavior": "Loosened weft with fuzz catching the last warm light.",
+   "transition_out": "Continuous into the pull-back on the bass.",
+   "emotional_purpose": "Dread contracting: the stillness before the drop.",
+   "est_render_cost": "R25-F 29 x ~4 s = ~2 CPU-min.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S18",
+   "name": "Dark at its edges",
+   "act": "III War",
+   "start_frame": 1283,
+   "end_frame": 1381,
+   "start_s": 42.767,
+   "end_s": 46.067,
+   "frames": 99,
+   "anchor": "BASS ENTRY f1283; 'dark' f1292; 'edges' f1319; bass f1345; swell f1372",
+   "summary": "On the bass the camera pulls back: the strip on a dark walnut table, fraying into darkness; one gold glint survives",
+   "audio_event": "BASS ENTRY f1283 on 'grew' (+26 dB in 22-120 Hz, the biggest musical event). 'dark' f1292, 'at its' f1308-1318, 'edges' f1319 (to f1336). Gap f1336-1381 (-31.9 dBFS) with bass pulse #2 at f1345 and an in-gap swell into 'Now' from f1372.",
+   "visual_action": "On the bass the camera pulls back: the chronicle is revealed as a long strip lying along a dark walnut table, both ends lost in darkness, and its edges are dying. Borders fray, weft threads pull loose and curl, the border beasts unravel into fringe, fog quilts creep in from the margins over the strip. On 'dark' f1292 the hearth's embers die. By 'edges' f1319 the fraying bites into the main register and the light falls off to -2.5 EV at the frame edges (physical falloff, not an overlay). Gap: stillness. At the far right end of the strip a single gold glint survives (the chronicle thread, unbroken) and it pulses once on the bass f1345. From f1372 a faint pre-dawn lift (cool grey-blue fill from the window at the left, +0.3 EV) anticipates 'Now'.",
+   "camera": "Exponential pull-back F0 3.3 -> 0.75 px/mm (4.4x) launching on f1283 (6-frame ease-in, cruising by 'dark' f1292, ease-out to f1360): frame-edge texture peaks ~32 px/frame (24.6 px/frame is the constant-rate minimum for this move) and is blurred above 12; slight rise; hold f1360-1381.",
+   "technique": "R25-F on a long plate assembled from every section plate, with mips at 1.5, 1.0 and 0.75 px/mm so shading always uses the level within 1.0-1.4x of the screen density (weave LOD-faded); animated fray masks + fringe curves from the R25 fibre/curve renderer; cloud-kit layers; physical light falloff in the relight; procedural walnut (R25 wood albedo/height).",
+   "material_behavior": "Fraying weft and loose fibres rim-lit by the last light; aged dyes; a single L2 metal glint pulse.",
+   "transition_out": "Continuous; the glint carries the eye into S19.",
+   "emotional_purpose": "Despair and smallness, and one thread of hope that did not break.",
+   "est_render_cost": "R25-F 99 x ~4 s = ~7 CPU-min.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S19",
+   "name": "Now every ruler believes...",
+   "act": "IV Renewal",
+   "start_frame": 1382,
+   "end_frame": 1523,
+   "start_s": 46.067,
+   "end_s": 50.8,
+   "frames": 142,
+   "anchor": "'Now' f1382; bass f1410; 'whole' f1466 + bass f1471; Bb gap f1491-1523 (crests)",
+   "summary": "Dawn through the window sweeps L->R: fog peels away, the cloth mends, dyes revive; flare 2 of 2 on 'whole'; four crests stitch on in the Bb gap",
+   "audio_event": "'Now' f1382, 'every' f1395, 'ruler' f1407 (bass pulse f1410), 'believes' f1419 (stressed), 'the world' f1432-1445, 'can be made' f1447-1464, 'whole' f1466 (bass pulse f1471), 'again' f1477 (to f1491). Gap f1491-1523: sustained Bb3 horn/choir over Bbmaj7, the brightest, most hopeful colour of the score.",
+   "visual_action": "On 'Now' dawn (4300 K) breaks through the window on the left and its light sweeps left to right across the strip over 3 s. Where it passes, the fog quilts peel back and fold away against the bars (the game's own fog reveal), the cloth mends (fringe re-weaves into the edges, holes are darned closed in fresh, visibly mismatched thread #E2DBC6) and the dyes revive from aged to fresh (OKLab, staggered 0.2-0.4 s per region behind the light). On the bass f1410 ('ruler') the last frayed edge re-weaves. 'whole' f1466: METAL FLARE 2 of 2: the chronicle thread is re-couched end to end, its tarnished stretch replaced, a glint running the visible length. Bb gap (f1491-1523): arrival near the end of the written chronicle in full dawn, and the four house crests stitch themselves on in the upper border at irregular moments and heights, each a slightly different size (builders' gold hammer f1493, legion's red eagle f1500, merchants' blue scales f1511, nomads' green raven and horse f1517), padded satin with couched gold over the padding, their satin blocks catching the dawn as sheen only (L1, no flash). Beyond them, fresh linen with only faint ink underdrawing.",
+   "camera": "Exponential push back in 0.75 -> 4.0 px/mm (f1382-1490) while trucking right toward the strip's end (~1.2 m of cloth), motion blur wherever frame edges exceed 12 px/frame; then truck 6 -> 4 px/frame in the Bb gap, so the crests are stitched at 4.0 px/mm (a 60 mm crest is ~240 px).",
+   "technique": "R25-F with the S18 masks run in reverse (unfray, unfog by R25-L hinged peels), per-region aged -> fresh albedo lerp keyed to the light front, crests re-embroidered from ui/crest_* as heraldic padded satin (<= 1.2x native) and stitched on by R25-S, metal environment term for the flare; COMP.",
+   "material_behavior": "Colour revival is the visual metaphor for 'made whole'; heraldic satin blocks show sheen differences as the camera trucks (L1); fresh darning visibly mismatched; wool sheen rises with the key.",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "Hope and ambition: the world and the cloth are mended together.",
+   "est_render_cost": "R25-F/S 142 x ~6 s = ~14 CPU-min.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S20",
+   "name": "One banner",
+   "act": "IV Renewal",
+   "start_frame": 1524,
+   "end_frame": 1558,
+   "start_s": 50.8,
+   "end_s": 51.967,
+   "frames": 35,
+   "anchor": "'banner' f1533; bass pulse f1536",
+   "summary": "In the unwritten end of the roll the rostrum tilts 10 deg; one banner hinges up out of the cloth on the bass, its long shadow thrown across open linen",
+   "audio_event": "'One' f1524, 'banner' f1533 (to f1544), bass pulse f1536; crescendo f1520-1550.",
+   "visual_action": "Past the last stitched scene lies the unwritten remainder of the roll: fresh linen with only the designer's underdrawing, a hex lattice, a coastline, the outline of a realm (the game board's layout). In it one banner lies stitched flat on its side: a couched gold pole and the builders' gold flag with its red hammer. From f1527 its stitches tauten; on the bass f1536 the tethers snap one by one and it hinges up from the foot of its pole like a pop-up, the flag unfurling as it comes upright beside the place where it lay, so its needle-hole footprint lies open on the linen. The dawn key (elev 28 deg, from the left) throws its shadow, about 1.9x its height, across open linen to the right: the rise reads first as a growing shadow, then as the banner's own side. It then sways with the music's 2.115 s pulse, decaying.",
+   "camera": "Truck right 4 -> 2 px/frame at ~4 px/mm, decelerating; the rostrum tilts 0 -> 10 deg (f1524-1540, eased) so risen pieces show their sides and real parallax: a perspective rostrum camera with the menu's 30-deg vertical FOV, pivoting on the menu camera's target near Grandbois. Camera rendered on ones.",
+   "technique": "EV-DM/P block E3 (pieces over plate): Eevee 1920x1080 16 TAA on ones while the camera moves, the risen piece stepped on twos. Ground = the R25-F plate of the remainder (fresh linen + underdrawing) warped by the tilt's homography (relief parallax <= 1 px at 10 deg); the banner = settle_banner OBJ with a stitched material (palette albedo, triplanar stitch normal, brown inverted-hull cord as the game's piece outline), its unrisen state registered to its own R25 footprint; tethers as bevelled curves; shadows transferred to the plate as a ratio over a shadow-catcher ground (pipeline 7.6).",
+   "material_behavior": "Banner silk with a satin sheen; pole gold at L1; tethers recoil when released; the needle-hole footprint stays open beside the risen piece.",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "A single act of will: the player's first gesture, foreshadowed.",
+   "est_render_cost": "Eevee E3 35 renders @1080p (~18 s) = ~11 min; COMP 35 frames.",
+   "eevee": {
+    "block": "E3",
+    "renders_1080": 35,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S21",
+   "name": "One village",
+   "act": "IV Renewal",
+   "start_frame": 1559,
+   "end_frame": 1598,
+   "start_s": 51.967,
+   "end_s": 53.3,
+   "frames": 40,
+   "anchor": "'village' f1569; gap f1583-1598",
+   "summary": "Beside the banner a village stitched in Bayeux elevation pops up into 3D houses; the tilt eases back toward zero",
+   "audio_event": "'one' f1559, 'village' f1569 (to f1583). Gap f1583-1598 (0.52 s, Dm add9).",
+   "visual_action": "Beside the banner, on the hex where Grandbois will stand, a small village lies stitched in Bayeux elevation (front walls and roofs drawn flat on the cloth: roof tiles laid in alternating madder and terracotta, blue-black stem-stitch walls). On 'village' (f1563-1577) it rises like a pop-up book in two stop-motion steps: each house hinges up on its ground line, its stitched elevation becoming the front face of a 3D house while side walls and roof unfold behind it, tethers snapping free; the needle-hole footprints where they lay are left open in front of them. The dawn key (elev 28 deg) throws long cast shadows across the open linen. Every piece shows tethers and a contact shadow for at least 6 frames and its footprint for at least 12. The hex underdrawing around it stays unstitched. In the gap the rostrum tilt starts easing back toward zero.",
+   "camera": "Drift 2 -> 1 px/frame at 10-deg tilt; from f1583 the tilt eases 10 -> 0 deg (completed in S22 at f1612) onto the exact E4 zero-tilt pose. Camera on ones.",
+   "technique": "EV-DM/P E3 (same scene): settle_1 OBJ whose front faces carry exactly the stitch texture they had when flat (projected from the R25 sheet), unfolding walls and roofs with synthesised laid-and-couched stitches at the same mm scale; shadow-ratio transfer; tethers as curves.",
+   "material_behavior": "Front faces keep exactly the stitch texture they had when flat; new side walls and roofs carry stitches at the same mm scale (no stretched pixels).",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "The first home: growth after ruin.",
+   "est_render_cost": "Eevee E3 40 renders @1080p (~18 s) = ~12 min; COMP 40 frames.",
+   "eevee": {
+    "block": "E3",
+    "renders_1080": 40,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S22",
+   "name": "One blank page",
+   "act": "IV Renewal",
+   "start_frame": 1599,
+   "end_frame": 1688,
+   "start_s": 53.3,
+   "end_s": 56.3,
+   "frames": 90,
+   "anchor": "'one' f1599 + bass; 'blank' f1614; 'page' f1630; bass f1664",
+   "summary": "The gold thread tacks a blank leaf into the roll; the light gathers on it and the edges sink into darkness where the chronicler's desk stands unseen; on the bass its left candle is lit and the board begins to stitch itself",
+   "audio_event": "'one' f1599 (bass pulse +21.6 dB), 'blank' f1614, 'page' f1630 (to f1645). Gap f1645-1688 (Dm add9), bass pulse f1664, in-gap swell f1658-1692.",
+   "visual_action": "On 'one' (f1599, bass) the gold chronicle thread leaves the restored border at top left and runs down across the blank end of the roll to a leaf of fresh parchment lying there, a separate, finer piece, and couches it into the roll along its top edge and down its right edge (f1599-1645, <= 40 px/frame, sheen only, L1; the couched line wanders +/-1 mm like a hand's); the leaf's hem casts a hairline shadow, and its bottom edge is already sewn down in brown running stitch (its hinge). 'page' f1630: the thread is half-way down the right edge; the light settles on the leaf and a faint drypoint ruling (one title line and one rule, placed where the live menu will draw its title baseline and rule) catches it. The thread's end comes to rest at the leaf's bottom-right corner on f1645, waiting. To the right, the hex underdrawing runs unstitched to the end of the roll, a blank world as well as a blank page, with the banner and the village standing alone in it, the banner's sway decaying. As the camera settles, the window's dawn light narrows to the shape of the window (f1612-1640): one pane of light on the leaf, one on Grandbois, the mullion's shadow between them, and everything else, the frame's edges and the board round the leaf, sinks to near-black. In that darkness, unseen, stands the chronicler's desk, locked to the frame: the walnut beam with the valance rolled on its rod along the top, the lion banners, the two candles, the carved lions, the table edge (on iPad aspects) and the walnut reading frame, whose aperture surrounds the leaf. Gap: on the bass f1664 the desk's left candle is lit at the frame's left edge: its warm pool falls across the leaf and reveals, by light alone, the blue-lion banner, the left lion and the left side of the reading frame. On the same pulse, far right, the board begins to embroider itself (S23): a wavefront of stitching opens from Grandbois, hex by hex.",
+   "camera": "The truck stops and the tilt finishes returning to zero by f1612, on the exact E4 zero-tilt pose (its pivot offset, <= 12 px, chosen per bucket so the flat leaf lies wholly inside the reading frame's aperture); locked thereafter (registration to the menu starts here). The desk is locked to the frame from f1612.",
+   "technique": "R25-S thread couching (needle-path order, sheen only) and drypoint ruling as embossed hairlines in the leaf's height map; R25-F board ground; R25-S board wavefront from f1664 (see S23). Banner and village stay on the E3 EV-DM/P pieces layer at 1080: camera on ones to f1612 (14 renders), then the banner's decaying sway as a pieces-only layer on twos f1613-1687 (38 renders; the village is static in it), so nothing changes renderer at f1612/1613 (qa/swap run there anyway). Desk: chrome mattes from the native capture of this aspect bucket at their menu rects, composited from f1612 never brighter than what they cover until a light reaches them (gate G14), then relit by the candle practical (an R25 point light at the sprite's flame, flicker local); the unlit candle sprite has its flame inpainted and grows it back to the sprite art by f1680. Per aspect bucket: the leaf's rect, the couching path and the desk differ (section 13).",
+   "material_behavior": "The leaf's albedo is the game's parchment-interior art (inpainted from the native menu capture) carrying fresh-linen micro-relief that reads only in raking light (weave below Nyquist and LOD-faded, bible section 3), so leaf and parchment are one material and nothing morphs later; gold cord raised 0.6 mm; the desk's walnut, velvet and brass are exactly the sprite art, darkened only by light.",
+   "transition_out": "Continuous (same framing).",
+   "emotional_purpose": "Possibility and invitation: the space left for the player, and a light lit for them.",
+   "est_render_cost": "Eevee E3 14 + 38 renders @1080p (~18 s / ~10 s) = ~11 min; R25-S/F 90 x ~6 s = ~9 CPU-min (board plate shared; leaf layer and desk ~2 s/frame per extra aspect bucket).",
+   "eevee": {
+    "block": "E3",
+    "renders_1080": 52,
+    "renders_1440": 0
+   }
+  },
+  {
+   "id": "S23",
+   "name": "When this age is remembered",
+   "act": "V Question",
+   "start_frame": 1689,
+   "end_frame": 1743,
+   "start_s": 56.3,
+   "end_s": 58.133,
+   "frames": 55,
+   "anchor": "'When' f1689; 'age' f1707; last hex f1719; 'remembered' f1726 + bass pulse #8",
+   "summary": "The board finishes embroidering itself from Grandbois; the right candle is lit; on the bass the leaf is freed and lifts ahead of the crane while the board starts to wake",
+   "audio_event": "'When' f1689, 'this' f1698, 'age' f1707, 'is' f1719, 'remembered' f1726 (to f1744) with bass pulse #8 at f1726; building toward the climax.",
+   "visual_action": "The wavefront spreads out from Grandbois across the board (f1664-1719): hex by hex, satin fields fill with growing strands (greens, wheat, ochre), the sea floods in stitched denim blue (#316994) with wave marks, plan-icon towns stitch in, and the gold realm borders follow the wave along the hex edges, couched without glints; at the wave's frontier the underdrawing continues on bare linen. On 'age' f1707 the desk's right candle is lit: a second pool from the right edge reveals the red-lion banner, the right lion and the far side of the board. The last hex closes at f1719; f1720-1725 the board holds still. 'remembered' f1726 (bass): the gold thread pulls its couching out of the leaf's right and top edges (f1726-1734, tie-downs popping in sequence, no glint) and the leaf, hinged on its sewn bottom edge, lifts off the cloth, leading the camera's crane by 4-6 deg so that it visibly tilts toward us, its contact shadow widening beneath it. Behind it the board starts to tilt and wake: fields swell 1-2 mm as padded coupons (capitonnage, seams pinching and darkening), forests rise as stitched cones, the village grows (settle_1 -> settle_2) toward Grandbois, and towns and figure groups begin to peel up out of their stitched footprints on twos with tethers releasing.",
+   "camera": "Locked until f1725. From f1726 a 3D crane about the menu camera's target, tilt 0 -> 24 deg (pitch 90 -> 66.09), eased, converging on the game's menu camera (vertical fov 30 deg, distance 20.9). The desk stays locked to the frame.",
+   "technique": "f1689-1719 R25-S 2D stitch-on of the board in plate-UV space (per-hex delay map from Grandbois started on f1664, along-strand growth, no needle sprites) under the two window panes and the two candle practicals; the banner's sway layer (E3, on twos, 16 renders) runs to f1719 and is at rest by then. f1720-1725 registered swap on the static board to the E4 zero-tilt still (light state B: window panes + both candles; 32 TAA; identical albedo + baked stitch normals; median dE_ok x100 < 2, no edge shift > 1 px). From f1726 EV-DM/G block E4 hero: Eevee 2560x1440, 16 TAA, on ones; board proxy plane with per-hex puff shape keys (dome + seam pinch) + the decoded game OBJs at their world positions; ground UVs from the overscanned top-down/UI-free plates; a pieces-hidden plate under rising pieces; the leaf as a separate holdout layer + shadow catcher (E4L), rendered per aspect bucket. Desk layers stay in COMP at their bucket rects.",
+   "material_behavior": "Satin hex fields (silk lobe exp 40, sheen per block), couched gold borders at L1, denim sea with stitched waves: the game's own embroidery language arrives; puffed coupons with cream running-stitch seams over a dark groove; wool sheen at grazing angles.",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "Lift-off and recognition: the chronicle turns into the game.",
+   "est_render_cost": "R25-S 31 x ~8 s = ~4 CPU-min; Eevee E3 16 sway renders @1080 (~10 s) = ~3 min; Eevee E4 1 zero-tilt still (32 TAA, ~180 s) + 18 crane renders (f1726-1743) @1440p (~95 s) = ~31 min; E4L 18 leaf-layer renders per aspect bucket (~10 s).",
+   "eevee": {
+    "block": "E3+E4",
+    "renders_1080": 16,
+    "renders_1440": 19
+   }
+  },
+  {
+   "id": "S24",
+   "name": "Climax: the cloth becomes the board",
+   "act": "V Question",
+   "start_frame": 1744,
+   "end_frame": 1782,
+   "start_s": 58.133,
+   "end_s": 59.433,
+   "frames": 39,
+   "anchor": "climax gap f1744-1783; bass swell f1755; peak f1760; crane exact f1766",
+   "summary": "Three events only: the pieces finish rising, the crane (and the leaf with it) lands on the menu camera, and the valance unrolls",
+   "audio_event": "Music-only climax gap f1744-1783: the loudest music of the piece (-25.6 dBFS, Bbmaj7/F6), bass swell f1755, peak f1760.",
+   "visual_action": "Three things happen, no more. (1) The pieces finish rising: towns, castles, farms, forests and figure groups peel up out of the cloth staggered outward from Grandbois, rigid, on twos, each with tethers and a contact shadow for at least 6 frames and its needle-hole footprint for at least 12, all settled by f1760; the village has become Grandbois under its banner. (2) The crane lands: within 0.3 deg of the menu camera by f1760 and exact at f1766; the lectern leaf, which has led it, converges to parallel with the image plane by f1760 and lands on the reading frame's parchment rect (+/-0.5 px) at f1766, so the frame, already candlelit, now holds the page. (3) On the bass swell f1755 the navy valance unrolls from its rod in the walnut beam (f1755-1782), blank, its letters only faintly underdrawn, fringe and tassels dropping and swinging. Light does not travel: the two candles burn and swell gently into the peak (+0.25 EV, f1744-1760), then settle.",
+   "camera": "The crane completes with ease-out onto the menu camera: vertical fov 30 deg, pitch 66.09 deg, distance 20.9.",
+   "technique": "EV-DM/G E4 hero (2560x1440, 16 TAA, on ones f1744-1766: 23 renders) + 2 light-state stills at the final pose (C: candles at the peak; D: the game plate's daylight), ratio-blended from f1767 instead of rendering static frames. Valance unroll = analytic roll with cylinder shading + fringe/tassel pendulums (period ~1.1 s) in COMP, its art the inpainted blank logo_title. From f1756 the board albedo blends into a projection of the 2x UI-free menu plate, masked where pieces still settle; the convergence dissolve (f1772-1798) starts at this shot's end. E4L per aspect bucket.",
+   "material_behavior": "The heraldic register now dominates (raised satin, gold, game-saturated colour) against the board's matte fields; the desk is exactly the game art, lit by its own candles.",
+   "transition_out": "Continuous.",
+   "emotional_purpose": "Triumph: the world made whole, and set on the reader's desk.",
+   "est_render_cost": "Eevee E4 23 crane renders + 2 light-state stills @1440p (~95 s) = ~40 min; E4L 23 per aspect bucket (~10 s); COMP 39 x ~2 s.",
+   "eevee": {
+    "block": "E4",
+    "renders_1080": 0,
+    "renders_1440": 25
+   }
+  },
+  {
+   "id": "S25",
+   "name": "What will the chronicles say of you?",
+   "act": "V Question",
+   "start_frame": 1783,
+   "end_frame": 1854,
+   "start_s": 59.433,
+   "end_s": 61.833,
+   "frames": 72,
+   "anchor": "'chronicles' f1801; 'say' f1824; 'you?' f1846; recession f1783-1824",
+   "summary": "Near-stillness: a needle couches 'Chronica' into the valance on 'chronicles', letter by letter, each letter dissolving to the exact art; the page stays blank",
+   "audio_event": "'what' f1783, 'will' f1792, 'the' f1797, 'chronicles' f1801 (stressed, to f1821), 'say' f1824, 'of' f1838, 'you?' f1846 (to f1855). The music recedes ~19 dB (f1783 -> f1824); bass gone by f1823; a faint high chord remains.",
+   "visual_action": "Motion stops except thread and light. The board's convergence finishes invisibly (light-state blend -> UI-free plate -> native capture, f1772-1798; in-world nameplates and unit shields settle in inside the same dissolve; the risen banner has been at rest since f1719). On 'chronicles' a needle working from behind the valance pushes its point through the navy damask (f1799-1801) and couches the first stroke of the C in gold floss; C-h-r-o-n-i-c-a follow letter by letter over f1801-1846, ~5.6 frames per letter, each letter built of real couched strands and tie-downs and then dissolving over 6 frames into the exact title art. The last stitch pulls tight on 'you?' f1846 and the needle catches the light once (the title's only glint, L2, 2 frames). On 'you?' the leaf's drypoint ruling catches the candlelight once. The valance's fringe swing decays below 1 px.",
+   "camera": "Locked on the menu camera.",
+   "technique": "COMP at the aspect bucket's exact menu rects: native-capture board (card interior inpainted) under the desk layers. The title is R25 in the valance plane: couched-floss strands generated along the logo_title gold-mask skeleton in needle-path order (stroke order C-h-r-o-n-i-c-a), shaded with the R25 metal/silk lobes and fibres, with a small needle sprite at the growing tip; each finished letter cross-dissolves to the exact logo_title art under a local mask. One E4 registration still (32 TAA, final pose) for the plate match.",
+   "material_behavior": "Gold floss on navy damask, twisted cord and fringe exactly as logo_title once each letter has dissolved; the parchment interior blank; navy velvet stays matte.",
+   "transition_out": "Hold into S26.",
+   "emotional_purpose": "The question is turned to the player, and the title answers 'chronicles'.",
+   "est_render_cost": "Eevee E4 1 registration still (32 TAA, ~3 min); R25 title strands 48 x ~3 s (dirty rect) = ~3 CPU-min; COMP 72 x ~3 s = ~4 CPU-min per aspect bucket.",
+   "eevee": {
+    "block": "E4",
+    "renders_1080": 0,
+    "renders_1440": 1
+   }
+  },
+  {
+   "id": "S26",
+   "name": "The page waits (hand-off)",
+   "act": "V Question",
+   "start_frame": 1855,
+   "end_frame": 1983,
+   "start_s": 61.833,
+   "end_s": 66.133,
+   "frames": 129,
+   "anchor": "ring-out f1855-1983; ornaments f1855-1900; lock f1929; micro-fade f1982",
+   "summary": "The needle couches the ornaments; the candles settle; locked, identical frames from f1929; hand-off to the live menu",
+   "audio_event": "Narration ends f1855. 4.27 s ring-out of a soft, unresolved high chord (Am7/C6 colour), -44 -> -48 dBFS, no fade to silence; micro-fade f1982.",
+   "visual_action": "The menu composition, near-still: the game board, walnut beam, the 'Chronica' valance, lion banners, both candles, carved lions (and the table edge on iPad aspects) and the blank parchment card in its walnut frame. f1855-1900: the same needle couches the title's ornaments, the crown, fleurs-de-lis and diamonds, without a glint, each dissolving to the exact art; by f1906 the valance equals logo_title. Candle flames flicker sprite-locally (<= 3 % outside the flame) and settle to exactly the sprite art by f1928. From f1929 every animated layer is zero: f1929-1983 are identical (55 frames), the live menu's first frame in its no-save state with the card left blank. The overlay releases the engine gate at f1929, so the boot freeze happens on identical frames; it holds f1983 while the engine finishes, then hands off.",
+   "camera": "Locked (menu camera).",
+   "technique": "COMP only: base = native capture of the menu's first frame at this bucket's aspect (no save present, 5 buttons) with the card's text and buttons removed and the parchment re-synthesised from the 9-slice; ornament strands by R25 as in S25; flame warp layer; acceptance (G12) per bucket on the shipped encode, decoded on device.",
+   "material_behavior": "Static, exact game art; only the ornament strands and the flame layers animate, then stop.",
+   "transition_out": "Overlay hold, then the hand-off of section 13: a 0.9 s dissolve with the card unmasked in reading order (title, subtitle, rule, buttons, ~1.2 s) when no save exists and the aspect is in a bucket; otherwise a plain 1.5 s dissolve.",
+   "emotional_purpose": "Calm resolve: the chronicle waits for the player's hand.",
+   "est_render_cost": "R25 ornament strands 46 x ~3 s = ~2 CPU-min; COMP 129 x ~0.5 s = ~1 CPU-min per aspect bucket.",
+   "eevee": {
+    "block": "",
+    "renders_1080": 0,
+    "renders_1440": 0
+   }
+  }
+ ],
+ "eevee_budget": {
+  "renders_1080": 363,
+  "renders_1440_hero": 45,
+  "total": 408,
+  "limits": {
+   "renders_1080": 600,
+   "renders_1440_hero": 150
+  },
+  "optional_light_layers": "246 E4L leaf-layer renders (41 per aspect bucket x 6, ~10 s each)",
+  "blocks": [
+   {
+    "block": "E0 macro rig (EV-MR: needle, thread, crown slip)",
+    "shots": "S01, S11",
+    "frames": "f4-72 + f4 ambient split; f784-812 + 2 war-pose light-split stills",
+    "renders_1080": 101,
+    "renders_1440": 0,
+    "settings": "1920x1080, 16 TAA, on ones, ~1.1M-vert displaced linen (260x150 mm, 1 vertex/mm outside the focus band), 40 px/mm crown slip, real DOF + motion blur",
+    "wall": "~65 s/frame = ~109 min single"
+   },
+   {
+    "block": "E1 war slips (EV-DM/G)",
+    "shots": "S12-S13",
+    "frames": "f844-877 ones, f878-911 twos, f912-936 ones, f936 registration still",
+    "renders_1080": 77,
+    "renders_1440": 0,
+    "settings": "1920x1080 (2080x1170 with the 8 % drift overscan), 16 TAA at F2 / 8 TAA wide; dutch in-camera; ageing and light arc in COMP via UV + ratio passes",
+    "wall": "34 x ~35 s + 42 x ~18 s + 1 x ~60 s = ~33 min"
+   },
+   {
+    "block": "E2 goblets (EV-DM/P)",
+    "shots": "S05-S06",
+    "frames": "f276-357 on twos",
+    "renders_1080": 42,
+    "renders_1440": 0,
+    "settings": "1920x1080, 16 TAA, pieces + shadow-catcher ground, shadow ratio onto the R25 plate",
+    "wall": "~18 s/frame = ~13 min"
+   },
+   {
+    "block": "E3 banner + village (EV-DM/P)",
+    "shots": "S20-S23",
+    "frames": "f1524-1612 on ones (camera moving); banner-sway pieces layer f1613-1719 on twos",
+    "renders_1080": 143,
+    "renders_1440": 0,
+    "settings": "1920x1080, 16 TAA, pieces over the R25 plate, tilt <= 10 deg",
+    "wall": "89 x ~18 s + 54 x ~10 s = ~36 min"
+   },
+   {
+    "block": "E4 board awakening (EV-DM/G hero)",
+    "shots": "S23-S25",
+    "frames": "zero-tilt still (32 TAA), crane f1726-1766 on ones, 2 final light-state stills, final registration still (32 TAA)",
+    "renders_1080": 0,
+    "renders_1440": 45,
+    "settings": "2560x1440, 16 TAA (32 for registration stills), pieces on twos inside camera-on-ones frames, geometry-heavy",
+    "wall": "41 x ~95 s + 4 stills = ~75 min single"
+   },
+   {
+    "block": "E4L leaf layer per aspect bucket",
+    "shots": "S23-S24",
+    "frames": "f1726-1766 x 6 buckets",
+    "renders_1080": 0,
+    "renders_1440": 0,
+    "settings": "leaf holdout + shadow catcher only, ~10 s each (246 light-layer renders, not counted against the hero budget)",
+    "wall": "~41 min"
+   }
+  ],
+  "wall_estimate": "~306 min single-process (~5.1 h), ~4.2 h with 2 concurrent processes; R25 ~2.5 CPU-h (+ ~1 h per extra aspect bucket); COMP ~15 min per bucket; game plates ~1 h"
+ },
+ "six_keyframes": [
+  {
+   "frame": 91,
+   "shot": "S02",
+   "title": "'realm': the frieze and the one realm",
+   "description": "The pull-back easing out over the one realm at ~F1: hillock bands, a paired-line river, four walled towns of different sizes with house-colour pennants and ONE road couched in four alternating house colours entering from the left and climbing to a crowned capital right of centre; above, the upper border with off-centre paired lions and the gold chronicle thread, its first crimson tie-down still visible at top left; 3000 K window key at 22 deg from upper left showing the couching-bar shadow grid; a trace of motion blur at the frame edges. No caption."
+  },
+  {
+   "frame": 669,
+   "shot": "S09",
+   "title": "'chair': the king unpicked out of his oath",
+   "description": "The repeated oath table at 1.25x, the throne at frame x 0.47: one guttered candle low on the left (12 deg) pools light on a king-shaped void of bare linen pricked with needle holes and red-brown underdrawing, a few purple strands still curling off the cloth; the gold crown slip hangs 15 mm above the void on four gold tethers, its soft shadow below; the red and blue lords at the rim of the pool, faces in shadow, gazes converging; Act II grade, a tideline across the cloth, goblets and stitched candles reduced to needle-hole outlines."
+  },
+  {
+   "frame": 899,
+   "shot": "S12",
+   "title": "'years': soldiers risen out of the cloth, frozen while a century passes",
+   "description": "A settled 22-deg oblique over the war strip with a 3-deg dutch: the front ranks of blue and crimson figure slips stood up to ~70 deg in strike poses, frozen; snapped tethers curling at their feet, needle-hole footprints open where they lay; long shadows thrown up-frame by the hearth light from the bottom edge, which is just sinking as the century's single pale arc begins at the left; the madder-and-woad-grey sky; the linen around them starting to bleach, fox and tarnish."
+  },
+  {
+   "frame": 1319,
+   "shot": "S18",
+   "title": "'edges': the chronicle fraying into darkness",
+   "description": "After the bass-entry pull-back: the chronicle is a thin strip on a dark walnut table, both ends lost in darkness; borders unravelling into curling fringe, weft threads hanging, quilted fog appliques creeping over it; the hearth's embers gone; light falling to -2.5 EV at the frame edges; one tiny gold glint at the far right end: the chronicle thread, unbroken."
+  },
+  {
+   "frame": 1760,
+   "shot": "S24",
+   "title": "Climax peak: the cloth has become the board",
+   "description": "The menu camera all but reached: the 3D embroidered hex board (padded satin fields, couched gold realm borders, denim sea with stitched waves) with towns, forests and figure groups risen out of the cloth, footprints open, the last tethers released, Grandbois under its banner; the leaf just parallel to the image plane inside the walnut reading frame on the left; the desk locked to the frame and lit only by its two candles (blue- and red-lion banners, carved lions, the walnut beam), the navy valance half unrolled with its letters only underdrawn, tassels swinging. No light sweep, no glints."
+  },
+  {
+   "frame": 1983,
+   "shot": "S26",
+   "title": "Final frame: the pixel-matched hand-off",
+   "description": "Identical to frames 1929-1982 in each aspect bucket: the live main menu's first frame in its no-save state minus the card's contents. 16:9 shown: real game board, walnut bar, gold-stitched 'Chronica' valance at (784,0,992x296), blue- and red-lion banners, both candles, carved lions and the blank parchment card at (224,319)-(1227,1376), ready for the overlay hold and the hand-off dissolve in which the card writes itself in reading order."
+  }
+ ],
+ "poc": {
+  "title": "The Cloth Becomes the Board (final)",
+  "frames": [
+   1664,
+   1846
+  ],
+  "duration_s": 6.1,
+  "audio_slice_s": [
+   55.467,
+   61.567
+  ],
+  "summary": "183 real production frames (f1664-1846, 6.1 s) played against the real audio (the f1664 bass, 'When this age is remembered', the climax gap and 'what will the chronicles say of you?'), built in two aspect buckets (16:9 and 4:3). It proves the film's hardest claims and its hand-off in one window: a face-on, physically embroidered 2D cloth stitches itself and becomes a believable 3D game board; the menu chrome reads as the chronicler's desk revealed by its own candles, not as an overlay; a blank leaf rises with real foreshortening into its frame; the title is stitched from real strands; and everything lands pixel-exact on the live menu, in each bucket, on device.",
+  "beats": [
+   "f1664-1719 (2D, R25-S + desk): on the bass the desk's left candle is lit and reveals the left of the desk and the reading frame by light alone; the per-hex wavefront opens from Grandbois (satin fields, denim sea with wave marks, plan-icon towns, gold borders at L1, no needles); the right candle is lit on 'age' f1707; the last hex closes f1719.",
+   "f1720-1725 (the swap): registered cross on the static board from the R25 comp to the E4 zero-tilt still (light state B). Must be invisible.",
+   "f1726-1766 (3D, E4 hero): the couching is pulled from the leaf's right and top edges; the leaf hinges up leading the crane by 4-6 deg, parallel by f1760, on the parchment rect at f1766; the crane 0 -> 24 deg lands on the exact menu camera (fov 30, pitch 66.09, distance 20.9); fields swell as padded coupons; pieces peel up out of their footprints on twos with tethers, settled by f1760; the valance unrolls f1755-1782 (COMP).",
+   "f1767-1798 (convergence): ratio-blended light-state stills C/D, then the dissolve to the projected 2x UI-free plate and the native capture, nameplates and unit shields settling in.",
+   "f1799-1846 (locked COMP): the needle pushes through the valance and couches C-h-r-o-n-i-c-a in R25 strands, ~5.6 frames per letter, each letter dissolving to the exact art; the single needle glint on 'you?'."
+  ],
+  "technique": "Blender 4.0.2 Eevee-legacy under xvfb (bpy 5.2.2 Eevee-Next via EGL as fallback), 2560x1440, 16 TAA, camera on ones, rising pieces on twos. Board proxy = subdivided plane with per-hex puff shape keys (dome + seam pinch) on staggered drivers + the decoded game OBJs at their seed-4242 world positions with a piece material port (palette albedo, triplanar stitch normal, brown inverted-hull outline). Ground albedo/normal = R25 board maps in plate-UV space, projected from an overscanned top-down UI-free plate (zero-tilt framing) and from the menu-camera UI-free plate (final framing); a pieces-hidden plate fills the ground under rising pieces, and rising pieces keep OBJ + stitch materials until convergence (no projection smear). Leaf = separate holdout layer + shadow catcher per bucket (E4L). Static spans are ratio-blended stills. Desk = layers matted from each bucket's native capture, locked to the frame, relit by the candle practicals. Title = R25 couched-floss strands in the valance plane. Menu rects come from a Python port of main_menu.gd _layout(). COMP adds fuzz halo, grain and grade.",
+  "inputs": [
+   "UI-free demo-mode plate from the menu camera (seed 4242, small map, zoom 11, first tour focus) at 2560x1440 and 2x (5120x2880), plus the same plate with towns/units hidden.",
+   "An overscanned top-down UI-free plate covering the zero-tilt footprint (fallback: extend the board procedurally with R25 kit hexes matched per terrain class).",
+   "Native captures of the live menu's first frame in the no-save state at 2560x1440 (16:9) and 2048x1536 (4:3): desk mattes, nameplates/shields, card interior to inpaint, title baseline and rule positions, final match.",
+   "Hex size/orientation and world positions of hexes, settlements and unit groups for seed 4242 (from the game's map and camera code; fallback: solve from the plate with the known camera).",
+   "Decoded main_menu.gd (_layout) and ui_theme.gd (9-slice margins); models/*.obj + game_palette.json; the R25 emb/ library; palette.json acts IV-V.",
+   "An iPad (11-inch or 4:3) with Safari for the on-device G12 and flash checks."
+  ],
+  "acceptance": [
+   "Swap f1720-1725: median dE_ok x100 < 2 and no edge shift > 1 px between the R25 comp and the zero-tilt Eevee still.",
+   "End match f1798: Eevee vs UI-free plate median dE_ok x100 < 3, town silhouettes within 1 px; after the dissolve, mean abs diff vs the native capture < 2/255 outside flames, units, water and card interior.",
+   "Leaf: over f1726-1750 its corners show a 4-6 deg lead (visible foreshortening); from f1760 it is parallel to the image plane within 0.2 deg; at f1766 it sits on the bucket's parchment rect +/-0.5 px.",
+   "Desk (G14): before its light event each desk layer's luminance differs from what it covers by < 3 %; layers sit on their bucket rects +/-0.5 px; nothing translates or scales.",
+   "Title: each letter is visibly built from couched strands and tie-downs, then equals the logo_title art within 1/255 six frames after completion; exactly one L2 needle glint.",
+   "Flash (G13): no general or red flash; whole-frame components above 3 Hz < 10 %.",
+   "Every rising piece shows tethers + contact shadow >= 6 frames and its footprint >= 12 frames.",
+   "Hand-off (G12) in both buckets on the shipped 1440 H.264 encode, decoded in iPad Safari during the dissolve; zero void pixels on every frame."
+  ],
+  "cost": "All 45 E4 hero renders (~75 min) are in this window, plus E4L 41 leaf-layer renders per bucket (2 buckets, ~14 min), R25 wavefront 56 frames x ~8 s (~8 min), title strands 48 x ~3 s, COMP 183 frames x 2 buckets. All are production frames of S22-S25, so the PoC spends budget the film needs anyway.",
+  "fallback": "If world positions cannot be recovered: plate-only 2.5D lift, using the known board-plane homography, towns hand-masked and raised by height-from-ground displacement with synthesised side walls (less parallax, same hand-off). If the lectern leaf fails its tests, the leaf becomes a 2D layer that lifts off the cloth (widening soft shadow) with an explicit 4-6 deg foreshortening homography easing to zero by f1760. If the desk still reads as an overlay, it stays fully dark until the convergence dissolve and is revealed only by the board's daylight.",
+  "deliverables": [
+   "poc_cloth_to_board_169_1440.mp4 and poc_cloth_to_board_133_1536.mp4 muxed with audio 55.467-61.567 s",
+   "contact sheet f1664/1707/1719/1726/1744/1760/1766/1798/1846",
+   "A/B stills at f1720 (R25 vs Eevee) and f1798 (Eevee vs plate) with difference images",
+   "on-device G12 and G13 reports; acceptance report (json)"
+  ]
+ },
+ "through_lines": {
+  "gold_thread": [
+   {
+    "shot": "S01",
+    "frames": "f5-39",
+    "action": "drawn up through the linen by the needle on 'There', taut on 'world', pinned by the first crimson tie-down",
+    "metal_level": "L2"
+   },
+   {
+    "shot": "S06",
+    "frames": "f358-400",
+    "action": "runs on along the upper border, in close detail, and out of frame: 'never end'",
+    "metal_level": "L1"
+   },
+   {
+    "shot": "S12",
+    "frames": "f899-917",
+    "action": "tarnishes #E9BE6A -> #7A5A2A in the hundred-year light arc",
+    "metal_level": "-"
+   },
+   {
+    "shot": "S18",
+    "frames": "f1336-1381",
+    "action": "one surviving glint at the far right end of the darkened strip; pulses on bass f1345",
+    "metal_level": "L2"
+   },
+   {
+    "shot": "S19",
+    "frames": "f1466-1480",
+    "action": "re-couched end to end on 'whole'",
+    "metal_level": "L3 flare 2"
+   },
+   {
+    "shot": "S22",
+    "frames": "f1599-1645",
+    "action": "runs down from the border and couches the leaf's top and right edges (<= 40 px/frame), rests at its corner",
+    "metal_level": "L1"
+   },
+   {
+    "shot": "S23",
+    "frames": "f1726-1734",
+    "action": "pulls its couching out of the leaf's right and top edges so the leaf can lift",
+    "metal_level": "L1"
+   },
+   {
+    "shot": "S25-S26",
+    "frames": "f1799-1900",
+    "action": "echoed, not continued: a needle from behind the valance couches 'Chronica' and its ornaments in gold floss (no climb)",
+    "metal_level": "L1; one L2 needle glint f1846"
+   }
+  ],
+  "metal_budget": {
+   "L3_flares": [
+    "f224-236 crown ('crown' f230)",
+    "f1466-1480 chronicle thread re-couched ('whole')"
+   ],
+   "L2_glints": [
+    "f5-39 thread on its twist, and the needle for 1-3 frames",
+    "f757-762 crown glint as the carried candle passes over",
+    "f784-797 the crown slip's couched gold in macro (dying with the light)",
+    "f1345 surviving glint pulse",
+    "S15 the single lead needle, 1-2 frames per pass",
+    "f1846-1847 the title needle's one glint"
+   ],
+   "L1_rule": "Everything else (sword, goblets, banner pole, the leaf couching, the board's gold borders, the title strands and ornaments, realm cords) reads by light pools, sheen and contact shadows: no travelling metal glint.",
+   "levels": "L3 = metal reaches #FFF3D6 for 1-3 frames; L2 = capped at gold_hi #F8D57C, <= 1 % of pixels; L1 = wool/silk sheen only."
+  },
+  "light_editor": [
+   {
+    "frames": "f0-3",
+    "light": "dim ambient only: the pre-bloom f4 still, about -3 EV (= the poster)",
+    "sound": "digital silence"
+   },
+   {
+    "frames": "f4",
+    "light": "a shutter opens off-frame: a low shaft of late-day window light, 1900 K, elev 8 deg, upper left",
+    "sound": "drone + 'There'"
+   },
+   {
+    "frames": "f40-125",
+    "light": "the window widens: the key climbs to 22 deg and warms to 3000 K",
+    "sound": "litany begins"
+   },
+   {
+    "frames": "f134-146",
+    "light": "a real candle is lit on the walnut table off-frame left; its pool blooms over the left of p1",
+    "sound": "'table'"
+   },
+   {
+    "frames": "f198-212",
+    "light": "the candle flame lifts (+0.2 EV)",
+    "sound": "in-gap swell"
+   },
+   {
+    "frames": "f402-445",
+    "light": "the window light fades with the day (-0.7 EV); the candle is the only key (1900 K, 12 deg)",
+    "sound": "gap after 'never end'"
+   },
+   {
+    "frames": "f465-471",
+    "light": "the candle gutters (-0.5 EV) and recovers lower; a stitched flame on p3 is unpicked",
+    "sound": "'died'; the drone exits after (f480-548)"
+   },
+   {
+    "frames": "f741-778",
+    "light": "the candle is carried round over the crown, right to left over the top (az 10 -> 173 deg, elev 4.9 -> ~30 -> 4.8 deg); brightness held within +/-10 %",
+    "sound": "'his own head beneath'"
+   },
+   {
+    "frames": "f797-812",
+    "light": "the candle dies (-4 EV)",
+    "sound": "-20 dB collapse f797"
+   },
+   {
+    "frames": "f832-843",
+    "light": "the hearth's ember glow rises from the bottom edge",
+    "sound": "near-silence"
+   },
+   {
+    "frames": "f844-1050",
+    "light": "hearth firelight from the bottom edge (2200 K; slow swells <= 15 %, components above 3 Hz <= 4 % of the frame)",
+    "sound": "the war; fire peak in S14"
+   },
+   {
+    "frames": "f899-917",
+    "light": "the hearth sinks and one slow pale arc of daylight crosses the war strip once: the century",
+    "sound": "'years'"
+   },
+   {
+    "frames": "f1051-1282",
+    "light": "the hearth sinks to an ember glow; cool dusk fill rises",
+    "sound": "M4 plateau"
+   },
+   {
+    "frames": "f1292",
+    "light": "the embers die",
+    "sound": "'dark'"
+   },
+   {
+    "frames": "f1345",
+    "light": "the surviving gold glint pulses (the only light event of the gap)",
+    "sound": "bass pulse #2"
+   },
+   {
+    "frames": "f1372-1381",
+    "light": "pre-dawn lift from the window: cool grey-blue fill from the left +0.3 EV",
+    "sound": "in-gap swell into 'Now'"
+   },
+   {
+    "frames": "f1382-1470",
+    "light": "dawn through the window: sweep L->R (4300 K, elev 28 deg)",
+    "sound": "'Now'"
+   },
+   {
+    "frames": "f1612-1640",
+    "light": "the dawn narrows to the window's shape: one pane on the leaf, one on Grandbois, the mullion's shadow between; everything else sinks to near-black, where the desk stands unseen",
+    "sound": "after 'blank'"
+   },
+   {
+    "frames": "f1664",
+    "light": "the desk's left candle is lit: a pool across the leaf; the left of the desk revealed",
+    "sound": "bass pulse"
+   },
+   {
+    "frames": "f1707",
+    "light": "the desk's right candle is lit: the right of the desk revealed",
+    "sound": "'age'"
+   },
+   {
+    "frames": "f1744-1760",
+    "light": "both candles swell +0.25 EV into the peak, then settle",
+    "sound": "climax"
+   },
+   {
+    "frames": "f1772-1798",
+    "light": "the board takes the game plate's daylight; candle pools fade to the sprites' own glow",
+    "sound": "recession begins"
+   },
+   {
+    "frames": "f1846",
+    "light": "the leaf's drypoint ruling catches the candlelight once; the title needle's only glint",
+    "sound": "'you?'"
+   },
+   {
+    "frames": "f1855-1928",
+    "light": "flames settle to exactly the sprite art",
+    "sound": "ring-out"
+   },
+   {
+    "frames": "f1929-1983",
+    "light": "locked, identical frames",
+    "sound": "ring-out tail"
+   }
+  ],
+  "desk": [
+   {
+    "topic": "What it is",
+    "text": "The menu chrome (walnut beam, valance on its rod, blue- and red-lion banners, two candles, carved lions, the table edge on iPad aspects, the walnut reading frame round the card) is the chronicler's desk, seen at the edges of the reader's view."
+   },
+   {
+    "topic": "When it exists",
+    "text": "From f1612, when the camera reaches the zero-tilt pose, locked to the frame at the bucket's menu rects. It is composited only where it is not brighter than what it covers (the frame edges have sunk to near-black over f1612-1640), so it is never seen arriving (gate G14)."
+   },
+   {
+    "topic": "How it is revealed",
+    "text": "Only by light: its left candle is lit on the f1664 bass and its right candle on 'age' f1707 (each an R25 point practical at the sprite's flame, flickering locally); the rest arrives with the board's daylight during the convergence f1772-1798."
+   },
+   {
+    "topic": "What moves",
+    "text": "One physical action: the valance unrolls from its rod (f1755-1782). Nothing slides, swings in, rises or closes. The leaf rises from the board into the reading frame's aperture; at zero tilt it already lies just inside it (the menu geometry puts its hinge within ~6 px of the aperture's bottom edge and its size at ~0.91x; the zero-tilt pivot offset is chosen per bucket so no rim overlaps it), and the rims sit in darkness or in the mullion's shadow until a candle reaches them."
+   },
+   {
+    "topic": "Why this is honest",
+    "text": "In the final menu these objects are a frame around a living world; the film lets the viewer discover that frame in the dark and see it lit by candles that have been the film's practical light since 'table'."
+   }
+  ]
+ },
+ "colour_script": [
+  {
+   "act": "I Oath",
+   "frames": "f0-445",
+   "seconds": "0.00-14.87",
+   "shots": "S01-S06",
+   "key": "window light, 3000 K raking from upper left, elev 22 deg (a 1900 K shaft at 8 deg on f4, climbing), key:fill 3:1; practical: the table candle (1900 K) off-frame left from f134",
+   "dominant": "linen #D4BE98, gold #E9BE6A, terracotta #B65E43",
+   "accents": "crimson #CC3A2C, royal blue #3F72BE, green #3A8C63, builders ochre #CB7A1C (heraldic); royal purple #71508A (king only)",
+   "grade": "sat 1.0; chroma caps: narrative fills .13, heraldic .20; lift #100C08, gain #FFF4E2",
+   "events": "f4 bloom; f134-146 candle lit; f230 metal flare 1 (crown); f402-445 the window fades"
+  },
+  {
+   "act": "II Death",
+   "frames": "f446-843",
+   "seconds": "14.87-28.13",
+   "shots": "S07-S11",
+   "key": "the single candle 1900 K, elev 12 deg (bible 2.4; documented exception to the 15-deg rule), key:fill 6:1; S10 extremes 4.8 deg",
+   "dominant": "night #141325, royal purple #4E2F5E, linen_lo #B49C74",
+   "accents": "gold only (the crown); ink red-brown #6E3326 for underdrawing",
+   "grade": "sat 0.7, chroma cap .12 (crown gold as heraldic), lift #08080E, gamma .95, gain #FFE9CF",
+   "events": "f469 candle gutters (-0.5 EV); f741-778 candle carried over the crown; f797-812 candle dies (-4 EV, floor #07070A, fill #141325 at 10 %)"
+  },
+  {
+   "act": "III War",
+   "frames": "f844-1381",
+   "seconds": "28.13-46.07",
+   "shots": "S12-S18",
+   "key": "2200 K hearth light grazing from the bottom edge (slow swells <= 15 %, above 3 Hz <= 4 % of the frame), key:fill 5:1; 2-3 deg dutch in S12-S14",
+   "dominant": "dusk sky madder-and-woad-grey #6A3A38 / #4F6F8A (no violet), crimson deep #56100E, smoke #4A4547, forest #34432F",
+   "accents": "stitched fire in narrative lots (terracotta #B65E43, mustard #C3963F, madder_dark #7A3B2C); the real ember rim #DE6A2C -> #F6B54A (exempt); Legion crimson and realm cords (heraldic)",
+   "grade": "sat .85; caps narrative .13, heraldic .20; lift #0B0607, gamma .92, gain #FFE2C4; edges to -2.5 EV by f1319",
+   "events": "f899-917 the century: one light arc + ageing; f982-1050 burn and fire; f1292 embers die; f1345 glint pulse; f1372 pre-dawn lift"
+  },
+  {
+   "act": "IV Renewal",
+   "frames": "f1382-1688",
+   "seconds": "46.07-56.30",
+   "shots": "S19-S22",
+   "key": "4300 K dawn through the window from the left, elev 28 deg, key:fill 2.5:1, sweep L->R f1382-1470; narrowing to two window panes f1612-1640; the desk's left candle from f1664",
+   "dominant": "linen hi #E6D7B6, linen #D4BE98",
+   "accents": "navy #15223A, gold #D79A33, woad #4F6F8A; crests at game chroma (heraldic register)",
+   "grade": "sat .9; caps narrative .13, heraldic .20; lift #0E0C0A, gamma 1.05, gain #FFF8EC; dyes aged -> fresh (OKLab, 1.5-3 s, staggered)",
+   "events": "f1466 metal flare 2 (thread re-couched); f1493-1517 crests; f1612-1640 edges sink; f1664 left candle lit"
+  },
+  {
+   "act": "V Question",
+   "frames": "f1689-1983",
+   "seconds": "56.30-66.13",
+   "shots": "S23-S26",
+   "key": "the two window panes and the desk's two candles (3200 K pools, elev ~20 deg at the board), key:fill 4:1, converging by f1798 on the game plate's own daylight",
+   "dominant": "navy #15223A / navy deep #080D17 (valance), game board colours (denim sea #316994, satin fields)",
+   "accents": "gold #F8D57C / #D79A33, metal gold #E9BE6A",
+   "grade": "sat 1.0; caps narrative .13, heraldic .20 (board satin at game chroma); lift #05070C, gain #FFF2DC; from f1798 no grade on the plate (must equal the live menu)",
+   "events": "f1707 right candle lit; f1744-1760 candle swell; f1799-1846 title; f1855-1900 ornaments; f1929 lock"
+  }
+ ],
+ "frieze_layout": [
+  {
+   "n": "1",
+   "section": "Incipit + one realm",
+   "width_mm": "~800",
+   "content": "hem, nail holes, the gold chronicle thread and its first tie-down; Bayeux landscape from the kit; four towns of different sizes from settle_* elevations; the four-colour road climbing to a capital right of centre; off-centre lion border beasts from vignette_red/blue",
+   "shots": "S01-S02"
+  },
+  {
+   "n": "2",
+   "section": "T1 interlace tree",
+   "width_mm": "~60",
+   "content": "trunk banded in the four house colours (splice)",
+   "shots": "S02"
+  },
+  {
+   "n": "3",
+   "section": "p1 OATH",
+   "width_mm": "550",
+   "content": "p1_oath re-embroidered by R25 at 10 px/mm; its four baked flame glows inpainted; faces kept at <= 1.0x native",
+   "shots": "S03-S06"
+  },
+  {
+   "n": "4",
+   "section": "T2 night tree",
+   "width_mm": "~60",
+   "content": "dark woad bands (splice)",
+   "shots": "S06"
+  },
+  {
+   "n": "5",
+   "section": "p3 DEATH",
+   "width_mm": "550",
+   "content": "p3_death re-embroidered; one stitched flame unpicked",
+   "shots": "S07"
+  },
+  {
+   "n": "6",
+   "section": "SINE HEREDE strip",
+   "width_mm": "~150",
+   "content": "underdrawn heir between two couched bars; the only titulus",
+   "shots": "S08"
+  },
+  {
+   "n": "7",
+   "section": "T3 winter tree",
+   "width_mm": "~60",
+   "content": "leafless, blue-black (splice)",
+   "shots": "S08"
+  },
+  {
+   "n": "8",
+   "section": "p1' THE EMPTY CHAIR",
+   "width_mm": "550",
+   "content": "the p1 maps again: Act II re-dye, tideline, stitched candles and goblets reduced to needle holes, king unpicked live, crown slip on tethers",
+   "shots": "S09-S10"
+  },
+  {
+   "n": "-",
+   "section": "(dark splice f820)",
+   "width_mm": "-",
+   "content": "hidden in the near-silence after the crown macro",
+   "shots": "S11"
+  },
+  {
+   "n": "9",
+   "section": "WAR strip -> hole field",
+   "width_mm": "~800",
+   "content": "war_bg re-embroidered (violet sky bands re-dyed madder / woad-grey) + 16 figure slips; aged by the century's light arc; needle-hole field",
+   "shots": "S12-S13"
+  },
+  {
+   "n": "-",
+   "section": "(burnt hole, dark splice f988-997)",
+   "width_mm": "-",
+   "content": "the real linen burns through to the walnut table",
+   "shots": "S14"
+  },
+  {
+   "n": "10",
+   "section": "p6 RUIN",
+   "width_mm": "550",
+   "content": "p6_ruin re-embroidered: banded madder / woad-grey / buff sky, fire in 3 laid-flame lots; scorched margins",
+   "shots": "S14"
+  },
+  {
+   "n": "11",
+   "section": "charred tree + FOREST over the road",
+   "width_mm": "~700",
+   "content": "kit trees over the S02 road (rhyme)",
+   "shots": "S14-S15"
+  },
+  {
+   "n": "12",
+   "section": "FOUR TOWNS / borders",
+   "width_mm": "~780",
+   "content": "four unequal towns, couched bars, four realm rings (the green one late), fog quilts hinged at the bars",
+   "shots": "S16-S17"
+  },
+  {
+   "n": "13",
+   "section": "RENEWAL end",
+   "width_mm": "~600",
+   "content": "the four crests in the upper border at irregular heights; mended edges",
+   "shots": "S19"
+  },
+  {
+   "n": "14",
+   "section": "UNWRITTEN REMAINDER",
+   "width_mm": "open",
+   "content": "fresh linen with ink hex underdrawing = the seed-4242 board layout; the banner and the village (Bayeux elevations that pop up); the parchment leaf",
+   "shots": "S20-S26"
+  }
+ ],
+ "sync_map": [
+  {
+   "frame": "0-3",
+   "sound": "digital silence",
+   "picture": "dim pre-bloom still (= poster)"
+  },
+  {
+   "frame": "4-5",
+   "sound": "drone + 'There' (strongest attack)",
+   "picture": "window light blooms; the needle breaks through"
+  },
+  {
+   "frame": "39",
+   "sound": "'world'",
+   "picture": "thread taut; first tie-down; pull-back begins f40"
+  },
+  {
+   "frame": "62-72",
+   "sound": "-",
+   "picture": "registered E0 -> R25 crossfade on the frontal pose"
+  },
+  {
+   "frame": "91",
+   "sound": "'realm'",
+   "picture": "the one realm revealed (pull-back easing out)"
+  },
+  {
+   "frame": "104-125",
+   "sound": "gap",
+   "picture": "the landscape breathes by light alone"
+  },
+  {
+   "frame": "140",
+   "sound": "'table'",
+   "picture": "a real candle lit off-frame left (f134-146); its pool blooms"
+  },
+  {
+   "frame": "173",
+   "sound": "'oath'",
+   "picture": "pool steady on the hands on the sword"
+  },
+  {
+   "frame": "185-198",
+   "sound": "near-silence",
+   "picture": "hold"
+  },
+  {
+   "frame": "230",
+   "sound": "'crown'",
+   "picture": "METAL FLARE 1 of 2 (f224-236)"
+  },
+  {
+   "frame": "285 / 308",
+   "sound": "'raised' / 'cups'",
+   "picture": "goblets peel up (f283-292) / hang"
+  },
+  {
+   "frame": "349",
+   "sound": "'swore'",
+   "picture": "goblets settle; the camera rises to the border"
+  },
+  {
+   "frame": "391",
+   "sound": "'end'",
+   "picture": "the gold thread runs on out of frame"
+  },
+  {
+   "frame": "402-446",
+   "sound": "1.46 s gap",
+   "picture": "the window fades; the candle alone; T2 splice"
+  },
+  {
+   "frame": "469",
+   "sound": "'died'",
+   "picture": "the real candle gutters (-0.5 EV); a stitched flame is unpicked (f465-471)"
+  },
+  {
+   "frame": "522 / 548",
+   "sound": "'heir' / drone gone",
+   "picture": "underdrawn heir, SINE HEREDE"
+  },
+  {
+   "frame": "561-640",
+   "sound": "'and every lord ... table'",
+   "picture": "the king unpicked live"
+  },
+  {
+   "frame": "669",
+   "sound": "'chair'",
+   "picture": "push lands on the king-shaped void"
+  },
+  {
+   "frame": "741 / 753 / 766 / 778",
+   "sound": "'own' / 'head' / 'beneath' / -",
+   "picture": "crown shadow on gold / red / (void f758-761) blue / green; ghost crowns"
+  },
+  {
+   "frame": "784",
+   "sound": "one frame before 'crown.' f785",
+   "picture": "HARD CUT to the crown-slip macro"
+  },
+  {
+   "frame": "786-797",
+   "sound": "'crown.'",
+   "picture": "tethers pop one by one"
+  },
+  {
+   "frame": "797-798",
+   "sound": "music collapses -20 dB",
+   "picture": "the crown is yanked out; the candle dies"
+  },
+  {
+   "frame": "820",
+   "sound": "near-silence",
+   "picture": "dark splice to the war strip"
+  },
+  {
+   "frame": "832",
+   "sound": "near-silence",
+   "picture": "the hearth glow rises"
+  },
+  {
+   "frame": "844-877",
+   "sound": "'The wars' f844 / f850",
+   "picture": "slow crane F2 -> F1 at the 22-deg oblique"
+  },
+  {
+   "frame": "867",
+   "sound": "'lasted'",
+   "picture": "the slips' stitches tauten"
+  },
+  {
+   "frame": "878-896",
+   "sound": "'hundred' f884",
+   "picture": "slips stand up into strike poses, tethers snap"
+  },
+  {
+   "frame": "899-917",
+   "sound": "'years'",
+   "picture": "the century: one slow light arc + ageing"
+  },
+  {
+   "frame": "912-936",
+   "sound": "'and' f918 / 'ended' f925",
+   "picture": "crane back to face-on; soldiers topple (f925-936)"
+  },
+  {
+   "frame": "936-941",
+   "sound": "-",
+   "picture": "registered E1 -> R25 swap on the static pose"
+  },
+  {
+   "frame": "942",
+   "sound": "'nothing'",
+   "picture": "every figure unpicked at once"
+  },
+  {
+   "frame": "952-979",
+   "sound": "near-silent gap",
+   "picture": "needle-hole field, grazing light, locked"
+  },
+  {
+   "frame": "982 / 999 / 1015",
+   "sound": "'Cities' / 'fell' / 'ruin'",
+   "picture": "real burn-through / courses unpicked + one tower peel / banner slumps"
+  },
+  {
+   "frame": "1017",
+   "sound": "pad returns",
+   "picture": "stitched flames re-stitch taller; the real burn eats the margins"
+  },
+  {
+   "frame": "1051 / 1101",
+   "sound": "'Roads' / 'forest'",
+   "picture": "one needle leads the forest over the road / road gone"
+  },
+  {
+   "frame": "1149 / 1211 / 1220",
+   "sound": "'forgot' / 'borders' / -",
+   "picture": "bars wall the strip / three rings closed / the green ring closes late"
+  },
+  {
+   "frame": "1263-1282",
+   "sound": "'world grew'",
+   "picture": "held breath; nothing launches"
+  },
+  {
+   "frame": "1283",
+   "sound": "BASS ENTRY (+26 dB)",
+   "picture": "exponential pull-back launches"
+  },
+  {
+   "frame": "1292 / 1319",
+   "sound": "'dark' / 'edges'",
+   "picture": "the hearth embers die / fraying reaches the register, -2.5 EV"
+  },
+  {
+   "frame": "1345",
+   "sound": "bass pulse #2",
+   "picture": "surviving gold glint pulses"
+  },
+  {
+   "frame": "1372",
+   "sound": "in-gap swell",
+   "picture": "pre-dawn lift"
+  },
+  {
+   "frame": "1382",
+   "sound": "'Now'",
+   "picture": "dawn through the window, sweep L->R begins"
+  },
+  {
+   "frame": "1410",
+   "sound": "bass pulse ('ruler')",
+   "picture": "the last frayed edge re-weaves"
+  },
+  {
+   "frame": "1466 / 1471",
+   "sound": "'whole' / bass",
+   "picture": "METAL FLARE 2 of 2: thread re-couched end to end"
+  },
+  {
+   "frame": "1491-1523",
+   "sound": "Bb horn gap",
+   "picture": "four crests stitch on at f1493, 1500, 1511, 1517"
+  },
+  {
+   "frame": "1524-1540",
+   "sound": "'One'",
+   "picture": "rostrum tilts 0 -> 10 deg"
+  },
+  {
+   "frame": "1536",
+   "sound": "bass pulse ('banner')",
+   "picture": "banner hinges up (stitches tauten from f1527)"
+  },
+  {
+   "frame": "1569",
+   "sound": "'village'",
+   "picture": "village pops up (f1563-1577)"
+  },
+  {
+   "frame": "1599",
+   "sound": "bass pulse ('one')",
+   "picture": "thread runs down to the leaf; tilt returning to zero"
+  },
+  {
+   "frame": "1612",
+   "sound": "-",
+   "picture": "zero-tilt pose; the desk exists from here, unlit; qa/swap f1612/1613"
+  },
+  {
+   "frame": "1630",
+   "sound": "'page'",
+   "picture": "thread half-way down the right edge; drypoint catches the light"
+  },
+  {
+   "frame": "1645",
+   "sound": "-",
+   "picture": "the thread rests at the leaf's corner"
+  },
+  {
+   "frame": "1664",
+   "sound": "bass pulse",
+   "picture": "left candle lit, desk revealed on the left; board wavefront starts at Grandbois"
+  },
+  {
+   "frame": "1707",
+   "sound": "'age'",
+   "picture": "right candle lit"
+  },
+  {
+   "frame": "1719",
+   "sound": "-",
+   "picture": "last hex closes"
+  },
+  {
+   "frame": "1720-1725",
+   "sound": "-",
+   "picture": "registered R25 -> E4 swap on the static board"
+  },
+  {
+   "frame": "1726",
+   "sound": "bass pulse ('remembered')",
+   "picture": "couching pulled; leaf lifts ahead of the crane; crane starts; pieces start rising"
+  },
+  {
+   "frame": "1755",
+   "sound": "bass swell",
+   "picture": "valance unrolls (to f1782)"
+  },
+  {
+   "frame": "1760",
+   "sound": "CLIMAX PEAK",
+   "picture": "pieces settled; crane within 0.3 deg; leaf parallel"
+  },
+  {
+   "frame": "1766",
+   "sound": "-",
+   "picture": "crane exact; leaf on the parchment rect"
+  },
+  {
+   "frame": "1772-1798",
+   "sound": "recession",
+   "picture": "convergence dissolve to the native capture"
+  },
+  {
+   "frame": "1799-1801",
+   "sound": "'the' f1797",
+   "picture": "needle point through the valance; first stroke"
+  },
+  {
+   "frame": "1801",
+   "sound": "'chronicles'",
+   "picture": "C-h-r-o-n-i-c-a couched to f1846, ~5.6 frames per letter"
+  },
+  {
+   "frame": "1846",
+   "sound": "'you?'",
+   "picture": "last stitch, the title's only needle glint; ruling catches the light"
+  },
+  {
+   "frame": "1855-1900",
+   "sound": "ring-out",
+   "picture": "ornaments couched; exact art by f1906"
+  },
+  {
+   "frame": "1928",
+   "sound": "ring-out",
+   "picture": "flames at the exact sprite art"
+  },
+  {
+   "frame": "1929",
+   "sound": "ring-out tail",
+   "picture": "lock; the overlay opens the engine gate"
+  },
+  {
+   "frame": "1929-1983",
+   "sound": "ring-out tail, micro-fade f1982",
+   "picture": "identical locked frames = live no-save menu minus card text"
+  }
+ ],
+ "gates": [
+  {
+   "id": "G1 Bayeux kit proof",
+   "rule": "Build one reusable Bayeux kit (hillocks, interlace trees, borders with vignette beasts, towns from settle_* elevations at varied sizes, couched bars, roads, underdrawing). Prove S02 side by side with p1 at matched px/mm and identical relight before building any other procedural section; shorten sections with divider splices.",
+   "shots": "S02, S08, S12, S15, S16, S19-S22"
+  },
+  {
+   "id": "G2 Metal reads as metal",
+   "rule": "Add a prefiltered warm studio-gradient environment term and a wider anisotropic glint to R25's metal lobe; verify crown, thread and title strands at >= 3 key azimuths.",
+   "shots": "S01, S04, S10, S11, S19, S22-S26"
+  },
+  {
+   "id": "G3 Fuzz calibration",
+   "rule": "Cut halo/flyaway density on couched cords (no chenille), tint flyaways toward the parent thread and attenuate them over dark fills (no white scratches), add a cheap fibre self-shadow term.",
+   "shots": "all R25 shots"
+  },
+  {
+   "id": "G4 No void pixels",
+   "rule": "Pad every canvas beyond the frustum (S01 patch 260x150 mm); automated per-frame check fails on any void or background pixel.",
+   "shots": "all"
+  },
+  {
+   "id": "G5 Lift policy",
+   "rule": "R25-L only for frontal lifts (camera <= 10 deg off the cloth normal, lift <= 15 mm) with PCSS penumbra growing with lift and contact AO: the S09-S10 crown slip, the S14 tower peel, the S16/S19 fog quilts. Every goblet, hinged or oblique rise goes to Eevee (EV-DM/P at <= 10 deg tilt, EV-DM/G otherwise).",
+   "shots": "S09-S10, S14, S16, S19 (R25-L); S05-S06, S12-S13, S20-S25 (Eevee)"
+  },
+  {
+   "id": "G6 Fill directions",
+   "rule": "Phase-field (phi/psi) stitch layout where the structure tensor is incoherent (throne carving, ermine, horse bodies): no fingerprint whorls or brick lattices.",
+   "shots": "p1, p3, p6, slips"
+  },
+  {
+   "id": "G7 LOD and shimmer",
+   "rule": "LOD-fade weave and strand normals below 2.5 px; shade on the mip within 1.0-1.4x of the screen density (new 1.0 and 0.75 px/mm mips for S18); run the registered shimmer metric on every shot and test an F0 framing with a 12 px/frame truck at 1440p before committing the trucks.",
+   "shots": "S02-S08, S15-S19"
+  },
+  {
+   "id": "G8 Stitch-on order",
+   "rule": "Needle-path ordering by spatial adjacency, per-strand growth along its length with a pop-in height curve; a needle sprite only where a needle is staged (S01, S15 lead tendril, S22-S23 couching, S25-S26 title); per-hex wavefront delay maps for the board; dirty-rect recompute of normals/AO/fibres.",
+   "shots": "S14-S16, S19, S22, S23, S25, S26"
+  },
+  {
+   "id": "G9 Unpick path",
+   "rule": "Snapshot re-rasters every N stitches, needle-hole + underdrawing reveal, loose-end curls from the fibre/curve renderer; addressable weft at fray edges; course-by-course masonry unpick.",
+   "shots": "S07, S09, S13, S14, S16-S18"
+  },
+  {
+   "id": "G10 Panel bakes",
+   "rule": "Tiled re-embroidery of p1/p3/p6 at 10 px/mm, <= 2 GB per process, float16 caches; art-directed hints (~15 min/panel): crown contour-parallel gold, chain, collar, face zones; p1's four flame glows inpainted; p6 sky re-dyed and flattened, fire reduced to 3 laid-flame lots; war_bg violet bands re-dyed.",
+   "shots": "S03-S14"
+  },
+  {
+   "id": "G11 Light and colour wiring",
+   "rule": "Embroidery never emits; practicals (window, candles, hearth) as positioned point/area lights with intensity curves in the relight; act tints; narrative fills <= .13, heraldic <= .20 (qa/clip), the real ember rim exempt; Legion livery in game crimson with a couched-gold cross shield.",
+   "shots": "all"
+  },
+  {
+   "id": "G12 Hand-off match",
+   "rule": "Per aspect bucket, no-save (5-button) state only: f1983 vs the live menu's first frame, mean abs diff < 2/255 outside text, flames, units, water and card interior; no sprite offset > 0.5 px; verified at the master and on the shipped 1440 encode decoded in iPad Safari during the dissolve; the dissolve falls inside the tour's 3 s hold.",
+   "shots": "S22-S26"
+  },
+  {
+   "id": "G13 Photosensitivity",
+   "rule": "qa/flash.py (Harding-style) on the master and every encode: no more than 3 general flashes and no red flash in any 1 s window over > 25 % of the screen; whole-frame luminance components above 3 Hz < 10 %.",
+   "shots": "all, esp. S03, S10, S12-S14, S22-S26"
+  },
+  {
+   "id": "G14 Desk revealed by light",
+   "rule": "Before its light event each desk layer differs in luminance from what it covers by < 3 %; desk layers are locked to their bucket rects +/-0.5 px and never translate, scale or swing; only the valance unrolls.",
+   "shots": "S22-S26"
+  }
+ ],
+ "handoff": [
+  "Who gets the matched ending: Only a tablet or desktop (not Device.phone, i.e. not touch with min(screen) < 600 CSS px) with no save (Match.has_save('autosave') and ('quicksave') both false: the 5-button card, the only state the blank leaf equals) and an aspect within 0.1 % of a bucket. With 5 buttons the card is 661 base px high, so tall = vr.y >= 891 holds at every bucket. Everyone else gets a plain 1.5 s dissolve from f1983 to whatever the menu shows. G12 is defined for the matched state only.",
+  "Save detection (integrator suggestion): Before playing, the overlay opens Godot's IndexedDB-backed user filesystem ('/userfs', the IDBFS store) and checks for the files Match.has_save() reads (paths to be confirmed from the decoded core/match.gd); if IndexedDB is unavailable it falls back to a localStorage first-run flag written when the intro completes. A save present means the intro is not autoplayed (straight to the game's own loading screen); if it is played anyway, it ends on the plain dissolve. With one save on 16:9 the card is 737 px > 900 - 230, so tall is false and the bar, valance and chrome all vanish: matching that is impossible by design.",
+  "Aspect buckets: The overlay picks the file by innerWidth/innerHeight at start (bucket table below). f0-1598 is the same content in every file (a centre crop of the 2560 master; every composition is staged inside x 320-2240); f1599-1983 is rebuilt per bucket from a Python port of main_menu.gd _layout() (lib/chron/menu_layout.py: card at (140, max(logo_h+14, 96)) in base px with vr.x = 1600, vr.y = 1600/aspect; banners min(280, 0.24 vr.y) at y 40; candles min(280, 0.23 vr.y) at y 0.5 vr.y - 0.1 h; lions min(230, 0.19 vr.y) bottom-anchored; table_edge_bottom shown when vr.y - card.end.y - 16 >= 90, i.e. on every iPad bucket), checked against a native capture per bucket. The board is a keep_height centre crop of the 16:9 renders (no new hero renders); the leaf (E4L), its couching path, the desk and the valance are per bucket, because the card's position relative to the board moves the lectern hinge to a different board point. Outside the buckets: the nearest file, object-fit cover (contain below 1.30), plain dissolve.",
+  "Final rects (16:9, 2560x1440, menu_layout.json px_2560x1440): bar_top (0,0,2560x128); logo_title_banner (784,0,992x296.3); menu_card (224,318.7,1003.2x1057.6), parchment interior (272,357.3,910.7x976); banner_side_left (16,64,129.2x345.6); banner_side_right (2421.1,64,122.9x345.6); candle_left (9.6,686.9,92x331.2); candle_right (2452.9,686.9,97.5x331.2); lion_statue_left (6.4,1163.2,189.9x273.6); lion_statue_right (2362.1,1163.2,191.5x273.6); table_edge_bottom hidden. 4:3 (2048x1536): card (179,255,803x846), banners 280 base px, table edge visible; the other buckets come from the port.",
+  "Final plates: Per bucket, a native capture of the live menu's first frame in the no-save state at the bucket's encode size. Only the card interior (title, subtitle, divider, buttons, footer) is inpainted from the 9-slice parchment; the valance letters and ornaments are inpainted only for the S24-S26 stitch-on layer; the candle flames are inpainted only for the unlit desk state. Nameplates, stars and unit shields stay as captured. The drypoint title line and rule on the leaf sit exactly under the live title baseline and rule measured on that capture.",
+  "Live board: The live first frame is not static (two boots differ: mean 0.94/255, 1.2 % of pixels > 16; units idle, water moves), so units' idle zones and water are masked out of G12. The tour holds 3 s on the first focus, starting after callMain; the dissolve must fall inside that hold, verified on device.",
+  "Lock and engine gate (integrator suggestion): Every animated layer reaches zero by f1929; f1929-1983 are identical. The overlay opens the engine gate when currentTime >= 64.3 s (f1929) instead of on 'ended', so callMain's multi-second freeze happens while the picture is already still; the overlay then holds f1983 with its gold progress thread until the engine is ready. f1983 must be a clean poster (no blur, calm board at bottom centre).",
+  "The card writes itself (integrator suggestion): Matched state: the overlay dissolves over 0.9 s except over the card rect, where a CSS mask wipes in reading order (title, subtitle, rule, buttons) over ~1.2 s, so the live card text appears line by line on the blank page instead of fading in at once.",
+  "Encode: Per bucket: 1440-high H.264 High@5.1, yuv420p, CRF-capped ~6 Mb/s, colour tagged bt709 primaries/transfer/matrix and tv range in the stream and container, +faststart; an HEVC (hvc1) variant at ~3.5 Mb/s for Safari; VP9 webm for others; a 1920x1080 16:9 file as the low-bandwidth fallback (plain dissolve). G12 is run on frames decoded in iPad Safari during the dissolve itself (screen recording at native resolution, or a debug overlay that reads back video and canvas), not on PNGs.",
+  "Poster: poster.jpg = the dim pre-bloom f4 still, which is also f0-3, so a tap on an iPad (unmuted autoplay is blocked) starts the film on the same image and the bloom lands on f4. The 'Touch to begin' text (#7a2a22 at top 72 %) needs a lighter colour on this dark poster (e.g. #E6D7B6). Suggestion only.",
+  "Audio tail: The master stops at about -48 dBFS on f1983; recommend a 0.5 s gain ramp on the mix tail (f1968-1983) for the audio owner, so the hold never exposes an abrupt cut."
+ ],
+ "aspect_buckets": [
+  {
+   "id": "B169",
+   "aspect": "1.7778 (16:9)",
+   "file": "intro_169_1440.mp4",
+   "size": "2560x1440",
+   "viewports": "16:9 desktop/laptop browsers in fullscreen, TVs, 16:9 tablets"
+  },
+  {
+   "id": "B160",
+   "aspect": "1.6000 (16:10)",
+   "file": "intro_160_1440.mp4",
+   "size": "2304x1440",
+   "viewports": "16:10 laptops and desktops (1440x900, 1680x1050, 2560x1600)"
+  },
+  {
+   "id": "B156",
+   "aspect": "~1.55-1.58, measured",
+   "file": "intro_156_1440.mp4",
+   "size": "~2240x1440",
+   "viewports": "iPad Safari landscape with its tab/address bars (exact innerWidth/innerHeight measured on the target iPads before the per-bucket renders)"
+  },
+  {
+   "id": "B152",
+   "aspect": "1.5228",
+   "file": "intro_152_1440.mp4",
+   "size": "2192x1440",
+   "viewports": "iPad mini 6/7 (2266x1488) as a home-screen web app / fullscreen"
+  },
+  {
+   "id": "B143",
+   "aspect": "1.4390",
+   "file": "intro_143_1440.mp4",
+   "size": "2072x1440",
+   "viewports": "11-inch iPad and iPad Air (2360x1640) as a home-screen web app / fullscreen; iPad Pro 11 (2388x1668, 1.4317) gets the plain dissolve unless added as a seventh bucket"
+  },
+  {
+   "id": "B133",
+   "aspect": "1.3333 (4:3)",
+   "file": "intro_133_1536.mp4",
+   "size": "2048x1536",
+   "viewports": "4:3 iPads (2048x1536, 2732x2048) as a home-screen web app / fullscreen"
+  }
+ ],
+ "risks": [
+  {
+   "risk": "Style seam between re-embroidered AI panels and procedural Bayeux sections",
+   "mitigation": "One R25 renderer, one linen ground, continuous procedural borders over every section, shared fuzz/ageing; gate G1 proves S02 beside p1 first; panel faces kept at <= 1.0x native or in shadow."
+  },
+  {
+   "risk": "Board world positions for seed 4242 not recoverable",
+   "mitigation": "Solve from the plate with the known camera; fallback plate-only 2.5D lift in the PoC."
+  },
+  {
+   "risk": "Overscanned top-down plate not possible in demo mode",
+   "mitigation": "Extend the board procedurally beyond the menu footprint with R25 kit hexes matched per terrain class."
+  },
+  {
+   "risk": "The desk reads as an overlay",
+   "mitigation": "It exists only from f1612, in darkness, never brighter than what it covers until its own candles light it (G14); it never moves except the valance unroll; fallback: keep it dark until the convergence dissolve."
+  },
+  {
+   "risk": "Leaf lectern looks unmotivated or like a UI card",
+   "mitigation": "Its couching is visibly pulled, its sewn hinge stays, it leads the crane by 4-6 deg with real foreshortening and a widening contact shadow; fallback in the PoC section."
+  },
+  {
+   "risk": "Returning players and odd aspects",
+   "mitigation": "Matched ending only for no save and an aspect within 0.1 % of a bucket; plain 1.5 s dissolve elsewhere; no autoplay when a save exists."
+  },
+  {
+   "risk": "Per-bucket workload",
+   "mitigation": "The board, f0-1598 and all hero renders are shared; per bucket only the leaf layer (41 light renders), the S22-S26 R25 leaf/title layers and COMP (~1 h CPU each); the bucket list is frozen after the device measurements, before final renders."
+  },
+  {
+   "risk": "Photosensitivity",
+   "mitigation": "Rules in section 2; G13 on the master and every encode; the century is one light arc; flicker is local."
+  },
+  {
+   "risk": "E4 overruns",
+   "mitigation": "45 hero renders at ~95 s fit with 105 spare; if needed, pieces render on twos as a separate layer over a camera-on-ones board."
+  },
+  {
+   "risk": "War slips at low resolution (288-640 px cards)",
+   "mitigation": "Slips <= 1.5x native on screen; F2 opening on a 20 px/mm near patch; hearth light and DOF; normal maps for relief."
+  },
+  {
+   "risk": "Busy climax",
+   "mitigation": "S24 holds three events; no sweep, glints or chrome entrances; S25 is nearly still."
+  },
+  {
+   "risk": "Render contention on 4 shared cores",
+   "mitigation": "408 Eevee renders (363 + 45) + 246 light leaf layers, at most 2 concurrent Blender processes, test renders at 1280x720."
+  }
+ ],
+ "dependencies": [
+  "Game plates (demo mode, SwiftShader ~20-40 s/frame): UI-free menu-camera plate at 2560x1440 and 2x; pieces-hidden variant; overscanned top-down plate; native first-frame captures of the menu in the no-save state for each aspect bucket.",
+  "Decoded main_menu.gd (_layout), ui_theme.gd (9-slice margins) and core/match.gd (Match.has_save paths for the save probe).",
+  "Measured innerWidth/innerHeight on the target iPads (Safari with and without bars, home-screen mode) to pin the bucket list.",
+  "Seed-4242 hex geometry and world positions of settlements and unit groups.",
+  "Exported Blender camera track (E4) for the leaf and the convergence projection.",
+  "R25 batch pre-bake of 16 war slips (2 realms x 4 units x idle/strike); tiled bakes of p1/p3/p6 with the glow inpaint and re-dye hints; the 40 px/mm crown slip.",
+  "An iPad with Safari for G12 and G13 on decoded frames."
+ ],
+ "rules": [
+  {
+   "rule": "Two renderers, one look",
+   "text": "Everything is relight25d (R25) stitch maps: albedo, height_mm, tangent, material, coverage, stitch_id. Frontal shots are relit in numpy (R25-F/S/L). Every 3D insert (macro, goblets, war slips, banner/village, board awakening) is Eevee rendering geometry built from the *same* maps (EV-MR, EV-DM/P, EV-DM/G), and each insert starts or ends on a registered static pose where it equals the R25 frame (swap budget: median dE_ok x100 < 2, no edge shift > 1 px; swaps at S01 f62-72, S13 f936-941, S23 f1720-1725; qa/swap also run at f1612/1613)."
+  },
+  {
+   "rule": "3D only when something rises out of the cloth",
+   "text": "Every rising piece shows thread tethers and a contact shadow for at least 6 frames and its needle-hole footprint (the ghost) for at least 12 frames (pipeline 7.5); pieces hinge or peel from one edge, so the footprint is left open beside or in front of them."
+  },
+  {
+   "rule": "Embroidery never emits",
+   "text": "All light comes from real practicals: the window (late day in Act I, dawn in Act IV), the chronicler's candles (lit for 'table', guttering on 'died', carried over the crown, dying on the collapse, relit on f1664 and f1707 in the desk) and the hearth (Act III, from below). Stitched flames are wool. The only glowing thing in the film is the real burn's ember rim in S14."
+  },
+  {
+   "rule": "Light is the editor",
+   "text": "Practical light follows the score (section 7.3). Key elevation 15-30 deg by default (bible rule 5); documented exceptions: Act II at 12 deg (set by the bible's own colour script, 2.4), the S01 window shaft at 8 deg, the Act III hearth at 6-15 deg (pipeline section 6), the S13 graze at 6 deg and the S10 candle extremes at 4.8-4.9 deg. Flat light never."
+  },
+  {
+   "rule": "Photosensitivity",
+   "text": "No general flash: whole-frame luminance components above 3 Hz stay under 10 % (fire <= 4 %, candles <= 3 % globally); strong flicker stays local (flames, the hearth glow, the ember rim, each well under 25 % of the screen); the hundred years is one slow light arc. Gate G13 (qa/flash.py, Harding-style) runs on the master and every bucket encode."
+  },
+  {
+   "rule": "Scale follows the music",
+   "text": "The tightest framings sit on the quietest sound (S01 open, S11 collapse); the silences get locked frames (S13 gap, S17); the two decisive camera gestures sit on the two biggest musical events (the pull-back launching on the bass entry f1283, the crane landing on the climax f1744-1766). Under the near-silent war the only moves are S12's slow crane (settled before any figure stands) and S13's crane back to face-on (~0.9 deg/frame)."
+  },
+  {
+   "rule": "Camera grammar",
+   "text": "Truck, don't pan; <= 12 px/frame over stitch texture, 180-deg motion blur above that; exponential zooms; the camera is rendered on ones whenever it moves; the cloth stays within 25 deg of facing the camera, apart from the listed tilts (15-deg macro focus bands, the war's 22-deg oblique, the 10-deg rostrum tilt in S20-S21, the final 24-deg crane onto the menu camera); no orbit, no tilt-shift, no dolly-zoom."
+  },
+  {
+   "rule": "AI panels",
+   "text": "Panel faces at or below 1.0x panel-native unless they sit in shadow; the king stays inside frame x 0.43-0.57 whenever p1 is pushed in (the panel's own limit); symmetry is broken by light from one side and by ageing, not by impossible framings; full-p1 holds are trimmed in favour of border and thread detail."
+  },
+  {
+   "rule": "Text budget",
+   "text": "One titulus (SINE HEREDE) and the title (Chronica). Nothing else is written on screen."
+  },
+  {
+   "rule": "Metal budget",
+   "text": "Two full flares (crown f230, 'whole' f1466); listed L2 glints; one needle glint on the title (f1846); everything else, including the title strands, the ornaments, the leaf couching and the board borders, reads by light and shadow at L1 (section 7.2)."
+  },
+  {
+   "rule": "Dye budget",
+   "text": "Narrative fills at or below OKLCH chroma .13 in every act (Act II .12), heraldic at or below .20, the real ember rim exempt; purple belongs to the king alone (the violet bands of p6 and war_bg are re-dyed)."
+  },
+  {
+   "rule": "The desk",
+   "text": "The menu chrome is the chronicler's desk: locked to the frame from f1612, in near-darkness, revealed only by its own candles and finally by the board's daylight; its one physical action is the valance unroll (section 7.4)."
+  },
+  {
+   "rule": "4:3 safe and aspect buckets",
+   "text": "Every composition before f1599 keeps its key action inside x 320-2240; f1599-1983 is recomposited per aspect bucket (section 13)."
+  }
+ ],
+ "critique_responses": [
+  {
+   "n": 1,
+   "severity": "Blocker",
+   "verdict": "Accepted",
+   "response": "Matched ending only in the no-save state (5 buttons, the only state where the blank leaf equals the card). The overlay probes Godot's IDBFS store ('/userfs') for the files Match.has_save() reads, with a first-run localStorage flag as fallback; a save present means no autoplay, and a plain 1.5 s dissolve if it plays. G12 applies to the 5-button state only.",
+   "where": "S22-S26, 13"
+  },
+  {
+   "n": 2,
+   "severity": "Blocker",
+   "verdict": "Accepted, modified",
+   "response": "_layout() ported to Python; f1599-1983 (leaf, E4L, desk, valance, COMP) built per aspect bucket. Buckets: 16:9, 16:10, measured iPad Safari landscape (~1.56), 1.52, 1.43, 4:3 (16:10 and '1.6' are the same ratio, so the sixth bucket is the Safari viewport). Because chrome scales with viewport height and the card with width, only aspects within 0.1 % of a bucket get the matched ending; phones and everything else get a plain dissolve. Board stays a keep_height crop; G12 per bucket.",
+   "where": "S22-S26, 13"
+  },
+  {
+   "n": 3,
+   "severity": "Blocker",
+   "verdict": "Accepted",
+   "response": "The hundred years is one slow light arc plus ageing; whole-frame modulation above 3 Hz under 10 % (fire <= 4 %, candles <= 3 %), strong flicker local; S10's carried candle compensated to +/-10 %; new gate G13 (qa/flash.py).",
+   "where": "S03, S10, S12-S14, S22-S26"
+  },
+  {
+   "n": 4,
+   "severity": "Major",
+   "verdict": "Accepted, modified",
+   "response": "S12 opens at F2 (~240 mm, not macro) and cranes to F1 in 34 frames (edges ~31 px/frame on average, centre <= 5), settled at f877; the stand-up starts f878 on twos with the camera locked; the camera is on ones whenever it moves. The 0.12 s lunge is dropped: the slips rise into their strike poses, which keeps the beat inside the shorter window.",
+   "where": "S11-S13"
+  },
+  {
+   "n": 5,
+   "severity": "Major",
+   "verdict": "Accepted (second option)",
+   "response": "The king stays inside frame x 0.43-0.57: S04 pushes 1.00-1.07x, S09 holds 1.06x and pushes to 1.25x with the throne at 0.47; asymmetry comes from the one-sided candle and Act II ageing. S10 now specifies its 1.25 -> 1.00x pull with a 13 mm leftward drift. No new panel art is authored.",
+   "where": "S04, S09, S10"
+  },
+  {
+   "n": 6,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "Crown lift 15 mm; the candle is carried right to left over the top (az 10 -> 173 deg) with elevations 4.9 / 8.4 / 8.3 / 4.8 deg at gold / red / blue / green (101-177 mm throws, a documented elevation exception); the shadow rests on the void f758-761; done as an offset slip alpha in COMP.",
+   "where": "S10"
+  },
+  {
+   "n": 7,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "S11 is the hanging slip: tethers pop f786-797, the slip is yanked out f797-798. Macro crown baked at 40 px/mm from p1's crown segmentation on a 40 px/mm linen patch (1.0x). Cut moved to f783/784.",
+   "where": "S09-S11"
+  },
+  {
+   "n": 8,
+   "severity": "Major",
+   "verdict": "Accepted, modified",
+   "response": "Rostrum tilt of 10 deg (not up to 15: 10 deg is EV-DM/P's limit) during S20-S21, back to zero by f1612; banner and houses hinge up from one edge like pop-ups so their footprints stay open, and the 28-deg dawn key throws ~1.9x shadows across open linen.",
+   "where": "S20-S22"
+  },
+  {
+   "n": 9,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "Dissolve ends f1798; first stroke f1799-1801; C-h-r-o-n-i-c-a f1801-1846 (~5.6 frames per letter), last stitch on 'you?'; ornaments f1855-1900.",
+   "where": "S25-S26"
+  },
+  {
+   "n": 10,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "Patch 260x150 mm (1 vertex/mm outside the focus band); untilt and DOF opening f40-62; crossfade f62-72; E0 renders f4-72. The pull now runs over 74 frames so the field is 220 mm at f72 (peak edge speed 54 px/frame).",
+   "where": "S01"
+  },
+  {
+   "n": 11,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "Topple and crane finish at f936; swap f936-941 on the static pose; the unpick from f942 is R25 only.",
+   "where": "S12-S13"
+  },
+  {
+   "n": 12,
+   "severity": "Major",
+   "verdict": "Accepted, modified",
+   "response": "The per-hex wavefront starts on the f1664 bass and spreads from Grandbois; it ends at f1719 rather than f1725 so the R25 -> E4 swap (f1720-1725) happens on a static board.",
+   "where": "S22-S23"
+  },
+  {
+   "n": 13,
+   "severity": "Major",
+   "verdict": "Accepted, interpreted",
+   "response": "The desk (beam, rolled valance, banners, candles, lions, table edge, reading frame) is locked to the frame from f1612 in near-darkness, never brighter than what it covers until its candles light it (f1664, f1707; gate G14); the only physical action is the valance unroll. A frame larger than the leaf cannot hide beneath it, so 'revealed under the leaf' is read as revealed by candlelight around and behind the leaf, which rises into it; nothing slides or closes.",
+   "where": "S22-S24"
+  },
+  {
+   "n": 14,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "S24 holds three events: pieces rise (to f1760), the crane lands (f1766, the leaf with it), the valance unrolls (f1755-1782). No sweep, no chrome entrances, no banner swings.",
+   "where": "S24"
+  },
+  {
+   "n": 15,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "S23/S24 glints deleted; S22 couching at L1 and <= 40 px/frame; one needle glint on the title (f1846); flare 3 replaced by the ornament couching; one needle frontier at a time in S15; crests no longer flash. Flare 2 is kept (it is now 27 frames clear of any other metal event).",
+   "where": "S15, S19, S22-S26, 7.2"
+  },
+  {
+   "n": 16,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "Title built from R25 couched-floss strands in the valance plane, stitched by a needle working from behind the damask; each letter dissolves to the exact art; no thread climb.",
+   "where": "S25-S26"
+  },
+  {
+   "n": 17,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "The leaf leads the crane by 4-6 deg over f1726-1750 (visibly foreshortened), is parallel by f1760 and on the parchment rect +/-0.5 px at f1766; the squareness test applies only from f1760.",
+   "where": "S23-S24, 11"
+  },
+  {
+   "n": 18,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "Embroidery never emits. Practicals: window, the chronicler's candles, the hearth; only the real burn glows. S03: a real candle is lit for 'table'; S07: it gutters on 'died'. p1's four baked glows (one left, three right) are inpainted out of its maps for every state.",
+   "where": "S01-S14, S22-S23"
+  },
+  {
+   "n": 19,
+   "severity": "Major",
+   "verdict": "Accepted",
+   "response": "S02 breathes by key azimuth/elevation only; S14 tower courses unpicked plus one tethered peel, on twos; smoke advances by stitch-on along its spiral; S16 road segments unpicked, then rings stitched on; fog quilts peel down from the bars in place.",
+   "where": "S02, S14, S16, S19"
+  },
+  {
+   "n": 20,
+   "severity": "Major",
+   "verdict": "Accepted (Eevee option)",
+   "response": "Goblets are EV-DM/P pieces (block E2: 32 renders on twos in S05 + 10 for the S06 settle, ~13 min).",
+   "where": "S05-S06"
+  },
+  {
+   "n": 21,
+   "severity": "Moderate",
+   "verdict": "Accepted",
+   "response": "Off-axis framings within item 5's limits; key and candle from one side; S02 capital at x ~0.62 and four unequal towns; S16 unequal towns and a late, re-stitched green ring; crests at irregular moments, heights and sizes; leaf couching wanders +/-1 mm.",
+   "where": "S02-S10, S16, S19, S22"
+  },
+  {
+   "n": 22,
+   "severity": "Moderate",
+   "verdict": "Accepted",
+   "response": "Narrative fills <= .13 in every act (Act II .12), heraldic <= .20, real ember rim exempt; violet bands of p6 and war_bg re-dyed madder / woad-grey through the hints; p6's gradient sky flattened into banded laid work.",
+   "where": "8, S12, S14"
+  },
+  {
+   "n": 23,
+   "severity": "Moderate",
+   "verdict": "Accepted (move option)",
+   "response": "Crests moved into the Bb gap (f1493-1517) at 4.0 px/mm, ~240 px per 60 mm crest.",
+   "where": "S19"
+  },
+  {
+   "n": 24,
+   "severity": "Moderate",
+   "verdict": "Accepted, modified for S12",
+   "response": "With S12 opening at F2 (10.7 px/mm) a 20 px/mm near-region patch keeps <= 1.4x, so the 40 px/mm patch is not needed there (S11's crown macro does get 40 px/mm). S18 gets 1.0 and 0.75 px/mm mips.",
+   "where": "S12, S18"
+  },
+  {
+   "n": 25,
+   "severity": "Moderate",
+   "verdict": "Accepted",
+   "response": "E4 renders only frames that move: the crane f1726-1766 (41) plus 4 stills (zero-tilt registration, two final light states, final registration) = 45 hero renders; static spans are ratio-blended stills. 105 hero renders are left for retakes.",
+   "where": "S23-S25, 12"
+  },
+  {
+   "n": 26,
+   "severity": "Moderate",
+   "verdict": "Accepted",
+   "response": "E3 is EV-DM/P at ~18 s; the banner sway continues as a pieces-only layer on twos to f1719; there is no renderer change at f1612/1613, and qa/swap is run there anyway.",
+   "where": "S20-S23"
+  },
+  {
+   "n": 27,
+   "severity": "Moderate",
+   "verdict": "Accepted",
+   "response": "Ship 1440-high files per bucket (2048x1536 for 4:3), H.264 High 5.1 yuv420p tagged bt709 / tv range, plus an HEVC variant for Safari; G12 runs on device-decoded frames in iPad Safari during the dissolve itself.",
+   "where": "13, G12"
+  },
+  {
+   "n": 28,
+   "severity": "Moderate",
+   "verdict": "Accepted",
+   "response": "Units' idle zones and water masked out of G12; the dissolve is verified on device to fall inside the tour's 3 s hold, which starts after callMain.",
+   "where": "13"
+  },
+  {
+   "n": 29,
+   "severity": "Moderate",
+   "verdict": "Accepted (integrator suggestion)",
+   "response": "The overlay opens the engine gate at currentTime >= 64.3 s (f1929); f1929-1983 are identical, so a stalled video there is invisible. The repo is not touched.",
+   "where": "S26, 13"
+  },
+  {
+   "n": 30,
+   "severity": "Moderate",
+   "verdict": "Accepted",
+   "response": "Poster = dim pre-bloom f4; f0-3 are that same image; the bloom happens on f4.",
+   "where": "S01, 13"
+  },
+  {
+   "n": 31,
+   "severity": "Moderate",
+   "verdict": "Accepted (integrator suggestion)",
+   "response": "The card is unmasked in reading order (title, subtitle, rule, buttons, ~1.2 s); the drypoint lines are aligned to the live title baseline and rule measured on each bucket's native capture.",
+   "where": "S22, S26, 13"
+  },
+  {
+   "n": 32,
+   "severity": "Minor",
+   "verdict": "Accepted",
+   "response": "S18 edge speed restated as ~32 px/frame; S01 peak 54; S02 blur threshold 12; E1 renders counted per shot (S12 64, S13 13); Act II 12 deg documented as an exception; ghost rule harmonised (tethers + contact shadow >= 6 frames, footprint >= 12); S13's gap called held, not tight; the dutch is rendered in-camera and the 8 % drift overscan is costed (+17 % pixels) and unwinds in the S13 crane; the figure batch is cut to 16 slips.",
+   "where": "S01, S02, S12, S13, S18, 2"
+  },
+  {
+   "n": 33,
+   "severity": "Minor",
+   "verdict": "Accepted",
+   "response": "Panel faces <= 1.0x native or in shadow; p6 fire in 3 dye lots of laid flame and no gradient sky; full-p1 framing ends at f357, about 30 frames earlier, handing over to the border and the thread.",
+   "where": "S03-S10, S14"
+  }
+ ],
+ "merge_log": {
+  "must_fix": [
+   {
+    "item": "S24 of the frieze draft overcrowded under the key line",
+    "fix": "S24 carries three events only (pieces rise, crane lands, valance unrolls); the desk is locked to the frame from f1612 and revealed by its own candles (f1664, f1707); S25 carries only the title; the plate dissolve ends f1798, before the first stroke f1799."
+   },
+   {
+    "item": "Frieze S12 overpacked",
+    "fix": "War over S12-S13 (138 frames): one generation; a slow crane settled by f877; the stand-up into strike poses f878-896; a century in one light arc; topple f925-936; one mass unpick on 'nothing' f942."
+   },
+   {
+    "item": "S17 candlelight dying on 'dark'",
+    "fix": "Act II's candle dies at f797 (S11); in Act III the hearth sinks to embers, and the embers die on 'dark' f1292 (S18)."
+   },
+   {
+    "item": "Near-black hold while the music rises (f1336-1381)",
+    "fix": "The surviving gold glint pulses on bass f1345 and a pre-dawn lift starts at f1372 (S18)."
+   },
+   {
+    "item": "Eight tituli",
+    "fix": "One titulus only: SINE HEREDE (S08). The only other stitched word in the film is 'Chronica'."
+   },
+   {
+    "item": "Glints and sweeps on every beat",
+    "fix": "Metal budget: two L3 flares (crown f230, 'whole' f1466); listed L2 glints; one needle glint on the title; everything else L1. No light sweeps at the climax."
+   },
+   {
+    "item": "Monotony of face-on trucking",
+    "fix": "Grammar varied: macro in S01 and S11; the war's F2 oblique crane; locked frames in the silences (S11, S13, S17, S22); push-ins on emotional beats (S04, S09); border detail in S06; the bass pull-back; the 10-deg rostrum tilt (S20-S21); the crane. Trucks remain only where the strip must be read."
+   },
+   {
+    "item": "p1 repeated",
+    "fix": "The second copy differs at first glance by light and age (one guttered candle low on the left, Act II re-dye, a tideline, stitched candles and goblets reduced to needle holes) and is an event: the king is unpicked live (S09)."
+   },
+   {
+    "item": "Page square to the lens without a reason",
+    "fix": "The leaf is a separate parchment leaf tacked in by the gold couching and sewn along its bottom edge; on 'remembered' the couching is pulled and it hinges up, leading the crane by 4-6 deg (visibly foreshortened), parallel by f1760 and on the card's parchment rect at f1766."
+   },
+   {
+    "item": "f1760 vs tilt completion",
+    "fix": "Crane within 0.3 deg of the menu camera by f1760 and exact at f1766; all pieces settled by f1760; the convergence dissolve ends f1798."
+   },
+   {
+    "item": "Title pacing",
+    "fix": "First stroke f1799-1801, C-h-r-o-n-i-c-a f1801-1846 (~5.6 frames per letter), last stitch on 'you?' f1846; ornaments f1855-1900."
+   },
+   {
+    "item": "Pull-back before the bass (f1240)",
+    "fix": "S16-S17 hold (1 px/frame); the exponential pull-back launches on f1283 with a 6-frame ease-in, cruising by 'dark' f1292."
+   },
+   {
+    "item": "Trapezoid footprint at zero tilt",
+    "fix": "PoC input: overscanned top-down UI-free plate, or a procedural R25 board extension; S22 is framed on the exact E4 zero-tilt pose."
+   },
+   {
+    "item": "Projection smear under rising pieces",
+    "fix": "Pieces-hidden plate for the ground; rising pieces keep OBJ + stitch materials until the convergence f1756-1798."
+   },
+   {
+    "item": "4.5 m of procedural art",
+    "fix": "Gate G1 (one kit, S02 proved against p1 first) and divider splices; the war strip is war_bg re-embroidered, not new art."
+   },
+   {
+    "item": "E4 cost",
+    "fix": "45 hero renders (~75 min) after static spans became ratio-blended stills; 105 hero renders spare."
+   },
+   {
+    "item": "S01 pull-back speed",
+    "fix": "Real Eevee macro with real motion blur; centre < 8 px/frame; edges peak ~54 px/frame under blur; 8x over 74 frames."
+   },
+   {
+    "item": "Audio tail",
+    "fix": "Recommend a 0.5 s gain ramp on the mix tail (f1968-1983) to hide the -48 dBFS cut-off during the hold."
+   },
+   {
+    "item": "Final plate missing nameplates/shields",
+    "fix": "f1855-1983 are built per bucket from a native capture with only the card interior inpainted; nameplates and shields settle in during the f1772-1798 dissolve; verified on device."
+   },
+   {
+    "item": "Candles flickering to the end",
+    "fix": "Flames settle to exactly the sprite art and every animated layer is zero from f1929; f1929-1983 identical."
+   },
+   {
+    "item": "Card screen-aligned vs a 66-deg camera",
+    "fix": "Solved by the lectern: the leaf converges to the image plane by f1760 and lands at f1766."
+   },
+   {
+    "item": "Burn-through reveals a pristine layer",
+    "fix": "The burn reveals the dark walnut beneath (the splice); the scorch and soot persist as ageing into S15-S18."
+   },
+   {
+    "item": "Hearth light through the weave",
+    "fix": "The firelight is the hearth: a low grazing key from the bottom edge of frame."
+   },
+   {
+    "item": "Four goblets, not five",
+    "fix": "Four goblets everywhere."
+   },
+   {
+    "item": "R25 material must-fixes",
+    "fix": "Gates G2-G11 (metal environment term, fuzz, void, lift policy, whorls, LOD/shimmer, stitch-on order, unpick, panel bakes, colour/practicals)."
+   }
+  ],
+  "grafts": [
+   {
+    "source": "table",
+    "graft": "Practical light as the editor, now with real practicals only: the candle lit for 'table', guttering on 'died', carried over the crown, dying on the f797 collapse; the hearth in the near-silence; dawn through the window on 'Now'; the desk's candles relit on f1664 and f1707."
+   },
+   {
+    "source": "table",
+    "graft": "On 'borders' one road becomes four realm rings in the game's border idiom, with the game's quilted fog-of-war kit over the forgotten land (S16), peeled away by the dawn (S19)."
+   },
+   {
+    "source": "table",
+    "graft": "The king unpicked live during 'and every lord...', crown left hanging (S09); ghost underdrawn crowns, layered with the frieze's travelling crown shadow (S10)."
+   },
+   {
+    "source": "table",
+    "graft": "The real linen burning ('consumed by what it depicts', S14); capitonnage as the board's swelling mechanism (S23-S24); drypoint ruling on the blank page on 'page' and 'you?'; poster-frame advice and the f1983 difference test."
+   },
+   {
+    "source": "scale",
+    "graft": "The needle drawing the gold thread up through the linen on 'There' f5 (S01) and the crown taken exactly on the f797-798 collapse (S11), on one shared Eevee macro rig."
+   },
+   {
+    "source": "scale",
+    "graft": "'Scale follows the music' as a rule: macro on the quietest passages (S01, S11), held frames in the silences, the decisive gestures on the bass entry and the climax."
+   },
+   {
+    "source": "scale",
+    "graft": "A blank world as well as a blank page: the hex underdrawing running unstitched to the end of the roll (S20-S22); the 0.5 s audio-tail ramp; 55 identical final frames."
+   },
+   {
+    "source": "table/scale",
+    "graft": "The war opened low over the cloth in grazing hearth light, rising to reveal the war strip (S12), now from F2 rather than macro."
+   },
+   {
+    "source": "bake-off",
+    "graft": "Displaced-mesh Eevee from R25 maps for every 3D insert; stand-up figure slips (~70 deg) with tethers snapping one by one; fold/drape field; metal environment term; embroidery-in-progress frontier with underdrawing; couched-gold-over-padding crests; Legion crimson livery; protected unfaded linen under lifted pieces; risen banner sway at the 2.115 s pulse."
+   }
+  ],
+  "rejected": [
+   "Scale's eye-level miniature glide, dolly-zoom dive and tilt-shift miniature DOF (cliche risk, breaks the 25-deg rule, heaviest 3D).",
+   "Scale's climax inside a Blender-to-Godot cross-match and demo-mode zoom animation (unverified).",
+   "Table's menu chrome visible from frame 4 (spoils the final reveal); the desk exists only from f1612, in darkness.",
+   "Table's 12-frame title stitch, its 60 px/frame hidden truck and its soldier-height tracking shot.",
+   "Card dropping in from above the lens as a UI panel (literal; replaced by the leaf rising into its frame).",
+   "Linen cross-fading into parchment (the leaf carries the parchment albedo from its first frame)."
+  ]
+ }
+}

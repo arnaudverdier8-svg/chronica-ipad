@@ -1,0 +1,146 @@
+   1 class_name FramePace
+   2 extends Node
+  38 const SCALE_MIN: = 0.6
+  42 const MIN_3D_PX: = 1000
+  43 const SCALE_MAX: = 1
+  44 const STEP_DOWN: = 0.1
+  45 const STEP_UP: = 0.05
+  49 const SLOW_MS: = 22
+  50 const FAST_MS: = 17.6
+  54 const EMA: = 0.1
+  55 const HITCH_MS: = 44
+  58 const DOWN_EVERY: = 0.4
+  59 const UP_WAIT: = 3
+  60 const UP_WAIT_MAX: = 30
+  62 const UP_FAIL: = 2
+  66 const PROBE_SECS: = 1.5
+  67 const PROBE_GAIN: = 0.92
+  68 const FLOOR_HOLD: = 30
+  70 const IDLE_AFTER: = 4
+  71 const IDLE_FPS: = 30
+  72 const ACTIVE_FPS: = 0
+  77 const SETTLE: = 12
+  80 var busy: Callable
+  82 var verbose: = False
+  85 var min_px: = MIN_3D_PX
+  86 var scale_3d: = 1
+  87 var idle: = False
+  88 var _ema: = 16.7
+  89 var _good: = 0
+  90 var _since_down: = 0
+  91 var _since_up: = 999
+  92 var _up_wait: = UP_WAIT
+  93 var _quiet: = 0
+  94 var _settle: = SETTLE
+  95 var _seed: = PackedFloat32Array()
+  96 var _last_us: = 0
+  98 var _probing: = False
+  99 var _probe_t: = 0
+ 100 var _probe_from: = 1
+ 101 var _probe_ema: = 0
+ 103 var _floor: = 0
+ 104 var _floor_t: = 0
+ 107 func _ready() -> void:
+ 108 process_mode = Node.PROCESS_MODE_ALWAYS
+ 109 _last_us = Time.get_ticks_usec()
+ 110 Engine.max_fps = ACTIVE_FPS
+ 111 _apply_scale()
+ 114 func _input(_ev: InputEvent) -> void:
+ 115 _quiet = 0
+ 116 if idle:
+ 117 _set_idle(False)
+ 120 func _process(_delta: float) -> void:
+ 123 var now: = Time.get_ticks_usec()
+ 124 var dt: = float(now - _last_us) / 1e+06
+ 125 _last_us = now
+ 126 if dt <= 0:
+ 127 return
+ 128 var ms: = minf(dt * 1000, HITCH_MS)
+ 129 _quiet += minf(dt, 0.5)
+ 130 if busy.is_valid() and bool(busy.call()):
+ 131 _quiet = 0
+ 132 if idle:
+ 133 _set_idle(False)
+ 134 if not idle and _quiet >= IDLE_AFTER:
+ 135 _set_idle(True)
+ 136 if idle:
+ 137 return
+ 138 if _settle > 0:
+ 139 _settle -= 1
+ 140 if _settle < SETTLE / 2:
+ 141 _seed.append(ms)
+ 142 if _settle == 0:
+ 143 _ema = _median(_seed)
+ 144 return
+ 145 _ema = lerpf(_ema, ms, EMA)
+ 146 _since_down += dt
+ 147 _since_up += dt
+ 148 _floor_t += dt
+ 149 if _probing:
+ 150 _probe_t += dt
+ 151 if _probe_t < PROBE_SECS:
+ 152 return
+ 153 _probing = False
+ 154 if _ema > _probe_ema * PROBE_GAIN:
+ 156 scale_3d = _probe_from
+ 157 _floor = _probe_from
+ 158 _floor_t = 0
+ 159 _apply_scale()
+ 160 if verbose:
+ 161     print('pace : descente inutile (%.1f ms avant, %.1f après), plancher %.2f' %[_probe_ema, _ema, _floor])
+ 162 return
+ 163 var lo: = _scale_min()
+ 164 if _ema > SLOW_MS:
+ 165 _good = 0
+ 166 if _since_down >= DOWN_EVERY and scale_3d > lo + 0.001:
+ 167 if _since_up < UP_FAIL:
+ 168     _up_wait = minf(_up_wait * 2, UP_WAIT_MAX)
+ 169 _probing = True
+ 170 _probe_t = 0
+ 171 _probe_from = scale_3d
+ 172 _probe_ema = _ema
+ 173 scale_3d = maxf(lo, snappedf(scale_3d - STEP_DOWN, 0.05))
+ 174 _since_down = 0
+ 175 _apply_scale()
+ 176 elif _ema < FAST_MS:
+ 177 _good += dt
+ 178 if _good >= _up_wait and scale_3d < SCALE_MAX - 0.001:
+ 179 scale_3d = minf(SCALE_MAX, snappedf(scale_3d + STEP_UP, 0.05))
+ 180 _good = 0
+ 181 _since_up = 0
+ 182 _apply_scale()
+ 183 else:
+ 184 _good = 0
+ 189 func _scale_min() -> float:
+ 190 var h: = float(get_viewport().get_visible_rect().size.y)
+ 191 var win: = DisplayServer.window_get_size()
+ 192 if win.y > 0:
+ 193 h = float(win.y)
+ 194 var lo: = clampf(min_px / maxf(h, 1), SCALE_MIN, SCALE_MAX)
+ 195 if _floor_t < FLOOR_HOLD:
+ 196 lo = maxf(lo, _floor)
+ 197 return lo
+ 200 func _set_idle(on: bool) -> void:
+ 201 idle = on
+ 202 _probing = False
+ 203 Engine.max_fps = IDLE_FPS if on else ACTIVE_FPS
+ 204 _resettle()
+ 205 _good = 0
+ 206 if verbose:
+ 207 print('pace %d ms : %s' %[Time.get_ticks_msec(), 'repos, %d i/s' % IDLE_FPS if on else 'cadence pleine'])
+ 210 func _apply_scale() -> void:
+ 211 get_viewport().scaling_3d_scale = scale_3d
+ 212 _resettle()
+ 213 if verbose:
+ 214 print('pace %d ms : échelle 3D %.2f (image lissée %.1f ms, attente avant remontée %.0f s)' %[
+ 215 Time.get_ticks_msec(), scale_3d, _ema, _up_wait])
+ 219 func _resettle() -> void:
+ 220 _settle = SETTLE
+ 221 _seed.clear()
+ 224 static func _median(v: PackedFloat32Array) -> float:
+ 225 if v.is_empty():
+ 226 return 16.7
+ 227 var s: = v.duplicate()
+ 228 s.sort()
+ 229 var n: = s.size()
+ 230 return s[n / 2] if n % 2 == 1 else(s[n / 2 - 1] + s[n / 2]) * 0.5

@@ -1,0 +1,56 @@
+{
+ "crop_01_hero_clash_legionary_manatarms": [
+  1000,
+  980,
+  1700,
+  1420
+ ],
+ "crop_02_left_knight_archer_footprints_tethers": [
+  0,
+  880,
+  760,
+  1330
+ ],
+ "crop_03_right_merchants_horse_archer": [
+  1700,
+  900,
+  2560,
+  1400
+ ],
+ "crop_04_sky_needle_painting_madder_woad": [
+  900,
+  400,
+  1700,
+  800
+ ],
+ "crop_05_left_arc_bleach_far_ranks_hills": [
+  0,
+  330,
+  760,
+  720
+ ],
+ "crop_06_border_gold_thread_left": [
+  0,
+  10,
+  760,
+  350
+ ],
+ "crop_07_border_gold_thread_right_table": [
+  1800,
+  0,
+  2560,
+  330
+ ],
+ "crop_08_centre_footprints_needle_holes": [
+  760,
+  700,
+  1460,
+  1050
+ ],
+ "crop_09_hills_far_ranks_ghosts_right": [
+  1300,
+  560,
+  2000,
+  900
+ ]
+}

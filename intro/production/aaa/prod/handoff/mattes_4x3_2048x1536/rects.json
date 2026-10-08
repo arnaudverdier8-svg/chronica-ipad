@@ -1,0 +1,449 @@
+{
+ "size": [
+  2048,
+  1536
+ ],
+ "canvas_scale": 1.28,
+ "draw_order": [
+  "bar_top",
+  "banner_side_left",
+  "banner_side_right",
+  "candle_left",
+  "candle_right",
+  "lion_statue_left",
+  "lion_statue_right",
+  "table_edge_bottom",
+  "logo_title",
+  "menu_card"
+ ],
+ "card_min_size_base": [
+  629.0,
+  665.02
+ ],
+ "parchment_field_px": [
+  207.36,
+  280.32,
+  748.8,
+  800.03
+ ],
+ "rects_base": {
+  "bar_top": [
+   0.0,
+   0.0,
+   1600.0,
+   80.0
+  ],
+  "logo_title": [
+   490.0,
+   0.0905,
+   620.0,
+   185.0
+  ],
+  "menu_card": [
+   140.0,
+   199.0,
+   629.0,
+   665.02
+  ],
+  "banner_side_left": [
+   10.3364,
+   40.0,
+   104.0,
+   280.0
+  ],
+  "banner_side_right": [
+   1490.2778,
+   40.0,
+   99.0,
+   280.0
+  ],
+  "candle_left": [
+   6.3333,
+   572.0,
+   76.0,
+   276.0
+  ],
+  "candle_right": [
+   1513.1333,
+   572.0,
+   81.0,
+   276.0
+  ],
+  "lion_statue_left": [
+   4.1423,
+   970.0,
+   158.0,
+   228.0
+  ],
+  "lion_statue_right": [
+   1436.3,
+   970.0,
+   159.0,
+   228.0
+  ],
+  "table_edge_bottom": [
+   168.125,
+   1050.0,
+   626.0,
+   150.0
+  ]
+ },
+ "rects_px": {
+  "bar_top": [
+   0.0,
+   0.0,
+   2048.0,
+   102.4
+  ],
+  "logo_title": [
+   627.2,
+   0.116,
+   793.6,
+   236.8
+  ],
+  "menu_card": [
+   179.2,
+   254.72,
+   805.12,
+   851.226
+  ],
+  "banner_side_left": [
+   13.231,
+   51.2,
+   133.12,
+   358.4
+  ],
+  "banner_side_right": [
+   1907.556,
+   51.2,
+   126.72,
+   358.4
+  ],
+  "candle_left": [
+   8.107,
+   732.16,
+   97.28,
+   353.28
+  ],
+  "candle_right": [
+   1936.811,
+   732.16,
+   103.68,
+   353.28
+  ],
+  "lion_statue_left": [
+   5.302,
+   1241.6,
+   202.24,
+   291.84
+  ],
+  "lion_statue_right": [
+   1838.464,
+   1241.6,
+   203.52,
+   291.84
+  ],
+  "table_edge_bottom": [
+   215.2,
+   1344.0,
+   801.28,
+   192.0
+  ]
+ },
+ "note": "straight (non-premultiplied) RGBA, sRGB-encoded, full frame, aligned to the live menu; composite in draw_order with plain over (Godot Compatibility 2D blends in sRGB space)",
+ "draw_order_note": "menu_card = menu_card_frame over menu_card_parchment_field (disjoint). Contents: over(card_contents, menu_card) == the live capture.",
+ "card_layers": {
+  "menu_card_frame": "alpha 0 inside the parchment field; the leaf lands under it",
+  "menu_card_parchment_field": {
+   "field_px_bbox": [
+    207,
+    280,
+    956,
+    1080
+   ],
+   "field_px": 597916
+  },
+  "card_contents": {
+   "content_px": 338866,
+   "recompose_max_abs_255": 2.0,
+   "recompose_mean_abs_255": 0.1599,
+   "recompose_px_over_2_255": 0
+  }
+ },
+ "content_geometry": {
+  "coordinate_note": "px of the native capture; rect_base = px / canvas_scale; bands = bounding boxes of card_contents alpha > 24 in the card field",
+  "title": {
+   "x": [
+    239,
+    924
+   ],
+   "y": [
+    311,
+    395
+   ],
+   "rect_px": [
+    239,
+    311,
+    685,
+    84
+   ],
+   "rect_base": [
+    186.719,
+    242.969,
+    535.156,
+    65.625
+   ],
+   "word_x_px": [
+    404,
+    765
+   ],
+   "ornament_left_x_px": [
+    239,
+    404
+   ],
+   "ornament_right_x_px": [
+    765,
+    924
+   ],
+   "baseline_y_px": 385,
+   "baseline_y_base": 300.781,
+   "baseline_note": "first pixel row below the bodies of the tall letters of the word (median of the letter components), serif feet included"
+  },
+  "subtitle_1": {
+   "x": [
+    347,
+    816
+   ],
+   "y": [
+    439,
+    470
+   ],
+   "rect_px": [
+    347,
+    439,
+    469,
+    31
+   ],
+   "rect_base": [
+    271.094,
+    342.969,
+    366.406,
+    24.219
+   ]
+  },
+  "subtitle_2": {
+   "x": [
+    327,
+    835
+   ],
+   "y": [
+    479,
+    509
+   ],
+   "rect_px": [
+    327,
+    479,
+    508,
+    30
+   ],
+   "rect_base": [
+    255.469,
+    374.219,
+    396.875,
+    23.438
+   ]
+  },
+  "rule": {
+   "x": [
+    235,
+    928
+   ],
+   "y": [
+    525,
+    540
+   ],
+   "rect_px": [
+    235,
+    525,
+    693,
+    15
+   ],
+   "rect_base": [
+    183.594,
+    410.156,
+    541.406,
+    11.719
+   ],
+   "centre_y_px": 536.0,
+   "centre_y_base": 418.75,
+   "boss_x_px": 580
+  },
+  "button_1": {
+   "x": [
+    235,
+    928
+   ],
+   "y": [
+    555,
+    637
+   ],
+   "rect_px": [
+    235,
+    555,
+    693,
+    82
+   ],
+   "rect_base": [
+    183.594,
+    433.594,
+    541.406,
+    64.062
+   ]
+  },
+  "button_2": {
+   "x": [
+    235,
+    928
+   ],
+   "y": [
+    653,
+    735
+   ],
+   "rect_px": [
+    235,
+    653,
+    693,
+    82
+   ],
+   "rect_base": [
+    183.594,
+    510.156,
+    541.406,
+    64.062
+   ]
+  },
+  "button_3": {
+   "x": [
+    235,
+    928
+   ],
+   "y": [
+    750,
+    832
+   ],
+   "rect_px": [
+    235,
+    750,
+    693,
+    82
+   ],
+   "rect_base": [
+    183.594,
+    585.938,
+    541.406,
+    64.062
+   ]
+  },
+  "button_4": {
+   "x": [
+    235,
+    928
+   ],
+   "y": [
+    847,
+    929
+   ],
+   "rect_px": [
+    235,
+    847,
+    693,
+    82
+   ],
+   "rect_base": [
+    183.594,
+    661.719,
+    541.406,
+    64.062
+   ]
+  },
+  "button_5": {
+   "x": [
+    235,
+    928
+   ],
+   "y": [
+    945,
+    1027
+   ],
+   "rect_px": [
+    235,
+    945,
+    693,
+    82
+   ],
+   "rect_base": [
+    183.594,
+    738.281,
+    541.406,
+    64.062
+   ]
+  },
+  "footer": {
+   "x": [
+    391,
+    768
+   ],
+   "y": [
+    1045,
+    1068
+   ],
+   "rect_px": [
+    391,
+    1045,
+    377,
+    23
+   ],
+   "rect_base": [
+    305.469,
+    816.406,
+    294.531,
+    17.969
+   ]
+  }
+ },
+ "parchment_target": {
+  "mean_rgb": [
+   232.32,
+   208.85,
+   174.27
+  ],
+  "mean_luminance_255": 205.15,
+  "highpass_std_sigma2_255": 0.552,
+  "laplacian_variance": 0.183,
+  "luminance_levels_spanned": 21,
+  "foxing_specks_per_megapixel": 147.5,
+  "foxing_speck_rule": "connected areas of >= 3 px darker than the 8 px local mean by > 5/255, field eroded by 40 px (scale dependent: the specks are stretched with the card)",
+  "note": "Measured on f1983 inside the field eroded by 40 px. The game card is a 260x340 texture stretched about 3.9x: very soft and low-frequency by design. The S24 leaf must be low-passed and graded to these numbers before the dissolve, or the hand-off reads as a pop from sharp textile to soft bitmap."
+ },
+ "g12": {
+  "mask_fraction_of_frame": 0.0499,
+  "captures_used": [
+   "capture/c133_a/menu_2048x1536_mf060_r0.png"
+  ],
+  "g12_outlook_outside_card": {
+   "c133_a/menu_2048x1536_mf060_r0.png": {
+    "mean_abs_255_no_mask": 0.854,
+    "mean_abs_255_with_mask": 0.052,
+    "px_over_16_pct_no_mask": 1.22,
+    "px_over_16_pct_with_mask": 0.0
+   }
+  },
+  "rule": "mask = dilate(max over stored captures of |capture - menu frame 30| > 6/255, 6 px); empirical, from the captures listed. A frame in which no unit moved differently is not covered: re-derive it from a wider capture set if G12 starts flagging units."
+ },
+ "colour": {
+  "encoding": "sRGB (PNGs carry an sRGB chunk since v2; v1 files were untagged)",
+  "alpha": "straight (non-premultiplied)",
+  "blend": "2D in sRGB space (Godot Compatibility); composite with plain over",
+  "encode_hint": "Flag the shipped encode BT.709 (primaries/transfer/matrix) with tv range, as the storyboard states; the game presents full-range sRGB, so verify the range mapping on device in G12."
+ }
+}

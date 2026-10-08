@@ -1,0 +1,81 @@
+{
+ "px_per_mm": 4.65,
+ "light": {
+  "az": 128,
+  "el": 22,
+  "K": 3000,
+  "key_i": 3.2,
+  "fill_ratio": 4.6,
+  "tint": 0.35,
+  "rim_az": 30,
+  "rim_el": 8,
+  "rim_i": 0.22,
+  "k_env": 0.8
+ },
+ "kmap_pool_screen_px": [
+  1280.0,
+  604.8
+ ],
+ "age": {
+  "base": 0.26,
+  "hem_boost": 0.5,
+  "hem_mm": 24.0,
+  "side_boost": 0.2,
+  "xc_mm": 400.0,
+  "half_w_mm": 400.0,
+  "metal_keep": 0.12,
+  "fox_extra": {
+   "base": 0.35,
+   "hem": 0.55,
+   "hem_mm": 45.0
+  }
+ },
+ "grade": {
+  "exposure": 0.9,
+  "act": "I",
+  "grain": 0.012
+ },
+ "kit": {
+  "level": 0,
+  "map_px_per_mm": 7.0,
+  "linen_fraction": 0.474,
+  "linen_albedo_lin": [
+   0.6156,
+   0.4739,
+   0.2787
+  ],
+  "wool_albedo_L_ok_median": 0.458,
+  "wool_chroma_ok_p50": 0.055,
+  "wool_chroma_ok_p95": 0.088,
+  "wool_height_mm_p50": 0.603,
+  "wool_height_mm_p95": 1.312,
+  "frame_luma_p05_p50_p95": [
+   0.0469,
+   0.2877,
+   0.8669
+  ],
+  "frame_hf_std": 0.09305
+ },
+ "p1": {
+  "level": 1,
+  "map_px_per_mm": 5.0,
+  "linen_fraction": 0.692,
+  "linen_albedo_lin": [
+   0.6263,
+   0.4814,
+   0.2847
+  ],
+  "wool_albedo_L_ok_median": 0.443,
+  "wool_chroma_ok_p50": 0.067,
+  "wool_chroma_ok_p95": 0.112,
+  "wool_height_mm_p50": 0.453,
+  "wool_height_mm_p95": 0.911,
+  "frame_luma_p05_p50_p95": [
+   0.0595,
+   0.6813,
+   0.9041
+  ],
+  "frame_hf_std": 0.08235
+ },
+ "seconds": 37.8
+}

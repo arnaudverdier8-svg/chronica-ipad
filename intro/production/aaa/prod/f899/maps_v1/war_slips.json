@@ -1,0 +1,120 @@
+{
+ "slips": [
+  {
+   "group": "slip0",
+   "unit": "man_at_arms",
+   "pose": "strike",
+   "realm": "B",
+   "x_mm": 392.0,
+   "y_mm": 318.0,
+   "flip": true,
+   "bbox_mm": [
+    365.2,
+    214.2,
+    419.5,
+    319.9
+   ],
+   "ppm": 5.6
+  },
+  {
+   "group": "slip1",
+   "unit": "legionary",
+   "pose": "strike",
+   "realm": "R",
+   "x_mm": 262.0,
+   "y_mm": 316.0,
+   "flip": false,
+   "bbox_mm": [
+    230.7,
+    232.2,
+    293.6,
+    317.9
+   ],
+   "ppm": 5.6
+  },
+  {
+   "group": "slip2",
+   "unit": "spearman",
+   "pose": "strike",
+   "realm": "B",
+   "x_mm": 536.0,
+   "y_mm": 310.0,
+   "flip": true,
+   "bbox_mm": [
+    501.4,
+    214.8,
+    572.8,
+    314.8
+   ],
+   "ppm": 5.6
+  },
+  {
+   "group": "slip3",
+   "unit": "legionary",
+   "pose": "strike",
+   "realm": "R",
+   "x_mm": 90.0,
+   "y_mm": 306.0,
+   "flip": false,
+   "bbox_mm": [
+    58.7,
+    222.2,
+    121.6,
+    307.9
+   ],
+   "ppm": 5.6
+  },
+  {
+   "group": "slip4",
+   "unit": "horse_archer",
+   "pose": "strike",
+   "realm": "B",
+   "x_mm": 462.0,
+   "y_mm": 296.0,
+   "flip": true,
+   "bbox_mm": [
+    416.5,
+    204.0,
+    505.1,
+    301.1
+   ],
+   "ppm": 5.6
+  },
+  {
+   "group": "slip5",
+   "unit": "knight",
+   "pose": "strike",
+   "realm": "R",
+   "x_mm": 186.0,
+   "y_mm": 290.0,
+   "flip": false,
+   "bbox_mm": [
+    132.6,
+    181.4,
+    241.2,
+    295.7
+   ],
+   "ppm": 5.6
+  },
+  {
+   "group": "slip6",
+   "unit": "mercenary",
+   "pose": "strike",
+   "realm": "R",
+   "x_mm": 328.0,
+   "y_mm": 288.0,
+   "flip": false,
+   "bbox_mm": [
+    285.0,
+    195.9,
+    356.4,
+    290.2
+   ],
+   "ppm": 5.6
+  }
+ ],
+ "sheet_mm": [
+  600.0,
+  380.0
+ ]
+}

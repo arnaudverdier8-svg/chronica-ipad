@@ -1,0 +1,53 @@
+{
+ "model": "alpha(t) = 1 - cubic-bezier(.25,.1,.25,1)(t / 0.9 s); shown = alpha f1983 + (1 - alpha) live; outside the card rect",
+ "frames_used": "A: live = menu frame 3 capture; B: live = menu frame 30 capture (f1983 base) and menu frame 120 as a later-state proxy",
+ "table": [
+  {
+   "t_s": 0.1,
+   "overlay_opacity": 0.887,
+   "A_start_at_frame1_mean_abs": 0.179,
+   "A_px_over_16": 0.24,
+   "B_after_30_frames_mean_abs": 0.0,
+   "B_px_over_16": 0.0,
+   "B_later_state_mf120_mean_abs": 0.125
+  },
+  {
+   "t_s": 0.2,
+   "overlay_opacity": 0.654,
+   "A_start_at_frame1_mean_abs": 0.551,
+   "A_px_over_16": 1.22,
+   "B_after_30_frames_mean_abs": 0.0,
+   "B_px_over_16": 0.0,
+   "B_later_state_mf120_mean_abs": 0.384
+  },
+  {
+   "t_s": 0.3,
+   "overlay_opacity": 0.424,
+   "A_start_at_frame1_mean_abs": 0.918,
+   "A_px_over_16": 1.53,
+   "B_after_30_frames_mean_abs": 0.0,
+   "B_px_over_16": 0.0,
+   "B_later_state_mf120_mean_abs": 0.638
+  },
+  {
+   "t_s": 0.45,
+   "overlay_opacity": 0.198,
+   "A_start_at_frame1_mean_abs": 1.279,
+   "A_px_over_16": 1.73,
+   "B_after_30_frames_mean_abs": 0.0,
+   "B_px_over_16": 0.0,
+   "B_later_state_mf120_mean_abs": 0.889
+  },
+  {
+   "t_s": 0.6,
+   "overlay_opacity": 0.075,
+   "A_start_at_frame1_mean_abs": 1.474,
+   "A_px_over_16": 1.83,
+   "B_after_30_frames_mean_abs": 0.0,
+   "B_px_over_16": 0.0,
+   "B_later_state_mf120_mean_abs": 1.025
+  }
+ ],
+ "crops": "qa/dissolve_ghost_sim_16x9.png (opacity at 0.2 s = 0.65)",
+ "caveat": "arithmetic on stored captures; not the real overlay on a device"
+}

@@ -1,0 +1,20 @@
+newmtl plank
+Kd 0.3813 0.2542 0.1119
+d 1.0
+# palette #A68A5E (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl wood_dark
+Kd 0.0612 0.0296 0.0116
+d 1.0
+# palette #46301C (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl wood
+Kd 0.1559 0.0802 0.0319
+d 1.0
+# palette #6E5032 (linear); original glb Kd 0.9063 0.9063 0.9063
+
+newmtl fish
+Kd 0.3968 0.4452 0.4125
+d 1.0
+# palette #A9B2AC (linear); original glb Kd 0.9063 0.9063 0.9063
+

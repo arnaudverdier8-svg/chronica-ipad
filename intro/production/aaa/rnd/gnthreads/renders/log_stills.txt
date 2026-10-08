@@ -1,0 +1,7 @@
+=== final_frontal 05:28:01
+RENDERED frame 1 in 68.6 s -> /tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/rnd/gnthreads/renders/frontal_0001.png
+ALL DONE 70.2
+=== final_oblique 05:29:12
+RENDERED frame 1 in 72.3 s -> /tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/rnd/gnthreads/renders/oblique_0001.png
+ALL DONE 73.6
+=== finished 05:30:27

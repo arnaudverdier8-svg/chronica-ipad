@@ -1,0 +1,182 @@
+{
+ "frame": 91,
+ "shot": "S02",
+ "sheet": "k1_realm",
+ "camera": {
+  "px_per_mm": 5.0,
+  "x0_mm": 168.0,
+  "y0_mm": 5.0,
+  "note": "S01->S02 pull-back at f91, 5.0 px/mm, easing out toward F0 (3.3) at f114.  Zoom about the FRAME CENTRE (the docstring/JSON mismatch of v1 is fixed: the code and the docstring both say frame centre).  View top-left = sheet (168, 5) mm = local (40, 5).  RATE 0.012/frame (180-deg shutter -> ~8 px at the extreme corners, ~6 px at the thread tie-down).  The storyboard's S01 smoothstep gives d(ln s)/df = -0.036 at f91 (46 px/frame at the edge): the orchestrator must ease S01 out harder or cut the shutter around f85-100.  Because a pure centre zoom cannot bring a tie-down that S01's macro frames at the frame centre to the upper left, the S01->S02 path needs a pan as well: required end state at f91: top-left (168, 5) mm at 5.0 px/mm; at f114 (F0 hold): view x 12-788, y 2-438 mm (3.3 px/mm).",
+  "zoom_fixed_px": [
+   1280,
+   720
+  ],
+  "zoom_rate_per_frame": 0.012,
+  "shutter_frames": 0.5,
+  "blur_samples": 11
+ },
+ "light": {
+  "az": 128,
+  "el": 22,
+  "K": 3000,
+  "key_i": 3.2,
+  "fill_ratio": 4.6,
+  "tint": 0.35,
+  "rim_az": 30,
+  "rim_el": 8,
+  "rim_i": 0.22,
+  "k_env": 0.8
+ },
+ "kmap": {
+  "cx_mm": 380,
+  "cy_mm": 150,
+  "r_mm": 270,
+  "floor": 0.35,
+  "aspect": 1.5
+ },
+ "folds": {
+  "amp_mm": 0.65,
+  "scale_mm": 60.0,
+  "seed": 17,
+  "frieze_origin_mm": [
+   0.0,
+   0.0
+  ],
+  "dust": 0.14,
+  "creases": [
+   {
+    "x": 450,
+    "y": 104,
+    "angle": 1.2,
+    "w": 8.5,
+    "depth": 1.25,
+    "len": 1200
+   },
+   {
+    "x": 450,
+    "y": 48,
+    "angle": 0.8,
+    "w": 7.0,
+    "depth": 0.7,
+    "len": 900
+   },
+   {
+    "x": 450,
+    "y": 296,
+    "angle": -1.0,
+    "w": 10.0,
+    "depth": 1.0,
+    "len": 1100
+   },
+   {
+    "x": 450,
+    "y": 392,
+    "angle": 0.6,
+    "w": 9.0,
+    "depth": -0.7,
+    "len": 1100
+   },
+   {
+    "x": 470,
+    "y": 170,
+    "angle": 87,
+    "w": 11.0,
+    "depth": -0.85,
+    "len": 320
+   },
+   {
+    "x": 655,
+    "y": 150,
+    "angle": 92,
+    "w": 9.0,
+    "depth": 0.7,
+    "len": 260
+   },
+   {
+    "x": 610,
+    "y": 46,
+    "angle": -55,
+    "w": 5.0,
+    "depth": -0.45,
+    "len": 70
+   },
+   {
+    "x": 198,
+    "y": 42,
+    "angle": 60,
+    "w": 4.0,
+    "depth": -0.35,
+    "len": 40
+   },
+   {
+    "x": 330,
+    "y": 200,
+    "angle": 88,
+    "w": 16.0,
+    "depth": -0.55,
+    "len": 420
+   }
+  ]
+ },
+ "age": {
+  "base": 0.26,
+  "hem_boost": 0.5,
+  "hem_mm": 24.0,
+  "side_boost": 0.2,
+  "xc_mm": 400.0,
+  "half_w_mm": 400.0,
+  "metal_keep": 0.12,
+  "fox_extra": {
+   "base": 0.35,
+   "hem": 0.55,
+   "hem_mm": 45.0
+  }
+ },
+ "grade": {
+  "exposure": 0.9,
+  "act": "I",
+  "grain": 0.012
+ },
+ "pool_all": {
+  "cx_mm": 485,
+  "cy_mm": 175,
+  "r_mm": 135,
+  "floor": 0.08,
+  "aspect": 2.0,
+  "gradient": 0.35,
+  "accents": [
+   {
+    "cx_mm": 300,
+    "cy_mm": 24,
+    "r_mm": 60,
+    "gain": 0.6,
+    "aspect": 1.6
+   }
+  ],
+  "note": "window footprint: the whole rig (key, fill, rim) falls off with it (peak on the capital, 8 % floor, diagonal window gradient); plus one lift along the gold thread's first tie-down; applied in linear light"
+ },
+ "linen_mottle": {
+  "amp": 0.05,
+  "scale_mm": 38.0,
+  "seed": 23,
+  "amp2": 0.03,
+  "scale2_mm": 9.0,
+  "note": "storage discolouration of the linen ground (frieze-mm field, applied to every sheet before ageing)"
+ },
+ "version": "v2",
+ "look": {
+  "ao": {
+   "k1": 0.95,
+   "k2": 0.22,
+   "floor": 0.5
+  },
+  "lod_p0": 2.4,
+  "lod_ramp": 2.0
+ },
+ "split_tone": {
+  "sh_knee": 0.35,
+  "sh_amt": 0.4,
+  "hi_lo": 0.35,
+  "hi_amt": 0.1
+ }
+}

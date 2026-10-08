@@ -1,0 +1,89 @@
+{
+ "version": "v2",
+ "sheet": "k1_realm",
+ "sheet_mm": [
+  800,
+  440
+ ],
+ "sheet_px_per_mm": 7.0,
+ "OX_mm": 128.0,
+ "f91_view": {
+  "x0_mm": 168.0,
+  "y0_mm": 5.0,
+  "px_per_mm": 5.0
+ },
+ "f0_view": {
+  "x0_mm": 12.0,
+  "y0_mm": 2.0,
+  "px_per_mm": 3.3
+ },
+ "safe_4x3_sheet_x_mm": [
+  232,
+  616
+ ],
+ "thread": {
+  "needle_hole_mm": [
+   249.7,
+   19.4
+  ],
+  "first_tie_x_mm": 258.0,
+  "rule_y_mm": 17.5,
+  "nail_holes_mm": [
+   [
+    284,
+    7.4
+   ],
+   [
+    532,
+    7.9
+   ],
+   [
+    88,
+    8.1
+   ],
+   [
+    768,
+    7.6
+   ]
+  ]
+ },
+ "t1_tree": {
+  "x_mm": 758.0,
+  "y_base_mm": 262.0,
+  "h_mm": 104.0,
+  "seed": 140
+ },
+ "measured": {
+  "linen_fraction_f91": 0.479,
+  "linen_fraction_4x3": 0.484,
+  "linen_fraction_F0": 0.466,
+  "wool_L_ok_median": 0.458,
+  "p1_wool_L_ok_median": 0.443,
+  "wool_height_p50_p95_mm": [
+   0.603,
+   1.312
+  ],
+  "p1_wool_height_p50_p95_mm": [
+   0.453,
+   0.911
+  ],
+  "thread_oklch": [
+   0.749,
+   0.126,
+   81.4
+  ],
+  "tie_red_px": 356,
+  "v1_tie_red_px": 118,
+  "breath_tip_shift_px": {
+   "az120_to_150": 6.96,
+   "el22_to_16": 5.5,
+   "combined": 9.92
+  }
+ },
+ "camera_required": {
+  "f91": "top-left (168,5) mm at 5.0 px/mm",
+  "f114": "x 12-788, y 2-438 mm at 3.3 px/mm",
+  "zoom_rate_per_frame": 0.012,
+  "s01_smoothstep_rate": 0.036
+ }
+}

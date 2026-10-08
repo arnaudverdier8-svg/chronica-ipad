@@ -1,0 +1,221 @@
+{
+ "capture": "/tmp/claude-0/-home-user-chronica-ipad/ae358f8e-1e70-5169-a8ed-87e6e6e15cfd/scratchpad/aaa/prod/handoff/capture/c169_a/menu_2560x1440_mf030_r0.png",
+ "size": [
+  2560,
+  1440
+ ],
+ "canvas_scale": 1.6,
+ "card_min_size_base_fitted": [
+  628.98,
+  664.98
+ ],
+ "card_draw_rect_base": [
+  140.0,
+  199.0,
+  628.98,
+  664.98
+ ],
+ "card_draw_rect_px": [
+  224.0,
+  318.4,
+  1006.37,
+  1063.97
+ ],
+ "card_frame_fit_err_sum_255": 3.833,
+ "outside_card_rect": {
+  "max_abs_diff": 0,
+  "changed_px": 0
+ },
+ "outside_replaced_region": {
+  "max_abs_diff": 0
+ },
+ "replaced_px": 919209,
+ "content_free_parchment_ring": {
+  "px": 335715,
+  "mean_abs_255": 0.48,
+  "p99_abs_255": 4.0
+ },
+ "feather_band": {
+  "px": 13535,
+  "mean_abs_255": 0.012
+ },
+ "matte_check_vs_capture": {
+  "bar_top": {
+   "opaque_px": 183826,
+   "mean_abs_255": 0.256,
+   "p99_abs_255": 0.58
+  },
+  "banner_side_left": {
+   "opaque_px": 26803,
+   "mean_abs_255": 0.691,
+   "p99_abs_255": 3.99
+  },
+  "banner_side_right": {
+   "opaque_px": 23771,
+   "mean_abs_255": 0.404,
+   "p99_abs_255": 1.77
+  },
+  "candle_left": {
+   "opaque_px": 8637,
+   "mean_abs_255": 0.406,
+   "p99_abs_255": 1.89
+  },
+  "candle_right": {
+   "opaque_px": 11750,
+   "mean_abs_255": 0.389,
+   "p99_abs_255": 1.91
+  },
+  "lion_statue_left": {
+   "opaque_px": 34757,
+   "mean_abs_255": 0.39,
+   "p99_abs_255": 1.52
+  },
+  "lion_statue_right": {
+   "opaque_px": 34359,
+   "mean_abs_255": 0.446,
+   "p99_abs_255": 1.98
+  },
+  "logo_title": {
+   "opaque_px": 212839,
+   "mean_abs_255": 0.442,
+   "p99_abs_255": 2.48
+  },
+  "menu_card": null
+ },
+ "chrome_all_opaque_vs_capture_mean_abs_255": 0.385,
+ "parchment_field_px": [
+  259.2,
+  350.4,
+  935.97,
+  999.97
+ ],
+ "parchment_field_texels": [
+  22,
+  20,
+  238,
+  320
+ ],
+ "rects_base": {
+  "bar_top": [
+   0.0,
+   0.0,
+   1600.0,
+   80.0
+  ],
+  "logo_title": [
+   490.0,
+   0.0905,
+   620.0,
+   185.0
+  ],
+  "menu_card": [
+   140.0,
+   199.0,
+   628.98,
+   664.98
+  ],
+  "banner_side_left": [
+   10.3738,
+   40.0,
+   80.0,
+   216.0
+  ],
+  "banner_side_right": [
+   1513.4,
+   40.0,
+   76.0,
+   216.0
+  ],
+  "candle_left": [
+   6.25,
+   429.0,
+   57.0,
+   207.0
+  ],
+  "candle_right": [
+   1533.475,
+   429.0,
+   60.0,
+   207.0
+  ],
+  "lion_statue_left": [
+   4.3567,
+   727.0,
+   118.0,
+   171.0
+  ],
+  "lion_statue_right": [
+   1476.35,
+   727.0,
+   119.0,
+   171.0
+  ]
+ },
+ "rects_px": {
+  "bar_top": [
+   0.0,
+   0.0,
+   2560.0,
+   128.0
+  ],
+  "logo_title": [
+   784.0,
+   0.145,
+   992.0,
+   296.0
+  ],
+  "menu_card": [
+   224.0,
+   318.4,
+   1006.368,
+   1063.968
+  ],
+  "banner_side_left": [
+   16.598,
+   64.0,
+   128.0,
+   345.6
+  ],
+  "banner_side_right": [
+   2421.44,
+   64.0,
+   121.6,
+   345.6
+  ],
+  "candle_left": [
+   10.0,
+   686.4,
+   91.2,
+   331.2
+  ],
+  "candle_right": [
+   2453.56,
+   686.4,
+   96.0,
+   331.2
+  ],
+  "lion_statue_left": [
+   6.971,
+   1163.2,
+   188.8,
+   273.6
+  ],
+  "lion_statue_right": [
+   2362.16,
+   1163.2,
+   190.4,
+   273.6
+  ]
+ },
+ "draw_order": [
+  "bar_top",
+  "banner_side_left",
+  "banner_side_right",
+  "candle_left",
+  "candle_right",
+  "lion_statue_left",
+  "lion_statue_right",
+  "logo_title",
+  "menu_card"
+ ]
+}

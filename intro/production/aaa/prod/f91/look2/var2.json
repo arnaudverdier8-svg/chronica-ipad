@@ -1,0 +1,6 @@
+{
+ "c": {"pool_all": {"cx_mm": 362, "cy_mm": 150, "r_mm": 215, "floor": 0.20, "aspect": 1.5, "gradient": 0.18}, "grade": {"exposure": 0.72},
+       "split_tone": {"sh_knee": 0.30, "sh_amt": 0.35, "hi_lo": 0.35, "hi_amt": 0.08}},
+ "d": {"pool_all": {"cx_mm": 340, "cy_mm": 140, "r_mm": 200, "floor": 0.10, "aspect": 1.5, "gradient": 0.22}, "grade": {"exposure": 0.95},
+       "split_tone": {"sh_knee": 0.35, "sh_amt": 0.40, "hi_lo": 0.35, "hi_amt": 0.10}}
+}
