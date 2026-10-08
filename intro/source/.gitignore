@@ -1,0 +1,10 @@
+map_albedo.png
+map_height.png
+map_layout.json
+crown.png
+p1_empty.png
+war_bg.png
+map_scene.blend*
+frames3d/
+render/
+*.log
